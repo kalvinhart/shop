@@ -26,9 +26,16 @@ const updateProduct = async (req, res) => {
   res.redirect("/products");
 };
 
+const deleteProduct = async (req, res) => {
+  const { id } = req.params;
+  await Product.deleteOne({ _id: id });
+  res.redirect("/products");
+};
+
 module.exports = {
   getAllProducts,
   getProduct,
   addNewProduct,
   updateProduct,
+  deleteProduct,
 };
