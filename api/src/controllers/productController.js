@@ -11,7 +11,16 @@ const getProduct = async (req, res) => {
   res.send(product);
 };
 
+const addNewProduct = async (req, res) => {
+  const product = req.body;
+  console.log(product);
+  const newProduct = new Product(product);
+  await newProduct.save();
+  res.redirect("/products");
+};
+
 module.exports = {
   getAllProducts,
   getProduct,
+  addNewProduct,
 };
