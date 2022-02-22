@@ -5,4 +5,13 @@ const getAllProducts = async (req, res) => {
   res.send(products);
 };
 
-module.exports = getAllProducts;
+const getProduct = async (req, res) => {
+  const { id } = req.params;
+  const product = await Product.findById(id);
+  res.send(product);
+};
+
+module.exports = {
+  getAllProducts,
+  getProduct,
+};
