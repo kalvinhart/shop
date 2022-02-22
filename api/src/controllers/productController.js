@@ -19,8 +19,16 @@ const addNewProduct = async (req, res) => {
   res.redirect("/products");
 };
 
+const updateProduct = async (req, res) => {
+  const { id } = req.params;
+  const updatedProduct = req.body;
+  await Product.findByIdAndUpdate(id, updatedProduct, { runValidators: true });
+  res.redirect("/products");
+};
+
 module.exports = {
   getAllProducts,
   getProduct,
   addNewProduct,
+  updateProduct,
 };
