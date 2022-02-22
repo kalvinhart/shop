@@ -1,7 +1,7 @@
+const getAllProducts = require("./controllers/productController");
+
 const setUpRoutes = (app) => {
-  app.get("/products", (req, res) => {
-    res.send("get products");
-  });
+  app.get("/products", getAllProducts);
 };
 
 module.exports = setUpRoutes;
