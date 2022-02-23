@@ -3,7 +3,6 @@ const app = express();
 require("dotenv").config();
 
 const setUpDatabase = require("./db");
-const setUpRoutes = require("./routes");
 const { errorHandler } = require("./middleware/errors");
 const { RouteNotFoundError } = require("./customErrors");
 
@@ -13,7 +12,9 @@ const initialiseApp = () => {
   app.use(express.urlencoded({ extended: true }));
 
   setUpDatabase();
-  setUpRoutes(app);
+
+  app.use("/api/products", require("./routes/productRoutes"));
+  app.use("/api/categories", require("./routes/categoryRoutes"));
 
   app.use(errorHandler);
 

@@ -1,14 +1,10 @@
-const { NoResultsError, CustomError } = require("../customErrors");
 const Product = require("../models/productModel");
+const { catchAsync } = require("../middleware/errors");
 
-const getAllProducts = async (req, res, next) => {
-  try {
-    const products = await Product.find({});
-    res.json(products);
-  } catch (error) {
-    return next(new NoResultsError("all products"));
-  }
-};
+const getAllProducts = catchAsync(async (req, res, next) => {
+  const products = await Product.find({});
+  res.json(products);
+});
 
 const getProduct = async (req, res, next) => {
   const { id } = req.params;
