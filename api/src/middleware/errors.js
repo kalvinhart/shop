@@ -4,4 +4,10 @@ const errorHandler = (err, req, res, next) => {
   res.status(status).send(message);
 };
 
-module.exports = errorHandler;
+const catchAsync = (fn) => {
+  return (req, res, next) => {
+    fn(req, res, next).catch((err = next(err)));
+  };
+};
+
+module.exports = { errorHandler, catchAsync };
