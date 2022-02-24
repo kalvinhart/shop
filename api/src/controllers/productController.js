@@ -3,7 +3,7 @@ const Category = require("../models/categoryModel");
 const { catchAsync } = require("../middleware/errors");
 
 const getAllProducts = catchAsync(async (req, res, next) => {
-  const products = await Product.find({});
+  const products = await Product.find({}).limit(20).sort({ amountSold: -1 });
   res.json(products);
 });
 

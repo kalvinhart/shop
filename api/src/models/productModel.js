@@ -25,6 +25,7 @@ const productSchema = new Schema(
       },
     ],
     stockQty: { type: Number, required: true, default: 1 },
+    amountSold: Number,
   },
   { timestamps: true }
 );
