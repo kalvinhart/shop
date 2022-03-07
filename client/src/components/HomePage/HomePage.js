@@ -13,9 +13,9 @@ const HomePage = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const data = await axios.get("localhost:5050/api/products");
-        const products = await data.json();
-        setProductData(products);
+        const { data } = await axios.get("/api/products");
+        console.log(data);
+        setProductData(data);
         setLoading(false);
       } catch (error) {
         console.log(error);

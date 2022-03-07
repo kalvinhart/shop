@@ -10,7 +10,7 @@ const ProductContent = ({ products }) => {
       <SideBar />
       <ProductGrid>
         {products.map((product) => (
-          <ProductCard productInfo={product} />
+          <ProductCard key={product.name} productInfo={product} />
         ))}
       </ProductGrid>
     </StyledProductContentWrapper>
