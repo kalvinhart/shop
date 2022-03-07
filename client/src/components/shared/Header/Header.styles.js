@@ -7,6 +7,8 @@ export const StyledHeaderWrapper = styled.div`
 
 export const StyledHeader = styled.header`
   position: fixed;
+  top: 0;
+  left: 0;
   height: var(--header-height);
   width: 100%;
   padding: 10px 20px;

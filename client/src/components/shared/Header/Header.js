@@ -19,7 +19,8 @@ const Header = () => {
           <SpanLogo>My eShop</SpanLogo>
           <StyledInput type="text" name="search" id="search" placeholder="Search" />
           <StyledUserInfoWrapper>
-            <Button>Login</Button>
+            <Button primary>Login</Button>
+            <Button secondary>Register</Button>
             <Link to="/cart">
               <FontAwesomeIcon className="icon" icon={faCartShopping} size="lg" />
             </Link>
