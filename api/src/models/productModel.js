@@ -18,13 +18,9 @@ const productSchema = new Schema(
     size: String,
     color: String,
     description: String,
-    categories: [
-      {
-        type: Schema.Types.ObjectId,
-        required: true,
-      },
-    ],
+    categories: [String],
     stockQty: { type: Number, required: true, default: 1 },
+    amountSold: Number,
   },
   { timestamps: true }
 );

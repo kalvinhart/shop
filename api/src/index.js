@@ -4,7 +4,6 @@ require("dotenv").config();
 
 const setUpDatabase = require("./db");
 const { errorHandler } = require("./middleware/errors");
-const { RouteNotFoundError } = require("./customErrors");
 
 const PORT = process.env.PORT || 5000;
 
