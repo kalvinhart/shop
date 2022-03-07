@@ -1,5 +1,4 @@
 const Product = require("../models/productModel");
-const Category = require("../models/categoryModel");
 const { catchAsync } = require("../middleware/errors");
 
 const getAllProducts = catchAsync(async (req, res, next) => {
@@ -14,14 +13,15 @@ const getProduct = catchAsync(async (req, res, next) => {
 });
 
 const getProductsByCategory = catchAsync(async (req, res, next) => {
-  const { categoryId } = req.params;
-  const category = Category.find({ name: categoryId });
-  console.log(category);
-  if (!category) throw new Error("Category does not exist");
+  const { categoryName } = req.params;
   const products = await Product.find({
-    "categories._id": { $in: [category.categoryId] },
+    categories: { $in: [categoryName] },
   });
-  res.json(products);
+  if (products.length === 0) {
+    res.status(404).json({ msg: "No products were found in this category." });
+  } else {
+    res.json(products);
+  }
 });
 
 const addNewProduct = catchAsync(async (req, res, next) => {
