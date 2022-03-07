@@ -1,18 +1,7 @@
-import ProductCard from "../../shared/ProductCard/ProductCard";
-
 import { StyledGrid } from "./ProductGrid.styles";
 
-const ProductGrid = () => {
-  return (
-    <StyledGrid>
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-    </StyledGrid>
-  );
+const ProductGrid = ({ children }) => {
+  return <StyledGrid>{children}</StyledGrid>;
 };
 
 export default ProductGrid;
