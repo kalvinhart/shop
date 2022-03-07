@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 require("dotenv").config();
+const cors = require("cors");
 
 const setUpDatabase = require("./db");
 const { errorHandler } = require("./middleware/errors");
@@ -8,6 +9,7 @@ const { errorHandler } = require("./middleware/errors");
 const PORT = process.env.PORT || 5000;
 
 const initialiseApp = () => {
+  app.use(cors());
   app.use(express.urlencoded({ extended: true }));
 
   setUpDatabase();
