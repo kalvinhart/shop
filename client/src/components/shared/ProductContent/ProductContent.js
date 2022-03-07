@@ -1,13 +1,18 @@
 import ProductGrid from "../../shared/ProductGrid/ProductGrid";
+import ProductCard from "../ProductCard/ProductCard";
 import SideBar from "../SideBar/SideBar";
 
 import { StyledProductContentWrapper } from "./ProductContent.styles";
 
-const ProductContent = () => {
+const ProductContent = ({ products }) => {
   return (
     <StyledProductContentWrapper>
       <SideBar />
-      <ProductGrid />
+      <ProductGrid>
+        {products.map((product) => (
+          <ProductCard productInfo={product} />
+        ))}
+      </ProductGrid>
     </StyledProductContentWrapper>
   );
 };

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { SpanPrice } from "../../../styles/fontStyles";
 
 export const StyledCardBackground = styled.div`
   width: 300px;
@@ -7,6 +8,10 @@ export const StyledCardBackground = styled.div`
   flex-direction: column;
   background-color: white;
   border: 2px solid var(--clr-borders);
+
+  & ${SpanPrice} {
+    margin-bottom: 20px;
+  }
 `;
 
 export const StyledCardImage = styled.img`
