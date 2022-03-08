@@ -16,7 +16,9 @@ const Header = () => {
     <StyledHeader>
       <Container>
         <StyledHeaderWrapper>
-          <SpanLogo>My eShop</SpanLogo>
+          <Link to="/">
+            <SpanLogo>My eShop</SpanLogo>
+          </Link>
           <StyledInput type="text" name="search" id="search" placeholder="Search" />
           <StyledUserInfoWrapper>
             <Button primary>Login</Button>
