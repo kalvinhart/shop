@@ -1,4 +1,4 @@
-import ProductGrid from "../../shared/ProductGrid/ProductGrid";
+import ProductGrid from "../ProductGrid/ProductGrid";
 import ProductCard from "../ProductCard/ProductCard";
 import SideBar from "../SideBar/SideBar";
 

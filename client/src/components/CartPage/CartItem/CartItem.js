@@ -11,13 +11,12 @@ import {
 } from "./CartItem.styles";
 import { H3, SpanGrey, SpanPrice, SpanRegular } from "../../../styles/fontStyles";
 
-import HorizonImage from "../../../Horizon-II-Forbidden-West-Cover-Art.png";
 import { Button } from "../../../styles/buttonStyles";
 
 const CartItem = () => {
   return (
     <StyledCartItemWrapper>
-      <StyledCartItemImage src={HorizonImage} alt="" />
+      <StyledCartItemImage src="" alt="" />
 
       <StyledCartItemInfoWrapper>
         <H3>Product Name</H3>

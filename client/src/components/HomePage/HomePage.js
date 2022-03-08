@@ -4,7 +4,7 @@ import { loadProducts } from "../../actions/productActions";
 
 import PageWrapper from "../shared/PageWrapper/PageWrapper";
 import Container from "../shared/Container/Container";
-import ProductContent from "../shared/ProductContent/ProductContent";
+import ProductContent from "./ProductContent/ProductContent";
 import { H1 } from "../../styles/fontStyles";
 
 const HomePage = () => {
