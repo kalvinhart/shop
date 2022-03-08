@@ -1,10 +1,10 @@
 import CartDetails from "../CartDetails/CartDetails";
 import OrderSummary from "../OrderSummary/OrderSummary";
 
-const Cart = () => {
+const Cart = ({ cart }) => {
   return (
     <>
-      <CartDetails />
+      <CartDetails cart={cart} />
       <OrderSummary />
     </>
   );
