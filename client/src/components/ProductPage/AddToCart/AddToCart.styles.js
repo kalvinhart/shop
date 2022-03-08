@@ -7,7 +7,7 @@ export const StyledAddToCartWrapper = styled.div`
 `;
 
 export const StyledQuantityTotalWrapper = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   ${FlexSpaceBetween}
 `;
 
