@@ -58,7 +58,7 @@ const ProductDetails = ({ product }) => {
               </StyledProductInfoGroup>
             )}
           </StyledProductMainInfoText>
-          <AddToCart />
+          <AddToCart productPrice={price} />
         </StyledProductMainInfo>
       </StyledProductMainInfoWrapper>
 
