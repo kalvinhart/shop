@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
@@ -12,7 +13,7 @@ import { Button } from "../../../styles/buttonStyles";
 import { H3, SpanPrice } from "../../../styles/fontStyles";
 import QuantityPicker from "../../shared/QuantityPicker/QuantityPicker";
 
-const AddToCart = () => {
+const AddToCart = ({ productPrice }) => {
   return (
     <StyledAddToCartWrapper>
       <StyledQuantityTotalWrapper>
@@ -23,7 +24,7 @@ const AddToCart = () => {
 
         <StyledTotalWrapper>
           <H3>Total:</H3>
-          <SpanPrice>£49.99</SpanPrice>
+          <SpanPrice>£{productPrice}</SpanPrice>
         </StyledTotalWrapper>
       </StyledQuantityTotalWrapper>
 

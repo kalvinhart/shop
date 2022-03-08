@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { SpanPrice } from "../../../styles/fontStyles";
 
 export const StyledProductBackground = styled.div`
   width: 100%;
@@ -38,6 +39,10 @@ export const StyledProductInfoGroup = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
+  & ${SpanPrice} {
+    margin-bottom: 20px;
+  }
 `;
 
 export const StyledProductImageWrapper = styled.div`

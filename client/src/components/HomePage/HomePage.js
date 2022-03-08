@@ -1,33 +1,25 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { loadProducts } from "../../actions/productActions";
 
 import PageWrapper from "../shared/PageWrapper/PageWrapper";
 import Container from "../shared/Container/Container";
-import ProductContent from "../shared/ProductContent/ProductContent";
+import ProductContent from "./ProductContent/ProductContent";
 import { H1 } from "../../styles/fontStyles";
 
 const HomePage = () => {
-  const [loading, setLoading] = useState(true);
-  const [productData, setProductData] = useState(null);
+  const dispatch = useDispatch();
+  const getProducts = useSelector((state) => state.getProducts);
+  const { loading, error, products } = getProducts;
 
   useEffect(() => {
-    const getData = async () => {
-      try {
-        const { data } = await axios.get("/api/products");
-        console.log(data);
-        setProductData(data);
-        setLoading(false);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getData();
+    dispatch(loadProducts());
   }, []);
 
   return (
     <PageWrapper>
       <Container>
-        {loading ? <H1>Loading...</H1> : <ProductContent products={productData} />}
+        {loading ? <H1>Loading...</H1> : <ProductContent products={products} />}
       </Container>
     </PageWrapper>
   );

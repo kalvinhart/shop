@@ -29,6 +29,16 @@ const GlobalStyle = createGlobalStyle`
         background-color: #fafafa;
     }
 
+    a,
+    a:visited {
+        text-decoration: none;
+        color: var(----clr-font);
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
     .icon {
         color: var(--clr-font);
     }

@@ -11,37 +11,43 @@ import {
 } from "./CartItem.styles";
 import { H3, SpanGrey, SpanPrice, SpanRegular } from "../../../styles/fontStyles";
 
-import HorizonImage from "../../../Horizon-II-Forbidden-West-Cover-Art.png";
 import { Button } from "../../../styles/buttonStyles";
 
-const CartItem = () => {
+const CartItem = ({ item }) => {
+  const { _id, name, brand, imageUrl, size, color, qty, price } = item;
   return (
     <StyledCartItemWrapper>
-      <StyledCartItemImage src={HorizonImage} alt="" />
+      <StyledCartItemImage src={imageUrl} alt={name} />
 
       <StyledCartItemInfoWrapper>
-        <H3>Product Name</H3>
+        <H3>{name}</H3>
 
-        <StyledCartItemInfoGroup>
-          <SpanGrey>Brand: </SpanGrey>
-          <SpanRegular>Brand</SpanRegular>
-        </StyledCartItemInfoGroup>
+        {brand && (
+          <StyledCartItemInfoGroup>
+            <SpanGrey>Brand: </SpanGrey>
+            <SpanRegular>{brand}</SpanRegular>
+          </StyledCartItemInfoGroup>
+        )}
 
-        <StyledCartItemInfoGroup>
-          <SpanGrey>Size: </SpanGrey>
-          <SpanRegular>Size</SpanRegular>
-        </StyledCartItemInfoGroup>
+        {size && (
+          <StyledCartItemInfoGroup>
+            <SpanGrey>Size: </SpanGrey>
+            <SpanRegular>{size}</SpanRegular>
+          </StyledCartItemInfoGroup>
+        )}
 
-        <StyledCartItemInfoGroup>
-          <SpanGrey>Colour: </SpanGrey>
-          <SpanRegular>Colour</SpanRegular>
-        </StyledCartItemInfoGroup>
+        {color && (
+          <StyledCartItemInfoGroup>
+            <SpanGrey>Colour: </SpanGrey>
+            <SpanRegular>{color}</SpanRegular>
+          </StyledCartItemInfoGroup>
+        )}
       </StyledCartItemInfoWrapper>
 
       <StyledCartButtonsWrapper>
         <QuantityPicker />
 
-        <SpanPrice>£49.99</SpanPrice>
+        <SpanPrice>£{price}</SpanPrice>
         <Button secondary>
           <FontAwesomeIcon icon={faTrashAlt} />
           Remove

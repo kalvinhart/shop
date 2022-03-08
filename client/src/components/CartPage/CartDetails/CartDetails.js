@@ -1,13 +1,10 @@
 import CartItem from "../CartItem/CartItem";
 import { StyledCartDetailsWrapper } from "./CartDetails.styles";
 
-const CartDetails = () => {
+const CartDetails = ({ cart }) => {
   return (
     <StyledCartDetailsWrapper>
-      <CartItem />
-      <CartItem />
-      <CartItem />
-      <CartItem />
+      {cart.length > 0 ? cart.map((item) => <CartItem item={item} />) : "no items"}
     </StyledCartDetailsWrapper>
   );
 };
