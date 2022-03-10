@@ -27,6 +27,11 @@ export const SpanRegular = styled.span`
   font-size: 16px;
 `;
 
+export const SpanDescription = styled.span`
+  font-size: 16px;
+  white-space: pre-line;
+`;
+
 export const SpanGrey = styled.span`
   font-size: 16px;
   color: #666;
