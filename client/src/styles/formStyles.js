@@ -43,6 +43,7 @@ export const StyledInputGroup = styled.div`
 
 export const StyledLabel = styled.label`
   margin-bottom: 10px;
+  font-weight: bold;
 `;
 
 export const StyledInput = styled.input`

@@ -36,7 +36,7 @@ const RegisterForm = () => {
             />
           </StyledInputGroup>
 
-          <Button primary large>
+          <Button $primary $large>
             Register Account
           </Button>
         </StyledForm>

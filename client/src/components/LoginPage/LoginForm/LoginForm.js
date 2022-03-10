@@ -27,7 +27,7 @@ const LoginForm = () => {
             <StyledInput type="password" id="password" placeholder="Password" />
           </StyledInputGroup>
 
-          <Button primary large>
+          <Button $primary $large>
             Sign In
           </Button>
         </StyledForm>
