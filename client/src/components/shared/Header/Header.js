@@ -16,13 +16,19 @@ const Header = () => {
     <StyledHeader>
       <Container>
         <StyledHeaderWrapper>
-          <Link to="/">
-            <SpanLogo>My eShop</SpanLogo>
-          </Link>
+          <SpanLogo as={Link} to="/">
+            My eShop
+          </SpanLogo>
+
           <StyledInput type="text" name="search" id="search" placeholder="Search" />
+
           <StyledUserInfoWrapper>
-            <Button primary>Login</Button>
-            <Button secondary>Register</Button>
+            <Button as={Link} to="/login" primary>
+              Login
+            </Button>
+            <Button as={Link} to="/register" secondary>
+              Register
+            </Button>
             <Link to="/cart">
               <FontAwesomeIcon className="icon" icon={faCartShopping} size="lg" />
             </Link>

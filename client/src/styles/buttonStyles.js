@@ -29,4 +29,8 @@ export const Button = styled.button`
     `
     padding: 10px 20px;
   `}
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;

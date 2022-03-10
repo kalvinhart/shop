@@ -15,6 +15,7 @@ export const H3 = styled.h3`
 export const SpanLogo = styled.span`
   font-size: 26px;
   font-weight: bold;
+  color: var(--clr-font);
   margin-right: 40px;
 `;
 

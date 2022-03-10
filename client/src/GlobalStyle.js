@@ -32,7 +32,6 @@ const GlobalStyle = createGlobalStyle`
     a,
     a:visited {
         text-decoration: none;
-        color: var(----clr-font);
     }
 
     a:hover {
