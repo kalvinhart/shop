@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   StyledCardBackground,
   StyledCardImage,
@@ -9,7 +9,6 @@ import { Button } from "../../../styles/buttonStyles";
 
 const ProductCard = ({ productInfo }) => {
   const { _id, name, price, imageUrl } = productInfo;
-  const navigate = useNavigate();
 
   return (
     <StyledCardBackground>
@@ -19,8 +18,10 @@ const ProductCard = ({ productInfo }) => {
       <H3>{name}</H3>
       <SpanPrice>{`£${price}`}</SpanPrice>
       <StyledCardButtonWrapper>
-        <Button primary>Add to Cart</Button>
-        <Button secondary onClick={() => navigate(`/product/${_id}`)}>
+        <Button as={Link} to="" $primary>
+          Add to Cart
+        </Button>
+        <Button as={Link} to={`/product/${_id}`} $secondary>
           More Details
         </Button>
       </StyledCardButtonWrapper>
