@@ -16,6 +16,7 @@ export const getCartReducer = (state = { loading: true, cart: [] }, action) => {
     case CART_LIST_FAIL:
       return {
         loading: false,
+        cart: [],
         error: action.payload,
       };
     default:
