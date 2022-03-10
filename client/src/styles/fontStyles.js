@@ -39,3 +39,5 @@ export const SpanStock = styled.span`
   background-color: rgba(200, 200, 200, 0.3);
   border-radius: var(--border-radius);
 `;
+
+export const StyledParagraph = styled.p``;
