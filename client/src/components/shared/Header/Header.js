@@ -23,10 +23,10 @@ const Header = () => {
           <StyledInput type="text" name="search" id="search" placeholder="Search" />
 
           <StyledUserInfoWrapper>
-            <Button as={Link} to="/login" primary>
+            <Button as={Link} to="/login" $primary>
               Login
             </Button>
-            <Button as={Link} to="/register" secondary>
+            <Button as={Link} to="/register" $secondary>
               Register
             </Button>
             <Link to="/cart">
