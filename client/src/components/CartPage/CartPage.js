@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadCart } from "../../actions/cartActions";
+import { H2 } from "../../styles/fontStyles";
 
 import Container from "../shared/Container/Container";
 import PageWrapper from "../shared/PageWrapper/PageWrapper";
@@ -18,7 +19,7 @@ const CartPage = () => {
   return (
     <PageWrapper>
       <Container>
-        <Cart cart={cart} />
+        {loading ? <H2>Loading...</H2> : error ? "" : <Cart cart={cart} />}
       </Container>
     </PageWrapper>
   );
