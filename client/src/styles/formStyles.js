@@ -29,15 +29,16 @@ export const StyledForm = styled.form`
 `;
 
 export const StyledInputGroup = styled.div`
+  position: relative;
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   display: flex;
   justify-content: space-between;
 
   &:last-of-type {
-    margin-bottom: 40px;
+    margin-bottom: 50px;
   }
 `;
 

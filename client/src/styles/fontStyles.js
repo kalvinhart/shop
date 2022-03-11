@@ -46,4 +46,18 @@ export const SpanStock = styled.span`
   border-radius: var(--border-radius);
 `;
 
+export const SpanError = styled.span`
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 115%;
+  right: 0;
+  color: #dc143c;
+  font-size: 12px;
+
+  & svg {
+    margin-right: 5px;
+  }
+`;
+
 export const StyledParagraph = styled.p``;

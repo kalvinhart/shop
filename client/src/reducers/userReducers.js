@@ -7,7 +7,7 @@ import {
   USER_REGISTER_SUCCESS,
 } from "../constants/userConstants";
 
-export const registerUserReducer = (state = { loading: true }, action) => {
+export const registerUserReducer = (state = { loading: false }, action) => {
   switch (action.type) {
     case USER_REGISTER_REQUEST:
       return { loading: true };

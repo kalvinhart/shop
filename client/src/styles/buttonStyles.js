@@ -7,7 +7,7 @@ export const Button = styled.button`
   cursor: pointer;
 
   & svg {
-    margin-right: 5px;
+    margin-right: 10px;
   }
 
   ${({ $primary }) =>
