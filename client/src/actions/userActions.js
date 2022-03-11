@@ -5,13 +5,16 @@ import {
 } from "../constants/userConstants";
 import axios from "axios";
 
-export const registerUser = (user) => async (dispatch) => {
+export const registerUser = (userDetails) => async (dispatch) => {
   dispatch({
     type: USER_REGISTER_REQUEST,
   });
 
+  const { email, password } = userDetails;
+
   try {
-    const { user } = await axios.post("api/users/register");
+    console.log("posting");
+    const { user } = await axios.post("/api/users/register", { email, password });
     dispatch({
       type: USER_REGISTER_SUCCESS,
       payload: user,
