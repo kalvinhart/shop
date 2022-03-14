@@ -1,6 +1,8 @@
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+
 import {
   StyledHeader,
   StyledHeaderWrapper,
@@ -12,17 +14,26 @@ import { StyledInput } from "../../../styles/formStyles";
 import { Button } from "../../../styles/buttonStyles";
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.getUser);
+
   return (
     <StyledHeader>
       <Container>
         <StyledHeaderWrapper>
-          <Link to="/">
-            <SpanLogo>My eShop</SpanLogo>
-          </Link>
+          <SpanLogo as={Link} to="/">
+            My eShop
+          </SpanLogo>
+
           <StyledInput type="text" name="search" id="search" placeholder="Search" />
+
           <StyledUserInfoWrapper>
-            <Button primary>Login</Button>
-            <Button secondary>Register</Button>
+            <Button as={Link} to="/login" $primary>
+              Login
+            </Button>
+            <Button as={Link} to="/register" $secondary>
+              Register
+            </Button>
             <Link to="/cart">
               <FontAwesomeIcon className="icon" icon={faCartShopping} size="lg" />
             </Link>

@@ -15,6 +15,7 @@ export const H3 = styled.h3`
 export const SpanLogo = styled.span`
   font-size: 26px;
   font-weight: bold;
+  color: var(--clr-font);
   margin-right: 40px;
 `;
 
@@ -24,6 +25,11 @@ export const SpanPrice = styled.span`
 
 export const SpanRegular = styled.span`
   font-size: 16px;
+`;
+
+export const SpanDescription = styled.span`
+  font-size: 16px;
+  white-space: pre-line;
 `;
 
 export const SpanGrey = styled.span`
@@ -39,3 +45,19 @@ export const SpanStock = styled.span`
   background-color: rgba(200, 200, 200, 0.3);
   border-radius: var(--border-radius);
 `;
+
+export const SpanError = styled.span`
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 115%;
+  right: 0;
+  color: #dc143c;
+  font-size: 12px;
+
+  & svg {
+    margin-right: 5px;
+  }
+`;
+
+export const StyledParagraph = styled.p``;

@@ -5,9 +5,9 @@ import { H3, SpanRegular } from "../../../styles/fontStyles";
 const QuantityPicker = () => {
   return (
     <StyledQuantityButtonsWrapper>
-      <Button primary>-</Button>
+      <Button $primary>-</Button>
       <SpanRegular>1</SpanRegular>
-      <Button primary>+</Button>
+      <Button $primary>+</Button>
     </StyledQuantityButtonsWrapper>
   );
 };

@@ -1,6 +1,13 @@
 import AddToCart from "../AddToCart/AddToCart";
 
-import { H2, H3, SpanPrice, SpanRegular, SpanStock } from "../../../styles/fontStyles";
+import {
+  H2,
+  H3,
+  SpanDescription,
+  SpanPrice,
+  SpanRegular,
+  SpanStock,
+} from "../../../styles/fontStyles";
 import {
   StyledProductBackground,
   StyledProductImage,
@@ -65,7 +72,7 @@ const ProductDetails = ({ product }) => {
       <StyledProductMoreInfo>
         <StyledProductInfoGroup>
           <H3>Description:</H3>
-          <SpanRegular>{description}</SpanRegular>
+          <SpanDescription>{description}</SpanDescription>
         </StyledProductInfoGroup>
       </StyledProductMoreInfo>
     </StyledProductBackground>

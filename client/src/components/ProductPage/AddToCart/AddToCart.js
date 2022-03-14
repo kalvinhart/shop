@@ -29,10 +29,10 @@ const AddToCart = ({ productPrice }) => {
       </StyledQuantityTotalWrapper>
 
       <StyledPurchaseButtonsWrapper>
-        <Button primary large>
+        <Button $primary $large>
           Add to Cart
         </Button>
-        <Button secondary large>
+        <Button $secondary $large>
           <FontAwesomeIcon icon={faHeart} size="lg" />
           Save to Wishlist
         </Button>
