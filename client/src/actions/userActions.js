@@ -14,14 +14,14 @@ export const registerUser = (userDetails) => async (dispatch) => {
 
   try {
     console.log("posting");
-    const { user } = await axios.post("/api/users/register", {
+    const { data } = await axios.post("/api/users/register", {
       username,
       email,
       password,
     });
     dispatch({
       type: USER_REGISTER_SUCCESS,
-      payload: user,
+      payload: data,
     });
   } catch (err) {
     dispatch({

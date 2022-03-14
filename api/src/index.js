@@ -3,11 +3,12 @@ const cors = require("cors");
 const express = require("express");
 const app = express();
 const session = require("express-session");
+const MongoStore = require("connect-mongo");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/userModel");
 
-const setUpDatabase = require("./db");
+const connection = require("./db");
 const { errorHandler } = require("./middleware/errors");
 
 const PORT = process.env.PORT || 5000;
@@ -22,6 +23,9 @@ const initialiseApp = () => {
       secret: process.env.SESSION_SECRET,
       resave: false,
       saveUninitialized: true,
+      store: MongoStore.create({
+        clientPromise: connection,
+      }),
       cookie: {
         httpOnly: true,
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
@@ -35,8 +39,6 @@ const initialiseApp = () => {
   passport.use(new LocalStrategy(User.authenticate()));
   passport.serializeUser(User.serializeUser());
   passport.deserializeUser(User.deserializeUser());
-
-  setUpDatabase();
 
   app.use("/api/products", require("./routes/productRoutes"));
   app.use("/api/categories", require("./routes/categoryRoutes"));

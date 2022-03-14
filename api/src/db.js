@@ -1,15 +1,14 @@
 const mongoose = require("mongoose");
 
-const setUpDatabase = () => {
-  mongoose.connect(process.env.MONGO_URI, {
+const connection = mongoose
+  .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-  });
+  })
+  .then((m) => m.connection.getClient());
 
-  const db = mongoose.connection;
-  db.once("open", () => {
-    console.log("Database connected");
-  });
-};
+mongoose.connection.once("open", () => {
+  console.log("Database connected");
+});
 
-module.exports = setUpDatabase;
+module.exports = connection;
