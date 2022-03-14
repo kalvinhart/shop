@@ -3,8 +3,9 @@ const cors = require("cors");
 const express = require("express");
 const app = express();
 const passport = require("passport");
+const jwtStrategy = require("./config/passport");
 
-const setUpDatabase = require("./db");
+const setUpDatabase = require("./config/db");
 
 const { errorHandler } = require("./middleware/errors");
 
@@ -18,6 +19,7 @@ const initialiseApp = () => {
   setUpDatabase();
 
   app.use(passport.initialize());
+  passport.use(jwtStrategy);
 
   app.use("/api/products", require("./routes/productRoutes"));
   app.use("/api/categories", require("./routes/categoryRoutes"));
