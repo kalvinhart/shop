@@ -2,9 +2,13 @@ const User = require("../models/userModel");
 const { catchAsync } = require("../middleware/errors");
 
 const registerUser = catchAsync(async (req, res, next) => {
-  const { email, password } = req.body;
-  const user = new User({ email });
+  console.log(req.body);
+  const { username, email, password } = req.body;
+
+  const user = new User({ username, email });
+
   const newUser = await User.register(user, password);
+
   res.status(201).json(newUser);
 });
 

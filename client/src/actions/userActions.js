@@ -10,11 +10,15 @@ export const registerUser = (userDetails) => async (dispatch) => {
     type: USER_REGISTER_REQUEST,
   });
 
-  const { email, password } = userDetails;
+  const { username, email, password } = userDetails;
 
   try {
     console.log("posting");
-    const { user } = await axios.post("/api/users/register", { email, password });
+    const { user } = await axios.post("/api/users/register", {
+      username,
+      email,
+      password,
+    });
     dispatch({
       type: USER_REGISTER_SUCCESS,
       payload: user,

@@ -15,7 +15,13 @@ const RegisterPage = () => {
   const formSubmit = (formValues) => {
     const { email, password } = formValues;
 
-    dispatch(registerUser({ email, password }));
+    dispatch(
+      registerUser({
+        username: email.value,
+        email: email.value,
+        password: password.value,
+      })
+    );
 
     if (!error && user) navigate("/");
   };

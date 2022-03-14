@@ -14,11 +14,12 @@ const PORT = process.env.PORT || 5000;
 
 const initialiseApp = () => {
   app.use(cors());
+  app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
 
   app.use(
     session({
-      secret: "notasafesecret",
+      secret: process.env.SESSION_SECRET,
       resave: false,
       saveUninitialized: true,
       cookie: {
