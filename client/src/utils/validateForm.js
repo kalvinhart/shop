@@ -17,11 +17,13 @@ export const validateForm = (formValues) => {
     }
   }
 
-  if (
-    !errors.confirmPassword &&
-    formValues.password.value !== formValues.confirmPassword.value
-  ) {
-    errors.confirmPassword = "Passwords do not match.";
+  if (formValues.confirmPassword) {
+    if (
+      !errors.confirmPassword &&
+      formValues.password.value !== formValues.confirmPassword.value
+    ) {
+      errors.confirmPassword = "Passwords do not match.";
+    }
   }
 
   if (Object.keys(errors).length > 0) {

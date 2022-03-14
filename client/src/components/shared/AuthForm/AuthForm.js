@@ -13,27 +13,10 @@ import {
 } from "../../../styles/formStyles";
 import { H2, SpanError, StyledParagraph } from "../../../styles/fontStyles";
 import { Button } from "../../../styles/buttonStyles";
-
 import { validateForm } from "../../../utils/validateForm";
 
-const LoginForm = ({ loading, formSubmit }) => {
-  const [formValues, setFormValues] = useState({
-    email: {
-      value: "",
-      options: {
-        required: true,
-        min: 6,
-      },
-    },
-    password: {
-      value: "",
-      options: {
-        required: true,
-        min: 8,
-      },
-    },
-  });
-
+const AuthForm = ({ type, loading, inputConfig, formSubmit, formError }) => {
+  const [formValues, setFormValues] = useState(inputConfig);
   const [error, setError] = useState({});
 
   const handleChange = (e) => {
@@ -64,16 +47,17 @@ const LoginForm = ({ loading, formSubmit }) => {
   return (
     <StyledFormBackground>
       <StyledFormWrapper>
-        <H2>Sign In</H2>
+        <H2>{type === "REGISTER" ? "Register" : "Sign In"}</H2>
         <StyledForm onSubmit={handleSubmit}>
           <StyledInputGroup>
             <StyledLabel htmlFor="email">Email:</StyledLabel>
             <StyledInput
               type="text"
+              name="email"
               id="email"
               value={formValues.email.value}
-              onChange={handleChange}
               placeholder="Email address"
+              onChange={handleChange}
             />
             {error.email && (
               <SpanError>
@@ -87,10 +71,11 @@ const LoginForm = ({ loading, formSubmit }) => {
             <StyledLabel htmlFor="password">Password:</StyledLabel>
             <StyledInput
               type="password"
+              name="password"
               id="password"
               value={formValues.password.value}
-              onChange={handleChange}
               placeholder="Password"
+              onChange={handleChange}
             />
             {error.password && (
               <SpanError>
@@ -100,23 +85,52 @@ const LoginForm = ({ loading, formSubmit }) => {
             )}
           </StyledInputGroup>
 
-          <Button $primary $large>
+          {type === "REGISTER" && (
+            <StyledInputGroup>
+              <StyledLabel htmlFor="confirmPassword">Confirm Password:</StyledLabel>
+              <StyledInput
+                type="password"
+                name="confirmPassword"
+                id="confirmPassword"
+                value={formValues.confirmPassword.value}
+                placeholder="Confirm Password"
+                onChange={handleChange}
+              />
+              {error.confirmPassword && (
+                <SpanError>
+                  <FontAwesomeIcon icon={faExclamationCircle} />
+                  {error.confirmPassword}
+                </SpanError>
+              )}
+            </StyledInputGroup>
+          )}
+
+          <Button $primary $large disabled={loading} onClick={handleSubmit}>
             {loading ? (
               <>
                 <FontAwesomeIcon icon={faSpinner} size="lg" spin />
-                Signing in...
+                {type === "REGISTER" ? "Registering..." : "Signing in..."}
               </>
+            ) : type === "REGISTER" ? (
+              "Register Account"
             ) : (
               "Sign In"
             )}
           </Button>
         </StyledForm>
-        <StyledParagraph>
-          Don't have an account? <Link to="/register">Sign up!</Link>
-        </StyledParagraph>
+
+        {type === "REGISTER" ? (
+          <StyledParagraph>
+            Already have an account? <Link to="/login">Sign in.</Link>
+          </StyledParagraph>
+        ) : (
+          <StyledParagraph>
+            Don't have an account? <Link to="/register">Sign up!</Link>
+          </StyledParagraph>
+        )}
       </StyledFormWrapper>
     </StyledFormBackground>
   );
 };
 
-export default LoginForm;
+export default AuthForm;

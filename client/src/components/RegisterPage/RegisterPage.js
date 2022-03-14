@@ -4,7 +4,7 @@ import { registerUser } from "../../actions/userActions";
 
 import Container from "../shared/Container/Container";
 import PageWrapper from "../shared/PageWrapper/PageWrapper";
-import RegisterForm from "./RegisterForm/RegisterForm";
+import AuthForm from "../shared/AuthForm/AuthForm";
 
 const RegisterPage = () => {
   const dispatch = useDispatch();
@@ -12,12 +12,34 @@ const RegisterPage = () => {
   const userRegistration = useSelector((state) => state.registerUser);
   const { loading, error, user } = userRegistration;
 
+  const inputConfig = {
+    email: {
+      value: "",
+      options: {
+        required: true,
+        min: 6,
+      },
+    },
+    password: {
+      value: "",
+      options: {
+        required: true,
+        min: 8,
+      },
+    },
+    confirmPassword: {
+      value: "",
+      options: {
+        required: true,
+      },
+    },
+  };
+
   const formSubmit = (formValues) => {
     const { email, password } = formValues;
 
     dispatch(
       registerUser({
-        username: email.value,
         email: email.value,
         password: password.value,
       })
@@ -29,7 +51,13 @@ const RegisterPage = () => {
   return (
     <PageWrapper>
       <Container>
-        <RegisterForm formSubmit={formSubmit} loading={loading} registerError={error} />
+        <AuthForm
+          type="REGISTER"
+          inputConfig={inputConfig}
+          formSubmit={formSubmit}
+          loading={loading}
+          formError={error}
+        />
       </Container>
     </PageWrapper>
   );

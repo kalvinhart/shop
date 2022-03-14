@@ -76,6 +76,7 @@ const RegisterForm = ({ loading, formSubmit, registerError }) => {
               type="text"
               name="email"
               id="email"
+              value={formValues.email.value}
               placeholder="Email address"
               onChange={handleChange}
             />
@@ -93,6 +94,7 @@ const RegisterForm = ({ loading, formSubmit, registerError }) => {
               type="password"
               name="password"
               id="password"
+              value={formValues.password.value}
               placeholder="Password"
               onChange={handleChange}
             />
@@ -110,6 +112,7 @@ const RegisterForm = ({ loading, formSubmit, registerError }) => {
               type="password"
               name="confirmPassword"
               id="confirmPassword"
+              value={formValues.confirmPassword.value}
               placeholder="Confirm Password"
               onChange={handleChange}
             />

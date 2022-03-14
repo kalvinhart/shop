@@ -1,12 +1,57 @@
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+import { logInUser } from "../../actions/userActions";
+
 import Container from "../shared/Container/Container";
 import PageWrapper from "../shared/PageWrapper/PageWrapper";
-import LoginForm from "./LoginForm/LoginForm";
+import AuthForm from "../shared/AuthForm/AuthForm";
 
 const LoginPage = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const logIn = useSelector((state) => state.logInUser);
+  const { loading, user, error } = logIn;
+
+  const inputConfig = {
+    email: {
+      value: "",
+      options: {
+        required: true,
+        min: 6,
+      },
+    },
+    password: {
+      value: "",
+      options: {
+        required: true,
+        min: 8,
+      },
+    },
+  };
+
+  const formSubmit = (formValues) => {
+    const { email, password } = formValues;
+
+    dispatch(
+      logInUser({
+        email: email.value,
+        password: password.value,
+      })
+    );
+
+    if (!error && user) navigate("/");
+  };
+
   return (
     <PageWrapper>
       <Container>
-        <LoginForm />
+        <AuthForm
+          type="LOGIN"
+          loading={loading}
+          inputConfig={inputConfig}
+          formSubmit={formSubmit}
+          formError={error}
+        />
       </Container>
     </PageWrapper>
   );
