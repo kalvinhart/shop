@@ -1,6 +1,8 @@
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+
 import {
   StyledHeader,
   StyledHeaderWrapper,
@@ -12,6 +14,9 @@ import { StyledInput } from "../../../styles/formStyles";
 import { Button } from "../../../styles/buttonStyles";
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.getUser);
+
   return (
     <StyledHeader>
       <Container>

@@ -1,19 +1,67 @@
+const jwt = require("jsonwebtoken");
+const { hashSync, compareSync } = require("bcrypt");
+
 const User = require("../models/userModel");
 const { catchAsync } = require("../middleware/errors");
 
 const registerUser = catchAsync(async (req, res, next) => {
-  const { username, email, password } = req.body;
+  const { email, password } = req.body;
 
-  const user = new User({ username, email });
+  const userExists = await User.findOne({ email });
+  if (userExists) {
+    return next({
+      status: 400,
+      message: "An account already exists with this email address.",
+    });
+  }
 
-  const newUser = await User.register(user, password);
+  const hashPassword = await hashSync(password, 12);
 
-  req.session.user = newUser._id;
+  const user = new User({ email, password: hashPassword });
+  const newUser = await user.save();
 
-  res.status(201).json(newUser._id);
+  const userCredentials = {
+    email: newUser.email,
+    id: newUser._id,
+  };
+
+  const token = jwt.sign(userCredentials, process.env.JWT_SECRET, { expiresIn: "7d" });
+
+  const payload = {
+    ...userCredentials,
+    token: `Bearer ${token}`,
+  };
+
+  res.status(201).json(payload);
 });
 
-const logInUser = catchAsync(async (req, res, next) => {});
+const logInUser = catchAsync(async (req, res, next) => {
+  const { email, password } = req.body;
+
+  const user = await User.findOne({ email });
+  if (!user) {
+    return next({ status: 400, message: "Incorrect username/password." });
+  }
+
+  const passwordMatch = await compareSync(password, user.password);
+  if (!passwordMatch) {
+    return next({ status: 400, message: "Incorrect username/password." });
+  }
+
+  const userCredentials = {
+    email: user.email,
+    id: user._id,
+  };
+
+  const token = jwt.sign(userCredentials, process.env.JWT_SECRET, { expiresIn: "7d" });
+
+  const payload = {
+    ...userCredentials,
+    token: `Bearer ${token}`,
+  };
+
+  res.status(200).json(payload);
+});
 
 module.exports = {
   registerUser,

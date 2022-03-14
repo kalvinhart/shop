@@ -1,4 +1,7 @@
 import {
+  USER_DETAILS_FAIL,
+  USER_DETAILS_REQUEST,
+  USER_DETAILS_SUCCESS,
   USER_REGISTER_FAIL,
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
@@ -10,12 +13,11 @@ export const registerUser = (userDetails) => async (dispatch) => {
     type: USER_REGISTER_REQUEST,
   });
 
-  const { username, email, password } = userDetails;
+  const { email, password } = userDetails;
 
   try {
     console.log("posting");
     const { data } = await axios.post("/api/users/register", {
-      username,
       email,
       password,
     });
@@ -28,5 +30,16 @@ export const registerUser = (userDetails) => async (dispatch) => {
       type: USER_REGISTER_FAIL,
       payload: err.message,
     });
+  }
+};
+
+export const loadUserDetails = (id) => async (dispatch) => {
+  dispatch({ type: USER_DETAILS_REQUEST });
+
+  try {
+    const user = await axios.get(`/api/users/${id}`);
+    dispatch({ type: USER_DETAILS_SUCCESS, payload: user });
+  } catch (err) {
+    dispatch({ type: USER_DETAILS_FAIL, payload: err.message });
   }
 };
