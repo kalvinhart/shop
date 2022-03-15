@@ -1,7 +1,6 @@
-import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { faUserAlt, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
 import {
   StyledHeader,
@@ -13,10 +12,7 @@ import { SpanLogo } from "../../../styles/fontStyles";
 import { StyledInput } from "../../../styles/formStyles";
 import { Button } from "../../../styles/buttonStyles";
 
-const Header = () => {
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.getUser);
-
+const Header = ({ loading, user, logOut }) => {
   return (
     <StyledHeader>
       <Container>
@@ -28,12 +24,25 @@ const Header = () => {
           <StyledInput type="text" name="search" id="search" placeholder="Search" />
 
           <StyledUserInfoWrapper>
-            <Button as={Link} to="/login" $primary>
-              Login
-            </Button>
-            <Button as={Link} to="/register" $secondary>
-              Register
-            </Button>
+            {loading ? null : user ? (
+              <>
+                <Link to="/profile">
+                  <FontAwesomeIcon className="icon" icon={faUserAlt} size="lg" />
+                </Link>
+                <Button $primary onClick={logOut}>
+                  Log out
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button as={Link} to="/login" $primary>
+                  Login
+                </Button>
+                <Button as={Link} to="/register" $secondary>
+                  Register
+                </Button>
+              </>
+            )}
             <Link to="/cart">
               <FontAwesomeIcon className="icon" icon={faCartShopping} size="lg" />
             </Link>

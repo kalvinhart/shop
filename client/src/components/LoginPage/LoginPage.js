@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { logInUser } from "../../actions/userActions";
+import { logInUser } from "../../actions/authActions";
 
 import Container from "../shared/Container/Container";
 import PageWrapper from "../shared/PageWrapper/PageWrapper";

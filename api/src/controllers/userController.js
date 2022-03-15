@@ -64,9 +64,9 @@ const logInUser = catchAsync(async (req, res, next) => {
 });
 
 const getUserInfo = catchAsync(async (req, res, next) => {
-  const { userId } = req.body;
+  const { id } = req.params;
 
-  const user = await User.findOne({ _id: userId });
+  const user = await User.findOne({ _id: id });
   if (!user) throw new Error("User does not exist.");
 
   const payload = {
@@ -80,4 +80,5 @@ const getUserInfo = catchAsync(async (req, res, next) => {
 module.exports = {
   registerUser,
   logInUser,
+  getUserInfo,
 };

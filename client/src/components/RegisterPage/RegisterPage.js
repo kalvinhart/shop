@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { registerUser } from "../../actions/userActions";
+import { registerUser } from "../../actions/authActions";
 
 import Container from "../shared/Container/Container";
 import PageWrapper from "../shared/PageWrapper/PageWrapper";
