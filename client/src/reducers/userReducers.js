@@ -36,7 +36,7 @@ export const logInUserReducer = (state = { loading: false, user: [] }, action) =
   }
 };
 
-export const getUserDetailsReducer = (state = { loading: true }, action) => {
+export const getUserDetailsReducer = (state = { loading: false }, action) => {
   switch (action.type) {
     case USER_DETAILS_REQUEST:
       return { loading: true };

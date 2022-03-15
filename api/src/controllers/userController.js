@@ -63,6 +63,20 @@ const logInUser = catchAsync(async (req, res, next) => {
   res.status(200).json(payload);
 });
 
+const getUserInfo = catchAsync(async (req, res, next) => {
+  const { userId } = req.body;
+
+  const user = await User.findOne({ _id: userId });
+  if (!user) throw new Error("User does not exist.");
+
+  const payload = {
+    id: user._id,
+    email: user.email,
+  };
+
+  res.status(200).json(payload);
+});
+
 module.exports = {
   registerUser,
   logInUser,
