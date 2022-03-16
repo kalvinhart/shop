@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 
 import { loadUserDetails, logOut } from "./actions/authActions";
+import { loadCart } from "./actions/cartActions";
 
 import GlobalStyle from "./GlobalStyle";
 import Header from "./components/shared/Header/Header";
@@ -15,12 +16,19 @@ import LoginPage from "./components/LoginPage/LoginPage";
 const App = () => {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
+  const { cart } = useSelector((state) => state.cart);
   const { loading, user } = auth;
 
   useEffect(() => {
     if (localStorage.getItem("user") && !user) {
       const { id, token } = JSON.parse(localStorage.getItem("user"));
       dispatch(loadUserDetails(id, token));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (localStorage.getItem("cart") && !cart) {
+      dispatch(loadCart());
     }
   }, []);
 
@@ -31,7 +39,7 @@ const App = () => {
   return (
     <>
       <GlobalStyle />
-      <Header loading={loading} user={user} logOut={handleLogOut} />
+      <Header loading={loading} user={user} logOut={handleLogOut} cart={cart} />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/register" element={<RegisterPage />} />

@@ -1,23 +1,33 @@
 import {
-  CART_LIST_FAIL,
-  CART_LIST_REQUEST,
-  CART_LIST_SUCCESS,
+  CART_ADD,
+  CART_LOAD,
+  CART_REMOVE,
+  CART_UPDATE,
 } from "../constants/cartConstants";
 
-export const getCartReducer = (state = { loading: true, cart: [] }, action) => {
+export const cartReducer = (state = { cart: null }, action) => {
   switch (action.type) {
-    case CART_LIST_REQUEST:
-      return { loading: true };
-    case CART_LIST_SUCCESS:
+    case CART_LOAD:
       return {
-        loading: false,
         cart: action.payload,
       };
-    case CART_LIST_FAIL:
+    case CART_ADD:
+      const { id, qty } = action.payload;
+      const updatedCart = state.cart.map((item) => {
+        if (item.id === id) {
+          return { ...item, qty: item.qty + qty };
+        }
+        return item;
+      });
       return {
-        loading: false,
-        cart: [],
-        error: action.payload,
+        cart: updatedCart,
+      };
+    case CART_UPDATE:
+      return {};
+    case CART_REMOVE:
+      const filteredCart = state.cart.filter((item) => item.id !== action.payload);
+      return {
+        cart: filteredCart,
       };
     default:
       return state;

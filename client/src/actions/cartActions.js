@@ -1,25 +1,25 @@
 import axios from "axios";
-import {
-  CART_LIST_FAIL,
-  CART_LIST_REQUEST,
-  CART_LIST_SUCCESS,
-} from "../constants/cartConstants";
+import { CART_ADD, CART_LOAD, CART_REMOVE } from "../constants/cartConstants";
 
-export const loadCart = () => async (dispatch) => {
-  dispatch({
-    type: CART_LIST_REQUEST,
-  });
+export const loadCart = () => {
+  const cart = JSON.parse(localStorage.getItem("cart"));
 
-  try {
-    const { data } = await axios.get("/api/cart");
-    dispatch({
-      type: CART_LIST_SUCCESS,
-      payload: data,
-    });
-  } catch (err) {
-    dispatch({
-      type: CART_LIST_FAIL,
-      payload: err.message,
-    });
-  }
+  return {
+    type: CART_LOAD,
+    payload: cart,
+  };
+};
+
+export const addToCart = (item) => {
+  return {
+    type: CART_ADD,
+    payload: item,
+  };
+};
+
+export const removeFromCart = (id) => {
+  return {
+    type: CART_REMOVE,
+    payload: id,
+  };
 };
