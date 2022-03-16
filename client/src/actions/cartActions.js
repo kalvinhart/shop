@@ -10,11 +10,19 @@ export const loadCart = () => {
   };
 };
 
-export const addToCart = (item) => {
-  return {
+export const addToCart = (item) => (dispatch, getState) => {
+  dispatch({
     type: CART_ADD,
     payload: item,
+  });
+
+  const { cart } = getState();
+
+  const cartStorage = {
+    ...cart,
+    updatedAt: new Date().now,
   };
+  localStorage.setItem("cart", JSON.stringify(cartStorage));
 };
 
 export const removeFromCart = (id) => {
