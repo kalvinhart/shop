@@ -5,12 +5,17 @@ import { logInUser } from "../../actions/authActions";
 import Container from "../shared/Container/Container";
 import PageWrapper from "../shared/PageWrapper/PageWrapper";
 import AuthForm from "../shared/AuthForm/AuthForm";
+import { useEffect } from "react";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const logIn = useSelector((state) => state.logInUser);
+  const logIn = useSelector((state) => state.auth);
   const { loading, user, error } = logIn;
+
+  useEffect(() => {
+    if (user) navigate("/");
+  }, [user]);
 
   const inputConfig = {
     email: {
@@ -38,8 +43,6 @@ const LoginPage = () => {
         password: password.value,
       })
     );
-
-    if (!error && user) navigate("/");
   };
 
   return (

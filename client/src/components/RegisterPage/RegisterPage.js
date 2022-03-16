@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { registerUser } from "../../actions/authActions";
@@ -9,8 +10,12 @@ import AuthForm from "../shared/AuthForm/AuthForm";
 const RegisterPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const userRegistration = useSelector((state) => state.registerUser);
+  const userRegistration = useSelector((state) => state.auth);
   const { loading, error, user } = userRegistration;
+
+  useEffect(() => {
+    if (user) navigate("/");
+  }, [user]);
 
   const inputConfig = {
     email: {
@@ -44,8 +49,6 @@ const RegisterPage = () => {
         password: password.value,
       })
     );
-
-    if (!error && user) navigate("/");
   };
 
   return (
