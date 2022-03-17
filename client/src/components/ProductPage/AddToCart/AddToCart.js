@@ -16,21 +16,22 @@ import QuantityPicker from "../../shared/QuantityPicker/QuantityPicker";
 
 const AddToCart = ({ product, addToCart }) => {
   const [quantity, setQuantity] = useState(1);
+  const { _id, brand, color, imageUrl, name, price, size } = product;
 
   const handleQuantityChange = (value) => {
     setQuantity((prev) => prev + value);
   };
 
   const handleAddToCart = () => {
-    const { _id, brand, color, name, price, size } = product;
     const itemToAdd = {
       id: _id,
       brand,
       color,
+      imageUrl,
       name,
       price,
-      size,
       qty: quantity,
+      size,
     };
 
     addToCart(itemToAdd);
@@ -49,7 +50,7 @@ const AddToCart = ({ product, addToCart }) => {
 
         <StyledTotalWrapper>
           <H3>Total:</H3>
-          <SpanPrice>£{product.price}</SpanPrice>
+          <SpanPrice>£{price}</SpanPrice>
         </StyledTotalWrapper>
       </StyledQuantityTotalWrapper>
 

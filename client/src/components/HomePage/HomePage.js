@@ -6,6 +6,7 @@ import PageWrapper from "../shared/PageWrapper/PageWrapper";
 import Container from "../shared/Container/Container";
 import ProductContent from "./ProductContent/ProductContent";
 import { H1 } from "../../styles/fontStyles";
+import { addToCart } from "../../actions/cartActions";
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -16,10 +17,18 @@ const HomePage = () => {
     dispatch(loadProducts());
   }, []);
 
+  const handleAddToCart = (item) => {
+    dispatch(addToCart(item));
+  };
+
   return (
     <PageWrapper>
       <Container>
-        {loading ? <H1>Loading...</H1> : <ProductContent products={products} />}
+        {loading ? (
+          <H1>Loading...</H1>
+        ) : (
+          <ProductContent products={products} addToCart={handleAddToCart} />
+        )}
       </Container>
     </PageWrapper>
   );

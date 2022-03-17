@@ -5,18 +5,17 @@ import {
   CART_UPDATE,
 } from "../constants/cartConstants";
 
-export const cartReducer = (state = { cart: [] }, action) => {
+export const cartReducer = (state = { cart: null }, action) => {
   switch (action.type) {
     case CART_LOAD:
-      return {
-        cart: action.payload,
-      };
+      return action.payload;
 
     case CART_ADD:
       const { id, qty, price } = action.payload;
       let updatedCart;
 
-      if (state.cart.find((item) => item.id === id)) {
+      console.log(state.cart);
+      if (state.cart && state.cart.find((item) => item.id === id)) {
         updatedCart = state.cart.map((item) => {
           if (item.id === id) {
             const newQty = item.qty + qty;
@@ -31,7 +30,7 @@ export const cartReducer = (state = { cart: [] }, action) => {
           ...action.payload,
           total,
         };
-        updatedCart = [...state.cart, newCartItem];
+        updatedCart = state.cart ? [...state.cart, newCartItem] : [newCartItem];
       }
 
       const cartTotal = updatedCart.reduce(

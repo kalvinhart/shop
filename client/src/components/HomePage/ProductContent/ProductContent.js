@@ -4,13 +4,13 @@ import SideBar from "../SideBar/SideBar";
 
 import { StyledProductContentWrapper } from "./ProductContent.styles";
 
-const ProductContent = ({ products }) => {
+const ProductContent = ({ products, addToCart }) => {
   return (
     <StyledProductContentWrapper>
       <SideBar />
       <ProductGrid>
         {products.map((product) => (
-          <ProductCard key={product.name} productInfo={product} />
+          <ProductCard key={product.name} productInfo={product} addToCart={addToCart} />
         ))}
       </ProductGrid>
     </StyledProductContentWrapper>

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 
 import { loadUserDetails, logOut } from "./actions/authActions";
 import { loadCart } from "./actions/cartActions";
@@ -39,6 +40,7 @@ const App = () => {
   return (
     <>
       <GlobalStyle />
+      <Toaster position="top-right" containerStyle={{ top: 80 }} />
       <Header loading={loading} user={user} logOut={handleLogOut} cart={cart} />
       <Routes>
         <Route path="/" element={<HomePage />} />
