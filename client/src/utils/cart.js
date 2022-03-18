@@ -5,3 +5,12 @@ export const calculateCartCount = (cart) => {
 export const calculateCartTotal = (cart) => {
   return cart.reduce((sum, currenItem) => sum + parseFloat(currenItem.total), 0);
 };
+
+export const updateLocalStorage = (cart) => {
+  const cartStorage = {
+    ...cart,
+    updatedAt: Date.now(),
+  };
+
+  localStorage.setItem("cart", JSON.stringify(cartStorage));
+};

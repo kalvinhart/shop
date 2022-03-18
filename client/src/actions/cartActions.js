@@ -1,5 +1,6 @@
 import { toast } from "react-hot-toast";
 import { CART_ADD, CART_LOAD, CART_REMOVE } from "../constants/cartConstants";
+import { updateLocalStorage } from "../utils/cart";
 
 export const loadCart = () => {
   const cart = JSON.parse(localStorage.getItem("cart"));
@@ -32,17 +33,18 @@ export const addToCart = (item) => (dispatch, getState) => {
 
   const { cart } = getState();
 
-  const cartStorage = {
-    ...cart,
-    updatedAt: Date.now(),
-  };
-  console.log(cartStorage.updatedAt);
-  localStorage.setItem("cart", JSON.stringify(cartStorage));
+  updateLocalStorage(cart);
 };
 
-export const removeFromCart = (id) => {
-  return {
+export const removeFromCart = (id) => (dispatch, getState) => {
+  dispatch({
     type: CART_REMOVE,
     payload: id,
-  };
+  });
+
+  toast.success("Item removed to cart.");
+
+  const { cart } = getState();
+
+  updateLocalStorage(cart);
 };
