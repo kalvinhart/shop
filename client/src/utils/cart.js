@@ -3,7 +3,11 @@ export const calculateCartCount = (cart) => {
 };
 
 export const calculateCartTotal = (cart) => {
-  return cart.reduce((sum, currenItem) => sum + parseFloat(currenItem.total), 0);
+  const cartTotal = cart.reduce(
+    (sum, currenItem) => sum + parseFloat(currenItem.total),
+    0
+  );
+  return parseFloat(cartTotal.toFixed(2));
 };
 
 export const updateLocalStorage = (cart) => {

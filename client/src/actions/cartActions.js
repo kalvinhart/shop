@@ -1,5 +1,10 @@
 import { toast } from "react-hot-toast";
-import { CART_ADD, CART_LOAD, CART_REMOVE } from "../constants/cartConstants";
+import {
+  CART_ADD,
+  CART_LOAD,
+  CART_REMOVE,
+  CART_UPDATE,
+} from "../constants/cartConstants";
 import { updateLocalStorage } from "../utils/cart";
 
 export const loadCart = () => {
@@ -30,6 +35,19 @@ export const addToCart = (item) => (dispatch, getState) => {
   });
 
   toast.success("Item added to cart.");
+
+  const { cart } = getState();
+
+  updateLocalStorage(cart);
+};
+
+export const updateCart = (id, newQty) => (dispatch, getState) => {
+  dispatch({
+    type: CART_UPDATE,
+    payload: { id, newQty },
+  });
+
+  toast.success("Cart successfully updated.");
 
   const { cart } = getState();
 

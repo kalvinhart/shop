@@ -12,7 +12,7 @@ export const cartReducer = (state = { cart: null }, action) => {
     case CART_LOAD:
       return action.payload;
 
-    case CART_ADD:
+    case CART_ADD: {
       const { id, qty, price } = action.payload;
       let updatedCart;
 
@@ -42,20 +42,45 @@ export const cartReducer = (state = { cart: null }, action) => {
         cart: updatedCart,
         cartTotal,
       };
+    }
 
-    case CART_UPDATE:
-      return {};
+    case CART_UPDATE: {
+      const { id, newQty } = action.payload;
 
-    case CART_REMOVE:
-      const filteredCart = state.cart.filter((item) => item.id !== action.payload);
-      const newCount = calculateCartCount(filteredCart);
-      const newTotal = calculateCartTotal(filteredCart);
+      const updatedCart = state.cart.map((item) => {
+        if (item.id === id) {
+          const total = parseFloat((newQty * item.price).toFixed(2));
+          return {
+            ...item,
+            qty: newQty,
+            total,
+          };
+        } else {
+          return item;
+        }
+      });
+
+      const cartCount = calculateCartCount(updatedCart);
+      const cartTotal = calculateCartTotal(updatedCart);
 
       return {
-        cartCount: newCount,
-        cart: filteredCart,
-        cartTotal: newTotal,
+        cartCount,
+        cart: updatedCart,
+        cartTotal,
       };
+    }
+
+    case CART_REMOVE: {
+      const updatedCart = state.cart.filter((item) => item.id !== action.payload);
+      const cartCount = calculateCartCount(updatedCart);
+      const cartTotal = calculateCartTotal(updatedCart);
+
+      return {
+        cartCount,
+        cart: updatedCart,
+        cartTotal,
+      };
+    }
 
     default:
       return state;
