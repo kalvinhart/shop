@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserAlt, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
 import {
+  StyledCartCount,
+  StyledCartIconWrapper,
   StyledHeader,
   StyledHeaderWrapper,
   StyledUserInfoWrapper,
@@ -12,7 +14,7 @@ import { SpanLogo } from "../../../styles/fontStyles";
 import { StyledInput } from "../../../styles/formStyles";
 import { Button } from "../../../styles/buttonStyles";
 
-const Header = ({ loading, user, logOut }) => {
+const Header = ({ loading, user, logOut, cart }) => {
   return (
     <StyledHeader>
       <Container>
@@ -43,8 +45,14 @@ const Header = ({ loading, user, logOut }) => {
                 </Button>
               </>
             )}
+
             <Link to="/cart">
-              <FontAwesomeIcon className="icon" icon={faCartShopping} size="lg" />
+              <StyledCartIconWrapper>
+                {cart && cart.cartCount > 0 && (
+                  <StyledCartCount>{cart.cartCount}</StyledCartCount>
+                )}
+                <FontAwesomeIcon className="icon" icon={faCartShopping} size="lg" />
+              </StyledCartIconWrapper>
             </Link>
           </StyledUserInfoWrapper>
         </StyledHeaderWrapper>

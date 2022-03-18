@@ -17,7 +17,7 @@ import LoginPage from "./components/LoginPage/LoginPage";
 const App = () => {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
-  const { cart } = useSelector((state) => state.cart);
+  const cart = useSelector((state) => state.cart);
   const { loading, user } = auth;
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    if (localStorage.getItem("cart") && !cart) {
+    if (localStorage.getItem("cart") && !cart.cart) {
       dispatch(loadCart());
     }
   }, []);
