@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledCartDetailsWrapper = styled.div`
+export const StyledCartWrapper = styled.div`
   width: 100%;
   padding: 20px;
   display: flex;

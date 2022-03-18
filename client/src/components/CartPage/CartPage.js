@@ -1,25 +1,16 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { loadCart } from "../../actions/cartActions";
-import { H2 } from "../../styles/fontStyles";
+import { useSelector } from "react-redux";
 
 import Container from "../shared/Container/Container";
 import PageWrapper from "../shared/PageWrapper/PageWrapper";
 import Cart from "./Cart/Cart";
 
 const CartPage = () => {
-  const dispatch = useDispatch();
-  const cartData = useSelector((state) => state.getCart);
-  const { loading, error, cart } = cartData;
-
-  useEffect(() => {
-    dispatch(loadCart());
-  }, []);
+  const { cart } = useSelector((state) => state.cart);
 
   return (
     <PageWrapper>
       <Container>
-        {loading ? <H2>Loading...</H2> : error ? "" : <Cart cart={cart} />}
+        <Cart cart={cart} />
       </Container>
     </PageWrapper>
   );
