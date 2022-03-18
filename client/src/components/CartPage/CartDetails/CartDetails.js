@@ -5,7 +5,7 @@ const CartDetails = ({ cart }) => {
   return (
     <>
       {cart && cart.length > 0 ? (
-        cart.map((item) => <CartItem item={item} />)
+        cart.map((item) => <CartItem key={item.name} item={item} />)
       ) : (
         <NoCartItems />
       )}
