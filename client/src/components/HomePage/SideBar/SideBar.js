@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { H2 } from "../../../styles/fontStyles";
+import { H3 } from "../../../styles/fontStyles";
 import {
   StyledSideBarBackground,
   StyledNav,
@@ -10,7 +10,7 @@ import {
 const SideBar = () => {
   return (
     <StyledSideBarBackground>
-      <H2>Categories:</H2>
+      <H3>Categories:</H3>
       <StyledNav>
         <StyledNavUL>
           <StyledNavLI>

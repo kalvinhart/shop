@@ -27,6 +27,10 @@ export const SpanRegular = styled.span`
   font-size: 16px;
 `;
 
+export const SpanBold = styled.span`
+  font-weight: bold;
+`;
+
 export const SpanDescription = styled.span`
   font-size: 16px;
   white-space: pre-line;
