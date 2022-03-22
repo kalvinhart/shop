@@ -15,7 +15,7 @@ export const loadProducts =
     dispatch({
       type: PRODUCT_LIST_REQUEST,
     });
-    console.log(options);
+
     try {
       const { data } = await axios.post("/api/products", options);
       dispatch({

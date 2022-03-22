@@ -5,7 +5,7 @@ import { H2, SpanBold } from "../../../styles/fontStyles";
 import { StyledSelect } from "../../../styles/formStyles";
 import { StyledFiltersBackground, StyledFilterSelectWrapper } from "./Filters.styles";
 
-const Filters = ({ category = "All Products" }) => {
+const Filters = () => {
   const dispatch = useDispatch();
   const { searchOptions } = useSelector((state) => state.products);
   const { options, sortBy } = searchOptions;
@@ -43,7 +43,7 @@ const Filters = ({ category = "All Products" }) => {
 
   return (
     <StyledFiltersBackground>
-      <H2>{category}:</H2>
+      <H2>{options.categories ?? "All Products"}:</H2>
       <StyledFilterSelectWrapper>
         <SpanBold>Sort By:</SpanBold>
         <StyledSelect onChange={handleSelectChange} value={sortBy}>

@@ -16,7 +16,24 @@ const SideBar = ({ loading, categories }) => {
   const { options, sortBy } = searchOptions;
 
   const handleCategoryChange = (category) => {
-    dispatch(updateSearchOptions({ options: { categories: category }, sortBy }));
+    let newOptions = {};
+
+    if (category) {
+      newOptions = {
+        options: {
+          ...options,
+          categories: category,
+        },
+        sortBy,
+      };
+    } else {
+      newOptions = { options: { ...options }, sortBy };
+      if (newOptions.options.hasOwnProperty("categories")) {
+        delete newOptions.options.categories;
+      }
+    }
+
+    dispatch(updateSearchOptions(newOptions));
   };
 
   return (
@@ -27,8 +44,11 @@ const SideBar = ({ loading, categories }) => {
       ) : (
         <StyledNav>
           <StyledNavUL>
+            <StyledNavLI>
+              <Button onClick={() => handleCategoryChange("")}>All Products</Button>
+            </StyledNavLI>
             {categories.map((item) => (
-              <StyledNavLI>
+              <StyledNavLI key={item.name}>
                 <Button onClick={() => handleCategoryChange(item.name)}>
                   {item.name}
                 </Button>
