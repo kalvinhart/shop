@@ -16,7 +16,7 @@ import QuantityPicker from "../../shared/QuantityPicker/QuantityPicker";
 
 const AddToCart = ({ product, addToCart }) => {
   const [quantity, setQuantity] = useState(1);
-  const { _id, brand, color, imageUrl, name, price, size } = product;
+  const { _id, brand, color, imageUrl, name, price, size, stockQty } = product;
 
   const handleQuantityChange = (value) => {
     setQuantity((prev) => prev + value);
@@ -55,7 +55,12 @@ const AddToCart = ({ product, addToCart }) => {
       </StyledQuantityTotalWrapper>
 
       <StyledPurchaseButtonsWrapper>
-        <Button onClick={handleAddToCart} $primary $large>
+        <Button
+          onClick={handleAddToCart}
+          disabled={stockQty === 0 || quantity > stockQty}
+          $primary
+          $large
+        >
           Add to Cart
         </Button>
         <Button $secondary $large>
