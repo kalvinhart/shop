@@ -1,14 +1,15 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { updateSearchOptions } from "../../../actions/productActions";
-import { Button } from "../../../styles/buttonStyles";
-import { H3 } from "../../../styles/fontStyles";
+import Spinner from "../../shared/Spinner/Spinner";
+
 import {
   StyledSideBarBackground,
   StyledNav,
   StyledNavUL,
   StyledNavLI,
 } from "./SideBar.styles";
+import { Button } from "../../../styles/buttonStyles";
+import { H3 } from "../../../styles/fontStyles";
 
 const SideBar = ({ loading, categories }) => {
   const dispatch = useDispatch();
@@ -40,7 +41,7 @@ const SideBar = ({ loading, categories }) => {
     <StyledSideBarBackground>
       <H3>Categories:</H3>
       {loading ? (
-        ""
+        <Spinner />
       ) : (
         <StyledNav>
           <StyledNavUL>
