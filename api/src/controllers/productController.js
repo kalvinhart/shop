@@ -2,7 +2,6 @@ const Product = require("../models/productModel");
 const { catchAsync } = require("../middleware/errors");
 
 const getAllProducts = catchAsync(async (req, res, next) => {
-  console.log(req.body);
   const { options, sortBy } = req.body;
 
   const searchOptions = options ? options : {};

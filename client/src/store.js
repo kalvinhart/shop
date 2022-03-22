@@ -3,12 +3,14 @@ import thunk from "redux-thunk";
 import { cartReducer } from "./reducers/cartReducers";
 import { productsReducer, productDetailsReducer } from "./reducers/productReducers";
 import { authReducer } from "./reducers/authReducers";
+import { categoryReducer } from "./reducers/categoryReducers";
 
 const initialState = {};
 
 const reducer = combineReducers({
   products: productsReducer,
   productDetails: productDetailsReducer,
+  categories: categoryReducer,
   cart: cartReducer,
   auth: authReducer,
 });

@@ -7,12 +7,26 @@ import Container from "../shared/Container/Container";
 import ProductContent from "./ProductContent/ProductContent";
 import { H1 } from "../../styles/fontStyles";
 import { addToCart } from "../../actions/cartActions";
+import { loadCategories } from "../../actions/categoryActions";
 
 const HomePage = () => {
   let firstLoad = useRef(true);
   const dispatch = useDispatch();
+
   const getProducts = useSelector((state) => state.products);
-  const { loading, error, products, searchOptions } = getProducts;
+  const {
+    loading: productsLoading,
+    error: productsError,
+    products,
+    searchOptions,
+  } = getProducts;
+
+  const getCategories = useSelector((state) => state.categories);
+  const {
+    loading: categoriesLoading,
+    error: categoriesError,
+    categories,
+  } = getCategories;
 
   const { options, sortBy } = searchOptions;
 
@@ -24,6 +38,7 @@ const HomePage = () => {
 
   useEffect(() => {
     dispatch(loadProducts());
+    dispatch(loadCategories());
     firstLoad.current = false;
   }, []);
 
@@ -34,11 +49,13 @@ const HomePage = () => {
   return (
     <PageWrapper>
       <Container>
-        {loading ? (
-          <H1>Loading...</H1>
-        ) : (
-          <ProductContent products={products} addToCart={handleAddToCart} />
-        )}
+        <ProductContent
+          products={products}
+          productsLoading={productsLoading}
+          addToCart={handleAddToCart}
+          categories={categories}
+          categoriesLoading={categoriesLoading}
+        />
       </Container>
     </PageWrapper>
   );

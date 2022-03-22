@@ -2,7 +2,7 @@ const Category = require("../models/categoryModel");
 const { catchAsync } = require("../middleware/errors");
 
 const getAllCategories = catchAsync(async (req, res, next) => {
-  const categories = await Category.find({});
+  const categories = await Category.find({}).select("name");
   res.status(200).json(categories);
 });
 
