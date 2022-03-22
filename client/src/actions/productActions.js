@@ -5,27 +5,30 @@ import {
   PRODUCT_LIST_FAIL,
   PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_SUCCESS,
+  PRODUCT_UPDATE_SEARCH_OPTIONS,
 } from "../constants/productConstants";
 import axios from "axios";
 
-export const loadProducts = () => async (dispatch) => {
-  dispatch({
-    type: PRODUCT_LIST_REQUEST,
-  });
-
-  try {
-    const { data } = await axios.get("/api/products");
+export const loadProducts =
+  (options = {}) =>
+  async (dispatch) => {
     dispatch({
-      type: PRODUCT_LIST_SUCCESS,
-      payload: data,
+      type: PRODUCT_LIST_REQUEST,
     });
-  } catch (err) {
-    dispatch({
-      type: PRODUCT_LIST_FAIL,
-      payload: err.message,
-    });
-  }
-};
+    console.log(options);
+    try {
+      const { data } = await axios.post("/api/products", options);
+      dispatch({
+        type: PRODUCT_LIST_SUCCESS,
+        payload: data,
+      });
+    } catch (err) {
+      dispatch({
+        type: PRODUCT_LIST_FAIL,
+        payload: err.message,
+      });
+    }
+  };
 
 export const loadProductDetails = (id) => async (dispatch) => {
   dispatch({
@@ -44,4 +47,11 @@ export const loadProductDetails = (id) => async (dispatch) => {
       payload: err.message,
     });
   }
+};
+
+export const updateSearchOptions = (options) => (dispatch) => {
+  dispatch({
+    type: PRODUCT_UPDATE_SEARCH_OPTIONS,
+    payload: options,
+  });
 };

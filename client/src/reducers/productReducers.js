@@ -5,31 +5,41 @@ import {
   PRODUCT_DETAILS_REQUEST,
   PRODUCT_DETAILS_SUCCESS,
   PRODUCT_DETAILS_FAIL,
+  PRODUCT_UPDATE_SEARCH_OPTIONS,
 } from "../constants/productConstants";
 
-export const getProductsReducer = (state = { loading: true, products: [] }, action) => {
+export const productsReducer = (
+  state = { loading: true, products: [], searchOptions: { options: {}, sortBy: {} } },
+  action
+) => {
   switch (action.type) {
     case PRODUCT_LIST_REQUEST:
-      return { loading: true };
+      return { ...state, loading: true };
     case PRODUCT_LIST_SUCCESS:
       return {
+        ...state,
         loading: false,
-        products: action.payload,
+        count: action.payload.count,
+        products: action.payload.products,
       };
     case PRODUCT_LIST_FAIL:
       return {
+        ...state,
         loading: false,
         error: action.payload,
       };
+    case PRODUCT_UPDATE_SEARCH_OPTIONS: {
+      return {
+        ...state,
+        searchOptions: action.payload,
+      };
+    }
     default:
       return state;
   }
 };
 
-export const getProductDetailsReducer = (
-  state = { loading: true, product: [] },
-  action
-) => {
+export const productDetailsReducer = (state = { loading: true, product: [] }, action) => {
   switch (action.type) {
     case PRODUCT_DETAILS_REQUEST:
       return { loading: true };

@@ -21,8 +21,29 @@ export const StyledHeader = styled.header`
 
 export const StyledUserInfoWrapper = styled.div`
   margin-left: auto;
+  display: flex;
+  align-items: center;
 
   & > *:not(:last-child) {
     margin-right: 20px;
   }
+`;
+
+export const StyledCartIconWrapper = styled.div`
+  position: relative;
+`;
+
+export const StyledCartCount = styled.div`
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: red;
+  font-size: 12px;
+  color: white;
 `;

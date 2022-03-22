@@ -1,6 +1,8 @@
-import QuantityPicker from "../../shared/QuantityPicker/QuantityPicker";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+
+import QuantityPicker from "../../shared/QuantityPicker/QuantityPicker";
 
 import {
   StyledCartButtonsWrapper,
@@ -12,9 +14,21 @@ import {
 import { H3, SpanGrey, SpanPrice, SpanRegular } from "../../../styles/fontStyles";
 
 import { Button } from "../../../styles/buttonStyles";
+import { removeFromCart, updateCart } from "../../../actions/cartActions";
+import { useDispatch } from "react-redux";
 
 const CartItem = ({ item }) => {
-  const { _id, name, brand, imageUrl, size, color, qty, price } = item;
+  const dispatch = useDispatch();
+  const { id, name, brand, imageUrl, size, color, qty, total } = item;
+
+  const handleQuantityChange = (value) => {
+    dispatch(updateCart(id, qty + value));
+  };
+
+  const handleRemove = () => {
+    dispatch(removeFromCart(id));
+  };
+
   return (
     <StyledCartItemWrapper>
       <StyledCartItemImage src={imageUrl} alt={name} />
@@ -45,10 +59,10 @@ const CartItem = ({ item }) => {
       </StyledCartItemInfoWrapper>
 
       <StyledCartButtonsWrapper>
-        <QuantityPicker />
+        <QuantityPicker quantity={qty} handleQuantityChange={handleQuantityChange} />
 
-        <SpanPrice>£{price}</SpanPrice>
-        <Button secondary>
+        <SpanPrice>£{total}</SpanPrice>
+        <Button onClick={handleRemove} secondary>
           <FontAwesomeIcon icon={faTrashAlt} />
           Remove
         </Button>

@@ -1,5 +1,8 @@
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { H2 } from "../../../styles/fontStyles";
+import { updateSearchOptions } from "../../../actions/productActions";
+import { Button } from "../../../styles/buttonStyles";
+import { H3 } from "../../../styles/fontStyles";
 import {
   StyledSideBarBackground,
   StyledNav,
@@ -7,29 +10,33 @@ import {
   StyledNavLI,
 } from "./SideBar.styles";
 
-const SideBar = () => {
+const SideBar = ({ loading, categories }) => {
+  const dispatch = useDispatch();
+  const { searchOptions } = useSelector((state) => state.products);
+  const { options, sortBy } = searchOptions;
+
+  const handleCategoryChange = (category) => {
+    dispatch(updateSearchOptions({ options: { categories: category }, sortBy }));
+  };
+
   return (
     <StyledSideBarBackground>
-      <H2>Categories:</H2>
-      <StyledNav>
-        <StyledNavUL>
-          <StyledNavLI>
-            <Link to="/">Item 1</Link>
-          </StyledNavLI>
-          <StyledNavLI>
-            <Link to="/">Item 2</Link>
-          </StyledNavLI>
-          <StyledNavLI>
-            <Link to="/">Item 3</Link>
-          </StyledNavLI>
-          <StyledNavLI>
-            <Link to="/">Item 4</Link>
-          </StyledNavLI>
-          <StyledNavLI>
-            <Link to="/">Item 5</Link>
-          </StyledNavLI>
-        </StyledNavUL>
-      </StyledNav>
+      <H3>Categories:</H3>
+      {loading ? (
+        ""
+      ) : (
+        <StyledNav>
+          <StyledNavUL>
+            {categories.map((item) => (
+              <StyledNavLI>
+                <Button onClick={() => handleCategoryChange(item.name)}>
+                  {item.name}
+                </Button>
+              </StyledNavLI>
+            ))}
+          </StyledNavUL>
+        </StyledNav>
+      )}
     </StyledSideBarBackground>
   );
 };

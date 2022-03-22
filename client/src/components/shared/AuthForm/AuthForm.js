@@ -15,29 +15,8 @@ import { H2, SpanError, StyledParagraph } from "../../../styles/fontStyles";
 import { Button } from "../../../styles/buttonStyles";
 import { validateForm } from "../../../utils/validateForm";
 
-const RegisterForm = ({ loading, formSubmit, registerError }) => {
-  const [formValues, setFormValues] = useState({
-    email: {
-      value: "",
-      options: {
-        required: true,
-        min: 6,
-      },
-    },
-    password: {
-      value: "",
-      options: {
-        required: true,
-        min: 8,
-      },
-    },
-    confirmPassword: {
-      value: "",
-      options: {
-        required: true,
-      },
-    },
-  });
+const AuthForm = ({ type, loading, inputConfig, formSubmit, formError }) => {
+  const [formValues, setFormValues] = useState(inputConfig);
   const [error, setError] = useState({});
 
   const handleChange = (e) => {
@@ -68,7 +47,7 @@ const RegisterForm = ({ loading, formSubmit, registerError }) => {
   return (
     <StyledFormBackground>
       <StyledFormWrapper>
-        <H2>Register</H2>
+        <H2>{type === "REGISTER" ? "Register" : "Sign In"}</H2>
         <StyledForm onSubmit={handleSubmit}>
           <StyledInputGroup>
             <StyledLabel htmlFor="email">Email:</StyledLabel>
@@ -76,6 +55,7 @@ const RegisterForm = ({ loading, formSubmit, registerError }) => {
               type="text"
               name="email"
               id="email"
+              value={formValues.email.value}
               placeholder="Email address"
               onChange={handleChange}
             />
@@ -93,6 +73,7 @@ const RegisterForm = ({ loading, formSubmit, registerError }) => {
               type="password"
               name="password"
               id="password"
+              value={formValues.password.value}
               placeholder="Password"
               onChange={handleChange}
             />
@@ -104,41 +85,52 @@ const RegisterForm = ({ loading, formSubmit, registerError }) => {
             )}
           </StyledInputGroup>
 
-          <StyledInputGroup>
-            <StyledLabel htmlFor="confirmPassword">Confirm Password:</StyledLabel>
-            <StyledInput
-              type="password"
-              name="confirmPassword"
-              id="confirmPassword"
-              placeholder="Confirm Password"
-              onChange={handleChange}
-            />
-            {error.confirmPassword && (
-              <SpanError>
-                <FontAwesomeIcon icon={faExclamationCircle} />
-                {error.confirmPassword}
-              </SpanError>
-            )}
-          </StyledInputGroup>
+          {type === "REGISTER" && (
+            <StyledInputGroup>
+              <StyledLabel htmlFor="confirmPassword">Confirm Password:</StyledLabel>
+              <StyledInput
+                type="password"
+                name="confirmPassword"
+                id="confirmPassword"
+                value={formValues.confirmPassword.value}
+                placeholder="Confirm Password"
+                onChange={handleChange}
+              />
+              {error.confirmPassword && (
+                <SpanError>
+                  <FontAwesomeIcon icon={faExclamationCircle} />
+                  {error.confirmPassword}
+                </SpanError>
+              )}
+            </StyledInputGroup>
+          )}
 
           <Button $primary $large disabled={loading} onClick={handleSubmit}>
             {loading ? (
               <>
                 <FontAwesomeIcon icon={faSpinner} size="lg" spin />
-                Registering...
+                {type === "REGISTER" ? "Registering..." : "Signing in..."}
               </>
-            ) : (
+            ) : type === "REGISTER" ? (
               "Register Account"
+            ) : (
+              "Sign In"
             )}
           </Button>
         </StyledForm>
 
-        <StyledParagraph>
-          Already have an account? <Link to="/login">Sign in.</Link>
-        </StyledParagraph>
+        {type === "REGISTER" ? (
+          <StyledParagraph>
+            Already have an account? <Link to="/login">Sign in.</Link>
+          </StyledParagraph>
+        ) : (
+          <StyledParagraph>
+            Don't have an account? <Link to="/register">Sign up!</Link>
+          </StyledParagraph>
+        )}
       </StyledFormWrapper>
     </StyledFormBackground>
   );
 };
 
-export default RegisterForm;
+export default AuthForm;
