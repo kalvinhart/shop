@@ -10,10 +10,10 @@ const {
   deleteProduct,
 } = require("../controllers/productController");
 
-router.get("/", getAllProducts);
+router.post("/", getAllProducts);
 router.get("/:id", getProduct);
 router.get("/category/:categoryName", getProductsByCategory);
-router.post("/", addNewProduct);
+router.post("/new", addNewProduct);
 router.patch("/:id", updateProduct);
 router.delete("/:id", deleteProduct);
 

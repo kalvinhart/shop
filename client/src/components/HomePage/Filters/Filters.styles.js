@@ -8,8 +8,8 @@ export const StyledFiltersBackground = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  background-color: #eee;
-  border: 2px solid #ddd;
+  background-color: #fff;
+  border: 2px solid var(--clr-borders);
   margin-bottom: 20px;
 `;
 

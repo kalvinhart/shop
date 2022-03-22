@@ -2,8 +2,20 @@ const Product = require("../models/productModel");
 const { catchAsync } = require("../middleware/errors");
 
 const getAllProducts = catchAsync(async (req, res, next) => {
-  const products = await Product.find({}).limit(20).sort({ amountSold: -1 });
-  res.json(products);
+  console.log(req.body);
+  const { options, sortBy } = req.body;
+
+  const searchOptions = options ? options : {};
+  const sortSearch = sortBy ? sortBy : "-amountSold";
+
+  const products = await Product.find(searchOptions).sort(sortSearch);
+  const count = products.length;
+
+  const response = {
+    products,
+    count,
+  };
+  res.json(response);
 });
 
 const getProduct = catchAsync(async (req, res, next) => {

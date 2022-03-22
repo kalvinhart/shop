@@ -1,14 +1,14 @@
 import { applyMiddleware, createStore, compose, combineReducers } from "redux";
 import thunk from "redux-thunk";
 import { cartReducer } from "./reducers/cartReducers";
-import { getProductsReducer, getProductDetailsReducer } from "./reducers/productReducers";
+import { productsReducer, productDetailsReducer } from "./reducers/productReducers";
 import { authReducer } from "./reducers/authReducers";
 
 const initialState = {};
 
 const reducer = combineReducers({
-  getProducts: getProductsReducer,
-  getProductDetails: getProductDetailsReducer,
+  products: productsReducer,
+  productDetails: productDetailsReducer,
   cart: cartReducer,
   auth: authReducer,
 });

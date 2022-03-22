@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadProducts } from "../../actions/productActions";
 
@@ -9,12 +9,22 @@ import { H1 } from "../../styles/fontStyles";
 import { addToCart } from "../../actions/cartActions";
 
 const HomePage = () => {
+  let firstLoad = useRef(true);
   const dispatch = useDispatch();
-  const getProducts = useSelector((state) => state.getProducts);
-  const { loading, error, products } = getProducts;
+  const getProducts = useSelector((state) => state.products);
+  const { loading, error, products, searchOptions } = getProducts;
+
+  const { options, sortBy } = searchOptions;
+
+  useEffect(() => {
+    if (firstLoad.current) return;
+
+    dispatch(loadProducts({ options, sortBy }));
+  }, [options, sortBy]);
 
   useEffect(() => {
     dispatch(loadProducts());
+    firstLoad.current = false;
   }, []);
 
   const handleAddToCart = (item) => {
