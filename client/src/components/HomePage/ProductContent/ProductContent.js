@@ -15,15 +15,15 @@ const ProductContent = ({
   return (
     <StyledProductContentWrapper>
       <SideBar categories={categories} loading={categoriesLoading} />
-      <ProductGrid>
-        {productsLoading ? (
-          <Spinner />
-        ) : (
-          products.map((product) => (
+      {productsLoading ? (
+        <Spinner />
+      ) : (
+        <ProductGrid>
+          {products.map((product) => (
             <ProductCard key={product.name} productInfo={product} addToCart={addToCart} />
-          ))
-        )}
-      </ProductGrid>
+          ))}
+        </ProductGrid>
+      )}
     </StyledProductContentWrapper>
   );
 };

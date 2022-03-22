@@ -13,6 +13,9 @@ export const StyledSideBarBackground = styled.div`
 export const StyledNav = styled.nav``;
 
 export const StyledNavUL = styled.ul`
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding-inline-start: 10px;
   display: flex;
   flex-direction: column;
   list-style: none;

@@ -2,7 +2,8 @@ import styled from "styled-components";
 import { SpanPrice } from "../../../styles/fontStyles";
 
 export const StyledCardBackground = styled.div`
-  width: 300px;
+  width: 100%;
+  min-width: 300px;
   padding: 20px;
   display: flex;
   flex-direction: column;
