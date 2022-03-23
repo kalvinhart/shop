@@ -46,11 +46,19 @@ const SideBar = ({ loading, categories }) => {
         <StyledNav>
           <StyledNavUL>
             <StyledNavLI>
-              <Button onClick={() => handleCategoryChange("")}>All Products</Button>
+              <Button
+                onClick={() => handleCategoryChange("")}
+                disabled={!options.categories}
+              >
+                All Products
+              </Button>
             </StyledNavLI>
             {categories.map((item) => (
               <StyledNavLI key={item.name}>
-                <Button onClick={() => handleCategoryChange(item.name)}>
+                <Button
+                  onClick={() => handleCategoryChange(item.name)}
+                  disabled={item.name === options.categories}
+                >
                   {item.name}
                 </Button>
               </StyledNavLI>
