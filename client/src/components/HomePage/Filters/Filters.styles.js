@@ -9,7 +9,7 @@ export const StyledFiltersBackground = styled.div`
   align-items: center;
   padding: 20px;
   background-color: #fff;
-  border: 2px solid var(--clr-borders);
+  border: var(--borders);
   margin-bottom: 20px;
 `;
 

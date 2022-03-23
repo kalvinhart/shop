@@ -7,7 +7,7 @@ export const StyledSideBarBackground = styled.div`
   display: flex;
   flex-direction: column;
   background-color: white;
-  border: 2px solid var(--clr-borders);
+  border: var(--borders);
 `;
 
 export const StyledNav = styled.nav``;
