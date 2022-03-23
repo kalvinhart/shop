@@ -36,7 +36,11 @@ const Filters = () => {
         .toUpperCase()}${optionName.slice(1)}`;
 
       optionsTags.push(
-        <SpanFilterTag as={Button} onClick={() => handleRemoveOptions(optionName)}>
+        <SpanFilterTag
+          key={optionValue}
+          as={Button}
+          onClick={() => handleRemoveOptions(optionName)}
+        >
           {`${formattedOptionName}: ${optionValue}`}
           <FontAwesomeIcon icon={faTimes} />
         </SpanFilterTag>
