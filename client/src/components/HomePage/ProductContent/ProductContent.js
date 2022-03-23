@@ -6,16 +6,10 @@ import Spinner from "../../shared/Spinner/Spinner";
 import { StyledProductContentWrapper } from "./ProductContent.styles";
 import NoResults from "../NoResults/NoResults";
 
-const ProductContent = ({
-  products,
-  productsLoading,
-  addToCart,
-  categories,
-  categoriesLoading,
-}) => {
+const ProductContent = ({ products, productsLoading, addToCart }) => {
   return (
     <StyledProductContentWrapper>
-      <SideBar categories={categories} loading={categoriesLoading} />
+      <SideBar />
       {productsLoading ? (
         <Spinner />
       ) : products.length > 0 ? (
