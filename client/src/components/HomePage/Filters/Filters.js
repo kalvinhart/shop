@@ -1,14 +1,47 @@
 import { useDispatch, useSelector } from "react-redux";
 import { updateSearchOptions } from "../../../actions/productActions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
-import { H2, SpanBold } from "../../../styles/fontStyles";
+import {
+  StyledFiltersBackground,
+  StyledFilterSelectWrapper,
+  StyledFiltersWrapper,
+} from "./Filters.styles";
+import { H3, SpanBold, SpanFilterTag } from "../../../styles/fontStyles";
 import { StyledSelect } from "../../../styles/formStyles";
-import { StyledFiltersBackground, StyledFilterSelectWrapper } from "./Filters.styles";
+import { Button } from "../../../styles/buttonStyles";
 
 const Filters = () => {
   const dispatch = useDispatch();
-  const { searchOptions } = useSelector((state) => state.products);
-  const { options, sortBy } = searchOptions;
+  const {
+    count,
+    searchOptions: { options, sortBy },
+  } = useSelector((state) => state.products);
+
+  const hasOptions = Object.keys(options).length > 0;
+
+  const handleRemoveOptions = (option) => {
+    dispatch(updateSearchOptions(option, ""));
+  };
+
+  let optionsTags = [];
+
+  if (hasOptions) {
+    Object.entries(options).forEach((item) => {
+      const [optionName, optionValue] = item;
+      console.log(optionName);
+      const formattedOptionName = `${optionName
+        .slice(0, 1)
+        .toUpperCase()}${optionName.slice(1)}`;
+      optionsTags.push(
+        <SpanFilterTag as={Button} onClick={() => handleRemoveOptions(optionName)}>
+          {`${formattedOptionName}: ${optionValue}`}
+          <FontAwesomeIcon icon={faTimes} />
+        </SpanFilterTag>
+      );
+    });
+  }
 
   const sortOptions = [
     {
@@ -43,7 +76,11 @@ const Filters = () => {
 
   return (
     <StyledFiltersBackground>
-      <H2>{options.categories ?? "All Products"}:</H2>
+      <H3>
+        {count} {count === 1 ? "Result" : "Results"}
+      </H3>
+      <StyledFiltersWrapper>{hasOptions && optionsTags}</StyledFiltersWrapper>
+
       <StyledFilterSelectWrapper>
         <SpanBold>Sort By:</SpanBold>
         <StyledSelect onChange={handleSelectChange} value={sortBy}>

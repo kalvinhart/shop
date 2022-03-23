@@ -19,10 +19,6 @@ export const SpanLogo = styled.span`
   margin-right: 40px;
 `;
 
-export const SpanPrice = styled.span`
-  font-size: 26px;
-`;
-
 export const SpanRegular = styled.span`
   font-size: 16px;
 `;
@@ -31,14 +27,29 @@ export const SpanBold = styled.span`
   font-weight: bold;
 `;
 
+export const SpanGrey = styled.span`
+  font-size: 16px;
+  color: #666;
+`;
+
+export const SpanPrice = styled.span`
+  font-size: 26px;
+`;
+
 export const SpanDescription = styled.span`
   font-size: 16px;
   white-space: pre-line;
 `;
 
-export const SpanGrey = styled.span`
-  font-size: 16px;
-  color: #666;
+export const SpanFilterTag = styled.span`
+  padding: 4px 10px;
+  font-size: 14px;
+  background-color: rgba(200, 200, 200, 0.3);
+  border-radius: var(--border-radius);
+
+  & svg {
+    margin: 0 0 0 10px;
+  }
 `;
 
 export const SpanStock = styled.span`

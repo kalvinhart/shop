@@ -14,6 +14,11 @@ export const StyledFiltersBackground = styled.div`
   margin-bottom: 20px;
 `;
 
+export const StyledFiltersWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 export const StyledFilterSelectWrapper = styled.div`
   & ${SpanBold} {
     margin-right: 10px;

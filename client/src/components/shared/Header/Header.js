@@ -26,14 +26,7 @@ const Header = ({ loading, user, logOut, cart }) => {
     e.preventDefault();
 
     if (e.target[0].value) {
-      const newOptions = {
-        options: {
-          ...options,
-          name: e.target[0].value,
-        },
-        sortBy,
-      };
-      dispatch(updateSearchOptions(newOptions));
+      dispatch(updateSearchOptions("name", e.target[0].value));
     }
   };
 
