@@ -1,14 +1,15 @@
 import styled from "styled-components";
-import { FlexCol, FlexSpaceBetween } from "../../../styles/flexStyles";
 
 export const StyledAddToCartWrapper = styled.div`
   width: 100%;
-  ${FlexCol}
+  display: flex;
+  flex-direction: column;
 `;
 
 export const StyledQuantityTotalWrapper = styled.div`
   margin-bottom: 40px;
-  ${FlexSpaceBetween}
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const StyledQuantityWrapper = styled.div`
@@ -18,14 +19,17 @@ export const StyledQuantityWrapper = styled.div`
 
 export const StyledQuantityButtonsWrapper = styled.div`
   width: 100px;
-  ${FlexSpaceBetween}
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 `;
 
 export const StyledTotalWrapper = styled.div`
-  ${FlexCol}
+  display: flex;
+  flex-direction: column;
 `;
 
 export const StyledPurchaseButtonsWrapper = styled.div`
-  ${FlexSpaceBetween}
+  display: flex;
+  justify-content: space-between;
 `;
