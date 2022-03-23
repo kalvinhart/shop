@@ -30,10 +30,11 @@ const Filters = () => {
   if (hasOptions) {
     Object.entries(options).forEach((item) => {
       const [optionName, optionValue] = item;
-      console.log(optionName);
+
       const formattedOptionName = `${optionName
         .slice(0, 1)
         .toUpperCase()}${optionName.slice(1)}`;
+
       optionsTags.push(
         <SpanFilterTag as={Button} onClick={() => handleRemoveOptions(optionName)}>
           {`${formattedOptionName}: ${optionValue}`}
