@@ -7,4 +7,5 @@ export const StyledCartWrapper = styled.div`
   flex-direction: column;
   background-color: white;
   border: var(--borders);
+  box-shadow: var(--box-shadow-small);
 `;

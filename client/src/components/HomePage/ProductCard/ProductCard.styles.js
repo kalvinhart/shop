@@ -9,6 +9,7 @@ export const StyledCardBackground = styled.div`
   flex-direction: column;
   background-color: white;
   border: var(--borders);
+  box-shadow: var(--box-shadow-small);
 
   & ${SpanPrice} {
     margin-bottom: 20px;

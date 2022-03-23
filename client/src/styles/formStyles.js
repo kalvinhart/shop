@@ -6,6 +6,7 @@ export const StyledFormBackground = styled.div`
   padding: 20px;
   background-color: white;
   border: var(--borders);
+  box-shadow: var(--box-shadow-small);
 `;
 
 export const StyledFormWrapper = styled.div`

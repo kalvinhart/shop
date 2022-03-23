@@ -9,4 +9,5 @@ export const StyledNoResultsWrapper = styled.div`
   align-items: center;
   background-color: white;
   border: var(--borders);
+  box-shadow: var(--box-shadow-small);
 `;

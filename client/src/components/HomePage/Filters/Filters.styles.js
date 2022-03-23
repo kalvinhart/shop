@@ -10,6 +10,7 @@ export const StyledFiltersBackground = styled.div`
   padding: 20px;
   background-color: #fff;
   border: var(--borders);
+  box-shadow: var(--box-shadow-small);
   margin-bottom: 20px;
 `;
 
