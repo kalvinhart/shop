@@ -28,13 +28,11 @@ const HomePage = () => {
     categories,
   } = getCategories;
 
-  const { options, sortBy } = searchOptions;
-
   useEffect(() => {
     if (firstLoad.current) return;
 
-    dispatch(loadProducts({ options, sortBy }));
-  }, [options, sortBy]);
+    dispatch(loadProducts(searchOptions));
+  }, [searchOptions]);
 
   useEffect(() => {
     dispatch(loadProducts());

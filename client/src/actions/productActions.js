@@ -49,9 +49,27 @@ export const loadProductDetails = (id) => async (dispatch) => {
   }
 };
 
-export const updateSearchOptions = (options) => (dispatch) => {
+export const updateSearchOptions = (optionName, newOption) => (dispatch, getState) => {
+  const {
+    products: { searchOptions },
+  } = getState();
+
+  const updatedOptions = {
+    ...searchOptions,
+  };
+
+  if (optionName === "sortBy") {
+    updatedOptions.sortBy = newOption;
+  } else {
+    if (newOption) {
+      updatedOptions.options[optionName] = newOption;
+    } else {
+      delete updatedOptions.options[optionName];
+    }
+  }
+
   dispatch({
     type: PRODUCT_UPDATE_SEARCH_OPTIONS,
-    payload: options,
+    payload: updatedOptions,
   });
 };

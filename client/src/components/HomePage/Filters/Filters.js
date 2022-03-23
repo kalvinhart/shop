@@ -38,7 +38,7 @@ const Filters = () => {
   ];
 
   const handleSelectChange = (e) => {
-    dispatch(updateSearchOptions({ options, sortBy: e.target.value }));
+    dispatch(updateSearchOptions("sortBy", e.target.value));
   };
 
   return (

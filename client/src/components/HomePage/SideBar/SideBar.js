@@ -13,28 +13,12 @@ import { H3 } from "../../../styles/fontStyles";
 
 const SideBar = ({ loading, categories }) => {
   const dispatch = useDispatch();
-  const { searchOptions } = useSelector((state) => state.products);
-  const { options, sortBy } = searchOptions;
+  const {
+    searchOptions: { options },
+  } = useSelector((state) => state.products);
 
   const handleCategoryChange = (category) => {
-    let newOptions = {};
-
-    if (category) {
-      newOptions = {
-        options: {
-          ...options,
-          categories: category,
-        },
-        sortBy,
-      };
-    } else {
-      newOptions = { options: { ...options }, sortBy };
-      if (newOptions.options.hasOwnProperty("categories")) {
-        delete newOptions.options.categories;
-      }
-    }
-
-    dispatch(updateSearchOptions(newOptions));
+    dispatch(updateSearchOptions("categories", category));
   };
 
   return (
