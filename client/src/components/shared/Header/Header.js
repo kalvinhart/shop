@@ -14,8 +14,29 @@ import {
 import { SpanLogo } from "../../../styles/fontStyles";
 import { StyledInput } from "../../../styles/formStyles";
 import { Button } from "../../../styles/buttonStyles";
+import { useDispatch, useSelector } from "react-redux";
+import { updateSearchOptions } from "../../../actions/productActions";
 
 const Header = ({ loading, user, logOut, cart }) => {
+  const dispatch = useDispatch();
+  const { searchOptions } = useSelector((state) => state.products);
+  const { options, sortBy } = searchOptions;
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+
+    if (e.target[0].value) {
+      const newOptions = {
+        options: {
+          ...options,
+          name: e.target[0].value,
+        },
+        sortBy,
+      };
+      dispatch(updateSearchOptions(newOptions));
+    }
+  };
+
   return (
     <StyledHeader>
       <StyledHeaderWrapper>
@@ -23,7 +44,7 @@ const Header = ({ loading, user, logOut, cart }) => {
           My eShop
         </SpanLogo>
 
-        <StyledSearchForm>
+        <StyledSearchForm onSubmit={handleSearchSubmit}>
           <StyledInput type="text" name="search" id="search" placeholder="Search" />
           <StyledSearchButton>
             <FontAwesomeIcon icon={faSearch} size="lg" />
