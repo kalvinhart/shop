@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
         --borders: 1px solid var(--clr-borders);
         --border-radius: 5px;
         --box-shadow: 2px 2px 10px 0px rgba(0,0,0,0.1);
-        --box-shadow-small: 0px 0px 10px 0px rgba(0,0,0,0.1);
+        --box-shadow-small: 0px 0px 10px 0px rgba(0,0,0,0.05);
 
         --header-height: 60px;
     }
