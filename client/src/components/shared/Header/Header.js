@@ -27,6 +27,7 @@ const Header = ({ loading, user, logOut, cart }) => {
 
     if (e.target[0].value) {
       dispatch(updateSearchOptions("name", e.target[0].value));
+      e.target[0].value = "";
     }
   };
 
