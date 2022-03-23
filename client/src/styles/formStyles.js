@@ -5,7 +5,7 @@ export const StyledFormBackground = styled.div`
   width: 100%;
   padding: 20px;
   background-color: white;
-  border: 2px solid var(--clr-borders);
+  border: var(--borders);
 `;
 
 export const StyledFormWrapper = styled.div`
