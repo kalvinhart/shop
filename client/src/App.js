@@ -13,6 +13,8 @@ import ProductPage from "./components/ProductPage/ProductPage";
 import CartPage from "./components/CartPage/CartPage";
 import RegisterPage from "./components/RegisterPage/RegisterPage";
 import LoginPage from "./components/LoginPage/LoginPage";
+import ProtectedRoute from "./components/shared/ProtectedRoute/ProtectedRoute";
+import AdminPage from "./components/AdminPage/AdminPage";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -48,6 +50,15 @@ const App = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/cart" element={<CartPage />} />
+
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <AdminPage />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </>
   );
