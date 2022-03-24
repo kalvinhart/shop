@@ -7,14 +7,9 @@ import { loadUserDetails, logOut } from "./actions/authActions";
 import { loadCart } from "./actions/cartActions";
 
 import GlobalStyle from "./GlobalStyle";
-import Header from "./components/shared/Header/Header";
-import HomePage from "./components/HomePage/HomePage";
-import ProductPage from "./components/ProductPage/ProductPage";
-import CartPage from "./components/CartPage/CartPage";
-import RegisterPage from "./components/RegisterPage/RegisterPage";
-import LoginPage from "./components/LoginPage/LoginPage";
-import ProtectedRoute from "./components/shared/ProtectedRoute/ProtectedRoute";
-import AdminPage from "./components/AdminPage/AdminPage";
+
+import ShopRoutes from "./Routes/ShopRoutes";
+import AdminRoutes from "./Routes/AdminRoutes";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -43,22 +38,10 @@ const App = () => {
     <>
       <GlobalStyle />
       <Toaster position="top-right" containerStyle={{ top: 80 }} />
-      <Header loading={loading} user={user} logOut={handleLogOut} cart={cart} />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/product/:id" element={<ProductPage />} />
-        <Route path="/cart" element={<CartPage />} />
 
-        <Route
-          path="/admin"
-          element={
-            <ProtectedRoute>
-              <AdminPage />
-            </ProtectedRoute>
-          }
-        />
+      <Routes>
+        <Route path="/admin/*" element={<AdminRoutes />} />
+        <Route path="*" element={<ShopRoutes />} />
       </Routes>
     </>
   );
