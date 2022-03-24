@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faUserAlt, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
+import { logOut } from "../../../actions/authActions";
+
 import {
   StyledCartCount,
   StyledCartIconWrapper,
@@ -17,10 +19,14 @@ import { Button } from "../../../styles/buttonStyles";
 import { useDispatch, useSelector } from "react-redux";
 import { updateSearchOptions } from "../../../actions/productActions";
 
-const Header = ({ loading, user, logOut, cart }) => {
+const Header = () => {
   const dispatch = useDispatch();
-  const { searchOptions } = useSelector((state) => state.products);
-  const { options, sortBy } = searchOptions;
+  const { loading, user } = useSelector((state) => state.auth);
+  const cart = useSelector((state) => state.cart);
+
+  const handleLogOut = () => {
+    dispatch(logOut());
+  };
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -51,7 +57,7 @@ const Header = ({ loading, user, logOut, cart }) => {
               <Link to="/profile">
                 <FontAwesomeIcon className="icon" icon={faUserAlt} size="lg" />
               </Link>
-              <Button $primary onClick={logOut}>
+              <Button $primary onClick={handleLogOut}>
                 Log out
               </Button>
             </>
