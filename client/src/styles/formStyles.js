@@ -5,7 +5,8 @@ export const StyledFormBackground = styled.div`
   width: 100%;
   padding: 20px;
   background-color: white;
-  border: 2px solid var(--clr-borders);
+  border: var(--borders);
+  box-shadow: var(--box-shadow-small);
 `;
 
 export const StyledFormWrapper = styled.div`
@@ -50,13 +51,13 @@ export const StyledLabel = styled.label`
 export const StyledInput = styled.input`
   padding: 5px 10px;
   font-family: inherit;
-  border: 2px solid var(--clr-borders);
+  border: var(--borders);
   border-radius: var(--border-radius);
 `;
 
 export const StyledSelect = styled.select`
   padding: 5px 10px;
   font-family: inherit;
-  border: 2px solid var(--clr-borders);
+  border: var(--borders);
   border-radius: var(--border-radius);
 `;

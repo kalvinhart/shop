@@ -7,6 +7,10 @@ const getAllProducts = catchAsync(async (req, res, next) => {
   const searchOptions = options ? options : {};
   const sortSearch = sortBy ? sortBy : "-amountSold";
 
+  if (searchOptions.name) {
+    searchOptions.name = new RegExp(searchOptions.name, "i");
+  }
+
   const products = await Product.find(searchOptions).sort(sortSearch);
   const count = products.length;
 

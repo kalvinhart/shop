@@ -1,29 +1,26 @@
 import ProductGrid from "../ProductGrid/ProductGrid";
 import ProductCard from "../ProductCard/ProductCard";
 import SideBar from "../SideBar/SideBar";
+import Spinner from "../../shared/Spinner/Spinner";
 
 import { StyledProductContentWrapper } from "./ProductContent.styles";
-import { H3 } from "../../../styles/fontStyles";
+import NoResults from "../NoResults/NoResults";
 
-const ProductContent = ({
-  products,
-  productsLoading,
-  addToCart,
-  categories,
-  categoriesLoading,
-}) => {
+const ProductContent = ({ products, productsLoading, addToCart }) => {
   return (
     <StyledProductContentWrapper>
-      <SideBar categories={categories} loading={categoriesLoading} />
-      <ProductGrid>
-        {productsLoading ? (
-          <H3>Loading...</H3>
-        ) : (
-          products.map((product) => (
+      <SideBar />
+      {productsLoading ? (
+        <Spinner />
+      ) : products.length > 0 ? (
+        <ProductGrid>
+          {products.map((product) => (
             <ProductCard key={product.name} productInfo={product} addToCart={addToCart} />
-          ))
-        )}
-      </ProductGrid>
+          ))}
+        </ProductGrid>
+      ) : (
+        <NoResults />
+      )}
     </StyledProductContentWrapper>
   );
 };

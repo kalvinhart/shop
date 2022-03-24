@@ -1,41 +1,58 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { updateSearchOptions } from "../../../actions/productActions";
-import { Button } from "../../../styles/buttonStyles";
-import { H3 } from "../../../styles/fontStyles";
+import Spinner from "../../shared/Spinner/Spinner";
+
 import {
   StyledSideBarBackground,
   StyledNav,
   StyledNavUL,
   StyledNavLI,
 } from "./SideBar.styles";
+import { Button } from "../../../styles/buttonStyles";
+import { H3 } from "../../../styles/fontStyles";
 
-const SideBar = ({ loading, categories }) => {
+const SideBar = () => {
   const dispatch = useDispatch();
-  const { searchOptions } = useSelector((state) => state.products);
-  const { options, sortBy } = searchOptions;
+
+  const { loading, categories } = useSelector((state) => state.categories);
+  const {
+    searchOptions: { options },
+  } = useSelector((state) => state.products);
 
   const handleCategoryChange = (category) => {
-    dispatch(updateSearchOptions({ options: { categories: category }, sortBy }));
+    dispatch(updateSearchOptions("categories", category));
   };
+
+  if (loading) return <Spinner />;
 
   return (
     <StyledSideBarBackground>
-      <H3>Categories:</H3>
-      {loading ? (
-        ""
-      ) : (
-        <StyledNav>
-          <StyledNavUL>
-            {categories.map((item) => (
+      {categories && (
+        <>
+          <H3>Categories:</H3>
+          <StyledNav>
+            <StyledNavUL>
               <StyledNavLI>
-                <Button onClick={() => handleCategoryChange(item.name)}>
-                  {item.name}
+                <Button
+                  onClick={() => handleCategoryChange("")}
+                  disabled={!options.categories}
+                >
+                  All Products
                 </Button>
               </StyledNavLI>
-            ))}
-          </StyledNavUL>
-        </StyledNav>
+              {categories.map((item) => (
+                <StyledNavLI key={item.name}>
+                  <Button
+                    onClick={() => handleCategoryChange(item.name)}
+                    disabled={item.name === options.categories}
+                  >
+                    {item.name}
+                  </Button>
+                </StyledNavLI>
+              ))}
+            </StyledNavUL>
+          </StyledNav>
+        </>
       )}
     </StyledSideBarBackground>
   );

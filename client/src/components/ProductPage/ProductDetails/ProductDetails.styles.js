@@ -5,7 +5,8 @@ export const StyledProductBackground = styled.div`
   width: 100%;
   padding: 20px;
   background-color: white;
-  border: 2px solid var(--clr-borders);
+  border: var(--borders);
+  box-shadow: var(--box-shadow-small);
 `;
 
 export const StyledProductMainInfoWrapper = styled.div`

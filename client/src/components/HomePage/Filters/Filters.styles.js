@@ -9,8 +9,14 @@ export const StyledFiltersBackground = styled.div`
   align-items: center;
   padding: 20px;
   background-color: #fff;
-  border: 2px solid var(--clr-borders);
+  border: var(--borders);
+  box-shadow: var(--box-shadow-small);
   margin-bottom: 20px;
+`;
+
+export const StyledFiltersWrapper = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 export const StyledFilterSelectWrapper = styled.div`

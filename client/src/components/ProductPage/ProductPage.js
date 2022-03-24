@@ -8,13 +8,13 @@ import { addToCart } from "../../actions/cartActions";
 import Container from "../shared/Container/Container";
 import PageWrapper from "../shared/PageWrapper/PageWrapper";
 import ProductDetails from "./ProductDetails/ProductDetails";
-import { H1 } from "../../styles/fontStyles";
+import Spinner from "../shared/Spinner/Spinner";
 
 const ProductPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const params = useParams();
-  const productDetails = useSelector((state) => state.getProductDetails);
+  const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
 
   const { id } = params;
@@ -35,7 +35,7 @@ const ProductPage = () => {
     <PageWrapper>
       <Container>
         {loading ? (
-          <H1>Loading...</H1>
+          <Spinner />
         ) : (
           <ProductDetails product={product} addToCart={handleAddToCart} />
         )}

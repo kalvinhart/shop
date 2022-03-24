@@ -7,12 +7,16 @@ export const StyledSideBarBackground = styled.div`
   display: flex;
   flex-direction: column;
   background-color: white;
-  border: 2px solid var(--clr-borders);
+  border: var(--borders);
+  box-shadow: var(--box-shadow-small);
 `;
 
 export const StyledNav = styled.nav``;
 
 export const StyledNavUL = styled.ul`
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding-inline-start: 10px;
   display: flex;
   flex-direction: column;
   list-style: none;
