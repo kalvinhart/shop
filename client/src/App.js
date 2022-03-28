@@ -7,9 +7,12 @@ import { loadUserDetails } from "./actions/authActions";
 import { loadCart } from "./actions/cartActions";
 
 import GlobalStyle from "./GlobalStyle";
-
-import ShopRoutes from "./Routes/ShopRoutes";
-import AdminRoutes from "./Routes/AdminRoutes";
+import Header from "./components/shared/Header/Header";
+import HomePage from "./components/HomePage/HomePage";
+import RegisterPage from "./components/RegisterPage/RegisterPage";
+import LoginPage from "./components/LoginPage/LoginPage";
+import ProductPage from "./components/ProductPage/ProductPage";
+import CartPage from "./components/CartPage/CartPage";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -33,10 +36,13 @@ const App = () => {
     <>
       <GlobalStyle />
       <Toaster position="top-right" containerStyle={{ top: 80 }} />
-
+      <Header />
       <Routes>
-        <Route path="/admin/*" element={<AdminRoutes />} />
-        <Route path="*" element={<ShopRoutes />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/product/:id" element={<ProductPage />} />
+        <Route path="/cart" element={<CartPage />} />
       </Routes>
     </>
   );
