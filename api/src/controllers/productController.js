@@ -4,8 +4,11 @@ const { catchAsync } = require("../middleware/errors");
 const getAllProducts = catchAsync(async (req, res, next) => {
   const { options, sortBy } = req.body;
 
-  const searchOptions = options ? options : {};
+  const searchOptions = options ?? {};
   const sortSearch = sortBy ? sortBy : "-amountSold";
+
+  console.log(searchOptions);
+  console.log(sortSearch);
 
   if (searchOptions.name) {
     searchOptions.name = new RegExp(searchOptions.name, "i");

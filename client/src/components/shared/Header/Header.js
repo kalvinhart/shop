@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faUserAlt, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
@@ -20,6 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateSearchOptions } from "../../../actions/productActions";
 
 const Header = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { loading, user } = useSelector((state) => state.auth);
   const cart = useSelector((state) => state.cart);
@@ -33,6 +34,7 @@ const Header = () => {
 
     if (e.target[0].value) {
       dispatch(updateSearchOptions("name", e.target[0].value));
+      navigate(`/?name=${e.target[0].value}`);
       e.target[0].value = "";
     }
   };
