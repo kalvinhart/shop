@@ -3,13 +3,10 @@ import { SpanGrey } from "../../../styles/fontStyles";
 
 export const StyledCartItemWrapper = styled.div`
   width: 100%;
+  margin-bottom: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  & > *:not(:last-child) {
-    margin-bottom: 20px;
-  }
 `;
 
 export const StyledCartItemImage = styled.img`
