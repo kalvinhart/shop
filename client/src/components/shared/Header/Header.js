@@ -1,42 +1,29 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faUserAlt, faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { faUserAlt, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
 import { logOut } from "../../../actions/authActions";
+
+import SearchBar from "../SearchBar/SearchBar";
 
 import {
   StyledCartCount,
   StyledCartIconWrapper,
   StyledHeader,
   StyledHeaderWrapper,
-  StyledSearchButton,
-  StyledSearchForm,
   StyledUserInfoWrapper,
 } from "./Header.styles";
 import { SpanLogo } from "../../../styles/fontStyles";
-import { StyledInput } from "../../../styles/formStyles";
 import { Button } from "../../../styles/buttonStyles";
-import { useDispatch, useSelector } from "react-redux";
-import { updateSearchOptions } from "../../../actions/productActions";
 
 const Header = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { loading, user } = useSelector((state) => state.auth);
   const cart = useSelector((state) => state.cart);
 
   const handleLogOut = () => {
     dispatch(logOut());
-  };
-
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-
-    if (e.target[0].value) {
-      dispatch(updateSearchOptions("name", e.target[0].value));
-      navigate(`/?name=${e.target[0].value}`);
-      e.target[0].value = "";
-    }
   };
 
   return (
@@ -46,12 +33,7 @@ const Header = () => {
           My eShop
         </SpanLogo>
 
-        <StyledSearchForm onSubmit={handleSearchSubmit}>
-          <StyledInput type="text" name="search" id="search" placeholder="Search" />
-          <StyledSearchButton>
-            <FontAwesomeIcon icon={faSearch} size="lg" />
-          </StyledSearchButton>
-        </StyledSearchForm>
+        <SearchBar />
 
         <StyledUserInfoWrapper>
           {loading ? null : user ? (
