@@ -21,6 +21,8 @@ const SideBar = () => {
   const { searchOptions } = useSelector((state) => state.products);
 
   useEffect(() => {
+    if (categories.length > 0) return;
+
     dispatch(loadCategories());
   }, []);
 
