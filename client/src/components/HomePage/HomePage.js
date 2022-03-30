@@ -23,15 +23,6 @@ const HomePage = () => {
   } = getProducts;
 
   useEffect(() => {
-    console.log("location: ", location.search);
-    if (location.search) {
-      const URLObject = new URLSearchParams(location.search);
-      const options = convertURLParams(URLObject);
-      dispatch(updateSearchOptions(options));
-    }
-  }, [location.search]);
-
-  useEffect(() => {
     if (searchOptions) {
       const requestOptions = {
         options: { ...searchOptions },

@@ -54,14 +54,11 @@ export const updateSearchOptions =
   (...args) =>
   (dispatch, getState) => {
     if (args.length === 1) {
-      console.log("optionsObject");
       return dispatch({
         type: PRODUCT_UPDATE_SEARCH_OPTIONS,
         payload: args[0],
       });
     }
-
-    console.log("no optionsObject");
 
     const {
       products: { searchOptions },

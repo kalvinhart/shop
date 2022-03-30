@@ -17,7 +17,7 @@ const SearchBar = () => {
 
     if (e.target[0].value) {
       dispatch(updateSearchOptions("name", e.target[0].value));
-      navigate(`/?name=${e.target[0].value}`);
+      navigate(`/`);
       e.target[0].value = "";
     }
   };
