@@ -1,5 +1,8 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateSearchOptions } from "../../../actions/productActions";
+import { loadCategories } from "../../../actions/categoryActions";
+
 import Spinner from "../../shared/Spinner/Spinner";
 
 import {
@@ -15,9 +18,13 @@ const SideBar = () => {
   const dispatch = useDispatch();
 
   const { loading, categories } = useSelector((state) => state.categories);
-  const {
-    searchOptions: { options },
-  } = useSelector((state) => state.products);
+  const { searchOptions } = useSelector((state) => state.products);
+
+  useEffect(() => {
+    if (categories.length > 0) return;
+
+    dispatch(loadCategories());
+  }, []);
 
   const handleCategoryChange = (category) => {
     dispatch(updateSearchOptions("categories", category));
@@ -35,7 +42,7 @@ const SideBar = () => {
               <StyledNavLI>
                 <Button
                   onClick={() => handleCategoryChange("")}
-                  disabled={!options.categories}
+                  disabled={!searchOptions.categories}
                 >
                   All Products
                 </Button>
@@ -44,7 +51,7 @@ const SideBar = () => {
                 <StyledNavLI key={item.name}>
                   <Button
                     onClick={() => handleCategoryChange(item.name)}
-                    disabled={item.name === options.categories}
+                    disabled={item.name === searchOptions.categories}
                   >
                     {item.name}
                   </Button>

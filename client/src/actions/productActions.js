@@ -16,6 +16,7 @@ export const loadProducts =
       type: PRODUCT_LIST_REQUEST,
     });
 
+    console.log(options);
     try {
       const { data } = await axios.post("/api/products", options);
       dispatch({
@@ -49,27 +50,35 @@ export const loadProductDetails = (id) => async (dispatch) => {
   }
 };
 
-export const updateSearchOptions = (optionName, newOption) => (dispatch, getState) => {
-  const {
-    products: { searchOptions },
-  } = getState();
-
-  const updatedOptions = {
-    ...searchOptions,
-  };
-
-  if (optionName === "sortBy") {
-    updatedOptions.sortBy = newOption;
-  } else {
-    if (newOption) {
-      updatedOptions.options[optionName] = newOption;
-    } else {
-      delete updatedOptions.options[optionName];
+export const updateSearchOptions =
+  (...args) =>
+  (dispatch, getState) => {
+    if (args.length === 1) {
+      return dispatch({
+        type: PRODUCT_UPDATE_SEARCH_OPTIONS,
+        payload: args[0],
+      });
     }
-  }
 
-  dispatch({
-    type: PRODUCT_UPDATE_SEARCH_OPTIONS,
-    payload: updatedOptions,
-  });
-};
+    const {
+      products: { searchOptions },
+    } = getState();
+
+    const updatedOptions = {
+      ...searchOptions,
+    };
+
+    const optionName = args[0];
+    const newOption = args[1];
+
+    if (newOption) {
+      updatedOptions[optionName] = newOption;
+    } else {
+      delete updatedOptions[optionName];
+    }
+
+    dispatch({
+      type: PRODUCT_UPDATE_SEARCH_OPTIONS,
+      payload: updatedOptions,
+    });
+  };

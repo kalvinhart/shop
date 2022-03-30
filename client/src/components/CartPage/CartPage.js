@@ -5,7 +5,7 @@ import PageWrapper from "../shared/PageWrapper/PageWrapper";
 import Cart from "./Cart/Cart";
 
 const CartPage = () => {
-  const { cart } = useSelector((state) => state.cart);
+  const cart = useSelector((state) => state.cart);
 
   return (
     <PageWrapper>

@@ -9,7 +9,7 @@ import {
 } from "../constants/productConstants";
 
 export const productsReducer = (
-  state = { loading: true, products: [], searchOptions: { options: {}, sortBy: {} } },
+  state = { loading: true, products: [], searchOptions: {} },
   action
 ) => {
   switch (action.type) {

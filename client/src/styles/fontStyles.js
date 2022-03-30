@@ -43,9 +43,13 @@ export const SpanDescription = styled.span`
 
 export const SpanFilterTag = styled.span`
   padding: 4px 10px;
-  font-size: 14px;
+  font-size: 12px;
   background-color: rgba(200, 200, 200, 0.3);
   border-radius: var(--border-radius);
+
+  &:not(:last-child) {
+    margin-right: 10px;
+  }
 
   & svg {
     margin: 0 0 0 10px;

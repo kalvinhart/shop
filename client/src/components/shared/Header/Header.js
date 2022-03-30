@@ -1,23 +1,21 @@
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faUserAlt, faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { faUserAlt, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
 import { logOut } from "../../../actions/authActions";
+
+import SearchBar from "../SearchBar/SearchBar";
 
 import {
   StyledCartCount,
   StyledCartIconWrapper,
   StyledHeader,
   StyledHeaderWrapper,
-  StyledSearchButton,
-  StyledSearchForm,
   StyledUserInfoWrapper,
 } from "./Header.styles";
 import { SpanLogo } from "../../../styles/fontStyles";
-import { StyledInput } from "../../../styles/formStyles";
 import { Button } from "../../../styles/buttonStyles";
-import { useDispatch, useSelector } from "react-redux";
-import { updateSearchOptions } from "../../../actions/productActions";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -28,15 +26,6 @@ const Header = () => {
     dispatch(logOut());
   };
 
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-
-    if (e.target[0].value) {
-      dispatch(updateSearchOptions("name", e.target[0].value));
-      e.target[0].value = "";
-    }
-  };
-
   return (
     <StyledHeader>
       <StyledHeaderWrapper>
@@ -44,12 +33,7 @@ const Header = () => {
           My eShop
         </SpanLogo>
 
-        <StyledSearchForm onSubmit={handleSearchSubmit}>
-          <StyledInput type="text" name="search" id="search" placeholder="Search" />
-          <StyledSearchButton>
-            <FontAwesomeIcon icon={faSearch} size="lg" />
-          </StyledSearchButton>
-        </StyledSearchForm>
+        <SearchBar />
 
         <StyledUserInfoWrapper>
           {loading ? null : user ? (

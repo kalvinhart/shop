@@ -50,7 +50,7 @@ const AddToCart = ({ product, addToCart }) => {
 
         <StyledTotalWrapper>
           <H3>Total:</H3>
-          <SpanPrice>£{price}</SpanPrice>
+          <SpanPrice>£{(quantity * price).toFixed(2)}</SpanPrice>
         </StyledTotalWrapper>
       </StyledQuantityTotalWrapper>
 

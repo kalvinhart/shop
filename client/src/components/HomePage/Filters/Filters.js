@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import { updateSearchOptions } from "../../../actions/productActions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
+
+import { updateSearchOptions } from "../../../actions/productActions";
 
 import {
   StyledFiltersBackground,
@@ -14,12 +15,9 @@ import { Button } from "../../../styles/buttonStyles";
 
 const Filters = () => {
   const dispatch = useDispatch();
-  const {
-    count,
-    searchOptions: { options, sortBy },
-  } = useSelector((state) => state.products);
+  const { count, searchOptions } = useSelector((state) => state.products);
 
-  const hasOptions = Object.keys(options).length > 0;
+  const hasOptions = Object.keys(searchOptions).length > 0;
 
   const handleRemoveOptions = (option) => {
     dispatch(updateSearchOptions(option, ""));
@@ -28,8 +26,10 @@ const Filters = () => {
   let optionsTags = [];
 
   if (hasOptions) {
-    Object.entries(options).forEach((item) => {
+    Object.entries(searchOptions).forEach((item) => {
       const [optionName, optionValue] = item;
+
+      if (optionName === "sortBy") return;
 
       const formattedOptionName = `${optionName
         .slice(0, 1)
@@ -88,7 +88,7 @@ const Filters = () => {
 
       <StyledFilterSelectWrapper>
         <SpanBold>Sort By:</SpanBold>
-        <StyledSelect onChange={handleSelectChange} value={sortBy}>
+        <StyledSelect onChange={handleSelectChange} value={searchOptions.sortBy}>
           {sortOptions.map((option) => (
             <option key={option.text} value={option.name}>
               {option.text}
