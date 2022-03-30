@@ -25,6 +25,7 @@ export const StyledQuantityButtonsWrapper = styled.div`
 `;
 
 export const StyledTotalWrapper = styled.div`
+  width: 100px;
   display: flex;
   flex-direction: column;
 `;
