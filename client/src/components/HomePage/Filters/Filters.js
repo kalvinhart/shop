@@ -29,6 +29,8 @@ const Filters = () => {
     Object.entries(searchOptions).forEach((item) => {
       const [optionName, optionValue] = item;
 
+      if (optionName === "sortBy") return;
+
       const formattedOptionName = `${optionName
         .slice(0, 1)
         .toUpperCase()}${optionName.slice(1)}`;
