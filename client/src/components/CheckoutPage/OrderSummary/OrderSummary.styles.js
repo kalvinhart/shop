@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const StyledOrderSummaryWrapper = styled.div`
+  width: calc(30% - 10px);
   padding: 20px;
   display: flex;
   flex-direction: column;

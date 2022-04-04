@@ -3,7 +3,7 @@ import { SpanBold, SpanPrice, SpanRegular } from "../../../styles/fontStyles";
 
 export const StyledOrderSummaryItemWrapper = styled.div`
   position: relative;
-  width: 300px;
+  width: 100%;
   padding: 20px 0;
   display: flex;
   flex-direction: column;

@@ -24,6 +24,7 @@ const initialiseApp = () => {
   app.use("/api/products", require("./routes/productRoutes"));
   app.use("/api/categories", require("./routes/categoryRoutes"));
   app.use("/api/users", require("./routes/userRoutes"));
+  app.use("/api/payment", require("./routes/paymentRoutes"));
 
   app.use(errorHandler);
 

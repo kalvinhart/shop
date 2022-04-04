@@ -15,6 +15,7 @@ import LoginPage from "./components/LoginPage/LoginPage";
 import ProductPage from "./components/ProductPage/ProductPage";
 import CartPage from "./components/CartPage/CartPage";
 import CheckoutPage from "./components/CheckoutPage/CheckoutPage";
+import PaymentSuccessPage from "./components/PaymentSuccessPage/PaymentSuccessPage";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -45,6 +46,7 @@ const App = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/cart" element={<CartPage />} />
+        <Route path="/success" element={<PaymentSuccessPage />} />
         <Route
           path="/checkout"
           element={

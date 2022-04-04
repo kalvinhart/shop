@@ -1,5 +1,3 @@
-import { useSelector } from "react-redux";
-
 import { H3, SpanBold, SpanPrice } from "../../../styles/fontStyles";
 import OrderSummaryItem from "../OrderSummaryItem/OrderSummaryItem";
 import {
@@ -7,13 +5,12 @@ import {
   StyledOrderSummaryWrapper,
 } from "./OrderSummary.styles";
 
-const OrderSummary = () => {
-  const { cart, cartTotal } = useSelector((state) => state.cart);
+const OrderSummary = ({ cart, cartTotal }) => {
   return (
     <StyledOrderSummaryWrapper>
       <H3>Order Summary:</H3>
       {cart.map((item) => (
-        <OrderSummaryItem item={item} />
+        <OrderSummaryItem key={item.name} item={item} />
       ))}
       <StyledOrderSummaryTotalWrapper>
         <SpanBold>Total:</SpanBold>
