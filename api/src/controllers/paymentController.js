@@ -2,6 +2,9 @@ const { catchAsync } = require("../middleware/errors");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const Product = require("../models/productModel");
 
+const endpointSecret =
+  "whsec_be9c315a348e616c83d051c5c5987587210c7390b04fb9ca27bfda9c663519a7";
+
 const calculateOrderAmount = async (items) => {
   const idSet = new Set();
 
@@ -36,6 +39,28 @@ const createIntent = catchAsync(async (req, res, next) => {
   res.status(200).json({ clientSecret: paymentIntent.client_secret, total });
 });
 
+const handleWebhook = (req, res, next) => {
+  let event = req.body;
+
+  if (endpointSecret) {
+    const signature = req.headers["stripe-signature"];
+    try {
+      event = stripe.webhooks.constructEvent(req.body, signature, endpointSecret);
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  if (event.type === "payment_intent.succeeded") {
+    const paymentIntent = event.data.object;
+    const { id, amount, created, customer, shipping } = paymentIntent;
+    console.log(paymentIntent);
+  }
+
+  res.status(200);
+};
+
 module.exports = {
   createIntent,
+  handleWebhook,
 };
