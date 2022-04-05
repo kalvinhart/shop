@@ -16,24 +16,24 @@ const calculateOrderAmount = async (items) => {
 
   const total = prices.reduce((acc, curr) => {
     const id = curr._id.toString();
-    const qty = items[id].qty;
+    const { qty } = items[id];
     return acc + curr.price * qty;
   }, 0);
 
-  return Number(total.toFixed(2)) * 100;
+  return Number((total * 100).toFixed(2));
 };
 
 const createIntent = catchAsync(async (req, res, next) => {
-  const { items } = req.body;
+  const { items, user } = req.body;
 
   const total = await calculateOrderAmount(items);
 
   const paymentIntent = await stripe.paymentIntents.create({
     amount: total,
     currency: "gbp",
-    automatic_payment_methods: {
-      enabled: true,
-    },
+    payment_method_types: ["card"],
+    receipt_email: user.email,
+    metadata: { userId: user.id },
   });
 
   res.status(200).json({ clientSecret: paymentIntent.client_secret, total });
@@ -53,11 +53,11 @@ const handleWebhook = (req, res, next) => {
 
   if (event.type === "payment_intent.succeeded") {
     const paymentIntent = event.data.object;
-    const { id, amount, created, customer, shipping } = paymentIntent;
+    const { id, amount, created, metadata, shipping } = paymentIntent;
     console.log(paymentIntent);
   }
 
-  res.status(200);
+  res.status(200).end();
 };
 
 module.exports = {
