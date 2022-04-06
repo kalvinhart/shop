@@ -11,8 +11,8 @@ import {
   StyledNavUL,
   StyledNavLI,
 } from "./SideBar.styles";
-import { Button } from "../../../styles/buttonStyles";
 import { H3 } from "../../../styles/fontStyles";
+import { ButtonCategory } from "../../../styles/buttonStyles";
 
 const SideBar = () => {
   const dispatch = useDispatch();
@@ -40,21 +40,21 @@ const SideBar = () => {
           <StyledNav>
             <StyledNavUL>
               <StyledNavLI>
-                <Button
+                <ButtonCategory
                   onClick={() => handleCategoryChange("")}
                   disabled={!searchOptions.categories}
                 >
                   All Products
-                </Button>
+                </ButtonCategory>
               </StyledNavLI>
               {categories.map((item) => (
                 <StyledNavLI key={item.name}>
-                  <Button
+                  <ButtonCategory
                     onClick={() => handleCategoryChange(item.name)}
                     disabled={item.name === searchOptions.categories}
                   >
                     {item.name}
-                  </Button>
+                  </ButtonCategory>
                 </StyledNavLI>
               ))}
             </StyledNavUL>

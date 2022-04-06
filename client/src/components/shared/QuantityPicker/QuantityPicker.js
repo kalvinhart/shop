@@ -5,11 +5,16 @@ import { SpanRegular } from "../../../styles/fontStyles";
 const QuantityPicker = ({ quantity = 1, handleQuantityChange }) => {
   return (
     <StyledQuantityButtonsWrapper>
-      <Button onClick={() => handleQuantityChange(-1)} $primary disabled={quantity === 1}>
+      <Button
+        onClick={() => handleQuantityChange(-1)}
+        $primary
+        $small
+        disabled={quantity === 1}
+      >
         -
       </Button>
       <SpanRegular>{quantity}</SpanRegular>
-      <Button onClick={() => handleQuantityChange(1)} $primary>
+      <Button onClick={() => handleQuantityChange(1)} $primary $small>
         +
       </Button>
     </StyledQuantityButtonsWrapper>

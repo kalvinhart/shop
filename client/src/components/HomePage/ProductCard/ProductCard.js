@@ -35,9 +35,7 @@ const ProductCard = ({ productInfo, addToCart }) => {
         <Button onClick={handleAddToCart} $primary>
           Add to Cart
         </Button>
-        <Button as={Link} to={`/product/${_id}`} $secondary>
-          More Details
-        </Button>
+        <Link to={`/product/${_id}`}>More Details</Link>
       </StyledCardButtonWrapper>
     </StyledCardBackground>
   );

@@ -21,13 +21,14 @@ export const StyledSearchButton = styled.button`
   width: 40px;
   height: 40px;
   border: 2px solid transparent;
-  background-color: #eee;
+  background-color: var(--clr-primary);
   border-top-right-radius: var(--border-radius);
   border-bottom-right-radius: var(--border-radius);
+  transition: background-color 0.2s ease-in-out;
   cursor: pointer;
 
   &:hover,
   &:focus {
-    background-color: #ddd;
+    background-color: var(--clr-primary-hover);
   }
 `;
