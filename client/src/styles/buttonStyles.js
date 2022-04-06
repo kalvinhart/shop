@@ -25,6 +25,10 @@ export const Button = styled.button`
             margin-right: 10px;
           }
 
+          &:hover {
+            background-color: var(--clr-secondary-hover);
+          }
+
           & svg {
             margin: 0 0 0 10px;
           }
