@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
@@ -10,14 +10,18 @@ import GlobalStyle from "./GlobalStyle";
 import Header from "./components/shared/Header/Header";
 import PageWrapper from "./components/shared/PageWrapper/PageWrapper";
 import Container from "./components/shared/Container/Container";
-import HomePage from "./components/HomePage/HomePage";
 import ProtectedRoute from "./components/shared/ProtectedRoute/ProtectedRoute";
-import RegisterPage from "./components/RegisterPage/RegisterPage";
-import LoginPage from "./components/LoginPage/LoginPage";
-import ProductPage from "./components/ProductPage/ProductPage";
-import CartPage from "./components/CartPage/CartPage";
-import CheckoutPage from "./components/CheckoutPage/CheckoutPage";
-import PaymentConfirmationPage from "./components/PaymentConfirmationPage/PaymentConfirmationPage";
+import Spinner from "./components/shared/Spinner/Spinner";
+
+const HomePage = lazy(() => import("./components/HomePage/HomePage"));
+const RegisterPage = lazy(() => import("./components/RegisterPage/RegisterPage"));
+const LoginPage = lazy(() => import("./components/LoginPage/LoginPage"));
+const ProductPage = lazy(() => import("./components/ProductPage/ProductPage"));
+const CartPage = lazy(() => import("./components/CartPage/CartPage"));
+const CheckoutPage = lazy(() => import("./components/CheckoutPage/CheckoutPage"));
+const PaymentConfirmationPage = lazy(() =>
+  import("./components/PaymentConfirmationPage/PaymentConfirmationPage")
+);
 
 const App = () => {
   const dispatch = useDispatch();
@@ -45,18 +49,62 @@ const App = () => {
       <PageWrapper>
         <Container>
           <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/product/:id" element={<ProductPage />} />
-            <Route path="/cart" element={<CartPage />} />
-            <Route path="/confirmation" element={<PaymentConfirmationPage />} />
+            <Route
+              path="/"
+              element={
+                <Suspense fallback={<Spinner />}>
+                  <HomePage />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                <Suspense fallback={<Spinner />}>
+                  <RegisterPage />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <Suspense fallback={<Spinner />}>
+                  <LoginPage />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/product/:id"
+              element={
+                <Suspense fallback={<Spinner />}>
+                  <ProductPage />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/cart"
+              element={
+                <Suspense fallback={<Spinner />}>
+                  <CartPage />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/confirmation"
+              element={
+                <Suspense fallback={<Spinner />}>
+                  <PaymentConfirmationPage />
+                </Suspense>
+              }
+            />
             <Route
               path="/checkout"
               element={
-                <ProtectedRoute>
-                  <CheckoutPage />
-                </ProtectedRoute>
+                <Suspense fallback={<Spinner />}>
+                  <ProtectedRoute>
+                    <CheckoutPage />
+                  </ProtectedRoute>
+                </Suspense>
               }
             />
           </Routes>
