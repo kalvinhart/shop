@@ -9,7 +9,7 @@ const NoCartItems = () => {
   return (
     <StyledNoItemsWrapper>
       <StyledParagraph>You have no items in your cart.</StyledParagraph>
-      <Button onClick={() => navigate("/")} $primary>
+      <Button type="primary" onClick={() => navigate("/")}>
         Continue Shopping
       </Button>
     </StyledNoItemsWrapper>
