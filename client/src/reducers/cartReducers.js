@@ -1,5 +1,6 @@
 import {
   CART_ADD,
+  CART_CLEAR,
   CART_LOAD,
   CART_REMOVE,
   CART_UPDATE,
@@ -80,6 +81,10 @@ export const cartReducer = (state = { cart: null }, action) => {
         cart: updatedCart,
         cartTotal,
       };
+    }
+
+    case CART_CLEAR: {
+      return { cartCount: 0, cart: [], cartTotal: 0 };
     }
 
     default:

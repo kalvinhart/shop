@@ -11,10 +11,14 @@ export const calculateCartTotal = (cart) => {
 };
 
 export const updateLocalStorage = (cart) => {
-  const cartStorage = {
-    ...cart,
-    updatedAt: Date.now(),
-  };
+  if (!cart) {
+    localStorage.removeItem("cart");
+  } else {
+    const cartStorage = {
+      ...cart,
+      updatedAt: Date.now(),
+    };
 
-  localStorage.setItem("cart", JSON.stringify(cartStorage));
+    localStorage.setItem("cart", JSON.stringify(cartStorage));
+  }
 };

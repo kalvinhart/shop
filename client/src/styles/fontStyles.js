@@ -77,6 +77,13 @@ export const SpanError = styled.span`
   & svg {
     margin-right: 5px;
   }
+
+  ${({ staticPosition }) =>
+    staticPosition &&
+    `
+  position: static;
+  font-size: 16px;
+  `}
 `;
 
 export const StyledParagraph = styled.p``;

@@ -21,10 +21,11 @@ const CheckoutPage = () => {
 
   useEffect(() => {
     if (!cart) return;
+    if (!user) return;
 
     const items = {};
 
-    cart.forEach((item) => (items[item.id] = { qty: item.qty }));
+    cart.forEach((item) => (items[item.id] = { qty: item.qty, total: item.total }));
 
     const createPaymentIntent = async () => {
       const { data } = await axios.post("/api/payment/create-intent", { items, user });
@@ -32,7 +33,7 @@ const CheckoutPage = () => {
       setTotal(data.total);
     };
     createPaymentIntent();
-  }, [cart]);
+  }, [cart, user]);
 
   const appearance = {
     variables: {
@@ -57,13 +58,13 @@ const CheckoutPage = () => {
     },
   };
 
-  if (!clientSecret) return <Spinner />;
-
   return (
     <PageWrapper>
       <Container>
         <StyledCheckoutWrapper>
-          {clientSecret && (
+          {!clientSecret ? (
+            <Spinner />
+          ) : (
             <>
               <Elements
                 stripe={stripePromise}

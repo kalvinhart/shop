@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
+import { clearCart } from "../../actions/cartActions";
 
 import PageWrapper from "../shared/PageWrapper/PageWrapper";
 import Container from "../shared/Container/Container";
@@ -8,13 +10,24 @@ import { H2, StyledParagraph } from "../../styles/fontStyles";
 import { StyledConfirmationBackground } from "./PaymentConfirmationPage.styles";
 
 const PaymentConfirmationPage = () => {
+  const dispatch = useDispatch();
   const location = useLocation();
   const [orderStatus, setOrderStatus] = useState();
 
   useEffect(() => {
-    const paymentStatus = new URLSearchParams(location.search).get("paymentStatus");
-    setOrderStatus(paymentStatus);
+    const params = new URLSearchParams(location.search);
+    const paymentStatus = params.get("paymentStatus");
+    const paymentIntent = params.get("payment_intent");
+    if (paymentStatus && paymentIntent) {
+      setOrderStatus(paymentStatus);
+    }
   }, []);
+
+  useEffect(() => {
+    if (orderStatus === "success") {
+      dispatch(clearCart());
+    }
+  }, [orderStatus]);
 
   return (
     <PageWrapper>

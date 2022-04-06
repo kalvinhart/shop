@@ -33,6 +33,7 @@ const CheckoutForm = ({ total }) => {
       return;
     }
 
+    setError("");
     setLoading(true);
 
     const result = await stripe.confirmPayment({
@@ -54,10 +55,13 @@ const CheckoutForm = ({ total }) => {
 
     setLoading(false);
 
-    if (result.error) {
+    if (result.error.type === "card_error" || result.error.type === "validation_error") {
       setError(result.error.message);
+    } else {
+      setError("An unexpected error has occurred.");
     }
   };
+
   return (
     <StyledCheckoutFormWrapper>
       <form onSubmit={handleSubmit(doSubmit)}>
@@ -138,7 +142,7 @@ const CheckoutForm = ({ total }) => {
             </Button>
           </>
         )}
-        {/* {error && <SpanError>{error}</SpanError>} */}
+        {error && <SpanError staticPosition>{error}</SpanError>}
       </form>
     </StyledCheckoutFormWrapper>
   );

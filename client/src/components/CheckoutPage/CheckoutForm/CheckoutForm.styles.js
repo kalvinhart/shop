@@ -9,6 +9,6 @@ export const StyledCheckoutFormWrapper = styled.div`
   box-shadow: var(--box-shadow-small);
 
   & ${Button} {
-    margin-top: 20px;
+    margin: 20px 0;
   }
 `;
