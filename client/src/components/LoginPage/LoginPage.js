@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { logInUser } from "../../actions/authActions";
 
 import Container from "../shared/Container/Container";
@@ -9,12 +9,13 @@ import { useEffect } from "react";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
   const navigate = useNavigate();
   const logIn = useSelector((state) => state.auth);
   const { loading, user, error } = logIn;
 
   useEffect(() => {
-    if (user) navigate("/");
+    if (user) navigate(location.state?.from ? location.state.from : "/");
   }, [user]);
 
   const inputConfig = {

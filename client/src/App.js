@@ -9,10 +9,13 @@ import { loadCart } from "./actions/cartActions";
 import GlobalStyle from "./GlobalStyle";
 import Header from "./components/shared/Header/Header";
 import HomePage from "./components/HomePage/HomePage";
+import ProtectedRoute from "./components/shared/ProtectedRoute/ProtectedRoute";
 import RegisterPage from "./components/RegisterPage/RegisterPage";
 import LoginPage from "./components/LoginPage/LoginPage";
 import ProductPage from "./components/ProductPage/ProductPage";
 import CartPage from "./components/CartPage/CartPage";
+import CheckoutPage from "./components/CheckoutPage/CheckoutPage";
+import PaymentConfirmationPage from "./components/PaymentConfirmationPage/PaymentConfirmationPage";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -43,6 +46,15 @@ const App = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/cart" element={<CartPage />} />
+        <Route path="/confirmation" element={<PaymentConfirmationPage />} />
+        <Route
+          path="/checkout"
+          element={
+            <ProtectedRoute>
+              <CheckoutPage />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </>
   );

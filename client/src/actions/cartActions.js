@@ -1,6 +1,7 @@
 import { toast } from "react-hot-toast";
 import {
   CART_ADD,
+  CART_CLEAR,
   CART_LOAD,
   CART_REMOVE,
   CART_UPDATE,
@@ -65,4 +66,9 @@ export const removeFromCart = (id) => (dispatch, getState) => {
   const { cart } = getState();
 
   updateLocalStorage(cart);
+};
+
+export const clearCart = () => (dispatch) => {
+  dispatch({ type: CART_CLEAR });
+  updateLocalStorage("");
 };
