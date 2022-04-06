@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Button = styled.button`
   padding: 8px 16px;
@@ -12,39 +12,49 @@ export const Button = styled.button`
     margin-right: 10px;
   }
 
-  ${({ $primary }) =>
-    $primary &&
-    `
-  background-color: var(--clr-primary);
-  color: var(--clr-button-text);
+  ${({ type }) => {
+    switch (type) {
+      case "filter":
+        return css`
+          padding: 4px 10px;
+          font-size: 12px;
+          background-color: var(--clr-secondary);
+          border-radius: var(--border-radius);
 
-  &:hover {
-    background-color: var(--clr-primary-hover);
-  }
-  `}
+          &:not(:last-child) {
+            margin-right: 10px;
+          }
 
-  ${({ $secondary }) =>
-    $secondary &&
-    `
-  background-color: var(--clr-secondary);
-  color: var(--clr-button-text);
+          & svg {
+            margin: 0 0 0 10px;
+          }
+        `;
 
-  &:hover {
-    background-color: var(--clr-secondary-hover);
-  }
-  `}
+      case "primary":
+        return css`
+          background-color: var(--clr-primary);
+          color: var(--clr-button-text);
 
-  ${({ $large }) =>
-    $large &&
-    `
-    padding: 10px 20px;
-  `}
+          &:hover {
+            background-color: var(--clr-primary-hover);
+          }
+        `;
 
-  ${({ $small }) =>
-    $small &&
-    `
-    padding: 5px 10px;
-  `}
+      case "secondary":
+        return css`
+          background-color: var(--clr-secondary);
+          color: var(--clr-button-text);
+
+          &:hover {
+            background-color: var(--clr-secondary-hover);
+          }
+        `;
+    }
+  }}
+
+  ${({ $large }) => $large && "padding: 10px 20px;"}
+
+  ${({ $small }) => $small && "padding: 5px 10px;"}
 
   &:disabled {
     cursor: not-allowed;

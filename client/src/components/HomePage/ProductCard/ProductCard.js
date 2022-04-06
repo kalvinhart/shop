@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+
 import {
   StyledCardBackground,
   StyledCardImage,
@@ -32,7 +33,7 @@ const ProductCard = ({ productInfo, addToCart }) => {
       <H3>{name}</H3>
       <SpanPrice>{`£${price}`}</SpanPrice>
       <StyledCardButtonWrapper>
-        <Button onClick={handleAddToCart} $primary>
+        <Button type="primary" onClick={handleAddToCart}>
           Add to Cart
         </Button>
         <Link to={`/product/${_id}`}>More Details</Link>

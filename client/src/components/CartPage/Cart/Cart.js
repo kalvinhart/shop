@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import NoCartItems from "../../shared/NoCartItems/NoCartItems";
 import CartItem from "../CartItem/CartItem";
 
@@ -7,17 +7,20 @@ import { StyledCartWrapper, StyledCartHeader, StyledCartSummary } from "./Cart.s
 import { Button } from "../../../styles/buttonStyles";
 
 const Cart = ({ cart: { cart, cartTotal } }) => {
+  const navigate = useNavigate();
+
   return (
     <>
       <StyledCartWrapper>
         <StyledCartHeader>
           <H2>Your Cart</H2>
-          {cart.length > 3 && (
-            <Button $primary as={Link} to="/checkout">
+          {cart && cart.length > 3 && (
+            <Button $primary onClick={() => navigate("/checkout")}>
               Continue to Checkout
             </Button>
           )}
         </StyledCartHeader>
+
         {cart && cart.length > 0 ? (
           <>
             {cart.map((item) => (
@@ -26,7 +29,7 @@ const Cart = ({ cart: { cart, cartTotal } }) => {
             <StyledCartSummary>
               <SpanBold>Subtotal:</SpanBold>
               <SpanPrice>{`£${cartTotal}`}</SpanPrice>
-              <Button $primary as={Link} to="/checkout">
+              <Button type="primary" onClick={() => navigate("/checkout")}>
                 Continue to Checkout
               </Button>
             </StyledCartSummary>

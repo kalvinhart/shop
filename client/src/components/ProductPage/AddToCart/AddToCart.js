@@ -56,14 +56,14 @@ const AddToCart = ({ product, addToCart }) => {
 
       <StyledPurchaseButtonsWrapper>
         <Button
+          type="primary"
           onClick={handleAddToCart}
           disabled={stockQty === 0 || quantity > stockQty}
-          $primary
           $large
         >
           Add to Cart
         </Button>
-        <Button $secondary $large>
+        <Button type="secondary" $large>
           <FontAwesomeIcon icon={faHeart} size="lg" />
           Save to Wishlist
         </Button>

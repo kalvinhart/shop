@@ -1,13 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../../../styles/buttonStyles";
 import { StyledParagraph } from "../../../styles/fontStyles";
 import { StyledNoItemsWrapper } from "./NoCartItems.styles";
 
 const NoCartItems = () => {
+  const navigate = useNavigate();
+
   return (
     <StyledNoItemsWrapper>
       <StyledParagraph>You have no items in your cart.</StyledParagraph>
-      <Button as={Link} to="/" $primary>
+      <Button onClick={() => navigate("/")} $primary>
         Continue Shopping
       </Button>
     </StyledNoItemsWrapper>

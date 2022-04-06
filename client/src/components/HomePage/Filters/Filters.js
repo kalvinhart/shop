@@ -9,7 +9,7 @@ import {
   StyledFilterSelectWrapper,
   StyledFiltersWrapper,
 } from "./Filters.styles";
-import { H3, SpanBold, SpanFilterTag } from "../../../styles/fontStyles";
+import { H3, SpanBold } from "../../../styles/fontStyles";
 import { StyledSelect } from "../../../styles/formStyles";
 import { Button } from "../../../styles/buttonStyles";
 
@@ -36,14 +36,14 @@ const Filters = () => {
         .toUpperCase()}${optionName.slice(1)}`;
 
       optionsTags.push(
-        <SpanFilterTag
+        <Button
+          type="filter"
           key={optionValue}
-          as={Button}
           onClick={() => handleRemoveOptions(optionName)}
         >
           {`${formattedOptionName}: ${optionValue}`}
           <FontAwesomeIcon icon={faTimes} />
-        </SpanFilterTag>
+        </Button>
       );
     });
   }

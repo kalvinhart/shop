@@ -20,6 +20,7 @@ export const StyledSearchButton = styled.button`
   top: 0;
   width: 40px;
   height: 40px;
+  color: white;
   border: 2px solid transparent;
   background-color: var(--clr-primary);
   border-top-right-radius: var(--border-radius);

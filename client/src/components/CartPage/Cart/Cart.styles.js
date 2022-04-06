@@ -20,7 +20,7 @@ export const StyledCartHeader = styled.div`
 `;
 
 export const StyledCartSummary = styled.div`
-  width: 200px;
+  width: 220px;
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
@@ -31,6 +31,8 @@ export const StyledCartSummary = styled.div`
   }
 
   & ${Button} {
+    width: 100%;
+    text-align: center;
     margin-top: 10px;
   }
 `;

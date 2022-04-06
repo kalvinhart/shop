@@ -7,14 +7,14 @@ const QuantityPicker = ({ quantity = 1, handleQuantityChange }) => {
     <StyledQuantityButtonsWrapper>
       <Button
         onClick={() => handleQuantityChange(-1)}
-        $primary
+        type="primary"
         $small
         disabled={quantity === 1}
       >
         -
       </Button>
       <SpanRegular>{quantity}</SpanRegular>
-      <Button onClick={() => handleQuantityChange(1)} $primary $small>
+      <Button onClick={() => handleQuantityChange(1)} type="primary" $small>
         +
       </Button>
     </StyledQuantityButtonsWrapper>

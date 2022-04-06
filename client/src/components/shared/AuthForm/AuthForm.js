@@ -105,7 +105,7 @@ const AuthForm = ({ type, loading, inputConfig, formSubmit, formError }) => {
             </StyledInputGroup>
           )}
 
-          <Button $primary $large disabled={loading} onClick={handleSubmit}>
+          <Button type="primary" $large disabled={loading} onClick={handleSubmit}>
             {loading ? (
               <>
                 <FontAwesomeIcon icon={faSpinner} size="lg" spin />

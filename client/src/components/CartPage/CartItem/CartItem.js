@@ -62,7 +62,7 @@ const CartItem = ({ item }) => {
         <QuantityPicker quantity={qty} handleQuantityChange={handleQuantityChange} />
 
         <SpanPrice>£{total}</SpanPrice>
-        <Button onClick={handleRemove} secondary>
+        <Button type="secondary" onClick={handleRemove}>
           <FontAwesomeIcon icon={faTrashAlt} />
           Remove
         </Button>
