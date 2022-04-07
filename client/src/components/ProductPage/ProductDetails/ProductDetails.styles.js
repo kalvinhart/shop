@@ -71,6 +71,7 @@ export const StyledProductImage = styled.img`
   width: 100%;
 
   @media screen and (min-width: ${mediaSizes.tablet}) {
+    width: unset;
     height: 350px;
   }
 `;
