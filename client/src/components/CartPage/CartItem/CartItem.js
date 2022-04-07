@@ -7,6 +7,7 @@ import QuantityPicker from "../../shared/QuantityPicker/QuantityPicker";
 
 import {
   StyledCartButtonsWrapper,
+  StyledCartItemContentWrapper,
   StyledCartItemImage,
   StyledCartItemInfoGroup,
   StyledCartItemInfoWrapper,
@@ -36,42 +37,44 @@ const CartItem = ({ item }) => {
         <StyledCartItemImage src={imageUrl} alt={name} />
       </Link>
 
-      <StyledCartItemInfoWrapper>
-        <Link to={`/product/${id}`}>
-          <H3>{name}</H3>
-        </Link>
+      <StyledCartItemContentWrapper>
+        <StyledCartItemInfoWrapper>
+          <Link to={`/product/${id}`}>
+            <H3>{name}</H3>
+          </Link>
 
-        {brand && (
-          <StyledCartItemInfoGroup>
-            <SpanGrey>Brand: </SpanGrey>
-            <SpanRegular>{brand}</SpanRegular>
-          </StyledCartItemInfoGroup>
-        )}
+          {brand && (
+            <StyledCartItemInfoGroup>
+              <SpanGrey>Brand: </SpanGrey>
+              <SpanRegular>{brand}</SpanRegular>
+            </StyledCartItemInfoGroup>
+          )}
 
-        {size && (
-          <StyledCartItemInfoGroup>
-            <SpanGrey>Size: </SpanGrey>
-            <SpanRegular>{size}</SpanRegular>
-          </StyledCartItemInfoGroup>
-        )}
+          {size && (
+            <StyledCartItemInfoGroup>
+              <SpanGrey>Size: </SpanGrey>
+              <SpanRegular>{size}</SpanRegular>
+            </StyledCartItemInfoGroup>
+          )}
 
-        {color && (
-          <StyledCartItemInfoGroup>
-            <SpanGrey>Colour: </SpanGrey>
-            <SpanRegular>{color}</SpanRegular>
-          </StyledCartItemInfoGroup>
-        )}
-      </StyledCartItemInfoWrapper>
+          {color && (
+            <StyledCartItemInfoGroup>
+              <SpanGrey>Colour: </SpanGrey>
+              <SpanRegular>{color}</SpanRegular>
+            </StyledCartItemInfoGroup>
+          )}
+        </StyledCartItemInfoWrapper>
 
-      <StyledCartButtonsWrapper>
-        <QuantityPicker quantity={qty} handleQuantityChange={handleQuantityChange} />
+        <StyledCartButtonsWrapper>
+          <QuantityPicker quantity={qty} handleQuantityChange={handleQuantityChange} />
 
-        <SpanPrice>£{total}</SpanPrice>
-        <Button type="secondary" onClick={handleRemove}>
-          <FontAwesomeIcon icon={faTrashAlt} />
-          Remove
-        </Button>
-      </StyledCartButtonsWrapper>
+          <SpanPrice>£{total}</SpanPrice>
+          <Button type="secondary" onClick={handleRemove}>
+            <FontAwesomeIcon icon={faTrashAlt} />
+            Remove
+          </Button>
+        </StyledCartButtonsWrapper>
+      </StyledCartItemContentWrapper>
     </StyledCartItemWrapper>
   );
 };

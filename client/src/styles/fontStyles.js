@@ -59,7 +59,7 @@ export const SpanGrey = styled.span`
 `;
 
 export const SpanPrice = styled.span`
-  font-size: 20px;
+  font-size: 24px;
 
   @media screen and (min-width: ${mediaSizes.tablet}) {
     font-size: 26px;

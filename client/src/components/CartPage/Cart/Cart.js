@@ -15,7 +15,11 @@ const Cart = ({ cart: { cart, cartTotal } }) => {
         <StyledCartHeader>
           <H2>Your Cart</H2>
           {cart && cart.length > 3 && (
-            <Button type="primary" onClick={() => navigate("/checkout")}>
+            <Button
+              className="mobileHidden"
+              type="primary"
+              onClick={() => navigate("/checkout")}
+            >
               Continue to Checkout
             </Button>
           )}
