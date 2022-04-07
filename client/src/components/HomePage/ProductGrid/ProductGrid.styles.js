@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import mediaSizes from "../../../styles/media";
 
 export const StyledGridWrapper = styled.div`
   width: 100%;
@@ -9,6 +10,10 @@ export const StyledGridWrapper = styled.div`
 export const StyledGrid = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr;
   grid-gap: 20px;
+
+  @media screen and (min-width: ${mediaSizes.tablet}) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 `;
