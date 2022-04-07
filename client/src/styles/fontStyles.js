@@ -2,15 +2,27 @@ import styled from "styled-components";
 import mediaSizes from "./media";
 
 export const H1 = styled.h1`
-  font-size: 26px;
+  font-size: 22px;
+
+  @media screen and (min-width: ${mediaSizes.tablet}) {
+    font-size: 26px;
+  }
 `;
 
 export const H2 = styled.h2`
-  font-size: 22px;
+  font-size: 18px;
+
+  @media screen and (min-width: ${mediaSizes.tablet}) {
+    font-size: 22px;
+  }
 `;
 
 export const H3 = styled.h3`
-  font-size: 18px;
+  font-size: 16px;
+
+  @media screen and (min-width: ${mediaSizes.tablet}) {
+    font-size: 18px;
+  }
 `;
 
 export const SpanLogo = styled.span`
@@ -26,7 +38,11 @@ export const SpanLogo = styled.span`
 `;
 
 export const SpanRegular = styled.span`
-  font-size: 16px;
+  font-size: 14px;
+
+  @media screen and (min-width: ${mediaSizes.tablet}) {
+    font-size: 16px;
+  }
 `;
 
 export const SpanBold = styled.span`
@@ -34,12 +50,20 @@ export const SpanBold = styled.span`
 `;
 
 export const SpanGrey = styled.span`
-  font-size: 16px;
   color: #666;
+  font-size: 14px;
+
+  @media screen and (min-width: ${mediaSizes.tablet}) {
+    font-size: 16px;
+  }
 `;
 
 export const SpanPrice = styled.span`
-  font-size: 26px;
+  font-size: 20px;
+
+  @media screen and (min-width: ${mediaSizes.tablet}) {
+    font-size: 26px;
+  }
 `;
 
 export const SpanDescription = styled.span`
