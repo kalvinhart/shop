@@ -69,6 +69,7 @@ export const StyledProductImageWrapper = styled.div`
 
 export const StyledProductImage = styled.img`
   width: 100%;
+
   @media screen and (min-width: ${mediaSizes.tablet}) {
     height: 350px;
   }
