@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
@@ -31,10 +32,14 @@ const CartItem = ({ item }) => {
 
   return (
     <StyledCartItemWrapper>
-      <StyledCartItemImage src={imageUrl} alt={name} />
+      <Link to={`/product/${id}`}>
+        <StyledCartItemImage src={imageUrl} alt={name} />
+      </Link>
 
       <StyledCartItemInfoWrapper>
-        <H3>{name}</H3>
+        <Link to={`/product/${id}`}>
+          <H3>{name}</H3>
+        </Link>
 
         {brand && (
           <StyledCartItemInfoGroup>
