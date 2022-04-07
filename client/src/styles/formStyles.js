@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import mediaSizes from "./media";
+
 import { H2 } from "./fontStyles";
 
 export const StyledFormBackground = styled.div`
@@ -41,9 +43,14 @@ export const StyledInputGroup = styled.div`
 
 export const StyledInputsFlexWrapper = styled.div`
   display: flex;
+  flex-direction: column;
 
   & > *:not(:last-child) {
     margin-right: 20px;
+  }
+
+  @media screen and (min-width: ${mediaSizes.tablet}) {
+    flex-direction: row;
   }
 `;
 
