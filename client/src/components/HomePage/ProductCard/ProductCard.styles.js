@@ -14,12 +14,15 @@ export const StyledCardBackground = styled.div`
   & ${SpanPrice} {
     margin-bottom: 20px;
   }
+
+  & .imageLink {
+    margin: 0 auto 20px;
+  }
 `;
 
 export const StyledCardImage = styled.img`
-  width: 260px;
+  /* width: 260px; */
   height: 220px;
-  margin: 0 auto 20px;
 `;
 
 export const StyledCardButtonWrapper = styled.div`

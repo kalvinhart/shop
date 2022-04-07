@@ -27,7 +27,7 @@ const ProductCard = ({ productInfo, addToCart }) => {
 
   return (
     <StyledCardBackground>
-      <Link to={`/product/${_id}`}>
+      <Link className="imageLink" to={`/product/${_id}`}>
         <StyledCardImage src={imageUrl} alt={name} />
       </Link>
       <H3>{name}</H3>

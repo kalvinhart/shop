@@ -15,7 +15,7 @@ const Cart = ({ cart: { cart, cartTotal } }) => {
         <StyledCartHeader>
           <H2>Your Cart</H2>
           {cart && cart.length > 3 && (
-            <Button $primary onClick={() => navigate("/checkout")}>
+            <Button type="primary" onClick={() => navigate("/checkout")}>
               Continue to Checkout
             </Button>
           )}

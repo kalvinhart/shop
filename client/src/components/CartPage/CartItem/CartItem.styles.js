@@ -10,7 +10,7 @@ export const StyledCartItemWrapper = styled.div`
 `;
 
 export const StyledCartItemImage = styled.img`
-  height: 150px;
+  width: 120px;
   border-radius: var(--border-radius);
   margin-right: 30px;
 `;
