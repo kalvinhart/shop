@@ -12,12 +12,16 @@ export const StyledFormBackground = styled.div`
 `;
 
 export const StyledFormWrapper = styled.div`
-  width: 400px;
+  width: 100%;
   padding: 20px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media screen and (min-width: ${mediaSizes.tablet}) {
+    width: 400px;
+  }
 
   & ${H2} {
     margin-bottom: 40px;
