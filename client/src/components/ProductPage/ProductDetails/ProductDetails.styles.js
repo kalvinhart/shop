@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import mediaSizes from "../../../styles/media";
+
 import { SpanPrice } from "../../../styles/fontStyles";
 
 export const StyledProductBackground = styled.div`
@@ -13,6 +15,11 @@ export const StyledProductMainInfoWrapper = styled.div`
   width: 100%;
   margin-bottom: 20px;
   display: flex;
+  flex-direction: column;
+
+  @media screen and (min-width: ${mediaSizes.tablet}) {
+    flex-direction: row;
+  }
 `;
 
 export const StyledProductMainInfo = styled.div`
@@ -47,10 +54,14 @@ export const StyledProductInfoGroup = styled.div`
 `;
 
 export const StyledProductImageWrapper = styled.div`
-  width: 600px;
-  height: 350px;
+  width: 100%;
   display: flex;
   justify-content: center;
+
+  @media screen and (min-width: ${mediaSizes.tablet}) {
+    width: 600px;
+    height: 350px;
+  }
 `;
 
 export const StyledProductImage = styled.img`
