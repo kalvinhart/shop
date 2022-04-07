@@ -1,6 +1,8 @@
 const mediaSizes = {
   tablet: "450px",
-  desktop: "1200px",
+  med: "650px",
+  large: "950px",
+  xl: "1200px",
 };
 
 export default mediaSizes;

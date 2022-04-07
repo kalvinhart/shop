@@ -7,7 +7,7 @@ export const StyledSearchForm = styled.form`
   position: relative;
   width: calc(100% - 40px);
 
-  @media screen and (min-width: ${mediaSizes.tablet}) {
+  @media screen and (min-width: ${mediaSizes.med}) {
     width: 400px;
   }
 

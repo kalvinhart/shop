@@ -21,7 +21,7 @@ export const StyledHeader = styled.header`
   box-shadow: var(--box-shadow);
   z-index: 9999999;
 
-  @media screen and (min-width: ${mediaSizes.tablet}) {
+  @media screen and (min-width: ${mediaSizes.large}) {
     padding: 10px 60px;
     height: var(--header-height);
     align-items: center;
@@ -38,7 +38,7 @@ export const StyledLowerHeader = styled.div`
   display: flex;
   align-items: center;
 
-  @media screen and (min-width: ${mediaSizes.tablet}) {
+  @media screen and (min-width: ${mediaSizes.large}) {
     position: static;
     width: unset;
     height: unset;
@@ -53,17 +53,17 @@ export const StyledUserInfoWrapper = styled.div`
   & > *:not(:last-child) {
     margin-right: 15px;
 
-    @media screen and (min-width: ${mediaSizes.tablet}) {
+    @media screen and (min-width: ${mediaSizes.large}) {
       margin-right: 20px;
     }
   }
 
-  @media screen and (min-width: ${mediaSizes.tablet}) {
+  @media screen and (min-width: ${mediaSizes.large}) {
     margin: 0 20px 0 auto;
   }
 
   & .mobileHidden {
-    @media screen and (min-width: ${mediaSizes.tablet}) {
+    @media screen and (min-width: ${mediaSizes.large}) {
       display: block;
     }
   }
