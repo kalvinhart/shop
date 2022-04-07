@@ -10,7 +10,6 @@ export const StyledSideBarBackground = styled.div`
   background-color: white;
   border: var(--borders);
   box-shadow: var(--box-shadow-small);
-  overflow-x: auto;
 
   @media screen and (min-width: ${mediaSizes.tablet}) {
     width: 240px;
@@ -18,15 +17,14 @@ export const StyledSideBarBackground = styled.div`
   }
 `;
 
-export const StyledNav = styled.nav``;
-
-export const StyledNavUL = styled.ul`
+export const StyledUL = styled.ul`
   margin-block-start: 0;
   margin-block-end: 0;
   padding-inline-start: 10px;
   display: flex;
   flex-direction: row;
   list-style: none;
+  overflow-x: auto;
 
   & > *:not(:last-child) {
     margin-bottom: 20px;
@@ -37,4 +35,4 @@ export const StyledNavUL = styled.ul`
   }
 `;
 
-export const StyledNavLI = styled.li``;
+export const StyledLI = styled.li``;
