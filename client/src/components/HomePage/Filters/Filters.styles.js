@@ -33,16 +33,11 @@ export const StyledFiltersBackground = styled.div`
 export const StyledFiltersWrapper = styled.div`
   display: flex;
   align-items: center;
+  margin-top: 10px;
   margin-right: auto;
 `;
 
 export const StyledFilterSelectWrapper = styled.div`
-  margin-bottom: 10px;
-
-  @media screen and (min-width: ${mediaSizes.tablet}) {
-    margin-bottom: 0;
-  }
-
   & ${SpanBold} {
     margin-right: 10px;
   }

@@ -84,7 +84,7 @@ const Filters = () => {
       <H3>
         {count} {count === 1 ? "Result" : "Results"}
       </H3>
-      <StyledFiltersWrapper>{hasOptions && optionsTags}</StyledFiltersWrapper>
+      {hasOptions && <StyledFiltersWrapper>{optionsTags}</StyledFiltersWrapper>}
 
       <StyledFilterSelectWrapper>
         <SpanBold>Sort By:</SpanBold>
