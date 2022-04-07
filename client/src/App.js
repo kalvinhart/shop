@@ -44,7 +44,7 @@ const App = () => {
   return (
     <>
       <GlobalStyle />
-      <Toaster position="top-right" containerStyle={{ top: 80 }} />
+      <Toaster position="top-right" containerStyle={{ top: 120 }} />
       <Header />
       <PageWrapper>
         <Container>
