@@ -46,6 +46,10 @@ const GlobalStyle = createGlobalStyle`
     .icon {
         color: var(--clr-font);
     }
+
+    .mobileHidden {
+        display: none;
+    }
 `;
 
 export default GlobalStyle;

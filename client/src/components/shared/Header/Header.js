@@ -12,6 +12,7 @@ import {
   StyledCartIconWrapper,
   StyledHeader,
   StyledHeaderWrapper,
+  StyledLowerHeader,
   StyledUserInfoWrapper,
 } from "./Header.styles";
 import { SpanLogo } from "../../../styles/fontStyles";
@@ -34,7 +35,9 @@ const Header = () => {
           My eShop
         </SpanLogo>
 
-        <SearchBar />
+        <StyledLowerHeader>
+          <SearchBar />
+        </StyledLowerHeader>
 
         <StyledUserInfoWrapper>
           {loading ? null : user ? (
@@ -51,21 +54,25 @@ const Header = () => {
               <Button type="primary" onClick={() => navigate("/login")}>
                 Login
               </Button>
-              <Button type="secondary" onClick={() => navigate("/register")}>
+              <Button
+                className="mobileHidden"
+                type="secondary"
+                onClick={() => navigate("/register")}
+              >
                 Register
               </Button>
             </>
           )}
-
-          <Link to="/cart">
-            <StyledCartIconWrapper>
-              {cart && cart.cartCount > 0 && (
-                <StyledCartCount>{cart.cartCount}</StyledCartCount>
-              )}
-              <FontAwesomeIcon className="icon" icon={faCartShopping} size="lg" />
-            </StyledCartIconWrapper>
-          </Link>
         </StyledUserInfoWrapper>
+
+        <Link to="/cart">
+          <StyledCartIconWrapper>
+            {cart && cart.cartCount > 0 && (
+              <StyledCartCount>{cart.cartCount}</StyledCartCount>
+            )}
+            <FontAwesomeIcon className="icon" icon={faCartShopping} size="lg" />
+          </StyledCartIconWrapper>
+        </Link>
       </StyledHeaderWrapper>
     </StyledHeader>
   );

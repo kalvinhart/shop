@@ -1,14 +1,19 @@
 import styled from "styled-components";
+import mediaSizes from "../../../styles/media";
+
 import { StyledInput } from "../../../styles/formStyles";
 
 export const StyledSearchForm = styled.form`
   position: relative;
-  width: 400px;
-  height: 40px;
+  width: calc(100% - 40px);
+
+  @media screen and (min-width: ${mediaSizes.tablet}) {
+    width: 400px;
+  }
 
   & ${StyledInput} {
     width: 100%;
-    height: 100%;
+    height: 40px;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
   }

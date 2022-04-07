@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import mediaSizes from "./media";
 
 export const H1 = styled.h1`
   font-size: 26px;
@@ -13,10 +14,15 @@ export const H3 = styled.h3`
 `;
 
 export const SpanLogo = styled.span`
-  font-size: 26px;
+  font-size: 22px;
   font-weight: bold;
   color: var(--clr-font);
-  margin-right: 40px;
+  margin-right: 20px;
+
+  @media screen and (min-width: ${mediaSizes.tablet}) {
+    font-size: 26px;
+    margin-right: 40px;
+  }
 `;
 
 export const SpanRegular = styled.span`

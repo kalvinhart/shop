@@ -1,8 +1,10 @@
 import styled from "styled-components";
+import mediaSizes from "../../../styles/media";
 
 export const StyledHeaderWrapper = styled.div`
   width: 100%;
   display: flex;
+  justify-content: space-between;
   align-items: center;
 `;
 
@@ -10,23 +12,60 @@ export const StyledHeader = styled.header`
   position: fixed;
   top: 0;
   left: 0;
-  height: var(--header-height);
   width: 100%;
-  padding: 10px 60px;
+  height: calc(var(--header-height) + 50px);
+  padding: 10px 20px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   background-color: white;
   box-shadow: var(--box-shadow);
   z-index: 9999999;
+
+  @media screen and (min-width: ${mediaSizes.tablet}) {
+    padding: 10px 60px;
+    height: var(--header-height);
+    align-items: center;
+  }
+`;
+
+export const StyledLowerHeader = styled.div`
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+
+  @media screen and (min-width: ${mediaSizes.tablet}) {
+    position: static;
+    width: unset;
+    height: unset;
+  }
 `;
 
 export const StyledUserInfoWrapper = styled.div`
-  margin-left: auto;
+  margin: 0 15px 0 auto;
   display: flex;
   align-items: center;
 
   & > *:not(:last-child) {
-    margin-right: 20px;
+    margin-right: 15px;
+
+    @media screen and (min-width: ${mediaSizes.tablet}) {
+      margin-right: 20px;
+    }
+  }
+
+  @media screen and (min-width: ${mediaSizes.tablet}) {
+    margin: 0 20px 0 auto;
+  }
+
+  & .mobileHidden {
+    @media screen and (min-width: ${mediaSizes.tablet}) {
+      display: block;
+    }
   }
 `;
 
