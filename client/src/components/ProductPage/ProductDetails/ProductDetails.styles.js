@@ -25,10 +25,13 @@ export const StyledProductMainInfoWrapper = styled.div`
 export const StyledProductMainInfo = styled.div`
   width: 100%;
   max-width: 380px;
-  padding-left: 20px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+
+  @media screen and (min-width: ${mediaSizes.tablet}) {
+    padding-left: 20px;
+  }
 `;
 
 export const StyledProductTitle = styled.div`
@@ -65,7 +68,10 @@ export const StyledProductImageWrapper = styled.div`
 `;
 
 export const StyledProductImage = styled.img`
-  height: 350px;
+  width: 100%;
+  @media screen and (min-width: ${mediaSizes.tablet}) {
+    height: 350px;
+  }
 `;
 
 export const StyledProductMoreInfo = styled.div`

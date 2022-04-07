@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { Button } from "../../../styles/buttonStyles";
+import mediaSizes from "../../../styles/media";
 
 export const StyledAddToCartWrapper = styled.div`
   width: 100%;
@@ -32,5 +34,14 @@ export const StyledTotalWrapper = styled.div`
 
 export const StyledPurchaseButtonsWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+
+  & ${Button} {
+    margin-bottom: 20px;
+  }
+
+  @media screen and (min-width: ${mediaSizes.tablet}) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 `;
