@@ -39,7 +39,7 @@ const SideBar = () => {
                 onClick={() => handleCategoryChange("")}
                 disabled={!searchOptions.categories}
               >
-                All Products
+                All
               </ButtonCategory>
             </StyledLI>
             {categories.map((item) => (
