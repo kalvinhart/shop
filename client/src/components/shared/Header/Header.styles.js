@@ -17,6 +17,7 @@ export const StyledHeader = styled.header`
   align-items: center;
   background-color: white;
   box-shadow: var(--box-shadow);
+  z-index: 9999999;
 `;
 
 export const StyledUserInfoWrapper = styled.div`
