@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { H3 } from "../../../styles/fontStyles";
 import mediaSizes from "../../../styles/media";
 
 export const StyledSideBarBackground = styled.div`
@@ -14,6 +15,10 @@ export const StyledSideBarBackground = styled.div`
   @media screen and (min-width: ${mediaSizes.tablet}) {
     width: 240px;
     margin: 0 20px 0 0;
+  }
+
+  & ${H3} {
+    margin-top: 0;
   }
 `;
 

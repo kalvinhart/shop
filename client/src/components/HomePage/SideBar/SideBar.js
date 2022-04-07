@@ -28,9 +28,9 @@ const SideBar = () => {
   if (loading) return <Spinner />;
 
   return (
-    <StyledSideBarBackground>
+    <>
       {categories && (
-        <>
+        <StyledSideBarBackground>
           <H3>Categories:</H3>
 
           <StyledUL>
@@ -53,9 +53,9 @@ const SideBar = () => {
               </StyledLI>
             ))}
           </StyledUL>
-        </>
+        </StyledSideBarBackground>
       )}
-    </StyledSideBarBackground>
+    </>
   );
 };
 
