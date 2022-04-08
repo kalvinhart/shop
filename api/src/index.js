@@ -1,4 +1,5 @@
 require("dotenv").config();
+const path = require("path");
 const cors = require("cors");
 const express = require("express");
 const app = express();
@@ -13,6 +14,10 @@ const PORT = process.env.PORT || 5000;
 
 const initialiseApp = () => {
   app.use(cors());
+  app.use(express.static(path.resolve(__dirname, "./client/build")));
+  app.get("*", function (request, response) {
+    response.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+  });
 
   setUpDatabase();
 
