@@ -7,7 +7,7 @@ export const StyledProductContentWrapper = styled.main`
   flex-direction: column;
   align-items: flex-start;
 
-  @media screen and (min-width: ${mediaSizes.desktop}) {
+  @media screen and (min-width: ${mediaSizes.large}) {
     flex-direction: row;
   }
 `;

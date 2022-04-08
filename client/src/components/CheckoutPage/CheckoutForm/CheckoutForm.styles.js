@@ -10,7 +10,7 @@ export const StyledCheckoutFormWrapper = styled.div`
   border: var(--borders);
   box-shadow: var(--box-shadow-small);
 
-  @media screen and (min-width: ${mediaSizes.tablet}) {
+  @media screen and (min-width: ${mediaSizes.large}) {
     width: calc(70% - 10px);
   }
 

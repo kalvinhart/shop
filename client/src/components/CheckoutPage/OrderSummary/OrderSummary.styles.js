@@ -11,7 +11,7 @@ export const StyledOrderSummaryWrapper = styled.div`
   border: var(--borders);
   box-shadow: var(--box-shadow-small);
 
-  @media screen and (min-width: ${mediaSizes.tablet}) {
+  @media screen and (min-width: ${mediaSizes.large}) {
     width: calc(30% - 10px);
     margin-bottom: 0;
   }

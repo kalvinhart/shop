@@ -2,6 +2,7 @@ import styled from "styled-components";
 import mediaSizes from "../../../styles/media";
 
 import { SpanGrey, SpanPrice } from "../../../styles/fontStyles";
+import { Button } from "../../../styles/buttonStyles";
 
 export const StyledCartItemWrapper = styled.div`
   width: 100%;
@@ -15,7 +16,7 @@ export const StyledCartItemImage = styled.img`
   border-radius: var(--border-radius);
   margin-right: 15px;
 
-  @media screen and (min-width: ${mediaSizes.tablet}) {
+  @media screen and (min-width: ${mediaSizes.large}) {
     margin-right: 30px;
   }
 `;
@@ -25,7 +26,7 @@ export const StyledCartItemContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media screen and (min-width: ${mediaSizes.tablet}) {
+  @media screen and (min-width: ${mediaSizes.large}) {
     flex-direction: row;
   }
 `;
@@ -56,7 +57,7 @@ export const StyledCartButtonsWrapper = styled.div`
     margin-bottom: 10px;
   }
 
-  @media screen and (min-width: ${mediaSizes.tablet}) {
+  @media screen and (min-width: ${mediaSizes.large}) {
     margin-top: 0;
     margin-left: auto;
     flex-direction: row;
@@ -73,7 +74,16 @@ export const StyledCartButtonsWrapper = styled.div`
     margin-top: 20px;
     align-self: flex-end;
 
-    @media screen and (min-width: ${mediaSizes.tablet}) {
+    @media screen and (min-width: ${mediaSizes.large}) {
+      margin-top: 0;
+      align-self: auto;
+    }
+  }
+
+  & ${Button} {
+    align-self: flex-end;
+
+    @media screen and (min-width: ${mediaSizes.large}) {
       align-self: auto;
     }
   }

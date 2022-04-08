@@ -19,7 +19,7 @@ export const StyledFormWrapper = styled.div`
   flex-direction: column;
   align-items: center;
 
-  @media screen and (min-width: ${mediaSizes.tablet}) {
+  @media screen and (min-width: ${mediaSizes.med}) {
     width: 400px;
   }
 
@@ -53,7 +53,7 @@ export const StyledInputsFlexWrapper = styled.div`
     margin-right: 20px;
   }
 
-  @media screen and (min-width: ${mediaSizes.tablet}) {
+  @media screen and (min-width: ${mediaSizes.large}) {
     flex-direction: row;
   }
 `;

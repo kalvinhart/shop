@@ -13,7 +13,11 @@ export const StyledGrid = styled.div`
   grid-template-columns: 1fr;
   grid-gap: 20px;
 
-  @media screen and (min-width: ${mediaSizes.tablet}) {
+  @media screen and (min-width: ${mediaSizes.med}) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media screen and (min-width: ${mediaSizes.xl}) {
     grid-template-columns: repeat(3, 1fr);
   }
 `;

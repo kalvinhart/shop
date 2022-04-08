@@ -12,7 +12,7 @@ export const StyledSideBarBackground = styled.div`
   border: var(--borders);
   box-shadow: var(--box-shadow-small);
 
-  @media screen and (min-width: ${mediaSizes.tablet}) {
+  @media screen and (min-width: ${mediaSizes.large}) {
     width: 240px;
     margin: 0 20px 0 0;
   }
@@ -35,7 +35,7 @@ export const StyledUL = styled.ul`
     margin-bottom: 20px;
   }
 
-  @media screen and (min-width: ${mediaSizes.tablet}) {
+  @media screen and (min-width: ${mediaSizes.large}) {
     flex-direction: column;
   }
 `;

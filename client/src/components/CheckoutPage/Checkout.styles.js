@@ -7,7 +7,7 @@ export const StyledCheckoutWrapper = styled.div`
   flex-direction: column-reverse;
   align-items: flex-start;
 
-  @media screen and (min-width: ${mediaSizes.tablet}) {
+  @media screen and (min-width: ${mediaSizes.large}) {
     flex-direction: row;
     justify-content: space-between;
   }

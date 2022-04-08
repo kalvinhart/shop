@@ -17,7 +17,7 @@ export const StyledProductMainInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media screen and (min-width: ${mediaSizes.tablet}) {
+  @media screen and (min-width: ${mediaSizes.large}) {
     flex-direction: row;
   }
 `;
@@ -29,7 +29,7 @@ export const StyledProductMainInfo = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
 
-  @media screen and (min-width: ${mediaSizes.tablet}) {
+  @media screen and (min-width: ${mediaSizes.large}) {
     padding-left: 20px;
   }
 `;
@@ -61,7 +61,7 @@ export const StyledProductImageWrapper = styled.div`
   display: flex;
   justify-content: center;
 
-  @media screen and (min-width: ${mediaSizes.tablet}) {
+  @media screen and (min-width: ${mediaSizes.large}) {
     width: 600px;
     height: 350px;
   }
@@ -70,7 +70,7 @@ export const StyledProductImageWrapper = styled.div`
 export const StyledProductImage = styled.img`
   width: 100%;
 
-  @media screen and (min-width: ${mediaSizes.tablet}) {
+  @media screen and (min-width: ${mediaSizes.med}) {
     width: unset;
     height: 350px;
   }

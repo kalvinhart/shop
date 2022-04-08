@@ -14,7 +14,7 @@ export const StyledFiltersBackground = styled.div`
   box-shadow: var(--box-shadow-small);
   margin-bottom: 20px;
 
-  @media screen and (min-width: ${mediaSizes.tablet}) {
+  @media screen and (min-width: ${mediaSizes.med}) {
     height: 80px;
     flex-direction: row;
     justify-content: space-between;
@@ -23,7 +23,7 @@ export const StyledFiltersBackground = styled.div`
   & ${H3} {
     display: none;
 
-    @media screen and (min-width: ${mediaSizes.tablet}) {
+    @media screen and (min-width: ${mediaSizes.med}) {
       display: block;
       margin-right: 10px;
     }
@@ -35,6 +35,10 @@ export const StyledFiltersWrapper = styled.div`
   align-items: center;
   margin-top: 10px;
   margin-right: auto;
+
+  @media screen and (min-width: ${mediaSizes.med}) {
+    margin-top: 0;
+  }
 `;
 
 export const StyledFilterSelectWrapper = styled.div`

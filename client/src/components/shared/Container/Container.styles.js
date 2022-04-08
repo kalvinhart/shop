@@ -6,7 +6,7 @@ export const StyledContainer = styled.div`
   max-width: 1200px;
   margin: 0 auto;
 
-  @media screen and (min-width: ${mediaSizes.tablet}) {
+  @media screen and (min-width: ${mediaSizes.xl}) {
     width: 100%;
   }
 `;
