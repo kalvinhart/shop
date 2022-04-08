@@ -3,13 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { registerUser } from "../../actions/authActions";
 
-import Container from "../shared/Container/Container";
-import PageWrapper from "../shared/PageWrapper/PageWrapper";
 import AuthForm from "../shared/AuthForm/AuthForm";
 
 const RegisterPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const userRegistration = useSelector((state) => state.auth);
   const { loading, error, user } = userRegistration;
 
@@ -52,17 +51,13 @@ const RegisterPage = () => {
   };
 
   return (
-    <PageWrapper>
-      <Container>
-        <AuthForm
-          type="REGISTER"
-          inputConfig={inputConfig}
-          formSubmit={formSubmit}
-          loading={loading}
-          formError={error}
-        />
-      </Container>
-    </PageWrapper>
+    <AuthForm
+      type="REGISTER"
+      inputConfig={inputConfig}
+      formSubmit={formSubmit}
+      loading={loading}
+      formError={error}
+    />
   );
 };
 

@@ -1,11 +1,12 @@
 import styled from "styled-components";
+import mediaSizes from "../../../styles/media";
+
 import { H3, SpanBold } from "../../../styles/fontStyles";
 
 export const StyledFiltersBackground = styled.div`
   width: 100%;
-  height: 80px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column-reverse;
   align-items: center;
   padding: 20px;
   background-color: #fff;
@@ -13,15 +14,31 @@ export const StyledFiltersBackground = styled.div`
   box-shadow: var(--box-shadow-small);
   margin-bottom: 20px;
 
+  @media screen and (min-width: ${mediaSizes.med}) {
+    height: 80px;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
   & ${H3} {
-    margin-right: 10px;
+    display: none;
+
+    @media screen and (min-width: ${mediaSizes.med}) {
+      display: block;
+      margin-right: 10px;
+    }
   }
 `;
 
 export const StyledFiltersWrapper = styled.div`
   display: flex;
   align-items: center;
+  margin-top: 10px;
   margin-right: auto;
+
+  @media screen and (min-width: ${mediaSizes.med}) {
+    margin-top: 0;
+  }
 `;
 
 export const StyledFilterSelectWrapper = styled.div`

@@ -2,12 +2,14 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
     :root {
-        --clr-primary: #000000;
-        --clr-secondary: #ddd;
+        --clr-primary: #74b9ff;
+        --clr-primary-hover: #0984e3;
+        --clr-secondary: #a29bfe;
+        --clr-secondary-hover: #6c5ce7;
         --clr-font: #111111;
         --clr-borders: #eee;
-        --clr-button-primary-text: #ffffff;
-        --clr-button-secondary-text: #000000;
+        --clr-button-text: #ffffff;
+        --clr-button-disabled: #b2bec3;
 
         --borders: 1px solid var(--clr-borders);
         --border-radius: 5px;
@@ -28,11 +30,12 @@ const GlobalStyle = createGlobalStyle`
     body {
         font-family: Poppins, sans-serif;
         color: var(--clr-font);
-        background-color: #fafafa;
+        background-color: #f7fafc;
     }
 
     a,
     a:visited {
+        color: #111111;
         text-decoration: none;
     }
 
@@ -42,6 +45,10 @@ const GlobalStyle = createGlobalStyle`
 
     .icon {
         color: var(--clr-font);
+    }
+
+    .mobileHidden {
+        display: none;
     }
 `;
 

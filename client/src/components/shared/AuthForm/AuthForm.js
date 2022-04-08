@@ -105,7 +105,7 @@ const AuthForm = ({ type, loading, inputConfig, formSubmit, formError }) => {
             </StyledInputGroup>
           )}
 
-          <Button $primary $large disabled={loading} onClick={handleSubmit}>
+          <Button type="primary" $large disabled={loading} onClick={handleSubmit}>
             {loading ? (
               <>
                 <FontAwesomeIcon icon={faSpinner} size="lg" spin />
@@ -120,13 +120,19 @@ const AuthForm = ({ type, loading, inputConfig, formSubmit, formError }) => {
         </StyledForm>
 
         {type === "REGISTER" ? (
-          <StyledParagraph>
-            Already have an account? <Link to="/login">Sign in.</Link>
-          </StyledParagraph>
+          <>
+            <StyledParagraph>Already have an account?</StyledParagraph>
+            <StyledParagraph>
+              <Link to="/login">Sign in!</Link>
+            </StyledParagraph>
+          </>
         ) : (
-          <StyledParagraph>
-            Don't have an account? <Link to="/register">Sign up!</Link>
-          </StyledParagraph>
+          <>
+            <StyledParagraph>Don't have an account?</StyledParagraph>
+            <StyledParagraph>
+              <Link to="/register">Sign up!</Link>
+            </StyledParagraph>
+          </>
         )}
       </StyledFormWrapper>
     </StyledFormBackground>

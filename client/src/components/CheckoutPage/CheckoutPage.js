@@ -4,8 +4,6 @@ import axios from "axios";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 
-import Container from "../shared/Container/Container";
-import PageWrapper from "../shared/PageWrapper/PageWrapper";
 import OrderSummary from "./OrderSummary/OrderSummary";
 import CheckoutForm from "./CheckoutForm/CheckoutForm";
 import Spinner from "../shared/Spinner/Spinner";
@@ -59,35 +57,30 @@ const CheckoutPage = () => {
   };
 
   return (
-    <PageWrapper>
-      <Container>
-        <StyledCheckoutWrapper>
-          {!clientSecret ? (
-            <Spinner />
-          ) : (
-            <>
-              <Elements
-                stripe={stripePromise}
-                options={{
-                  clientSecret,
-                  appearance,
-                  fonts: [
-                    {
-                      cssSrc:
-                        "https://fonts.googleapis.com/css2?family=Poppins:wght@400;700",
-                    },
-                  ],
-                  loader: "always",
-                }}
-              >
-                <CheckoutForm total={total} />
-              </Elements>
-              <OrderSummary cart={cart} cartTotal={cartTotal} />
-            </>
-          )}
-        </StyledCheckoutWrapper>
-      </Container>
-    </PageWrapper>
+    <StyledCheckoutWrapper>
+      {!clientSecret ? (
+        <Spinner />
+      ) : (
+        <>
+          <Elements
+            stripe={stripePromise}
+            options={{
+              clientSecret,
+              appearance,
+              fonts: [
+                {
+                  cssSrc: "https://fonts.googleapis.com/css2?family=Poppins:wght@400;700",
+                },
+              ],
+              loader: "always",
+            }}
+          >
+            <CheckoutForm total={total} />
+          </Elements>
+          <OrderSummary cart={cart} cartTotal={cartTotal} />
+        </>
+      )}
+    </StyledCheckoutWrapper>
   );
 };
 

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+
 import {
   StyledCardBackground,
   StyledCardImage,
@@ -26,18 +27,16 @@ const ProductCard = ({ productInfo, addToCart }) => {
 
   return (
     <StyledCardBackground>
-      <Link to={`/product/${_id}`}>
+      <Link className="imageLink" to={`/product/${_id}`}>
         <StyledCardImage src={imageUrl} alt={name} />
       </Link>
       <H3>{name}</H3>
       <SpanPrice>{`£${price}`}</SpanPrice>
       <StyledCardButtonWrapper>
-        <Button onClick={handleAddToCart} $primary>
+        <Button type="primary" onClick={handleAddToCart}>
           Add to Cart
         </Button>
-        <Button as={Link} to={`/product/${_id}`} $secondary>
-          More Details
-        </Button>
+        <Link to={`/product/${_id}`}>More Details</Link>
       </StyledCardButtonWrapper>
     </StyledCardBackground>
   );

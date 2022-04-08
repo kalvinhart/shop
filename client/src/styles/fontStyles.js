@@ -1,26 +1,48 @@
 import styled from "styled-components";
+import mediaSizes from "./media";
 
 export const H1 = styled.h1`
-  font-size: 26px;
+  font-size: 22px;
+
+  @media screen and (min-width: ${mediaSizes.tablet}) {
+    font-size: 26px;
+  }
 `;
 
 export const H2 = styled.h2`
-  font-size: 22px;
+  font-size: 18px;
+
+  @media screen and (min-width: ${mediaSizes.tablet}) {
+    font-size: 22px;
+  }
 `;
 
 export const H3 = styled.h3`
-  font-size: 18px;
+  font-size: 16px;
+
+  @media screen and (min-width: ${mediaSizes.tablet}) {
+    font-size: 18px;
+  }
 `;
 
 export const SpanLogo = styled.span`
-  font-size: 26px;
+  font-size: 22px;
   font-weight: bold;
   color: var(--clr-font);
-  margin-right: 40px;
+  margin-right: 20px;
+
+  @media screen and (min-width: ${mediaSizes.tablet}) {
+    font-size: 26px;
+    margin-right: 40px;
+  }
 `;
 
 export const SpanRegular = styled.span`
-  font-size: 16px;
+  font-size: 14px;
+
+  @media screen and (min-width: ${mediaSizes.tablet}) {
+    font-size: 16px;
+  }
 `;
 
 export const SpanBold = styled.span`
@@ -28,32 +50,25 @@ export const SpanBold = styled.span`
 `;
 
 export const SpanGrey = styled.span`
-  font-size: 16px;
   color: #666;
+  font-size: 14px;
+
+  @media screen and (min-width: ${mediaSizes.tablet}) {
+    font-size: 16px;
+  }
 `;
 
 export const SpanPrice = styled.span`
-  font-size: 26px;
+  font-size: 24px;
+
+  @media screen and (min-width: ${mediaSizes.tablet}) {
+    font-size: 26px;
+  }
 `;
 
 export const SpanDescription = styled.span`
   font-size: 16px;
   white-space: pre-line;
-`;
-
-export const SpanFilterTag = styled.span`
-  padding: 4px 10px;
-  font-size: 12px;
-  background-color: rgba(200, 200, 200, 0.3);
-  border-radius: var(--border-radius);
-
-  &:not(:last-child) {
-    margin-right: 10px;
-  }
-
-  & svg {
-    margin: 0 0 0 10px;
-  }
 `;
 
 export const SpanStock = styled.span`

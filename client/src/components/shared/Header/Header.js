@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserAlt, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
@@ -12,12 +12,14 @@ import {
   StyledCartIconWrapper,
   StyledHeader,
   StyledHeaderWrapper,
+  StyledLowerHeader,
   StyledUserInfoWrapper,
 } from "./Header.styles";
 import { SpanLogo } from "../../../styles/fontStyles";
 import { Button } from "../../../styles/buttonStyles";
 
 const Header = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { loading, user } = useSelector((state) => state.auth);
   const cart = useSelector((state) => state.cart);
@@ -33,7 +35,9 @@ const Header = () => {
           My eShop
         </SpanLogo>
 
-        <SearchBar />
+        <StyledLowerHeader>
+          <SearchBar />
+        </StyledLowerHeader>
 
         <StyledUserInfoWrapper>
           {loading ? null : user ? (
@@ -41,30 +45,34 @@ const Header = () => {
               <Link to="/profile">
                 <FontAwesomeIcon className="icon" icon={faUserAlt} size="lg" />
               </Link>
-              <Button $primary onClick={handleLogOut}>
+              <Button type="primary" onClick={handleLogOut}>
                 Log out
               </Button>
             </>
           ) : (
             <>
-              <Button as={Link} to="/login" $primary>
+              <Button type="primary" onClick={() => navigate("/login")}>
                 Login
               </Button>
-              <Button as={Link} to="/register" $secondary>
+              <Button
+                className="mobileHidden"
+                type="secondary"
+                onClick={() => navigate("/register")}
+              >
                 Register
               </Button>
             </>
           )}
-
-          <Link to="/cart">
-            <StyledCartIconWrapper>
-              {cart && cart.cartCount > 0 && (
-                <StyledCartCount>{cart.cartCount}</StyledCartCount>
-              )}
-              <FontAwesomeIcon className="icon" icon={faCartShopping} size="lg" />
-            </StyledCartIconWrapper>
-          </Link>
         </StyledUserInfoWrapper>
+
+        <Link to="/cart">
+          <StyledCartIconWrapper>
+            {cart && cart.cartCount > 0 && (
+              <StyledCartCount>{cart.cartCount}</StyledCartCount>
+            )}
+            <FontAwesomeIcon className="icon" icon={faCartShopping} size="lg" />
+          </StyledCartIconWrapper>
+        </Link>
       </StyledHeaderWrapper>
     </StyledHeader>
   );

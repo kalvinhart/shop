@@ -1,16 +1,15 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
 import { logInUser } from "../../actions/authActions";
 
-import Container from "../shared/Container/Container";
-import PageWrapper from "../shared/PageWrapper/PageWrapper";
 import AuthForm from "../shared/AuthForm/AuthForm";
-import { useEffect } from "react";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
+
   const logIn = useSelector((state) => state.auth);
   const { loading, user, error } = logIn;
 
@@ -47,17 +46,13 @@ const LoginPage = () => {
   };
 
   return (
-    <PageWrapper>
-      <Container>
-        <AuthForm
-          type="LOGIN"
-          loading={loading}
-          inputConfig={inputConfig}
-          formSubmit={formSubmit}
-          formError={error}
-        />
-      </Container>
-    </PageWrapper>
+    <AuthForm
+      type="LOGIN"
+      loading={loading}
+      inputConfig={inputConfig}
+      formSubmit={formSubmit}
+      formError={error}
+    />
   );
 };
 

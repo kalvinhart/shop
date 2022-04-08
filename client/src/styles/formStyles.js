@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import mediaSizes from "./media";
+
 import { H2 } from "./fontStyles";
 
 export const StyledFormBackground = styled.div`
@@ -10,12 +12,16 @@ export const StyledFormBackground = styled.div`
 `;
 
 export const StyledFormWrapper = styled.div`
-  width: 400px;
+  width: 100%;
   padding: 20px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media screen and (min-width: ${mediaSizes.med}) {
+    width: 400px;
+  }
 
   & ${H2} {
     margin-bottom: 40px;
@@ -41,9 +47,14 @@ export const StyledInputGroup = styled.div`
 
 export const StyledInputsFlexWrapper = styled.div`
   display: flex;
+  flex-direction: column;
 
   & > *:not(:last-child) {
     margin-right: 20px;
+  }
+
+  @media screen and (min-width: ${mediaSizes.large}) {
+    flex-direction: row;
   }
 `;
 

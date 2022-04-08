@@ -5,8 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadProductDetails } from "../../actions/productActions";
 import { addToCart } from "../../actions/cartActions";
 
-import Container from "../shared/Container/Container";
-import PageWrapper from "../shared/PageWrapper/PageWrapper";
 import ProductDetails from "./ProductDetails/ProductDetails";
 import Spinner from "../shared/Spinner/Spinner";
 
@@ -14,6 +12,7 @@ const ProductPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const params = useParams();
+
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
 
@@ -32,15 +31,13 @@ const ProductPage = () => {
   };
 
   return (
-    <PageWrapper>
-      <Container>
-        {loading ? (
-          <Spinner />
-        ) : (
-          <ProductDetails product={product} addToCart={handleAddToCart} />
-        )}
-      </Container>
-    </PageWrapper>
+    <>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <ProductDetails product={product} addToCart={handleAddToCart} />
+      )}
+    </>
   );
 };
 

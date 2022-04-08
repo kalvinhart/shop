@@ -1,7 +1,14 @@
 import styled from "styled-components";
+import mediaSizes from "../../styles/media";
 
 export const StyledCheckoutWrapper = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column-reverse;
+  align-items: flex-start;
+
+  @media screen and (min-width: ${mediaSizes.large}) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 `;

@@ -131,7 +131,7 @@ const CheckoutForm = ({ total }) => {
         <PaymentElement />
         {stripe && elements && (
           <>
-            <Button $primary $large disabled={loading}>
+            <Button type="primary" $large disabled={loading}>
               {loading ? (
                 <>
                   <FontAwesomeIcon icon={faSpinner} size="lg" spin /> Processing...

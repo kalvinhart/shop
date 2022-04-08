@@ -5,14 +5,9 @@ import { loadCategories } from "../../../actions/categoryActions";
 
 import Spinner from "../../shared/Spinner/Spinner";
 
-import {
-  StyledSideBarBackground,
-  StyledNav,
-  StyledNavUL,
-  StyledNavLI,
-} from "./SideBar.styles";
-import { Button } from "../../../styles/buttonStyles";
+import { StyledSideBarBackground, StyledUL, StyledLI } from "./SideBar.styles";
 import { H3 } from "../../../styles/fontStyles";
+import { ButtonCategory } from "../../../styles/buttonStyles";
 
 const SideBar = () => {
   const dispatch = useDispatch();
@@ -33,35 +28,34 @@ const SideBar = () => {
   if (loading) return <Spinner />;
 
   return (
-    <StyledSideBarBackground>
+    <>
       {categories && (
-        <>
+        <StyledSideBarBackground>
           <H3>Categories:</H3>
-          <StyledNav>
-            <StyledNavUL>
-              <StyledNavLI>
-                <Button
-                  onClick={() => handleCategoryChange("")}
-                  disabled={!searchOptions.categories}
+
+          <StyledUL>
+            <StyledLI>
+              <ButtonCategory
+                onClick={() => handleCategoryChange("")}
+                disabled={!searchOptions.categories}
+              >
+                All
+              </ButtonCategory>
+            </StyledLI>
+            {categories.map((item) => (
+              <StyledLI key={item.name}>
+                <ButtonCategory
+                  onClick={() => handleCategoryChange(item.name)}
+                  disabled={item.name === searchOptions.categories}
                 >
-                  All Products
-                </Button>
-              </StyledNavLI>
-              {categories.map((item) => (
-                <StyledNavLI key={item.name}>
-                  <Button
-                    onClick={() => handleCategoryChange(item.name)}
-                    disabled={item.name === searchOptions.categories}
-                  >
-                    {item.name}
-                  </Button>
-                </StyledNavLI>
-              ))}
-            </StyledNavUL>
-          </StyledNav>
-        </>
+                  {item.name}
+                </ButtonCategory>
+              </StyledLI>
+            ))}
+          </StyledUL>
+        </StyledSideBarBackground>
       )}
-    </StyledSideBarBackground>
+    </>
   );
 };
 
