@@ -1,1 +1,1 @@
-web: cd ./api/src/ && node index.js 
+web: node api/src/index.js 
