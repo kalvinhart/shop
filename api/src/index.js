@@ -15,14 +15,6 @@ const PORT = process.env.PORT || 5000;
 const initialiseApp = () => {
   app.use(cors());
 
-  if (process.env.NODE_ENV === "production") {
-    app.use(express.static(path.resolve(__dirname, "./client/build")));
-
-    app.get("*", function (req, res) {
-      res.sendFile(path.resolve(__dirname, "./client/build/public", "index.html"));
-    });
-  }
-
   setUpDatabase();
 
   app.use(passport.initialize());
@@ -35,6 +27,14 @@ const initialiseApp = () => {
   app.use("/api/products", require("./routes/productRoutes"));
   app.use("/api/categories", require("./routes/categoryRoutes"));
   app.use("/api/users", require("./routes/userRoutes"));
+
+  if (process.env.NODE_ENV === "production") {
+    app.use(express.static(path.resolve(__dirname, "./client/build")));
+
+    app.get("*", function (req, res) {
+      res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+    });
+  }
 
   app.use(errorHandler);
 
