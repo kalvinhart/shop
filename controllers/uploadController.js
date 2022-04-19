@@ -10,7 +10,7 @@ const uploadFile = (req, res, next) => {
   const { image } = req.files;
   const { appRoot } = req;
   const uploadPathRoot = path.join(appRoot, `/client/build/uploads/${id}`);
-  const imagePath = `${id}/${image.name}`;
+  const imagePath = `/uploads/${id}/${image.name}`;
   const combinedPath = path.join(uploadPathRoot, `/${image.name}`);
 
   try {
