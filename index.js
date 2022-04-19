@@ -15,7 +15,6 @@ const PORT = process.env.PORT || 5000;
 
 const getRootFolder = (req, res, next) => {
   req.appRoot = path.resolve(__dirname);
-  console.log("req.appRoute: ", req.appRoot);
   next();
 };
 
