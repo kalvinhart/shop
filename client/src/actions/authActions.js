@@ -94,6 +94,7 @@ export const loadUserDetails = (id, token) => async (dispatch) => {
 
     dispatch({ type: USER_DETAILS_SUCCESS, payload: user });
   } catch (err) {
+    localStorage.removeItem("user");
     dispatch({ type: USER_DETAILS_FAIL, payload: err.message });
   }
 };
