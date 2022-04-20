@@ -18,7 +18,10 @@ const productSchema = new Schema(
     size: String,
     color: String,
     description: String,
-    imageUrl: String,
+    imageUrl: {
+      type: String,
+      default: "/images/no-image.jpg",
+    },
     categories: [String],
     stockQty: { type: Number, required: true, default: 1 },
     amountSold: Number,
