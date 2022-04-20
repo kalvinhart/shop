@@ -25,7 +25,7 @@ const SearchBar = () => {
   return (
     <StyledSearchForm onSubmit={handleSearchSubmit}>
       <StyledInput type="text" name="search" id="search" placeholder="Search" />
-      <StyledSearchButton>
+      <StyledSearchButton aria-label="Search">
         <FontAwesomeIcon icon={faSearch} size="lg" />
       </StyledSearchButton>
     </StyledSearchForm>

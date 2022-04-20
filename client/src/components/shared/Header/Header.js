@@ -42,7 +42,7 @@ const Header = () => {
         <StyledUserInfoWrapper>
           {loading ? null : user ? (
             <>
-              <Link to="/profile">
+              <Link to="/profile" aria-label="View Profile">
                 <FontAwesomeIcon className="icon" icon={faUserAlt} size="lg" />
               </Link>
               <Button type="primary" onClick={handleLogOut}>
@@ -65,7 +65,7 @@ const Header = () => {
           )}
         </StyledUserInfoWrapper>
 
-        <Link to="/cart">
+        <Link to="/cart" aria-label="View Cart">
           <StyledCartIconWrapper>
             {cart && cart.cartCount > 0 && (
               <StyledCartCount>{cart.cartCount}</StyledCartCount>
