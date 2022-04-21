@@ -18,15 +18,12 @@ const uploadFile = (req, res, next) => {
       fs.mkdirSync(uploadPathRoot);
     }
   } catch (err) {
-    next(err.message);
+    return next(err.message);
   }
 
   image.mv(combinedPath, (err) => {
     if (err) {
-      return res.status(500).json({
-        error: "An error occurred while uploading your file.",
-        message: err.message,
-      });
+      return next(500, err.message);
     } else {
       res.status(200).json({ imageUrl: imagePath });
     }
