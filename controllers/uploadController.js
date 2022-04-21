@@ -3,7 +3,7 @@ const fs = require("fs");
 
 const uploadFile = (req, res, next) => {
   if (!req.files || Object.keys(req.files).length === 0) {
-    res.status(400).json({ error: "No file was uploaded." });
+    return res.status(400).json({ error: "No file was uploaded." });
   }
 
   const { id } = req.body;
@@ -25,7 +25,7 @@ const uploadFile = (req, res, next) => {
     if (err) {
       return next(500, err.message);
     } else {
-      res.status(200).json({ imageUrl: imagePath });
+      return res.status(200).json({ imageUrl: imagePath });
     }
   });
 };
