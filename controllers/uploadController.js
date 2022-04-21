@@ -27,9 +27,9 @@ const uploadFile = (req, res, next) => {
         error: "An error occurred while uploading your file.",
         message: err.message,
       });
+    } else {
+      res.status(200).json({ imageUrl: imagePath });
     }
-
-    res.status(200).json({ imageUrl: imagePath });
   });
 };
 
