@@ -9,11 +9,8 @@ import { H3, SpanPrice } from "../../../styles/fontStyles";
 import { Button } from "../../../styles/buttonStyles";
 import { useProductCard } from "../../../hooks/useProductCard/useProductCard";
 
-const ProductCard = ({ productInfo, addToCart }) => {
-  const { id, name, price, imageUrl, handleAddToCart } = useProductCard(
-    productInfo,
-    addToCart
-  );
+const ProductCard = ({ productInfo }) => {
+  const { id, name, price, imageUrl, handleAddToCart } = useProductCard(productInfo);
 
   return (
     <StyledCardBackground>

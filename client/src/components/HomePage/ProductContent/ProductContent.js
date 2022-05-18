@@ -6,7 +6,7 @@ import Spinner from "../../shared/Spinner/Spinner";
 import { StyledProductContentWrapper } from "./ProductContent.styles";
 import NoResults from "../NoResults/NoResults";
 
-const ProductContent = ({ products, productsLoading, addToCart }) => {
+const ProductContent = ({ products, productsLoading }) => {
   return (
     <StyledProductContentWrapper>
       <SideBar />
@@ -15,7 +15,7 @@ const ProductContent = ({ products, productsLoading, addToCart }) => {
       ) : products.length > 0 ? (
         <ProductGrid>
           {products.map((product) => (
-            <ProductCard key={product.name} productInfo={product} addToCart={addToCart} />
+            <ProductCard key={product.name} productInfo={product} />
           ))}
         </ProductGrid>
       ) : (
