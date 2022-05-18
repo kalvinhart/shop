@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { useStripe, useElements, PaymentElement } from "@stripe/react-stripe-js";
-import { useForm } from "react-hook-form";
+import { useCheckoutForm } from "../../../hooks/useCheckoutForm/useCheckoutForm";
+
+import { PaymentElement } from "@stripe/react-stripe-js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
@@ -15,56 +15,12 @@ import {
 import { StyledCheckoutFormWrapper } from "./CheckoutForm.styles";
 
 const CheckoutForm = ({ total }) => {
-  const stripe = useStripe();
-  const elements = useElements();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-
-  const doSubmit = async (formData) => {
-    const { firstName, lastName, address1, address2, city, state, postalCode } = formData;
-
-    if (!stripe || !elements) {
-      return;
-    }
-
-    setError("");
-    setLoading(true);
-
-    const result = await stripe.confirmPayment({
-      elements,
-      confirmParams: {
-        return_url: "https://mernestore.herokuapp.com/confirmation?paymentStatus=success",
-        shipping: {
-          name: `${firstName} ${lastName}`,
-          address: {
-            line1: address1,
-            line2: address2,
-            city,
-            state,
-            postal_code: postalCode,
-          },
-        },
-      },
-    });
-
-    setLoading(false);
-
-    if (result.error.type === "card_error" || result.error.type === "validation_error") {
-      setError(result.error.message);
-    } else {
-      setError("An unexpected error has occurred.");
-    }
-  };
+  const { stripe, elements, register, errors, submitForm, error, loading } =
+    useCheckoutForm();
 
   return (
     <StyledCheckoutFormWrapper>
-      <form onSubmit={handleSubmit(doSubmit)}>
+      <form onSubmit={submitForm}>
         <StyledInputsFlexWrapper>
           <StyledInputGroup>
             <StyledLabel htmlFor="firstName">First Name</StyledLabel>
