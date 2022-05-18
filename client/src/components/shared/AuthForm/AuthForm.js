@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuthForm } from "../../../hooks/shared/useAuthForm/useAuthForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner, faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 
@@ -13,36 +13,12 @@ import {
 } from "../../../styles/formStyles";
 import { H2, SpanError, StyledParagraph } from "../../../styles/fontStyles";
 import { Button } from "../../../styles/buttonStyles";
-import { validateForm } from "../../../utils/validateForm";
 
 const AuthForm = ({ type, loading, inputConfig, formSubmit, formError }) => {
-  const [formValues, setFormValues] = useState(inputConfig);
-  const [error, setError] = useState({});
-
-  const handleChange = (e) => {
-    if (error) setError({});
-
-    setFormValues({
-      ...formValues,
-      [e.target.name]: {
-        value: e.target.value,
-        options: { ...formValues[e.target.name].options },
-      },
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const errors = validateForm(formValues);
-
-    if (errors.length > 0) {
-      setError(errors[0]);
-      return;
-    }
-
-    formSubmit(formValues);
-  };
+  const { formValues, error, handleChange, handleSubmit } = useAuthForm(
+    inputConfig,
+    formSubmit
+  );
 
   return (
     <StyledFormBackground>
