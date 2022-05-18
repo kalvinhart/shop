@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
@@ -16,20 +15,21 @@ import {
 import { H3, SpanGrey, SpanPrice, SpanRegular } from "../../../styles/fontStyles";
 
 import { Button } from "../../../styles/buttonStyles";
-import { removeFromCart, updateCart } from "../../../actions/cartActions";
-import { useDispatch } from "react-redux";
+import { useCartItem } from "../../../hooks/useCartItem/useCartItem";
 
 const CartItem = ({ item }) => {
-  const dispatch = useDispatch();
-  const { id, name, brand, imageUrl, size, color, qty, total } = item;
-
-  const handleQuantityChange = (value) => {
-    dispatch(updateCart(id, qty + value));
-  };
-
-  const handleRemove = () => {
-    dispatch(removeFromCart(id));
-  };
+  const {
+    id,
+    name,
+    brand,
+    color,
+    size,
+    imageUrl,
+    qty,
+    total,
+    handleQuantityChange,
+    handleRemove,
+  } = useCartItem(item);
 
   return (
     <StyledCartItemWrapper>
