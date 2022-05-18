@@ -1,9 +1,7 @@
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useHeader } from "../../../hooks/useHeader/useHeader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserAlt, faCartShopping } from "@fortawesome/free-solid-svg-icons";
-
-import { logOut } from "../../../actions/authActions";
 
 import SearchBar from "../SearchBar/SearchBar";
 
@@ -19,14 +17,7 @@ import { SpanLogo } from "../../../styles/fontStyles";
 import { Button } from "../../../styles/buttonStyles";
 
 const Header = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { loading, user } = useSelector((state) => state.auth);
-  const cart = useSelector((state) => state.cart);
-
-  const handleLogOut = () => {
-    dispatch(logOut());
-  };
+  const { navigate, loading, user, cart, handleLogOut } = useHeader();
 
   return (
     <StyledHeader>
