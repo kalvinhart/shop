@@ -1,5 +1,5 @@
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useCartPage } from "../../hooks/useCartPage/useCartPage";
+
 import NoCartItems from "../shared/NoCartItems/NoCartItems";
 import CartItem from "./CartItem/CartItem";
 
@@ -12,8 +12,7 @@ import {
 import { Button } from "../../styles/buttonStyles";
 
 const CartPage = () => {
-  const { cart, cartTotal } = useSelector((state) => state.cart);
-  const navigate = useNavigate();
+  const { cart, cartTotal, navigate } = useCartPage();
 
   return (
     <>
