@@ -1,4 +1,8 @@
-export const useProductCard = (productInfo, addToCart) => {
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../actions/cartActions";
+
+export const useProductCard = (productInfo) => {
+  const dispatch = useDispatch();
   const { _id, name, brand, size, color, price, imageUrl } = productInfo;
 
   const handleAddToCart = () => {
@@ -12,7 +16,8 @@ export const useProductCard = (productInfo, addToCart) => {
       qty: 1,
       size,
     };
-    addToCart(itemToAdd);
+
+    dispatch(addToCart(itemToAdd));
   };
 
   return {

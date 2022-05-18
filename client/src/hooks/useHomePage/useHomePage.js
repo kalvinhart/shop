@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../../actions/cartActions";
 import { loadProducts } from "../../actions/productActions";
 
 export const useHomePage = () => {
@@ -31,14 +30,9 @@ export const useHomePage = () => {
     }
   }, [searchOptions]);
 
-  const handleAddToCart = (item) => {
-    dispatch(addToCart(item));
-  };
-
   return {
     products,
     productsLoading,
     productsError,
-    handleAddToCart: () => handleAddToCart(),
   };
 };
