@@ -20,7 +20,7 @@ import {
   StyledProductTitle,
 } from "./ProductDetails.styles";
 
-const ProductDetails = ({ product, addToCart }) => {
+const ProductDetails = ({ product }) => {
   const { name, price, brand, size, color, description, imageUrl, stockQty } = product;
 
   return (
@@ -64,7 +64,7 @@ const ProductDetails = ({ product, addToCart }) => {
               </StyledProductInfoGroup>
             )}
           </StyledProductMainInfoText>
-          <AddToCart product={product} addToCart={addToCart} />
+          <AddToCart product={product} />
         </StyledProductMainInfo>
       </StyledProductMainInfoWrapper>
 

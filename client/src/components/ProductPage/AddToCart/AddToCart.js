@@ -13,29 +13,11 @@ import {
 import { Button } from "../../../styles/buttonStyles";
 import { H3, SpanPrice } from "../../../styles/fontStyles";
 import QuantityPicker from "../../shared/QuantityPicker/QuantityPicker";
+import { useAddToCart } from "../../../hooks/useAddToCart/useAddToCart";
 
-const AddToCart = ({ product, addToCart }) => {
-  const [quantity, setQuantity] = useState(1);
-  const { _id, brand, color, imageUrl, name, price, size, stockQty } = product;
-
-  const handleQuantityChange = (value) => {
-    setQuantity((prev) => prev + value);
-  };
-
-  const handleAddToCart = () => {
-    const itemToAdd = {
-      id: _id,
-      brand,
-      color,
-      imageUrl,
-      name,
-      price,
-      qty: quantity,
-      size,
-    };
-
-    addToCart(itemToAdd);
-  };
+const AddToCart = ({ product }) => {
+  const { quantity, price, stockQty, handleQuantityChange, handleAddToCart } =
+    useAddToCart(product);
 
   return (
     <StyledAddToCartWrapper>
