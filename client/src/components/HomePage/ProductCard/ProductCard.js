@@ -7,27 +7,17 @@ import {
 } from "./ProductCard.styles";
 import { H3, SpanPrice } from "../../../styles/fontStyles";
 import { Button } from "../../../styles/buttonStyles";
+import { useProductCard } from "../../../hooks/useProductCard/useProductCard";
 
 const ProductCard = ({ productInfo, addToCart }) => {
-  const { _id, name, brand, size, color, price, imageUrl } = productInfo;
-
-  const handleAddToCart = () => {
-    const itemToAdd = {
-      id: _id,
-      brand,
-      color,
-      imageUrl,
-      name,
-      price,
-      qty: 1,
-      size,
-    };
-    addToCart(itemToAdd);
-  };
+  const { id, name, price, imageUrl, handleAddToCart } = useProductCard(
+    productInfo,
+    addToCart
+  );
 
   return (
     <StyledCardBackground>
-      <Link className="imageLink" to={`/product/${_id}`}>
+      <Link className="imageLink" to={`/product/${id}`}>
         <StyledCardImage src={imageUrl} alt={name} />
       </Link>
       <H3>{name}</H3>
@@ -36,7 +26,7 @@ const ProductCard = ({ productInfo, addToCart }) => {
         <Button type="primary" onClick={handleAddToCart}>
           Add to Cart
         </Button>
-        <Link to={`/product/${_id}`}>More Details</Link>
+        <Link to={`/product/${id}`}>More Details</Link>
       </StyledCardButtonWrapper>
     </StyledCardBackground>
   );
