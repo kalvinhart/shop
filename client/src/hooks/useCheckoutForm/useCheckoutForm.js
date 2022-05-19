@@ -28,6 +28,7 @@ export const useCheckoutForm = () => {
       elements,
       confirmParams: {
         return_url: "https://mernestore.herokuapp.com/confirmation?paymentStatus=success",
+        // return_url: "http://localhost:3000/confirmation?paymentStatus=success",
         shipping: {
           name: `${firstName} ${lastName}`,
           address: {
@@ -57,7 +58,7 @@ export const useCheckoutForm = () => {
     elements,
     register,
     errors,
-    submitForm: () => submitForm(),
+    submitForm,
     loading,
     error,
   };
