@@ -20,7 +20,7 @@ const CheckoutForm = ({ total }) => {
 
   return (
     <StyledCheckoutFormWrapper>
-      <form onSubmit={submitForm}>
+      <form aria-label="Checkout Form" onSubmit={submitForm}>
         <StyledInputsFlexWrapper>
           <StyledInputGroup>
             <StyledLabel htmlFor="firstName">First Name</StyledLabel>
