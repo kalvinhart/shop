@@ -14,8 +14,6 @@ export const useCheckoutForm = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const submitForm = handleSubmit(doSubmit);
-
   const doSubmit = async (formData) => {
     const { firstName, lastName, address1, address2, city, state, postalCode } = formData;
 
@@ -51,6 +49,8 @@ export const useCheckoutForm = () => {
       setError("An unexpected error has occurred.");
     }
   };
+
+  const submitForm = handleSubmit(doSubmit);
 
   return {
     stripe,
