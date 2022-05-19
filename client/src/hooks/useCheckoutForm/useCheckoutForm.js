@@ -14,8 +14,6 @@ export const useCheckoutForm = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const submitForm = handleSubmit(doSubmit);
-
   const doSubmit = async (formData) => {
     const { firstName, lastName, address1, address2, city, state, postalCode } = formData;
 
@@ -30,6 +28,7 @@ export const useCheckoutForm = () => {
       elements,
       confirmParams: {
         return_url: "https://mernestore.herokuapp.com/confirmation?paymentStatus=success",
+        // return_url: "http://localhost:3000/confirmation?paymentStatus=success",
         shipping: {
           name: `${firstName} ${lastName}`,
           address: {
@@ -52,12 +51,14 @@ export const useCheckoutForm = () => {
     }
   };
 
+  const submitForm = handleSubmit(doSubmit);
+
   return {
     stripe,
     elements,
     register,
     errors,
-    submitForm: () => submitForm(),
+    submitForm,
     loading,
     error,
   };
