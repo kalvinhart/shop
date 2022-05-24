@@ -61,8 +61,13 @@ const updateProduct = catchAsync(async (req, res, next) => {
 
 const deleteProduct = catchAsync(async (req, res, next) => {
   const { id } = req.params;
-  const deleted = await Product.deleteOne({ _id: id });
-  res.json(deleted);
+  await Product.findOneAndDelete({ _id: id }, (err, doc) => {
+    if (err) {
+      return next(new Error(err));
+    } else {
+      res.json(doc);
+    }
+  });
 });
 
 const deleteManyProducts = catchAsync(async (req, res, next) => {
@@ -70,6 +75,11 @@ const deleteManyProducts = catchAsync(async (req, res, next) => {
   const result = await Product.deleteMany({
     _id: { $in: ids },
   });
+
+  if (result.deletedCount === 0) {
+    return next(new Error(`No products were found matching the ID's provided: ${ids}`));
+  }
+
   res.json(result);
 });
 
