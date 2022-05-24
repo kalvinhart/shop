@@ -59,16 +59,16 @@ const updateProduct = catchAsync(async (req, res, next) => {
   res.json(updated);
 });
 
-const deleteProduct = catchAsync(async (req, res, next) => {
+const deleteProduct = (req, res, next) => {
   const { id } = req.params;
-  await Product.findOneAndDelete({ _id: id }, (err, doc) => {
+  Product.findOneAndDelete({ _id: id }, (err, doc) => {
     if (err) {
       return next(new Error(err));
     } else {
       res.json(doc);
     }
   });
-});
+};
 
 const deleteManyProducts = catchAsync(async (req, res, next) => {
   const { ids } = req.body;
