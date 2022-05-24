@@ -65,7 +65,7 @@ const deleteProduct = (req, res, next) => {
     if (err) {
       return next(new Error(err));
     } else {
-      res.json(doc);
+      res.json(doc._id);
     }
   });
 };
