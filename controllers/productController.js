@@ -65,6 +65,14 @@ const deleteProduct = catchAsync(async (req, res, next) => {
   res.json(deleted);
 });
 
+const deleteManyProducts = catchAsync(async (req, res, next) => {
+  const { ids } = req.body;
+  const result = await Product.deleteMany({
+    _id: { $in: ids },
+  });
+  res.json(result);
+});
+
 module.exports = {
   getAllProducts,
   getProduct,
@@ -72,4 +80,5 @@ module.exports = {
   addNewProduct,
   updateProduct,
   deleteProduct,
+  deleteManyProducts,
 };
