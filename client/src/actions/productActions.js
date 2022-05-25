@@ -52,6 +52,7 @@ export const loadProductDetails = (id) => async (dispatch) => {
 export const updateSearchOptions =
   (...args) =>
   (dispatch, getState) => {
+    // if only one argument is present, the intention is to remove all options
     if (args.length === 1) {
       return dispatch({
         type: PRODUCT_UPDATE_SEARCH_OPTIONS,
@@ -73,6 +74,7 @@ export const updateSearchOptions =
     if (newOption) {
       updatedOptions[optionName] = newOption;
     } else {
+      // no new option was provided, so the intention is to remove this option
       delete updatedOptions[optionName];
     }
 
