@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
-import { logInUser } from "../../actions/authActions";
+import { logInUser } from "../../slices/thunks/authThunks";
 
 export const useLoginPage = () => {
   const dispatch = useDispatch();

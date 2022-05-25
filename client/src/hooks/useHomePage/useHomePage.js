@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadProducts } from "../../actions/productActions";
+import { loadProducts } from "../../slices/thunks/productThunks";
 
 export const useHomePage = () => {
   const dispatch = useDispatch();

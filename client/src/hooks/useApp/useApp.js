@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { loadUserDetails } from "../../actions/authActions";
-import { loadCart } from "../../actions/cartActions";
+import { loadUserDetails } from "../../slices/thunks/authThunks";
+import { loadCart } from "../../slices/thunks/cartThunks";
 
 export const useApp = () => {
   const dispatch = useDispatch();

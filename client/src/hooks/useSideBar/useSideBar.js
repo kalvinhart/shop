@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadCategories } from "../../actions/categoryActions";
-import { updateSearchOptions } from "../../actions/productActions";
+import { loadCategories } from "../../slices/thunks/categoriesThunks";
+import { updateSearchOptions } from "../../slices/productSlice";
 
 export const useSideBar = () => {
   const dispatch = useDispatch();
