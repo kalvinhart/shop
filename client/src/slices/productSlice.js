@@ -1,6 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { loadProducts } from "./thunks/productThunks";
 
-const initialState = { loading: true, count: 0, products: [], searchOptions: {} };
+const initialState = {
+  loading: true,
+  error: false,
+  count: 0,
+  products: [],
+  searchOptions: {},
+};
 
 const productSlice = createSlice({
   name: "products",
@@ -19,6 +26,23 @@ const productSlice = createSlice({
         delete state.searchOptions[option];
       }
     },
+  },
+  extraReducers(builder) {
+    builder
+      .addCase(loadProducts.pending, (state, action) => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(loadProducts.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = false;
+        state.count = action.payload.count;
+        state.products = action.payload.products;
+      })
+      .addCase(loadProducts.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
   },
 });
 
