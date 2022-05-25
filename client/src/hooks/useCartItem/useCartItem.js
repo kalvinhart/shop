@@ -7,7 +7,7 @@ export const useCartItem = (item) => {
   const { id, name, brand, imageUrl, size, color, qty, total } = item;
 
   const handleQuantityChange = (value) => {
-    dispatch(updateCart(id, qty + value));
+    dispatch(updateCart({ id, newQty: qty + value }));
   };
 
   const handleRemove = () => {
