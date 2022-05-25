@@ -1,4 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 export const registerUser = createAsyncThunk(
   "auth/registerUser",
