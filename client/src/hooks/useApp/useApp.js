@@ -12,7 +12,7 @@ export const useApp = () => {
   useEffect(() => {
     if (localStorage.getItem("user") && !user) {
       const { id, token } = JSON.parse(localStorage.getItem("user"));
-      dispatch(loadUserDetails(id, token));
+      dispatch(loadUserDetails({ id, token }));
     }
   }, []);
 

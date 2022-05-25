@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const loadCategories = createAsyncThunk(
   "categories/loadCategories",
-  async ({}, { rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     try {
       const { data } = await axios.get("/api/categories");
       return data;

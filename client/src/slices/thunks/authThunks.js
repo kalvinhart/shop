@@ -62,7 +62,8 @@ export const logInUser = createAsyncThunk(
 
 export const loadUserDetails = createAsyncThunk(
   "auth/loadUserDetails",
-  async (id, token, { rejectWithValue }) => {
+  async (userDetails, { rejectWithValue }) => {
+    const { id, token } = userDetails;
     try {
       const { data } = await axios.get(`/api/users/${id}`, {
         headers: {
