@@ -67,9 +67,10 @@ const cartSlice = createSlice({
         state.cart = updatedCart;
       })
       .addCase(removeFromCart.fulfilled, (state, action) => {
-        state.cart.filter((item) => item.id !== action.payload);
+        const updatedCart = state.cart.filter((item) => item.id !== action.payload);
         state.cartCount = calculateCartCount(updatedCart);
         state.cartTotal = calculateCartTotal(updatedCart);
+        state.cart = updatedCart;
       });
   },
 });
