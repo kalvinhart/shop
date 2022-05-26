@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router";
-import { addToCart } from "../../actions/cartActions";
-import { loadProductDetails } from "../../actions/productActions";
+import { addToCart } from "../../slices/thunks/cartThunks";
+import { loadProductDetails } from "../../slices/thunks/productDetailsThunks";
 
 export const useProductPage = () => {
   const navigate = useNavigate();

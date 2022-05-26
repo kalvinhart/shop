@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { updateSearchOptions } from "../../actions/productActions";
+import { updateSearchOptions } from "../../slices/productSlice";
 
 export const useSearchBar = () => {
   const dispatch = useDispatch();

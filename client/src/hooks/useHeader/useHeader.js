@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { logOut } from "../../actions/authActions";
+import { logOut } from "../../slices/thunks/authThunks";
 
 export const useHeader = () => {
   const navigate = useNavigate();

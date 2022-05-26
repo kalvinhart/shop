@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { updateSearchOptions } from "../../actions/productActions";
+import { updateSearchOptions } from "../../slices/productSlice";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";

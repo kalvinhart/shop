@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
-import { clearCart } from "../../actions/cartActions";
+import { clearCart } from "../../slices/cartSlice";
 
 export const usePaymentConfirmationPage = () => {
   const dispatch = useDispatch();
