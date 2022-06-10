@@ -69,7 +69,7 @@ export const useFilters = () => {
   ];
 
   const handleSelectChange = (e) => {
-    dispatch(updateSearchOptions("sortBy", e.target.value));
+    dispatch(updateSearchOptions({ option: "sortBy", newOption: e.target.value }));
   };
 
   return {

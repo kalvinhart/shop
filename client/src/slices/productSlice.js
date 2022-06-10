@@ -14,6 +14,7 @@ const productSlice = createSlice({
   initialState,
   reducers: {
     updateSearchOptions(state, action) {
+      console.log("Payload: ", action.payload);
       if (action.payload === null) {
         state.searchOptions = {};
       }
