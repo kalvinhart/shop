@@ -1,5 +1,6 @@
+import { Category } from "../../../domain/models/Category";
 import { ICategoryService } from "../interfaces/ICategoryService";
-import { GetReturnType, IHttpService } from "../interfaces/IHttpService";
+import { IHttpService } from "../interfaces/IHttpService";
 
 export default class CategoryService implements ICategoryService {
   httpService: IHttpService;
@@ -8,8 +9,8 @@ export default class CategoryService implements ICategoryService {
     this.httpService = httpService;
   }
 
-  async getAllCategories(): Promise<Partial<GetReturnType>> {
-    const data = await this.httpService.get({ url: "/api/categories" });
+  async getAllCategories(): Promise<Category[]> {
+    const data = await this.httpService.get<Category[]>({ url: "/api/categories" });
     return data;
   }
 }

@@ -1,5 +1,4 @@
-import { GetReturnType } from "./IHttpService";
-
+import { Category } from "../../../domain/models/Category";
 export interface ICategoryService {
-  getAllCategories: () => Promise<Partial<GetReturnType>>;
+  getAllCategories: () => Promise<Category[]>;
 }

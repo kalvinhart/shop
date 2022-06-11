@@ -1,6 +1,7 @@
-import { GetReturnType, PostReturnType, ProductOptions } from "./IHttpService";
+import { ProductOptions } from "./IHttpService";
+import { Product } from "../../../domain/models/Product";
 
 export interface IProductService {
-  getAllProducts: (options: ProductOptions) => Promise<Partial<PostReturnType>>;
-  getProduct: (id: string) => Promise<Partial<GetReturnType>>;
+  getAllProducts: (options: ProductOptions) => Promise<Product[]>;
+  getProduct: (id: string) => Promise<Product>;
 }

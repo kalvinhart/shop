@@ -1,9 +1,5 @@
-import {
-  GetReturnType,
-  PostReturnType,
-  IHttpService,
-  ProductOptions,
-} from "../interfaces/IHttpService";
+import { Product } from "../../../domain/models/Product";
+import { IHttpService, ProductOptions } from "../interfaces/IHttpService";
 import { IProductService } from "../interfaces/IProductService";
 
 export default class ProductService implements IProductService {
@@ -12,13 +8,16 @@ export default class ProductService implements IProductService {
     this.httpService = httpService;
   }
 
-  async getAllProducts(options: ProductOptions): Promise<Partial<PostReturnType>> {
-    const data = await this.httpService.post({ url: "/api/products", options });
+  async getAllProducts(options: ProductOptions): Promise<Product[]> {
+    const data = await this.httpService.post<Product[]>({
+      url: "/api/products",
+      options,
+    });
     return data;
   }
 
-  async getProduct(id: string): Promise<Partial<GetReturnType>> {
-    const data = await this.httpService.get({ url: `/api/products/${id}` });
+  async getProduct(id: string): Promise<Product> {
+    const data = await this.httpService.get<Product>({ url: `/api/products/${id}` });
     return data;
   }
 }
