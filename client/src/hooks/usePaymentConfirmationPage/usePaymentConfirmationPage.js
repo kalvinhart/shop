@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
-import { clearCart } from "../../slices/cartSlice";
+import { useAppDispatch } from "../../application/hooks/useAppDispatch";
+import { clearCart } from "../../application/slices/cartSlice";
 
 export const usePaymentConfirmationPage = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const [orderStatus, setOrderStatus] = useState();

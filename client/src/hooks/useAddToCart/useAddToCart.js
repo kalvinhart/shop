@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addToCart } from "../../slices/thunks/cartThunks";
+import { useAppDispatch } from "../../application/hooks/useAppDispatch";
+import { addToCart } from "../../application/slices/thunks/cartThunks";
 
 export const useAddToCart = (product) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [quantity, setQuantity] = useState(1);
   const { _id, brand, color, imageUrl, name, price, size, stockQty } = product;
 

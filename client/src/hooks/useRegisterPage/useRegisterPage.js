@@ -1,13 +1,14 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { registerUser } from "../../slices/thunks/authThunks";
+import { useAppDispatch } from "../../application/hooks/useAppDispatch";
+import { useAppSelector } from "../../application/hooks/useAppSelector";
+import { registerUser } from "../../application/slices/thunks/authThunks";
 
 export const useRegisterPage = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const userRegistration = useSelector((state) => state.auth);
+  const userRegistration = useAppSelector((state) => state.auth);
   const { loading, error, user } = userRegistration;
 
   useEffect(() => {

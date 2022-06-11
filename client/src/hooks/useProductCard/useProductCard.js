@@ -1,8 +1,8 @@
-import { useDispatch } from "react-redux";
-import { addToCart } from "../../slices/thunks/cartThunks";
+import { useAppDispatch } from "../../application/hooks/useAppDispatch";
+import { addToCart } from "../../application/slices/thunks/cartThunks";
 
 export const useProductCard = (productInfo) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { _id, name, brand, size, color, price, imageUrl } = productInfo;
 
   const handleAddToCart = () => {

@@ -1,9 +1,9 @@
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { updateSearchOptions } from "../../slices/productSlice";
+import { useAppDispatch } from "../../application/hooks/useAppDispatch";
+import { updateSearchOptions } from "../../application/slices/productSlice";
 
 export const useSearchBar = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const handleSearchSubmit = (e) => {

@@ -1,12 +1,13 @@
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { logOut } from "../../slices/thunks/authThunks";
+import { useAppDispatch } from "../../application/hooks/useAppDispatch";
+import { useAppSelector } from "../../application/hooks/useAppSelector";
+import { logOut } from "../../application/slices/thunks/authThunks";
 
 export const useHeader = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { loading, user } = useSelector((state) => state.auth);
-  const cart = useSelector((state) => state.cart);
+  const dispatch = useAppDispatch();
+  const { loading, user } = useAppSelector((state) => state.auth);
+  const cart = useAppSelector((state) => state.cart);
 
   const handleLogOut = () => {
     dispatch(logOut());

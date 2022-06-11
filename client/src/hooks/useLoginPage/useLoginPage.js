@@ -1,14 +1,15 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
-import { logInUser } from "../../slices/thunks/authThunks";
+import { useAppDispatch } from "../../application/hooks/useAppDispatch";
+import { useAppSelector } from "../../application/hooks/useAppSelector";
+import { logInUser } from "../../application/slices/thunks/authThunks";
 
 export const useLoginPage = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const location = useLocation();
   const navigate = useNavigate();
 
-  const logIn = useSelector((state) => state.auth);
+  const logIn = useAppSelector((state) => state.auth);
   const { loading, user, error } = logIn;
 
   useEffect(() => {

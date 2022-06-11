@@ -1,5 +1,6 @@
-import { useDispatch, useSelector } from "react-redux";
-import { updateSearchOptions } from "../../slices/productSlice";
+import { useAppSelector } from "../../application/hooks/useAppSelector";
+import { useAppDispatch } from "../../application/hooks/useAppDispatch";
+import { updateSearchOptions } from "../../application/slices/productSlice";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
@@ -7,8 +8,8 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "../../styles/buttonStyles";
 
 export const useFilters = () => {
-  const dispatch = useDispatch();
-  const { count, searchOptions } = useSelector((state) => state.products);
+  const dispatch = useAppDispatch();
+  const { count, searchOptions } = useAppSelector((state) => state.products);
 
   const hasOptions = Object.keys(searchOptions).length > 0;
 

@@ -1,8 +1,8 @@
-import { useDispatch } from "react-redux";
-import { removeFromCart, updateCart } from "../../slices/thunks/cartThunks";
+import { useAppDispatch } from "../../application/hooks/useAppDispatch";
+import { removeFromCart, updateCart } from "../../application/slices/thunks/cartThunks";
 
 export const useCartItem = (item) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const { id, name, brand, imageUrl, size, color, qty, total } = item;
 

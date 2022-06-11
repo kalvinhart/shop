@@ -1,13 +1,14 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { loadCategories } from "../../slices/thunks/categoriesThunks";
-import { updateSearchOptions } from "../../slices/productSlice";
+import { loadCategories } from "../../application/slices/thunks/categoriesThunks.ts";
+import { updateSearchOptions } from "../../application/slices/productSlice";
+import { useAppDispatch } from "../../application/hooks/useAppDispatch";
+import { useAppSelector } from "../../application/hooks/useAppSelector";
 
 export const useSideBar = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const { loading, categories } = useSelector((state) => state.categories);
-  const { searchOptions } = useSelector((state) => state.products);
+  const { loading, categories } = useAppSelector((state) => state.categories);
+  const { searchOptions } = useAppSelector((state) => state.products);
 
   useEffect(() => {
     if (categories.length > 0) return;

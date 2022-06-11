@@ -1,15 +1,16 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router";
-import { addToCart } from "../../slices/thunks/cartThunks";
-import { loadProductDetails } from "../../slices/thunks/productDetailsThunks";
+import { useAppDispatch } from "../../application/hooks/useAppDispatch";
+import { useAppSelector } from "../../application/hooks/useAppSelector";
+import { addToCart } from "../../application/slices/thunks/cartThunks";
+import { loadProductDetails } from "../../application/slices/thunks/productDetailsThunks";
 
 export const useProductPage = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const params = useParams();
 
-  const productDetails = useSelector((state) => state.productDetails);
+  const productDetails = useAppSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
 
   const { id } = params;

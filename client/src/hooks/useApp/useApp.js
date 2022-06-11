@@ -1,15 +1,16 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch } from "../../application/hooks/useAppDispatch";
+import { useAppSelector } from "../../application/hooks/useAppSelector";
 
-import { loadUserDetails } from "../../slices/thunks/authThunks";
-import { loadCart } from "../../slices/thunks/cartThunks";
+import { loadUserDetails } from "../../application/slices/thunks/authThunks";
+import { loadCart } from "../../application/slices/thunks/cartThunks";
 
 import { updateLocalStorage } from "../../utils/cart";
 
 export const useApp = () => {
-  const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth);
-  const cartData = useSelector((state) => state.cart);
+  const dispatch = useAppDispatch();
+  const { user } = useAppSelector((state) => state.auth);
+  const cartData = useAppSelector((state) => state.cart);
 
   const { cart } = cartData;
 

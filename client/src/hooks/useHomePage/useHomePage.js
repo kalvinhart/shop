@@ -1,11 +1,12 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { loadProducts } from "../../slices/thunks/productThunks";
+import { useAppDispatch } from "../../application/hooks/useAppDispatch";
+import { useAppSelector } from "../../application/hooks/useAppSelector";
+import { loadProducts } from "../../application/slices/thunks/productThunks";
 
 export const useHomePage = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const getProducts = useSelector((state) => state.products);
+  const getProducts = useAppSelector((state) => state.products);
   const {
     loading: productsLoading,
     error: productsError,

@@ -1,10 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../../application/hooks/useAppSelector";
 
 export const useCheckoutPage = () => {
-  const { cart, cartTotal } = useSelector((state) => state.cart);
-  const { user } = useSelector((state) => state.auth);
+  const { cart, cartTotal } = useAppSelector((state) => state.cart);
+  const { user } = useAppSelector((state) => state.auth);
   const [clientSecret, setClientSecret] = useState("");
   const [total, setTotal] = useState(0);
 
