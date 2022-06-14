@@ -14,7 +14,7 @@ export const useSideBar = () => {
     if (categories.length > 0) return;
 
     dispatch(loadCategories());
-  }, []);
+  }, [categories, dispatch]);
 
   const handleCategoryChange = (category) => {
     dispatch(updateSearchOptions({ option: "categories", newOption: category }));
