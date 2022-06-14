@@ -1,7 +1,22 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Product } from "../../domain/models/Product";
+import { ProductOptions } from "../../infrastructure/services/interfaces/IHttpService";
 import { loadProducts } from "./thunks/productThunks";
 
-const initialState = {
+type ProductState = {
+  loading: boolean;
+  error: boolean;
+  count: number;
+  products: Product[];
+  searchOptions: ProductOptions | {};
+};
+
+type ProductOptionsPayload = {
+  option: string;
+  newOption?: string;
+};
+
+const initialState: ProductState = {
   loading: true,
   error: false,
   count: 0,
@@ -13,17 +28,22 @@ const productSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-    updateSearchOptions(state, action) {
-      if (action.payload === null) {
+    updateSearchOptions(state, action: PayloadAction<ProductOptionsPayload> | null) {
+      if (action!.payload === null) {
         state.searchOptions = {};
       }
 
-      const { option, newOption } = action.payload;
+      const { option, newOption } = action!.payload;
+
+      const currentOptions: ProductOptions = {...state.searchOptions};
+
 
       if (newOption !== "") {
-        state.searchOptions[option] = newOption;
+        currentOptions[option as keyof ProductOptions] = newOption;
+        state.searchOptions = currentOptions;
       } else {
-        delete state.searchOptions[option];
+        delete currentOptions[option as keyof ProductOptions];
+        state.searchOptions = currentOptions;
       }
     },
   },
