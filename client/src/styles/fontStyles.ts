@@ -71,7 +71,11 @@ export const SpanDescription = styled.span`
   white-space: pre-line;
 `;
 
-export const SpanStock = styled.span`
+type SpanStockProps = {
+  inStock: boolean;
+}
+
+export const SpanStock = styled.span<SpanStockProps>`
   padding: 2px 5px;
   font-size: 12px;
   font-weight: bold;
@@ -80,7 +84,11 @@ export const SpanStock = styled.span`
   border-radius: var(--border-radius);
 `;
 
-export const SpanError = styled.span`
+type SpanErrorProps = {
+  staticPosition: boolean;
+}
+
+export const SpanError = styled.span<SpanErrorProps>`
   display: flex;
   align-items: center;
   position: absolute;
