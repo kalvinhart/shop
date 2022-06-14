@@ -1,15 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { loadCart, addToCart, updateCart, removeFromCart } from "./thunks/cartThunks";
 
-import { calculateCartCount, calculateCartTotal } from "../utils/cart";
+import { calculateCartCount, calculateCartTotal } from "../../utils/cart";
+import { CartItem } from "../../domain/models/CartItem";
 
-const initialState = { cart: null, cartCount: 0, cartTotal: 0 };
+type CartState = {
+  cart: CartItem[] | null;
+  cartCount: number;
+  cartTotal: number;
+}
+
+const initialState: CartState = { cart: null, cartCount: 0, cartTotal: 0 };
 
 const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    clearCart(state, action) {
+    clearCart(state, _) {
       state.cart = null;
       state.cartCount = 0;
       state.cartTotal = 0;
@@ -51,7 +58,7 @@ const cartSlice = createSlice({
       .addCase(updateCart.fulfilled, (state, action) => {
         const { id, newQty } = action.payload;
 
-        const updatedCart = state.cart.map((item) => {
+        const updatedCart = state.cart!.map((item) => {
           if (item.id === id) {
             const total = parseFloat((newQty * item.price).toFixed(2));
             return {
@@ -69,7 +76,7 @@ const cartSlice = createSlice({
         state.cart = updatedCart;
       })
       .addCase(removeFromCart.fulfilled, (state, action) => {
-        const updatedCart = state.cart.filter((item) => item.id !== action.payload);
+        const updatedCart = state.cart!.filter((item) => item.id !== action.payload);
         state.cartCount = calculateCartCount(updatedCart);
         state.cartTotal = calculateCartTotal(updatedCart);
         state.cart = updatedCart;
