@@ -1,7 +1,14 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Category } from "../../domain/models/Category";
 import { loadCategories } from "./thunks/categoriesThunks";
 
-const initialState = { loading: true, error: false, categories: [] };
+interface CategoryState {
+  loading: boolean;
+  error: boolean;
+  categories: Category[];
+}
+
+const initialState: CategoryState = { loading: true, error: false, categories: [] };
 
 const categoriesSlice = createSlice({
   name: "categories",
@@ -9,7 +16,7 @@ const categoriesSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(loadCategories.pending, (state, action) => {
+      .addCase(loadCategories.pending, (state, _) => {
         state.error = false;
         state.loading = true;
       })
