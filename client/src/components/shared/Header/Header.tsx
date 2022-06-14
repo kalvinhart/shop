@@ -47,7 +47,7 @@ const Header = () => {
               </Button>
               <Button
                 className="mobileHidden"
-                type="secondary"
+                variant="secondary"
                 onClick={() => navigate("/register")}
               >
                 Register

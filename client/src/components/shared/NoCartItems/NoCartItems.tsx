@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { StyledParagraph } from "../../../styles/fontStyles";
+
 import Button from "../Button/Button";
+
+import { StyledParagraph } from "../../../styles/fontStyles";
 import { StyledNoItemsWrapper } from "./NoCartItems.styles";
 
 const NoCartItems = () => {

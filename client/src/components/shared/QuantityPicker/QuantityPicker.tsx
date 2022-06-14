@@ -2,7 +2,12 @@ import { StyledQuantityButtonsWrapper } from "./QuantityPicker.styles";
 import { SpanRegular } from "../../../styles/fontStyles";
 import Button from "../Button/Button";
 
-const QuantityPicker = ({ quantity = 1, handleQuantityChange }) => {
+type QuantityPickerProps = {
+  quantity: number;
+  handleQuantityChange: (quantity: number) => void;
+}
+
+const QuantityPicker = ({ quantity = 1, handleQuantityChange }: QuantityPickerProps) => {
   return (
     <StyledQuantityButtonsWrapper>
       <Button
