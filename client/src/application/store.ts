@@ -13,10 +13,12 @@ import categoriesReducer from "./slices/categoriesSlice";
 import authReducer from "./slices/authSlice";
 import cartReducer from "./slices/cartSlice";
 import { IAuthService } from "../infrastructure/services/interfaces/IAuthService";
+import AuthService from "../infrastructure/services/AuthService/AuthService";
 
 const httpService = new HttpService();
 const productApi = new ProductService(httpService);
 const categoryApi = new CategoryService(httpService);
+const authApi = new AuthService(httpService);
 
 const store = configureStore({
   reducer: {
@@ -27,7 +29,9 @@ const store = configureStore({
     cart: cartReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({ thunk: { extraArgument: { productApi, categoryApi } } }),
+    getDefaultMiddleware({
+      thunk: { extraArgument: { productApi, categoryApi, authApi } },
+    }),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
