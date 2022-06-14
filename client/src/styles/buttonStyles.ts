@@ -1,6 +1,11 @@
 import styled, { css } from "styled-components";
 
-export const Button = styled.button`
+export type StyledButtonProps = {
+  variant: "filter" | "primary" | "secondary";
+  size?: "regular" | "small" | "large";
+}
+
+export const StyledButton = styled.button<StyledButtonProps>`
   padding: 8px 16px;
   border: none;
   border-radius: var(--border-radius);
@@ -12,8 +17,8 @@ export const Button = styled.button`
     margin-right: 10px;
   }
 
-  ${({ type }) => {
-    switch (type) {
+  ${({ variant }) => {
+    switch (variant) {
       case "filter":
         return css`
           padding: 4px 10px;
@@ -56,9 +61,9 @@ export const Button = styled.button`
     }
   }}
 
-  ${({ $large }) => $large && "padding: 10px 20px;"}
+  ${({ size }) => size === "large" && "padding: 10px 20px;"}
 
-  ${({ $small }) => $small && "padding: 5px 10px;"}
+  ${({ size }) => size === "small" && "padding: 5px 10px;"}
 
   &:disabled {
     cursor: not-allowed;
