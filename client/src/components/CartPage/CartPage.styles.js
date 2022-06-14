@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import mediaSizes from "../../styles/media";
 
-import { Button } from "../../styles/buttonStyles";
 import { SpanBold } from "../../styles/fontStyles";
+import Button from "../shared/Button/Button";
 
 export const StyledCartWrapper = styled.div`
   width: 100%;

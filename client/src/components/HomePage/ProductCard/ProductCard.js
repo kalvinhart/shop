@@ -6,8 +6,8 @@ import {
   StyledCardButtonWrapper,
 } from "./ProductCard.styles";
 import { H3, SpanPrice } from "../../../styles/fontStyles";
-import { Button } from "../../../styles/buttonStyles";
 import { useProductCard } from "../../../hooks/useProductCard/useProductCard";
+import Button from "../../shared/Button/Button";
 
 const ProductCard = ({ productInfo }) => {
   const { id, name, price, imageUrl, handleAddToCart } = useProductCard(productInfo);
@@ -20,7 +20,7 @@ const ProductCard = ({ productInfo }) => {
       <H3>{name}</H3>
       <SpanPrice>{`£${price}`}</SpanPrice>
       <StyledCardButtonWrapper>
-        <Button type="primary" onClick={handleAddToCart}>
+        <Button variant="primary" onClick={handleAddToCart}>
           Add to Cart
         </Button>
         <Link to={`/product/${id}`}>More Details</Link>

@@ -14,8 +14,8 @@ import {
 } from "./CartItem.styles";
 import { H3, SpanGrey, SpanPrice, SpanRegular } from "../../../styles/fontStyles";
 
-import { Button } from "../../../styles/buttonStyles";
 import { useCartItem } from "../../../hooks/useCartItem/useCartItem";
+import Button from "../../shared/Button/Button";
 
 const CartItem = ({ item }) => {
   const {
@@ -69,7 +69,7 @@ const CartItem = ({ item }) => {
           <QuantityPicker quantity={qty} handleQuantityChange={handleQuantityChange} />
 
           <SpanPrice>£{total}</SpanPrice>
-          <Button type="secondary" onClick={handleRemove}>
+          <Button variant="secondary" onClick={handleRemove}>
             <FontAwesomeIcon icon={faTrashAlt} />
             Remove
           </Button>

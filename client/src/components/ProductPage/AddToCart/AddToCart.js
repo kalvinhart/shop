@@ -1,5 +1,3 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
@@ -10,10 +8,10 @@ import {
   StyledQuantityTotalWrapper,
   StyledTotalWrapper,
 } from "./AddToCart.styles";
-import { Button } from "../../../styles/buttonStyles";
 import { H3, SpanPrice } from "../../../styles/fontStyles";
 import QuantityPicker from "../../shared/QuantityPicker/QuantityPicker";
 import { useAddToCart } from "../../../hooks/useAddToCart/useAddToCart";
+import Button from "../../shared/Button/Button";
 
 const AddToCart = ({ product }) => {
   const { quantity, price, stockQty, handleQuantityChange, handleAddToCart } =
@@ -38,14 +36,14 @@ const AddToCart = ({ product }) => {
 
       <StyledPurchaseButtonsWrapper>
         <Button
-          type="primary"
+          variant="primary"
           onClick={handleAddToCart}
           disabled={stockQty === 0 || quantity > stockQty}
-          $large
+          size="large"
         >
           Add to Cart
         </Button>
-        <Button type="secondary" $large>
+        <Button variant="secondary" size="large">
           <FontAwesomeIcon icon={faHeart} size="lg" />
           Save to Wishlist
         </Button>

@@ -9,7 +9,7 @@ import {
   StyledCartHeader,
   StyledCartSummary,
 } from "./CartPage.styles";
-import { Button } from "../../styles/buttonStyles";
+import Button from "../shared/Button/Button";
 
 const CartPage = () => {
   const { cart, cartTotal, navigate } = useCartPage();
@@ -22,7 +22,7 @@ const CartPage = () => {
           {cart && cart.length > 3 && (
             <Button
               className="mobileHidden"
-              type="primary"
+              variant="primary"
               onClick={() => navigate("/checkout")}
             >
               Continue to Checkout
@@ -38,7 +38,7 @@ const CartPage = () => {
             <StyledCartSummary>
               <SpanBold>Subtotal:</SpanBold>
               <SpanPrice>{`£${cartTotal}`}</SpanPrice>
-              <Button type="primary" onClick={() => navigate("/checkout")}>
+              <Button variant="primary" onClick={() => navigate("/checkout")}>
                 Continue to Checkout
               </Button>
             </StyledCartSummary>

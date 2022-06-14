@@ -14,7 +14,7 @@ import {
   StyledUserInfoWrapper,
 } from "./Header.styles";
 import { SpanLogo } from "../../../styles/fontStyles";
-import { Button } from "../../../styles/buttonStyles";
+import Button from "../Button/Button";
 
 const Header = () => {
   const { navigate, loading, user, cart, handleLogOut } = useHeader();
@@ -36,13 +36,13 @@ const Header = () => {
               <Link to="/profile" aria-label="View Profile">
                 <FontAwesomeIcon className="icon" icon={faUserAlt} size="lg" />
               </Link>
-              <Button type="primary" onClick={handleLogOut}>
+              <Button variant="primary" onClick={handleLogOut}>
                 Log out
               </Button>
             </>
           ) : (
             <>
-              <Button type="primary" onClick={() => navigate("/login")}>
+              <Button variant="primary" onClick={() => navigate("/login")}>
                 Login
               </Button>
               <Button

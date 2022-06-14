@@ -4,8 +4,8 @@ import { updateSearchOptions } from "../../application/slices/productSlice";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import Button from "../../components/shared/Button/Button";
 
-import { Button } from "../../styles/buttonStyles";
 
 export const useFilters = () => {
   const dispatch = useAppDispatch();
@@ -31,7 +31,7 @@ export const useFilters = () => {
 
       optionsTags.push(
         <Button
-          type="filter"
+          variant="filter"
           key={optionValue}
           onClick={() => handleRemoveOptions(optionName)}
         >

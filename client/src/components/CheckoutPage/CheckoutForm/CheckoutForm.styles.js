@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import mediaSizes from "../../../styles/media";
+import Button from "../../shared/Button/Button";
 
-import { Button } from "../../../styles/buttonStyles";
 
 export const StyledCheckoutFormWrapper = styled.div`
   width: 100%;

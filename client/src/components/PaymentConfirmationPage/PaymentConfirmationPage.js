@@ -1,7 +1,7 @@
 import { usePaymentConfirmationPage } from "../../hooks/usePaymentConfirmationPage/usePaymentConfirmationPage";
 
-import { Button } from "../../styles/buttonStyles";
 import { H2, StyledParagraph } from "../../styles/fontStyles";
+import Button from "../shared/Button/Button";
 import { StyledConfirmationBackground } from "./PaymentConfirmationPage.styles";
 
 const PaymentConfirmationPage = () => {
@@ -16,7 +16,7 @@ const PaymentConfirmationPage = () => {
             Your order has successfully completed, you will receive a confirmation email
             shortly.
           </StyledParagraph>
-          <Button type="primary" onClick={() => navigate("/")}>
+          <Button variant="primary" onClick={() => navigate("/")}>
             Continue Shopping
           </Button>
         </>
@@ -25,7 +25,7 @@ const PaymentConfirmationPage = () => {
         <>
           <H2>I'm Sorry</H2>
           <StyledParagraph>An unknown error has occurred.</StyledParagraph>
-          <Button type="primary" onClick={() => navigate("/")}>
+          <Button variant="primary" onClick={() => navigate("/")}>
             Continue Shopping
           </Button>
         </>

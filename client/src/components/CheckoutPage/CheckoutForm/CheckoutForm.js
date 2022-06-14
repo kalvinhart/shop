@@ -4,7 +4,6 @@ import { PaymentElement } from "@stripe/react-stripe-js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
-import { Button } from "../../../styles/buttonStyles";
 import { SpanError } from "../../../styles/fontStyles";
 import {
   StyledInput,
@@ -13,6 +12,7 @@ import {
   StyledLabel,
 } from "../../../styles/formStyles";
 import { StyledCheckoutFormWrapper } from "./CheckoutForm.styles";
+import Button from "../../shared/Button/Button";
 
 const CheckoutForm = ({ total }) => {
   const { stripe, elements, register, errors, submitForm, error, loading } =
@@ -87,7 +87,7 @@ const CheckoutForm = ({ total }) => {
         <PaymentElement />
         {stripe && elements && (
           <>
-            <Button type="primary" $large disabled={loading}>
+            <Button variant="primary" size="large" disabled={loading}>
               {loading ? (
                 <>
                   <FontAwesomeIcon icon={faSpinner} size="lg" spin /> Processing...
