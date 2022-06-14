@@ -4,11 +4,21 @@ import { loadProductDetails } from "./thunks/productDetailsThunks";
 
 type ProductDetailsState = {
   loading: boolean;
-  product: Product | [];
+  product: Product;
   error: boolean;
 }
 
-const initialState: ProductDetailsState = { loading: true, product: [], error: false };
+const initialProduct: Product = {
+  name: "",
+  brand: "",
+  price: 0,
+  imageUrl: "",
+  categories: [],
+  amountSold: 0,
+  stockQty: 0
+}
+
+const initialState: ProductDetailsState = { loading: true, product: initialProduct, error: false };
 
 const productDetailsSlice = createSlice({
   name: "productDetails",
