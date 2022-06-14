@@ -10,8 +10,8 @@ const LoginPage = lazy(() => import("./components/LoginPage/LoginPage"));
 const ProductPage = lazy(() => import("./components/ProductPage/ProductPage"));
 const CartPage = lazy(() => import("./components/CartPage/CartPage"));
 const CheckoutPage = lazy(() => import("./components/CheckoutPage/CheckoutPage"));
-const PaymentConfirmationPage = lazy(() =>
-  import("./components/PaymentConfirmationPage/PaymentConfirmationPage")
+const PaymentConfirmationPage = lazy(
+  () => import("./components/PaymentConfirmationPage/PaymentConfirmationPage")
 );
 
 const AppRoutes = () => {
@@ -65,16 +65,17 @@ const AppRoutes = () => {
           </Suspense>
         }
       />
-      <Route
-        path="/checkout"
-        element={
-          <Suspense fallback={<Spinner />}>
-            <ProtectedRoute>
-              <CheckoutPage />
-            </ProtectedRoute>
-          </Suspense>
-        }
-      />
+
+      <Route element={<ProtectedRoute />}>
+        <Route
+          path="/checkout"
+          element={
+            <Suspense fallback={<Spinner />}>
+                <CheckoutPage />
+            </Suspense>
+          }
+        />
+      </Route>
     </Routes>
   );
 };
