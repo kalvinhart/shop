@@ -85,7 +85,7 @@ export const SpanStock = styled.span<SpanStockProps>`
 `;
 
 type SpanErrorProps = {
-  staticPosition: boolean;
+  staticPosition?: boolean;
 }
 
 export const SpanError = styled.span<SpanErrorProps>`
