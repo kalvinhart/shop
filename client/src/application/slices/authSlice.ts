@@ -1,7 +1,20 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
+import { User } from "../../domain/models/User";
 import { registerUser, logInUser, loadUserDetails, logOut } from "./thunks/authThunks";
 
-const initialState = { loading: false, isAuthenticated: false, user: null };
+type AuthState = {
+  loading: boolean;
+  isAuthenticated: boolean;
+  user: User | null;
+  error: boolean;
+};
+
+const initialState: AuthState = {
+  loading: false,
+  isAuthenticated: false,
+  user: null,
+  error: false,
+};
 
 const authSlice = createSlice({
   name: "auth",
