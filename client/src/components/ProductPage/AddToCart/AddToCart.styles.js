@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import mediaSizes from "../../../styles/media";
-import Button from "../../shared/Button/Button";
 
 export const StyledAddToCartWrapper = styled.div`
   width: 100%;
@@ -36,7 +35,7 @@ export const StyledPurchaseButtonsWrapper = styled.div`
   display: flex;
   flex-direction: column;
 
-  & ${Button} {
+  & button {
     margin-bottom: 20px;
   }
 

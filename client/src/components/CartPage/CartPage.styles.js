@@ -2,7 +2,6 @@ import styled from "styled-components";
 import mediaSizes from "../../styles/media";
 
 import { SpanBold } from "../../styles/fontStyles";
-import Button from "../shared/Button/Button";
 
 export const StyledCartWrapper = styled.div`
   width: 100%;
@@ -39,7 +38,7 @@ export const StyledCartSummary = styled.div`
     margin-right: auto;
   }
 
-  & ${Button} {
+  & button {
     width: 100%;
     text-align: center;
     margin-top: 10px;

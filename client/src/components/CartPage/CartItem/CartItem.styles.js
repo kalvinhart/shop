@@ -2,7 +2,6 @@ import styled from "styled-components";
 import mediaSizes from "../../../styles/media";
 
 import { SpanGrey, SpanPrice } from "../../../styles/fontStyles";
-import Button from "../../shared/Button/Button";
 
 export const StyledCartItemWrapper = styled.div`
   width: 100%;
@@ -80,7 +79,7 @@ export const StyledCartButtonsWrapper = styled.div`
     }
   }
 
-  & ${Button} {
+  & button {
     align-self: flex-end;
 
     @media screen and (min-width: ${mediaSizes.large}) {
