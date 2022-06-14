@@ -3,6 +3,13 @@ import { useLocation, useNavigate } from "react-router";
 import { useAppDispatch } from "../../application/hooks/useAppDispatch";
 import { useAppSelector } from "../../application/hooks/useAppSelector";
 import { logInUser } from "../../application/slices/thunks/authThunks";
+import { InputConfig } from "../shared/useAuthForm/useAuthForm";
+
+type LocationState = {
+  from: {
+    pathname: string;
+  }
+}
 
 export const useLoginPage = () => {
   const dispatch = useAppDispatch();
@@ -13,10 +20,10 @@ export const useLoginPage = () => {
   const { loading, user, error } = logIn;
 
   useEffect(() => {
-    if (user) navigate(location.state?.from ? location.state.from : "/");
-  }, [user]);
+    if (user) navigate((location.state as LocationState)?.from  ? (location.state as LocationState).from : "/");
+  }, [user, navigate, location.state]);
 
-  const inputConfig = {
+  const inputConfig: InputConfig = {
     email: {
       value: "",
       options: {
@@ -33,7 +40,7 @@ export const useLoginPage = () => {
     },
   };
 
-  const formSubmit = (formValues) => {
+  const formSubmit = (formValues: InputConfig) => {
     const { email, password } = formValues;
 
     dispatch(
@@ -48,6 +55,6 @@ export const useLoginPage = () => {
     loading,
     error,
     inputConfig,
-    formSubmit: (formValues) => formSubmit(formValues),
+    formSubmit: (formValues: InputConfig) => formSubmit(formValues),
   };
 };

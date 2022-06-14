@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import { useAuthForm } from "../../../hooks/shared/useAuthForm/useAuthForm";
+import { InputConfig, useAuthForm } from "../../../hooks/shared/useAuthForm/useAuthForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner, faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
+import Button from "../Button/Button"
 
 import {
   StyledForm,
@@ -12,9 +13,16 @@ import {
   StyledFormWrapper,
 } from "../../../styles/formStyles";
 import { H2, SpanError, StyledParagraph } from "../../../styles/fontStyles";
-import { Button } from "../../../styles/buttonStyles";
 
-const AuthForm = ({ type, loading, inputConfig, formSubmit, formError }) => {
+type AuthFormProps = {
+  type: "LOGIN" | "REGISTER";
+  loading: boolean;
+  inputConfig: InputConfig;
+  formSubmit: (formValues: InputConfig) => void;
+  formError: boolean;
+}
+
+const AuthForm = ({ type, loading, inputConfig, formSubmit, formError }: AuthFormProps) => {
   const { formValues, error, handleChange, handleSubmit } = useAuthForm(
     inputConfig,
     formSubmit
@@ -68,7 +76,7 @@ const AuthForm = ({ type, loading, inputConfig, formSubmit, formError }) => {
                 type="password"
                 name="confirmPassword"
                 id="confirmPassword"
-                value={formValues.confirmPassword.value}
+                value={formValues.confirmPassword!.value}
                 placeholder="Confirm Password"
                 onChange={handleChange}
               />
@@ -81,7 +89,7 @@ const AuthForm = ({ type, loading, inputConfig, formSubmit, formError }) => {
             </StyledInputGroup>
           )}
 
-          <Button type="primary" $large disabled={loading} onClick={handleSubmit}>
+          <Button variant="primary" size="large" disabled={loading} onClick={handleSubmit}>
             {loading ? (
               <>
                 <FontAwesomeIcon icon={faSpinner} size="lg" spin />

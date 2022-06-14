@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import { useAppDispatch } from "../../application/hooks/useAppDispatch";
 import { useAppSelector } from "../../application/hooks/useAppSelector";
 import { registerUser } from "../../application/slices/thunks/authThunks";
+import { InputConfig } from "../shared/useAuthForm/useAuthForm";
 
 export const useRegisterPage = () => {
   const dispatch = useAppDispatch();
@@ -13,9 +14,9 @@ export const useRegisterPage = () => {
 
   useEffect(() => {
     if (user) navigate("/");
-  }, [user]);
+  }, [user, navigate]);
 
-  const inputConfig = {
+  const inputConfig: InputConfig = {
     email: {
       value: "",
       options: {
@@ -38,7 +39,7 @@ export const useRegisterPage = () => {
     },
   };
 
-  const formSubmit = (formValues) => {
+  const formSubmit = (formValues: InputConfig) => {
     const { email, password } = formValues;
 
     dispatch(
@@ -53,6 +54,6 @@ export const useRegisterPage = () => {
     loading,
     error,
     inputConfig,
-    formSubmit: (formValues) => formSubmit(formValues),
+    formSubmit: (formValues: InputConfig) => formSubmit(formValues),
   };
 };
