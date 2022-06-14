@@ -4,11 +4,16 @@ type UserOptions = {
 };
 
 export type ProductOptions = {
-  categories: string;
-  sortBy: string;
+  categories?: string;
+  sortBy?: string;
 };
 
-export type Options = UserOptions | ProductOptions;
+type AuthOptions = {
+  id: string;
+  token: string;
+};
+
+export type Options = UserOptions | ProductOptions | AuthOptions;
 
 export type GetOptions = {
   url: string;
