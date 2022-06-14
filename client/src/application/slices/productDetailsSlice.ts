@@ -1,7 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { Product } from "../../domain/models/Product";
 import { loadProductDetails } from "./thunks/productDetailsThunks";
 
-const initialState = { loading: true, product: [], error: false };
+type ProductDetailsState = {
+  loading: boolean;
+  product: Product | [];
+  error: boolean;
+}
+
+const initialState: ProductDetailsState = { loading: true, product: [], error: false };
 
 const productDetailsSlice = createSlice({
   name: "productDetails",
