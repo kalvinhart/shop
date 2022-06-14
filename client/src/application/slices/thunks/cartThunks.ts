@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-hot-toast";
 
 export const loadCart = createAsyncThunk("cart/loadCart", async () => {
-  const cart = JSON.parse(localStorage.getItem("cart"));
+  const cart = JSON.parse(localStorage.getItem("cart") as string);
 
   const now = Date.now();
   const oneWeek = 1000 * 60 * 60 * 24 * 7;
