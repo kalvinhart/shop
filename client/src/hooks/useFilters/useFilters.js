@@ -14,7 +14,7 @@ export const useFilters = () => {
   const hasOptions = Object.keys(searchOptions).length > 0;
 
   const handleRemoveOptions = (option) => {
-    dispatch(updateSearchOptions(option, ""));
+    dispatch(updateSearchOptions({ option, newOption: "" }));
   };
 
   let optionsTags = [];
