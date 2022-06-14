@@ -12,8 +12,13 @@ import { H3, SpanPrice } from "../../../styles/fontStyles";
 import QuantityPicker from "../../shared/QuantityPicker/QuantityPicker";
 import { useAddToCart } from "../../../hooks/useAddToCart/useAddToCart";
 import Button from "../../shared/Button/Button";
+import { Product } from "../../../domain/models/Product";
 
-const AddToCart = ({ product }) => {
+type AddToCartProps = {
+  product: Product;
+}
+
+const AddToCart = ({ product }: AddToCartProps) => {
   const { quantity, price, stockQty, handleQuantityChange, handleAddToCart } =
     useAddToCart(product);
 
@@ -43,7 +48,7 @@ const AddToCart = ({ product }) => {
         >
           Add to Cart
         </Button>
-        <Button variant="secondary" size="large">
+        <Button variant="secondary" size="large" onClick={() => {}}>
           <FontAwesomeIcon icon={faHeart} size="lg" />
           Save to Wishlist
         </Button>

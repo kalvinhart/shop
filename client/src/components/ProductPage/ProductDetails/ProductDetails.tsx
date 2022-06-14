@@ -19,8 +19,13 @@ import {
   StyledProductMoreInfo,
   StyledProductTitle,
 } from "./ProductDetails.styles";
+import { Product } from "../../../domain/models/Product";
 
-const ProductDetails = ({ product }) => {
+type ProductDetailsProps = {
+  product: Product;
+}
+
+const ProductDetails = ({ product }: ProductDetailsProps) => {
   const { name, price, brand, size, color, description, imageUrl, stockQty } = product;
 
   return (

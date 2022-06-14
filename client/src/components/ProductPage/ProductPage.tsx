@@ -4,14 +4,14 @@ import ProductDetails from "./ProductDetails/ProductDetails";
 import Spinner from "../shared/Spinner/Spinner";
 
 const ProductPage = () => {
-  const { loading, product, error, handleAddToCart } = useProductPage();
+  const { loading, product, error } = useProductPage();
 
   return (
     <>
       {loading ? (
         <Spinner />
       ) : (
-        <ProductDetails product={product} addToCart={handleAddToCart} />
+        <ProductDetails product={product} />
       )}
     </>
   );
