@@ -9,6 +9,7 @@ type ProductDetailsState = {
 }
 
 const initialProduct: Product = {
+  _id: "",
   name: "",
   brand: "",
   price: 0,
