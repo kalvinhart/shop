@@ -1,12 +1,14 @@
 import { useAppDispatch } from "../../application/hooks/useAppDispatch";
 import { addToCart } from "../../application/slices/thunks/cartThunks";
+import { CartItem } from "../../domain/models/CartItem";
+import { Product } from "../../domain/models/Product";
 
-export const useProductCard = (productInfo) => {
+export const useProductCard = (productInfo: Product) => {
   const dispatch = useAppDispatch();
   const { _id, name, brand, size, color, price, imageUrl } = productInfo;
 
   const handleAddToCart = () => {
-    const itemToAdd = {
+    const itemToAdd: CartItem = {
       id: _id,
       brand,
       color,
@@ -15,6 +17,7 @@ export const useProductCard = (productInfo) => {
       price,
       qty: 1,
       size,
+      total: 0
     };
 
     dispatch(addToCart(itemToAdd));

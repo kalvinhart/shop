@@ -1,7 +1,11 @@
 import Filters from "../Filters/Filters";
 import { StyledGrid, StyledGridWrapper } from "./ProductGrid.styles";
 
-const ProductGrid = ({ children }) => {
+type ProductGridProps = {
+  children: React.ReactNode;
+}
+
+const ProductGrid = ({ children }: ProductGridProps) => {
   return (
     <StyledGridWrapper>
       <Filters />

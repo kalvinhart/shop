@@ -5,8 +5,14 @@ import Spinner from "../../shared/Spinner/Spinner";
 
 import { StyledProductContentWrapper } from "./ProductContent.styles";
 import NoResults from "../NoResults/NoResults";
+import { Product } from "../../../domain/models/Product";
 
-const ProductContent = ({ products, productsLoading }) => {
+type ProductContentProps = {
+  products: Product[];
+  productsLoading: boolean;
+}
+
+const ProductContent = ({ products, productsLoading }: ProductContentProps) => {
   return (
     <StyledProductContentWrapper>
       <SideBar />

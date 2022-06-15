@@ -8,8 +8,13 @@ import {
 import { H3, SpanPrice } from "../../../styles/fontStyles";
 import { useProductCard } from "../../../hooks/useProductCard/useProductCard";
 import Button from "../../shared/Button/Button";
+import { Product } from "../../../domain/models/Product";
 
-const ProductCard = ({ productInfo }) => {
+type ProductCardProps = {
+  productInfo: Product;
+}
+
+const ProductCard = ({ productInfo }: ProductCardProps) => {
   const { id, name, price, imageUrl, handleAddToCart } = useProductCard(productInfo);
 
   return (
