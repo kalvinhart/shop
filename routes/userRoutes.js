@@ -5,6 +5,6 @@ const { registerUser, logInUser, getUserInfo } = require("../controllers/userCon
 
 router.post("/register", registerUser);
 router.post("/login", logInUser);
-router.get("/:id", passport.authenticate("jwt", { session: false }), getUserInfo);
+router.post("/:id", passport.authenticate("jwt", { session: false }), getUserInfo);
 
 module.exports = router;
