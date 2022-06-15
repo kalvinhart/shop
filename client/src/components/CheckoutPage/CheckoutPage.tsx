@@ -32,7 +32,7 @@ const CheckoutPage = () => {
           >
             <CheckoutForm total={total} />
           </Elements>
-          <OrderSummary cart={cart} cartTotal={cartTotal} />
+          <OrderSummary cart={cart || []} cartTotal={cartTotal} />
         </>
       )}
     </StyledCheckoutWrapper>
