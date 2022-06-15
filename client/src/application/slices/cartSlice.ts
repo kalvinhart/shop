@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { loadCart, addToCart, updateCart, removeFromCart } from "./thunks/cartThunks";
 
-import { calculateCartCount, calculateCartTotal } from "../../utils/cart";
+import { calculateCartCount, calculateCartTotal } from "../../presentation/utils/cart";
 import { CartItem } from "../../domain/models/CartItem";
 
 export type CartState = {

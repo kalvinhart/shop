@@ -1,17 +1,17 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 
-import ProtectedRoute from "./components/shared/ProtectedRoute/ProtectedRoute";
-import Spinner from "./components/shared/Spinner/Spinner";
+import ProtectedRoute from "./presentation/components/shared/ProtectedRoute/ProtectedRoute";
+import Spinner from "./presentation/components/shared/Spinner/Spinner";
 
-const HomePage = lazy(() => import("./components/HomePage/HomePage"));
-const RegisterPage = lazy(() => import("./components/RegisterPage/RegisterPage"));
-const LoginPage = lazy(() => import("./components/LoginPage/LoginPage"));
-const ProductPage = lazy(() => import("./components/ProductPage/ProductPage"));
-const CartPage = lazy(() => import("./components/CartPage/CartPage"));
-const CheckoutPage = lazy(() => import("./components/CheckoutPage/CheckoutPage"));
+const HomePage = lazy(() => import("./presentation/components/HomePage/HomePage"));
+const RegisterPage = lazy(() => import("./presentation/components/RegisterPage/RegisterPage"));
+const LoginPage = lazy(() => import("./presentation/components/LoginPage/LoginPage"));
+const ProductPage = lazy(() => import("./presentation/components/ProductPage/ProductPage"));
+const CartPage = lazy(() => import("./presentation/components/CartPage/CartPage"));
+const CheckoutPage = lazy(() => import("./presentation/components/CheckoutPage/CheckoutPage"));
 const PaymentConfirmationPage = lazy(
-  () => import("./components/PaymentConfirmationPage/PaymentConfirmationPage")
+  () => import("./presentation/components/PaymentConfirmationPage/PaymentConfirmationPage")
 );
 
 const AppRoutes = () => {
