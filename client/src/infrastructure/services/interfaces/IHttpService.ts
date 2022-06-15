@@ -1,19 +1,21 @@
-type UserOptions = {
+import { AxiosRequestHeaders } from "axios";
+
+type UserData = {
   email: string;
   password: string;
 };
 
-export type ProductOptions = {
+export type ProductData = {
   categories?: string;
   sortBy?: string;
 };
 
-type AuthOptions = {
+type AuthData = {
   id: string;
   token: string;
 };
 
-export type Options = UserOptions | ProductOptions | AuthOptions;
+export type Data = UserData | ProductData | AuthData;
 
 export type GetOptions = {
   url: string;
@@ -21,10 +23,13 @@ export type GetOptions = {
 
 export type PostOptions = {
   url: string;
-  options: Options;
+  data: Data;
+  options?: {
+    headers?: AxiosRequestHeaders;
+  };
 };
 
 export interface IHttpService {
   get<T>({ url }: GetOptions): Promise<T>;
-  post<T>({ url, options }: PostOptions): Promise<T>;
+  post<T>({ url, data, options }: PostOptions): Promise<T>;
 }

@@ -1,4 +1,4 @@
-import { ProductOptions } from "./IHttpService";
+import { ProductData } from "./IHttpService";
 import { Product } from "../../../domain/models/Product";
 
 export type AllProductsReturn = {
@@ -6,6 +6,6 @@ export type AllProductsReturn = {
   products: Product[];
 };
 export interface IProductService {
-  getAllProducts: (options: ProductOptions) => Promise<AllProductsReturn>;
+  getAllProducts: (options: ProductData) => Promise<AllProductsReturn>;
   getProduct: (id: string) => Promise<Product>;
 }

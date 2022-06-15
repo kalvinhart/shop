@@ -1,11 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { ProductOptions } from "../../../infrastructure/services/interfaces/IHttpService";
+import { ProductData } from "../../../infrastructure/services/interfaces/IHttpService";
 import { AllProductsReturn } from "../../../infrastructure/services/interfaces/IProductService";
 import { AsyncThunkConfig } from "../../store";
 
 export const loadProducts = createAsyncThunk<
   AllProductsReturn,
-  ProductOptions,
+  ProductData,
   AsyncThunkConfig<any>
 >(
   "products/loadProducts",

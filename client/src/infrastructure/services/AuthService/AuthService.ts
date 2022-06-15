@@ -10,29 +10,34 @@ export default class AuthService implements IAuthService {
   }
 
   async registerUser(userCredentials: UserCredentials): Promise<User> {
-    const data: User = await this.httpService.post({
+    const response: User = await this.httpService.post({
       url: "/api/users/register",
-      options: userCredentials,
+      data: userCredentials,
     });
 
-    return data;
+    return response;
   }
 
   async signIn(userCredentials: UserCredentials): Promise<User> {
-    const data: User = await this.httpService.post({
+    const response: User = await this.httpService.post({
       url: "/api/users/login",
-      options: userCredentials,
+      data: userCredentials,
     });
-    return data;
+    return response;
   }
 
   async getUserDetails(user: UserIdToken): Promise<User> {
-    const data: User = await this.httpService.post({
+    const response: User = await this.httpService.post({
       url: `/api/users/${user.id}`,
-      options: user,
+      data: user,
+      options: {
+        headers: {
+          "Authorization": user.token
+        }
+      }
     });
 
-    return data;
+    return response;
   }
 
   signOut(): null {

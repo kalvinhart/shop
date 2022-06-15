@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Product } from "../../domain/models/Product";
-import { ProductOptions } from "../../infrastructure/services/interfaces/IHttpService";
+import { ProductData } from "../../infrastructure/services/interfaces/IHttpService";
 import { loadProducts } from "./thunks/productThunks";
 
 type ProductState = {
@@ -8,10 +8,10 @@ type ProductState = {
   error: boolean;
   count: number;
   products: Product[];
-  searchOptions?: ProductOptions;
+  searchOptions?: ProductData;
 };
 
-type ProductOptionsPayload = {
+export type ProductOptionsPayload = {
   option: string;
   newOption?: string;
 };
@@ -35,14 +35,14 @@ const productSlice = createSlice({
 
       const { option, newOption } = action!.payload;
 
-      const currentOptions: ProductOptions = {...state.searchOptions};
+      const currentOptions: ProductData = {...state.searchOptions};
 
 
       if (newOption !== "") {
-        currentOptions[option as keyof ProductOptions] = newOption;
+        currentOptions[option as keyof ProductData] = newOption;
         state.searchOptions = currentOptions;
       } else {
-        delete currentOptions[option as keyof ProductOptions];
+        delete currentOptions[option as keyof ProductData];
         state.searchOptions = currentOptions;
       }
     },
