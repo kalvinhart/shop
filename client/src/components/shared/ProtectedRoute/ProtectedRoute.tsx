@@ -1,10 +1,10 @@
 import { Navigate, Outlet, useLocation } from "react-router-dom";
-import { useAuthentication } from "../../../hooks/shared/useAuthentication/useAuthentication";
+import { useAuthState } from "../../../hooks/shared/useAuthState/useAuthState";
 import Spinner from "../Spinner/Spinner";
 
 const ProtectedRoute = () => {
   const location = useLocation();
-  const { loading, user, isAuthenticated } = useAuthentication();
+  const { loading, user, isAuthenticated } = useAuthState();
 
   if (loading) return <Spinner/>
 

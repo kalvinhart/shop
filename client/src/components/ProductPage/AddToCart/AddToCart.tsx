@@ -10,7 +10,7 @@ import {
 } from "./AddToCart.styles";
 import { H3, SpanPrice } from "../../../styles/fontStyles";
 import QuantityPicker from "../../shared/QuantityPicker/QuantityPicker";
-import { useAddToCart } from "../../../hooks/useAddToCart/useAddToCart";
+import { useAddToCart } from "../hooks/useAddToCart";
 import Button from "../../shared/Button/Button";
 import { Product } from "../../../domain/models/Product";
 

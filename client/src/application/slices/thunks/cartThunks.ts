@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-hot-toast";
 import { CartItem } from "../../../domain/models/CartItem";
 
-type UpdateCartItem = {
+export type UpdateCartItem = {
   id: string;
   newQty: number;
 }

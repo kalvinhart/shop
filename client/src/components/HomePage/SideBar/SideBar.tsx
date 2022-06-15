@@ -1,4 +1,4 @@
-import { useSideBar } from "../../../hooks/useSideBar/useSideBar";
+import { useSideBar } from "../hooks/useSideBar";
 
 import Spinner from "../../shared/Spinner/Spinner";
 
@@ -7,9 +7,9 @@ import { H3 } from "../../../styles/fontStyles";
 import { ButtonCategory } from "../../../styles/buttonStyles";
 
 const SideBar = () => {
-  const { loading, categories, searchOptions, handleCategoryChange } = useSideBar();
+  const { categoriesLoading, categories, searchOptions, handleCategoryChange } = useSideBar();
 
-  if (loading) return <Spinner />;
+  if (categoriesLoading) return <Spinner />;
 
   return (
     <>

@@ -1,4 +1,4 @@
-import { useLoginPage } from "../../hooks/useLoginPage/useLoginPage";
+import { useLoginPage } from "./hooks/useLoginPage";
 
 import AuthForm from "../shared/AuthForm/AuthForm";
 

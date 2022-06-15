@@ -1,3 +1,4 @@
+import { CartState } from "../application/slices/cartSlice";
 import { CartItem } from "../domain/models/CartItem";
 
 export const calculateCartCount = (cart: CartItem[]) => {
@@ -13,8 +14,8 @@ export const calculateCartTotal = (cart: CartItem[]) => {
   return parseFloat(cartTotal.toFixed(2));
 };
 
-export const updateLocalStorage = (cart: CartItem[]) => {
-  if (!cart) {
+export const updateLocalStorage = (cart: CartState) => {
+  if (!cart.cart) {
     localStorage.removeItem("cart");
   } else {
     const cartStorage = {

@@ -1,4 +1,4 @@
-import { useRegisterPage } from "../../hooks/useRegisterPage/useRegisterPage";
+import { useRegisterPage } from "./hooks/useRegisterPage";
 
 import AuthForm from "../shared/AuthForm/AuthForm";
 

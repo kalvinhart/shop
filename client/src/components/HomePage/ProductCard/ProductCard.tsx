@@ -6,7 +6,7 @@ import {
   StyledCardButtonWrapper,
 } from "./ProductCard.styles";
 import { H3, SpanPrice } from "../../../styles/fontStyles";
-import { useProductCard } from "../../../hooks/useProductCard/useProductCard";
+import { useProductCard } from "../hooks/useProductCard";
 import Button from "../../shared/Button/Button";
 import { Product } from "../../../domain/models/Product";
 

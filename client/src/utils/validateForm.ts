@@ -1,4 +1,4 @@
-import { InputConfig } from "../hooks/shared/useAuthForm/useAuthForm";
+import { InputConfig } from "../components/shared/AuthForm/hooks/useAuthForm";
 
 type Errors = {
   email?: string;

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { InputConfig, useAuthForm } from "../../../hooks/shared/useAuthForm/useAuthForm";
+import { InputConfig, useAuthForm } from "./hooks/useAuthForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner, faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 import Button from "../Button/Button"

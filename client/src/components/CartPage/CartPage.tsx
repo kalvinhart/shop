@@ -1,4 +1,4 @@
-import { useCartPage } from "../../hooks/useCartPage/useCartPage";
+import { useCartPage } from "./hooks/useCartPage";
 
 import NoCartItems from "../shared/NoCartItems/NoCartItems";
 import CartItem from "./CartItem/CartItem";

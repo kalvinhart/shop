@@ -1,14 +1,14 @@
-import { useProductPage } from "../../hooks/useProductPage/useProductPage";
+import { useProductPage } from "./hooks/useProductPage";
 
 import ProductDetails from "./ProductDetails/ProductDetails";
 import Spinner from "../shared/Spinner/Spinner";
 
 const ProductPage = () => {
-  const { loading, product, error } = useProductPage();
+  const { detailsError, product, detailsLoading } = useProductPage();
 
   return (
     <>
-      {loading ? (
+      {detailsLoading ? (
         <Spinner />
       ) : (
         <ProductDetails product={product} />

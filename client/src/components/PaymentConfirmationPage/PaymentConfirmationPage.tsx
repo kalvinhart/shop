@@ -1,4 +1,4 @@
-import { usePaymentConfirmationPage } from "../../hooks/usePaymentConfirmationPage/usePaymentConfirmationPage";
+import { usePaymentConfirmationPage } from "./hooks/usePaymentConfirmationPage";
 
 import { H2, StyledParagraph } from "../../styles/fontStyles";
 import Button from "../shared/Button/Button";

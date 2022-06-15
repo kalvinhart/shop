@@ -1,4 +1,4 @@
-import { useFilters } from "../../../hooks/useFilters/useFilters";
+import { useFilters } from "../hooks/useFilters";
 
 import {
   StyledFiltersBackground,

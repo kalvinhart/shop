@@ -1,4 +1,4 @@
-import { useCheckoutForm } from "../../../hooks/useCheckoutForm/useCheckoutForm";
+import { useCheckoutForm } from "../hooks/useCheckoutForm";
 
 import { PaymentElement } from "@stripe/react-stripe-js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

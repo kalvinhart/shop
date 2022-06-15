@@ -4,7 +4,7 @@ import { loadCart, addToCart, updateCart, removeFromCart } from "./thunks/cartTh
 import { calculateCartCount, calculateCartTotal } from "../../utils/cart";
 import { CartItem } from "../../domain/models/CartItem";
 
-type CartState = {
+export type CartState = {
   cart: CartItem[] | null;
   cartCount: number;
   cartTotal: number;

@@ -1,4 +1,4 @@
-import { useHomePage } from "../../hooks/useHomePage/useHomePage";
+import { useHomePage } from "./hooks/useHomePage";
 
 import ProductContent from "./ProductContent/ProductContent";
 

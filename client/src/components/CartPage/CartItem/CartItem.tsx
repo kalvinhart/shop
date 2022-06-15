@@ -14,7 +14,7 @@ import {
 } from "./CartItem.styles";
 import { H3, SpanGrey, SpanPrice, SpanRegular } from "../../../styles/fontStyles";
 
-import { useCartItem } from "../../../hooks/useCartItem/useCartItem";
+import { useCartItem } from "../hooks/useCartItem";
 import Button from "../../shared/Button/Button";
 import { CartItem as CartItemModel } from "../../../domain/models/CartItem";
 

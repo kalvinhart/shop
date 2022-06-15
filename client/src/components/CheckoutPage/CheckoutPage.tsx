@@ -5,7 +5,7 @@ import OrderSummary from "./OrderSummary/OrderSummary";
 import CheckoutForm from "./CheckoutForm/CheckoutForm";
 import Spinner from "../shared/Spinner/Spinner";
 import { StyledCheckoutWrapper } from "./Checkout.styles";
-import { useCheckoutPage } from "../../hooks/useCheckoutPage/useCheckoutPage";
+import { useCheckoutPage } from "./hooks/useCheckoutPage";
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY!);
 

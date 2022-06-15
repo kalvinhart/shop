@@ -1,4 +1,4 @@
-import { useSearchBar } from "../../../hooks/useSearchBar/useSearchBar";
+import { useSearchBar } from "./hooks/useSearchBar";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
