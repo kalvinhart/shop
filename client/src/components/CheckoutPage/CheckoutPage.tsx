@@ -7,7 +7,7 @@ import Spinner from "../shared/Spinner/Spinner";
 import { StyledCheckoutWrapper } from "./Checkout.styles";
 import { useCheckoutPage } from "../../hooks/useCheckoutPage/useCheckoutPage";
 
-const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY!);
 
 const CheckoutPage = () => {
   const { cart, cartTotal, total, clientSecret, appearance } = useCheckoutPage();
@@ -28,7 +28,6 @@ const CheckoutPage = () => {
                   cssSrc: "https://fonts.googleapis.com/css2?family=Poppins:wght@400;700",
                 },
               ],
-              loader: "always",
             }}
           >
             <CheckoutForm total={total} />

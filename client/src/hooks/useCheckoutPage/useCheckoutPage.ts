@@ -1,6 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useAppSelector } from "../../application/hooks/useAppSelector";
+import { CartItem } from "../../domain/models/CartItem";
+
+type Items = {
+  [key: string]: {
+    qty: number;
+    total: number;
+  }
+}
 
 export const useCheckoutPage = () => {
   const { cart, cartTotal } = useAppSelector((state) => state.cart);
@@ -12,9 +20,9 @@ export const useCheckoutPage = () => {
     if (!cart) return;
     if (!user) return;
 
-    const items = {};
+    const items: Items = {};
 
-    cart.forEach((item) => (items[item.id] = { qty: item.qty, total: item.total }));
+    cart.forEach((item: CartItem) => (items[item.id] = { qty: item.qty, total: item.total }));
 
     const createPaymentIntent = async () => {
       const { data } = await axios.post("/api/payment/create-intent", { items, user });

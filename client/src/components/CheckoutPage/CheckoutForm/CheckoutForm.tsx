@@ -14,7 +14,11 @@ import {
 import { StyledCheckoutFormWrapper } from "./CheckoutForm.styles";
 import Button from "../../shared/Button/Button";
 
-const CheckoutForm = ({ total }) => {
+type CheckoutFormProps = {
+  total: number;
+}
+
+const CheckoutForm = ({ total }: CheckoutFormProps) => {
   const { stripe, elements, register, errors, submitForm, error, loading } =
     useCheckoutForm();
 

@@ -1,3 +1,4 @@
+import { CartItem } from "../../../domain/models/CartItem";
 import { H3, SpanBold, SpanPrice } from "../../../styles/fontStyles";
 import OrderSummaryItem from "../OrderSummaryItem/OrderSummaryItem";
 import {
@@ -5,7 +6,12 @@ import {
   StyledOrderSummaryWrapper,
 } from "./OrderSummary.styles";
 
-const OrderSummary = ({ cart, cartTotal }) => {
+type OrderSummaryProps = {
+  cart: CartItem[];
+  cartTotal: number;
+}
+
+const OrderSummary = ({ cart, cartTotal }: OrderSummaryProps) => {
   return (
     <StyledOrderSummaryWrapper>
       <H3>Order Summary:</H3>
