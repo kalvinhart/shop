@@ -1,11 +1,15 @@
 import { SpanBold } from "../../../styles/fontStyles";
 import { StyledSpinner, StyledSpinnerWrapper } from "./Spinner.styles";
 
-const Spinner = () => {
+type SpinnerProps = {
+  testId?: string;
+};
+
+const Spinner = ({ testId = "none" }: SpinnerProps) => {
   return (
     <StyledSpinnerWrapper>
       <StyledSpinner />
-      <SpanBold>Loading...</SpanBold>
+      <SpanBold data-testid={testId}>Loading...</SpanBold>
     </StyledSpinnerWrapper>
   );
 };
