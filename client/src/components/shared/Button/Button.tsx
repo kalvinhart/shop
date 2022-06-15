@@ -3,7 +3,7 @@ import { StyledButton, StyledButtonProps } from "../../../styles/buttonStyles";
 type ButtonProps = StyledButtonProps & {
   className?: string;
   disabled?: boolean;
-  onClick: (e: React.SyntheticEvent) => void | (() => void);
+  onClick?: (e: React.SyntheticEvent) => void | (() => void);
   children: React.ReactNode;
 };
 
