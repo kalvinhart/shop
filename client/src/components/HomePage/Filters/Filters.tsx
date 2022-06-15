@@ -27,7 +27,7 @@ const Filters = () => {
 
       <StyledFilterSelectWrapper>
         <SpanBold>Sort By:</SpanBold>
-        <StyledSelect onChange={handleSelectChange} value={searchOptions.sortBy}>
+        <StyledSelect onChange={handleSelectChange} value={searchOptions!.sortBy}>
           {sortOptions.map((option) => (
             <option key={option.text} value={option.name}>
               {option.text}

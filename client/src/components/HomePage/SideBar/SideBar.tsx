@@ -21,7 +21,7 @@ const SideBar = () => {
             <StyledLI>
               <ButtonCategory
                 onClick={() => handleCategoryChange("")}
-                disabled={!searchOptions.categories}
+                disabled={!searchOptions!.categories}
               >
                 All
               </ButtonCategory>
@@ -30,7 +30,7 @@ const SideBar = () => {
               <StyledLI key={item.name}>
                 <ButtonCategory
                   onClick={() => handleCategoryChange(item.name)}
-                  disabled={item.name === searchOptions.categories}
+                  disabled={item.name === searchOptions!.categories}
                 >
                   {item.name}
                 </ButtonCategory>

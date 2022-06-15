@@ -8,7 +8,7 @@ type ProductState = {
   error: boolean;
   count: number;
   products: Product[];
-  searchOptions: ProductOptions;
+  searchOptions?: ProductOptions;
 };
 
 type ProductOptionsPayload = {
@@ -21,10 +21,7 @@ const initialState: ProductState = {
   error: false,
   count: 0,
   products: [],
-  searchOptions: {
-    categories: "",
-    sortBy: "-amountSold"
-  },
+  searchOptions: {},
 };
 
 const productSlice = createSlice({

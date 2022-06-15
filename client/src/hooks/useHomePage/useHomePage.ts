@@ -16,6 +16,7 @@ export const useHomePage = () => {
 
   useEffect(() => {
     if (searchOptions) {
+      //Reshape the object to match API enpoint
       const requestOptions = {
         options: { ...searchOptions },
         sortBy: searchOptions.sortBy ?? "",
@@ -24,12 +25,9 @@ export const useHomePage = () => {
       if (requestOptions.options.sortBy) {
         delete requestOptions.options.sortBy;
       }
-
       dispatch(loadProducts(requestOptions));
-    } else {
-      dispatch(loadProducts());
-    }
-  }, [searchOptions]);
+    } 
+  }, [searchOptions, dispatch]);
 
   return {
     products,
