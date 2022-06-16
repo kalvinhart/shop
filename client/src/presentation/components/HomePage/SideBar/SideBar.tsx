@@ -7,9 +7,10 @@ import { H3 } from "../../../styles/fontStyles";
 import { ButtonCategory } from "../../../styles/buttonStyles";
 
 const SideBar = () => {
-  const { categoriesLoading, categories, searchOptions, handleCategoryChange } = useSideBar();
+  const { categoriesLoading, categories, searchOptions, handleCategoryChange } =
+    useSideBar();
 
-  if (categoriesLoading) return <Spinner />;
+  if (categoriesLoading) return <Spinner testId="SideBarTest" />;
 
   return (
     <>
