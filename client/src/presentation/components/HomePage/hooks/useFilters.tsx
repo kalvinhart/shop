@@ -66,7 +66,10 @@ export const useFilters = () => {
   ];
 
   const handleSelectChange = (e: React.SyntheticEvent) => {
-    updateSearchOptions({ option: "sortBy", newOption: (e.target as HTMLSelectElement).value });
+    updateSearchOptions({
+      option: "sortBy",
+      newOption: (e.target as HTMLSelectElement).value,
+    });
   };
 
   return {
