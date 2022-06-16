@@ -37,7 +37,7 @@ const CartPage = () => {
             ))}
             <StyledCartSummary>
               <SpanBold>Subtotal:</SpanBold>
-              <SpanPrice>{`£${cartTotal}`}</SpanPrice>
+              <SpanPrice data-testid="CartPagePrice">{`£${cartTotal}`}</SpanPrice>
               <Button variant="primary" onClick={() => navigate("/checkout")}>
                 Continue to Checkout
               </Button>
