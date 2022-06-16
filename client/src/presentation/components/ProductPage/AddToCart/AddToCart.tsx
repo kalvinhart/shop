@@ -16,7 +16,7 @@ import { Product } from "../../../../domain/models/Product";
 
 type AddToCartProps = {
   product: Product;
-}
+};
 
 const AddToCart = ({ product }: AddToCartProps) => {
   const { quantity, price, stockQty, handleQuantityChange, handleAddToCart } =
@@ -35,7 +35,9 @@ const AddToCart = ({ product }: AddToCartProps) => {
 
         <StyledTotalWrapper>
           <H3>Total:</H3>
-          <SpanPrice>£{(quantity * price).toFixed(2)}</SpanPrice>
+          <SpanPrice data-testid="TotalPriceTest">
+            £{(quantity * price).toFixed(2)}
+          </SpanPrice>
         </StyledTotalWrapper>
       </StyledQuantityTotalWrapper>
 
