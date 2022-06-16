@@ -2,13 +2,13 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 
 import Filters from "./Filters";
-import { useFilters } from "../hooks/useFilters";
-
-import * as hook from "../hooks/useFilters";
-import { createTestStore } from "../../../utils/testUtils";
 import Button from "../../shared/Button/Button";
 
+import { createTestStore } from "../../../utils/testUtils";
+
 let store: any;
+
+let mockHasOptions: boolean;
 
 const mockOptionTag = (
   <Button variant="filter" key="test">
@@ -16,20 +16,24 @@ const mockOptionTag = (
   </Button>
 );
 
+const mockSearchOptions = {
+  categories: "PS5",
+  sortBy: "test2",
+};
+
+const mockSortOptions = [
+  { name: "test", text: "Tag Test" },
+  { name: "test2", text: "Tag Test2" },
+];
+
 jest.mock("../hooks/useFilters.tsx", () => ({
   useFilters: () => ({
     count: 5,
     handleSelectChange: (e: React.SyntheticEvent) => {},
-    hasOptions: true,
+    hasOptions: mockHasOptions,
     optionsTags: [mockOptionTag],
-    searchOptions: {
-      categories: "PS5",
-      sortBy: "test2",
-    },
-    sortOptions: [
-      { name: "test", text: "Tag Test" },
-      { name: "test2", text: "Tag Test2" },
-    ],
+    searchOptions: mockSearchOptions,
+    sortOptions: mockSortOptions,
   }),
 }));
 
@@ -49,15 +53,22 @@ describe("Filters", () => {
     expect(countText).toBeInTheDocument();
   });
 
-  // test("Does not display filter option when no filters are selected.", () => {
-  //   render(
-  //     <Provider store={store}>
-  //       <Filters />
-  //     </Provider>
-  //   );
-  // });
+  test("Does not display filter option when no filters are selected.", () => {
+    mockHasOptions = false;
+
+    render(
+      <Provider store={store}>
+        <Filters />
+      </Provider>
+    );
+
+    const optionsTagElement = screen.queryByText("Categories: Test");
+    expect(optionsTagElement).not.toBeInTheDocument();
+  });
 
   test("Displays correct current filter option.", () => {
+    mockHasOptions = true;
+
     render(
       <Provider store={store}>
         <Filters />
