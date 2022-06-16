@@ -74,7 +74,7 @@ const CartItem = ({ item }: CartItemProps) => {
         <StyledCartButtonsWrapper>
           <QuantityPicker quantity={qty} handleQuantityChange={handleQuantityChange} />
 
-          <SpanPrice>£{total}</SpanPrice>
+          <SpanPrice data-testid="CartItemPrice">£{total}</SpanPrice>
           <Button variant="secondary" onClick={handleRemove}>
             <FontAwesomeIcon icon={faTrashAlt} />
             Remove
