@@ -9,7 +9,7 @@ import {
 type OrderSummaryProps = {
   cart: CartItem[];
   cartTotal: number;
-}
+};
 
 const OrderSummary = ({ cart, cartTotal }: OrderSummaryProps) => {
   return (
@@ -20,7 +20,7 @@ const OrderSummary = ({ cart, cartTotal }: OrderSummaryProps) => {
       ))}
       <StyledOrderSummaryTotalWrapper>
         <SpanBold>Total:</SpanBold>
-        <SpanPrice>£{cartTotal}</SpanPrice>
+        <SpanPrice data-testid="OrderSummaryTotal">£{cartTotal}</SpanPrice>
       </StyledOrderSummaryTotalWrapper>
     </StyledOrderSummaryWrapper>
   );
