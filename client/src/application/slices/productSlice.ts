@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, isAnyOf, PayloadAction } from "@reduxjs/toolkit";
 import { Product } from "../../domain/models/Product";
 import { ProductData } from "../../infrastructure/services/interfaces/IHttpService";
 import { loadProducts } from "./thunks/productThunks";
@@ -35,8 +35,7 @@ const productSlice = createSlice({
 
       const { option, newOption } = action!.payload;
 
-      const currentOptions: ProductData = {...state.searchOptions};
-
+      const currentOptions: ProductData = { ...state.searchOptions };
 
       if (newOption !== "") {
         currentOptions[option as keyof ProductData] = newOption;
@@ -49,15 +48,15 @@ const productSlice = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addCase(loadProducts.pending, (state, action) => {
-        state.loading = true;
-        state.error = false;
-      })
       .addCase(loadProducts.fulfilled, (state, action) => {
         state.loading = false;
         state.error = false;
         state.count = action.payload.count;
         state.products = action.payload.products;
+      })
+      .addCase(loadProducts.pending, (state, action) => {
+        state.loading = true;
+        state.error = false;
       })
       .addCase(loadProducts.rejected, (state, action) => {
         state.loading = false;

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useHeader } from "./hooks/useHeader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserAlt, faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { faUserAlt, faCartShopping, faHeart } from "@fortawesome/free-solid-svg-icons";
 
 import SearchBar from "../SearchBar/SearchBar";
 
@@ -35,6 +35,9 @@ const Header = () => {
             <>
               <Link to="/profile" aria-label="View Profile">
                 <FontAwesomeIcon className="icon" icon={faUserAlt} size="lg" />
+              </Link>
+              <Link to="/wishlist" aria-label="View Wishlist">
+                <FontAwesomeIcon className="icon" icon={faHeart} size="lg" />
               </Link>
               <Button variant="primary" onClick={handleLogOut}>
                 Log out

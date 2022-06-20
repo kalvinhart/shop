@@ -9,16 +9,26 @@ import { H3, SpanPrice } from "../../../styles/fontStyles";
 import { useProductCard } from "./hooks/useProductCard";
 import Button from "../Button/Button";
 import { Product } from "../../../../domain/models/Product";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart, faHeartBroken } from "@fortawesome/free-solid-svg-icons";
 
 type ProductCardProps = {
   productInfo: Product;
 };
 
 const ProductCard = ({ productInfo }: ProductCardProps) => {
-  const { id, name, price, imageUrl, handleAddToCart } = useProductCard(productInfo);
+  const { id, name, price, imageUrl, isWishlisted, handleAddToCart, handleWishlist } =
+    useProductCard(productInfo);
 
   return (
     <StyledCardBackground>
+      <Button
+        variant="icon"
+        onClick={handleWishlist}
+        title={isWishlisted ? "Remove from Wishlist" : "Add to Wishlist"}
+      >
+        <FontAwesomeIcon icon={isWishlisted ? faHeartBroken : faHeart} />
+      </Button>
       <Link className="imageLink" to={`/product/${id}`}>
         <StyledCardImage src={imageUrl} alt={name} />
       </Link>

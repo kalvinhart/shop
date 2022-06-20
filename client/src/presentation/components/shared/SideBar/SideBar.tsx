@@ -4,7 +4,7 @@ import Spinner from "../Spinner/Spinner";
 
 import { StyledSideBarBackground, StyledUL, StyledLI } from "./SideBar.styles";
 import { H3 } from "../../../styles/fontStyles";
-import { ButtonCategory } from "../../../styles/buttonStyles";
+import { ButtonCategory } from "../Button/Button.styles";
 
 const SideBar = () => {
   const { categoriesLoading, categories, searchParams, showCategory, showAllCategories } =

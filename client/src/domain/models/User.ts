@@ -1,5 +1,6 @@
 export type User = {
   email: string;
   id: string;
-  token?: string;
+  token: string;
+  wishlist: string[];
 };

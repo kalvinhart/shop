@@ -1,9 +1,9 @@
 import styled, { css } from "styled-components";
 
 export type StyledButtonProps = {
-  variant: "filter" | "primary" | "secondary";
+  variant: "filter" | "primary" | "secondary" | "icon";
   size?: "regular" | "small" | "large";
-}
+};
 
 export const StyledButton = styled.button<StyledButtonProps>`
   padding: 8px 16px;
@@ -19,6 +19,17 @@ export const StyledButton = styled.button<StyledButtonProps>`
 
   ${({ variant }) => {
     switch (variant) {
+      case "icon":
+        return css`
+          position: absolute;
+          right: 0;
+          padding: 5px;
+          background-color: transparent;
+          box-shadow: none;
+          font-size: 26px;
+          color: var(--clr-secondary);
+        `;
+
       case "filter":
         return css`
           padding: 4px 10px;

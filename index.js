@@ -32,6 +32,7 @@ const initialiseApp = () => {
   app.use(express.urlencoded({ extended: true }));
   app.use("/api/categories", require("./routes/categoryRoutes"));
   app.use("/api/users", require("./routes/userRoutes"));
+  app.use("/api/wishlist", require("./routes/wishlistRoutes"));
   app.use("/api/products", require("./routes/productRoutes"));
 
   if (process.env.NODE_ENV === "production") {

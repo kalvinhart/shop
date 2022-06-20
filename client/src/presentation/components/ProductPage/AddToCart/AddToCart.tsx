@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart, faHeartBroken } from "@fortawesome/free-solid-svg-icons";
 
 import {
   StyledAddToCartWrapper,
@@ -19,8 +19,21 @@ type AddToCartProps = {
 };
 
 const AddToCart = ({ product }: AddToCartProps) => {
-  const { quantity, price, stockQty, handleQuantityChange, handleAddToCart } =
-    useAddToCart(product);
+  const {
+    id,
+    quantity,
+    price,
+    stockQty,
+    isWishlisted,
+    handleQuantityChange,
+    handleAddToCart,
+    addProductToWishlist,
+    deleteFromWishlist,
+  } = useAddToCart(product);
+
+  const handleWishlistClick = () => {
+    isWishlisted ? deleteFromWishlist(id) : addProductToWishlist(id);
+  };
 
   return (
     <StyledAddToCartWrapper>
@@ -50,9 +63,13 @@ const AddToCart = ({ product }: AddToCartProps) => {
         >
           Add to Cart
         </Button>
-        <Button variant="secondary" size="large" onClick={() => {}}>
-          <FontAwesomeIcon icon={faHeart} size="lg" />
-          Save to Wishlist
+        <Button variant="secondary" size="large" onClick={handleWishlistClick}>
+          {isWishlisted ? (
+            <FontAwesomeIcon icon={faHeartBroken} size="lg" />
+          ) : (
+            <FontAwesomeIcon icon={faHeart} size="lg" />
+          )}
+          Wishlist
         </Button>
       </StyledPurchaseButtonsWrapper>
     </StyledAddToCartWrapper>

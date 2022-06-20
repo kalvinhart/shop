@@ -30,6 +30,7 @@ const registerUser = catchAsync(async (req, res, next) => {
   const payload = {
     ...userCredentials,
     token: `Bearer ${token}`,
+    wishlist: user.wishlist,
   };
 
   res.status(201).json(payload);
@@ -58,6 +59,7 @@ const logInUser = catchAsync(async (req, res, next) => {
   const payload = {
     ...userCredentials,
     token: `Bearer ${token}`,
+    wishlist: user.wishlist,
   };
 
   res.status(200).json(payload);
@@ -65,6 +67,7 @@ const logInUser = catchAsync(async (req, res, next) => {
 
 const getUserInfo = catchAsync(async (req, res, next) => {
   const { id } = req.params;
+  const token = req.header("Authorization");
 
   const user = await User.findOne({ _id: id });
   if (!user) throw new Error("User does not exist.");
@@ -72,6 +75,8 @@ const getUserInfo = catchAsync(async (req, res, next) => {
   const payload = {
     id: user._id,
     email: user.email,
+    token,
+    wishlist: user.wishlist,
   };
 
   res.status(200).json(payload);

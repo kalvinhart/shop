@@ -16,7 +16,13 @@ type AuthData = {
   token: string;
 };
 
-export type Data = UserData | ProductData | AuthData;
+export type WishlistData = {
+  userId: string;
+  productId: string;
+  token: string;
+};
+
+export type Data = UserData | ProductData | AuthData | WishlistData;
 
 export type GetOptions = {
   url: string;
