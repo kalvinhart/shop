@@ -1,25 +1,34 @@
-import { useProductState } from "../../../hooks/useProductState/useProductState";
+import { useSearchParams } from "react-router-dom";
+
+import { useProductState } from "../../../../hooks/useProductState/useProductState";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import Button from "../../shared/Button/Button";
+import Button from "../../Button/Button";
+
+import {
+  formatOldSearchParams,
+  removeSearchParam,
+} from "../../../../utils/formatSearchParams";
 
 export const useFilters = () => {
-  const { count, searchOptions, updateSearchOptions } = useProductState();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const { count, searchOptions } = useProductState();
 
-  const hasOptions = Object.keys(searchOptions as object).length > 0;
-
-  const handleRemoveOptions = (option: string) => {
-    updateSearchOptions({ option, newOption: "" });
-  };
+  const hasOptions = Array.from(searchParams.keys()).length > 0;
 
   let optionsTags: JSX.Element[] = [];
 
+  const handleRemoveParam = (searchParams: URLSearchParams, param: string): void => {
+    const newParams = removeSearchParam(searchParams, param);
+    setSearchParams(newParams);
+  };
+
   if (hasOptions) {
-    Object.entries(searchOptions as object).forEach((item) => {
+    Array.from(searchParams.entries()).forEach((item) => {
       const [optionName, optionValue] = item;
 
-      if (optionName === "sortBy") return;
+      if (optionName === "sort") return;
 
       const formattedOptionName = `${optionName
         .slice(0, 1)
@@ -29,7 +38,7 @@ export const useFilters = () => {
         <Button
           variant="filter"
           key={optionValue}
-          onClick={() => handleRemoveOptions(optionName)}
+          onClick={() => handleRemoveParam(searchParams, optionName)}
         >
           {`${formattedOptionName}: ${optionValue}`}
           <FontAwesomeIcon icon={faTimes} />
@@ -65,18 +74,25 @@ export const useFilters = () => {
     },
   ];
 
+  const selectValue =
+    searchParams.get("sort") === null ? "-amountSold" : searchParams.get("sort");
+
   const handleSelectChange = (e: React.SyntheticEvent) => {
-    updateSearchOptions({
-      option: "sortBy",
-      newOption: (e.target as HTMLSelectElement).value,
-    });
+    const oldParams = formatOldSearchParams(searchParams);
+    const newParams = {
+      ...oldParams,
+      sort: (e.target as HTMLSelectElement).value,
+    };
+    setSearchParams(newParams);
   };
 
   return {
     count,
+    selectValue,
     handleSelectChange: (e: React.SyntheticEvent) => handleSelectChange(e),
     hasOptions,
     optionsTags,
+    searchParams,
     searchOptions,
     sortOptions,
   };

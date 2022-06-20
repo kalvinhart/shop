@@ -1,21 +1,23 @@
-import { faHandsWash } from "@fortawesome/free-solid-svg-icons";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
+import { MemoryRouter } from "react-router-dom";
 import { createTestStore } from "../../../utils/testUtils";
 import SideBar from "./SideBar";
 
 let store: any;
 
 let mockCategoriesLoading: boolean = false;
-let mockSearchOptions = {};
-let mockHandleChange = jest.fn();
+let mockShowCategory = jest.fn();
+let mockShowAllCategories = jest.fn();
+let mockURLParams = new URLSearchParams({});
 
-jest.mock("../hooks/useSideBar.ts", () => ({
+jest.mock("./hooks/useSideBar.ts", () => ({
   useSideBar: () => ({
     categoriesLoading: mockCategoriesLoading,
     categories: [{ name: "Category1" }, { name: "Category2" }, { name: "Category3" }],
-    searchOptions: mockSearchOptions,
-    handleCategoryChange: mockHandleChange,
+    searchParams: mockURLParams,
+    showCategory: (category: string) => mockShowCategory(category),
+    showAllCategories: () => mockShowAllCategories(),
   }),
 }));
 
@@ -58,7 +60,9 @@ describe("SideBar", () => {
   test("'All' button is disabled if no search option is present", () => {
     render(
       <Provider store={store}>
-        <SideBar />
+        <MemoryRouter initialEntries={["/products"]}>
+          <SideBar />
+        </MemoryRouter>
       </Provider>
     );
 
@@ -67,13 +71,12 @@ describe("SideBar", () => {
   });
 
   test("'All' button is not disabled if search option is present", () => {
-    mockSearchOptions = {
-      categories: "Category1",
-    };
-
+    mockURLParams = new URLSearchParams({ category: "Category1" });
     render(
       <Provider store={store}>
-        <SideBar />
+        <MemoryRouter initialEntries={["/products?category=Category1"]}>
+          <SideBar />
+        </MemoryRouter>
       </Provider>
     );
 
@@ -82,10 +85,6 @@ describe("SideBar", () => {
   });
 
   test("Clicking 'All' calls the update function correctly.", () => {
-    mockSearchOptions = {
-      categories: "Category1",
-    };
-
     render(
       <Provider store={store}>
         <SideBar />
@@ -96,24 +95,21 @@ describe("SideBar", () => {
 
     fireEvent.click(allButtonElement);
 
-    expect(mockHandleChange).toHaveBeenCalledTimes(1);
-    expect(mockHandleChange).toHaveBeenCalledWith("");
+    expect(mockShowAllCategories).toHaveBeenCalledTimes(1);
   });
 
   test("Clicking a category calls the update function correctly.", () => {
-    mockSearchOptions = {};
-
     render(
       <Provider store={store}>
         <SideBar />
       </Provider>
     );
 
-    const category1Element = screen.getByText("Category1");
+    const category1Element = screen.getByText("Category2");
 
     fireEvent.click(category1Element);
 
-    expect(mockHandleChange).toHaveBeenCalledTimes(1);
-    expect(mockHandleChange).toHaveBeenCalledWith("Category1");
+    expect(mockShowCategory).toHaveBeenCalledTimes(1);
+    expect(mockShowCategory).toHaveBeenCalledWith("Category2");
   });
 });

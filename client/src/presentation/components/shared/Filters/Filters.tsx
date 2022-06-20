@@ -1,4 +1,4 @@
-import { useFilters } from "../hooks/useFilters";
+import { useFilters } from "./hooks/useFilters";
 
 import {
   StyledFiltersBackground,
@@ -9,14 +9,8 @@ import { H3, SpanBold } from "../../../styles/fontStyles";
 import { StyledSelect } from "../../../styles/formStyles";
 
 const Filters = () => {
-  const {
-    count,
-    sortOptions,
-    hasOptions,
-    optionsTags,
-    searchOptions,
-    handleSelectChange,
-  } = useFilters();
+  const { count, sortOptions, hasOptions, optionsTags, selectValue, handleSelectChange } =
+    useFilters();
 
   return (
     <StyledFiltersBackground>
@@ -27,7 +21,7 @@ const Filters = () => {
 
       <StyledFilterSelectWrapper>
         <SpanBold>Sort By:</SpanBold>
-        <StyledSelect onChange={handleSelectChange} value={searchOptions!.sortBy}>
+        <StyledSelect onChange={handleSelectChange} value={selectValue!}>
           {sortOptions.map((option) => (
             <option key={option.text} value={option.name}>
               {option.text}

@@ -1,11 +1,6 @@
-import { render, screen } from "@testing-library/react";
-import { Provider } from "react-redux";
-import { MemoryRouter } from "react-router-dom";
-import { Product } from "../../../../domain/models/Product";
-import { createTestStore } from "../../../utils/testUtils";
 import ProductContent from "./ProductContent";
-
-let store: any;
+import { Product } from "../../../../domain/models/Product";
+import { screen, renderWithWrappers } from "../../../utils/testUtils";
 
 const testProducts: Product[] = [
   {
@@ -21,36 +16,22 @@ const testProducts: Product[] = [
 ];
 
 describe("ProductContent", () => {
-  beforeEach(() => {
-    store = createTestStore();
-  });
-
   test("Renders a spinner whilst loading.", () => {
-    render(
-      <Provider store={store}>
-        <ProductContent products={[]} productsLoading={true} />
-      </Provider>
-    );
+    renderWithWrappers(<ProductContent products={[]} productsLoading={true} />);
     const loadingElement = screen.getByTestId("products-spinner");
     expect(loadingElement).toBeInTheDocument();
   });
 
   test("Does not render a spinner when loading is finished.", () => {
-    render(
-      <Provider store={store}>
-        <ProductContent products={[]} productsLoading={false} />
-      </Provider>
-    );
+    renderWithWrappers(<ProductContent products={[]} productsLoading={false} />);
+
     const loadingElement = screen.queryByTestId("products-spinner");
     expect(loadingElement).not.toBeInTheDocument();
   });
 
   test("Renders no results if no products exist.", () => {
-    render(
-      <Provider store={store}>
-        <ProductContent products={[]} productsLoading={false} />
-      </Provider>
-    );
+    renderWithWrappers(<ProductContent products={[]} productsLoading={false} />);
+
     const noResultsElement = screen.getByText(
       "Unfortunately we could not find any results matching your search."
     );
@@ -58,12 +39,8 @@ describe("ProductContent", () => {
   });
 
   test("Renders products correctly.", () => {
-    render(
-      <Provider store={store}>
-        <MemoryRouter>
-          <ProductContent products={testProducts} productsLoading={false} />
-        </MemoryRouter>
-      </Provider>
+    renderWithWrappers(
+      <ProductContent products={testProducts} productsLoading={false} />
     );
 
     const noResultsElement = screen.queryByText(

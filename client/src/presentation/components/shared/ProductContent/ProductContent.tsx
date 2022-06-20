@@ -1,7 +1,7 @@
 import ProductGrid from "../ProductGrid/ProductGrid";
 import ProductCard from "../ProductCard/ProductCard";
 import SideBar from "../SideBar/SideBar";
-import Spinner from "../../shared/Spinner/Spinner";
+import Spinner from "../Spinner/Spinner";
 
 import { StyledProductContentWrapper } from "./ProductContent.styles";
 import NoResults from "../NoResults/NoResults";

@@ -31,7 +31,7 @@ const AppRoutes = () => {
         path="/"
         element={
           <Suspense fallback={<Spinner />}>
-            <HomePage />
+            <ProductsPage />
           </Suspense>
         }
       />

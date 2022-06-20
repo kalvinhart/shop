@@ -6,13 +6,13 @@ import {
   StyledCardButtonWrapper,
 } from "./ProductCard.styles";
 import { H3, SpanPrice } from "../../../styles/fontStyles";
-import { useProductCard } from "../hooks/useProductCard";
-import Button from "../../shared/Button/Button";
+import { useProductCard } from "./hooks/useProductCard";
+import Button from "../Button/Button";
 import { Product } from "../../../../domain/models/Product";
 
 type ProductCardProps = {
   productInfo: Product;
-}
+};
 
 const ProductCard = ({ productInfo }: ProductCardProps) => {
   const { id, name, price, imageUrl, handleAddToCart } = useProductCard(productInfo);

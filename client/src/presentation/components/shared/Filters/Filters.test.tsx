@@ -1,12 +1,7 @@
-import { fireEvent, render, screen } from "@testing-library/react";
-import { Provider } from "react-redux";
+import { fireEvent, screen, renderWithWrappers } from "../../../utils/testUtils";
 
 import Filters from "./Filters";
-import Button from "../../shared/Button/Button";
-
-import { createTestStore } from "../../../utils/testUtils";
-
-let store: any;
+import Button from "../Button/Button";
 
 let mockHasOptions: boolean;
 
@@ -26,9 +21,10 @@ const mockSortOptions = [
   { name: "test2", text: "Tag Test2" },
 ];
 
-jest.mock("../hooks/useFilters.tsx", () => ({
+jest.mock("./hooks/useFilters.tsx", () => ({
   useFilters: () => ({
     count: 5,
+    selectValue: "-amountSold",
     handleSelectChange: (e: React.SyntheticEvent) => {},
     hasOptions: mockHasOptions,
     optionsTags: [mockOptionTag],
@@ -38,16 +34,8 @@ jest.mock("../hooks/useFilters.tsx", () => ({
 }));
 
 describe("Filters", () => {
-  beforeEach(() => {
-    store = createTestStore();
-  });
-
   test("Displays correct results count.", () => {
-    render(
-      <Provider store={store}>
-        <Filters />
-      </Provider>
-    );
+    renderWithWrappers(<Filters />);
 
     const countText = screen.getByText("5 Results");
     expect(countText).toBeInTheDocument();
@@ -56,11 +44,7 @@ describe("Filters", () => {
   test("Does not display filter option when no filters are selected.", () => {
     mockHasOptions = false;
 
-    render(
-      <Provider store={store}>
-        <Filters />
-      </Provider>
-    );
+    renderWithWrappers(<Filters />);
 
     const optionsTagElement = screen.queryByText("Categories: Test");
     expect(optionsTagElement).not.toBeInTheDocument();
@@ -69,33 +53,21 @@ describe("Filters", () => {
   test("Displays correct current filter option.", () => {
     mockHasOptions = true;
 
-    render(
-      <Provider store={store}>
-        <Filters />
-      </Provider>
-    );
+    renderWithWrappers(<Filters />);
 
     const optionsTagElement = screen.getByText("Categories: Test");
     expect(optionsTagElement).toBeInTheDocument();
   });
 
   test("Select element displays correct default selected filter option.", () => {
-    render(
-      <Provider store={store}>
-        <Filters />
-      </Provider>
-    );
+    renderWithWrappers(<Filters />);
 
     const selectText = screen.getByText("Tag Test2");
     expect(selectText).toBeInTheDocument();
   });
 
   test("Select element displays correct current selected filter option.", () => {
-    render(
-      <Provider store={store}>
-        <Filters />
-      </Provider>
-    );
+    renderWithWrappers(<Filters />);
 
     const selectElement: HTMLSelectElement = screen.getByText("Tag Test2");
     expect(selectElement.value).toBe("test2");
