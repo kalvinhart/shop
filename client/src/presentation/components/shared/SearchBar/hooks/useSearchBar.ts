@@ -1,16 +1,23 @@
-import { useNavigate } from "react-router";
-import { useProductState } from "../../../../hooks/useProductState/useProductState";
+import { useSearchParams } from "react-router-dom";
+import { formatOldSearchParams } from "../../../../utils/formatSearchParams";
 
 export const useSearchBar = () => {
-  const navigate = useNavigate();
-  const {updateSearchOptions} = useProductState();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const handleSearchSubmit = (e: any) => {
     e.preventDefault();
 
-    if (e.target[0].value) {
-      updateSearchOptions({option: "name", newOption: e.target[0].value});
-      navigate(`/`);
+    const searchTerm = e.target[0].value;
+
+    if (searchTerm) {
+      const oldParams = formatOldSearchParams(searchParams);
+      const newParams = {
+        ...oldParams,
+        name: searchTerm,
+      };
+
+      setSearchParams(newParams);
+
       e.target[0].value = "";
     }
   };
