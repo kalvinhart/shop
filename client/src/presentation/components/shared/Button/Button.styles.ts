@@ -28,6 +28,11 @@ export const StyledButton = styled.button<StyledButtonProps>`
           box-shadow: none;
           font-size: 26px;
           color: var(--clr-secondary);
+          transition: color 0.2s ease-in-out;
+
+          &:hover {
+            color: var(--clr-secondary-hover);
+          }
         `;
 
       case "filter":
