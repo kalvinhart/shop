@@ -2,13 +2,8 @@ import { useEffect } from "react";
 import { useProductState } from "../../../hooks/useProductState/useProductState";
 
 export const useHomePage = () => {
-  const {
-    productsLoading,
-    productsError,
-    products,
-    searchOptions,
-    loadProducts
-  } = useProductState()
+  const { productsLoading, productsError, products, searchOptions, loadProducts } =
+    useProductState();
 
   useEffect(() => {
     if (searchOptions) {
@@ -22,7 +17,7 @@ export const useHomePage = () => {
         delete requestOptions.options.sortBy;
       }
       loadProducts(requestOptions);
-    } 
+    }
   }, [searchOptions, loadProducts]);
 
   return {
