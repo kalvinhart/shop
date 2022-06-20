@@ -35,6 +35,7 @@ const authSlice = createSlice({
         state.loading = false;
         state.isAuthenticated = false;
         state.user = null;
+        state.wishlist = [];
       })
       .addCase(saveToWishlist.fulfilled, (state, action) => {
         state.loading = false;
