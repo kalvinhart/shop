@@ -1,15 +1,16 @@
-import { useSideBar } from "../hooks/useSideBar";
+import { useSideBar } from "./hooks/useSideBar";
 
-import Spinner from "../../shared/Spinner/Spinner";
+import Spinner from "../Spinner/Spinner";
 
 import { StyledSideBarBackground, StyledUL, StyledLI } from "./SideBar.styles";
 import { H3 } from "../../../styles/fontStyles";
 import { ButtonCategory } from "../../../styles/buttonStyles";
 
 const SideBar = () => {
-  const { categoriesLoading, categories, searchOptions, handleCategoryChange } = useSideBar();
+  const { categoriesLoading, categories, searchParams, showCategory, showAllCategories } =
+    useSideBar();
 
-  if (categoriesLoading) return <Spinner />;
+  if (categoriesLoading) return <Spinner testId="SideBarTest" />;
 
   return (
     <>
@@ -20,8 +21,8 @@ const SideBar = () => {
           <StyledUL>
             <StyledLI>
               <ButtonCategory
-                onClick={() => handleCategoryChange("")}
-                disabled={!searchOptions!.categories}
+                onClick={showAllCategories}
+                disabled={searchParams.get("category") === null}
               >
                 All
               </ButtonCategory>
@@ -29,8 +30,8 @@ const SideBar = () => {
             {categories.map((item) => (
               <StyledLI key={item.name}>
                 <ButtonCategory
-                  onClick={() => handleCategoryChange(item.name)}
-                  disabled={item.name === searchOptions!.categories}
+                  onClick={() => showCategory(item.name)}
+                  disabled={searchParams.get("category") === item.name}
                 >
                   {item.name}
                 </ButtonCategory>

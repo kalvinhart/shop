@@ -19,10 +19,9 @@ import {
 } from "./CartItem.styles";
 import { H3, SpanGrey, SpanPrice, SpanRegular } from "../../../styles/fontStyles";
 
-
 type CartItemProps = {
   item: CartItemModel;
-}
+};
 
 const CartItem = ({ item }: CartItemProps) => {
   const {
@@ -39,7 +38,7 @@ const CartItem = ({ item }: CartItemProps) => {
   } = useCartItem(item);
 
   return (
-    <StyledCartItemWrapper>
+    <StyledCartItemWrapper data-testid="CartItemElement">
       <Link to={`/product/${id}`}>
         <StyledCartItemImage src={imageUrl} alt={name} />
       </Link>
@@ -75,7 +74,7 @@ const CartItem = ({ item }: CartItemProps) => {
         <StyledCartButtonsWrapper>
           <QuantityPicker quantity={qty} handleQuantityChange={handleQuantityChange} />
 
-          <SpanPrice>£{total}</SpanPrice>
+          <SpanPrice data-testid="CartItemPrice">£{total}</SpanPrice>
           <Button variant="secondary" onClick={handleRemove}>
             <FontAwesomeIcon icon={faTrashAlt} />
             Remove

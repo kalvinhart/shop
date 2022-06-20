@@ -5,13 +5,23 @@ import ProtectedRoute from "./presentation/components/shared/ProtectedRoute/Prot
 import Spinner from "./presentation/components/shared/Spinner/Spinner";
 
 const HomePage = lazy(() => import("./presentation/components/HomePage/HomePage"));
-const RegisterPage = lazy(() => import("./presentation/components/RegisterPage/RegisterPage"));
+const RegisterPage = lazy(
+  () => import("./presentation/components/RegisterPage/RegisterPage")
+);
 const LoginPage = lazy(() => import("./presentation/components/LoginPage/LoginPage"));
-const ProductPage = lazy(() => import("./presentation/components/ProductPage/ProductPage"));
+const ProductsPage = lazy(
+  () => import("./presentation/components/ProductsPage/ProductsPage")
+);
+const ProductPage = lazy(
+  () => import("./presentation/components/ProductPage/ProductPage")
+);
 const CartPage = lazy(() => import("./presentation/components/CartPage/CartPage"));
-const CheckoutPage = lazy(() => import("./presentation/components/CheckoutPage/CheckoutPage"));
+const CheckoutPage = lazy(
+  () => import("./presentation/components/CheckoutPage/CheckoutPage")
+);
 const PaymentConfirmationPage = lazy(
-  () => import("./presentation/components/PaymentConfirmationPage/PaymentConfirmationPage")
+  () =>
+    import("./presentation/components/PaymentConfirmationPage/PaymentConfirmationPage")
 );
 
 const AppRoutes = () => {
@@ -21,7 +31,7 @@ const AppRoutes = () => {
         path="/"
         element={
           <Suspense fallback={<Spinner />}>
-            <HomePage />
+            <ProductsPage />
           </Suspense>
         }
       />
@@ -38,6 +48,14 @@ const AppRoutes = () => {
         element={
           <Suspense fallback={<Spinner />}>
             <LoginPage />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/products"
+        element={
+          <Suspense fallback={<Spinner />}>
+            <ProductsPage />
           </Suspense>
         }
       />
@@ -71,7 +89,7 @@ const AppRoutes = () => {
           path="/checkout"
           element={
             <Suspense fallback={<Spinner />}>
-                <CheckoutPage />
+              <CheckoutPage />
             </Suspense>
           }
         />

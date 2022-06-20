@@ -7,6 +7,7 @@ type UserData = {
 
 export type ProductData = {
   categories?: string;
+  name?: string;
   sortBy?: string;
 };
 

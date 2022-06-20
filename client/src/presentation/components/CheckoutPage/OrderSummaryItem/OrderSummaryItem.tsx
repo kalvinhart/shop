@@ -8,16 +8,18 @@ type OrderSummaryItemProps = {
     qty: number;
     price: number;
     total: number;
-  }
-}
+  };
+};
 
-const OrderSummaryItem = ({ item: { name, brand, qty, price, total } }: OrderSummaryItemProps) => {
+const OrderSummaryItem = ({
+  item: { name, brand, qty, price, total },
+}: OrderSummaryItemProps) => {
   return (
     <StyledOrderSummaryItemWrapper>
-      <SpanBold>{name}</SpanBold>
-      <SpanRegular>{brand}</SpanRegular>
-      <SpanRegular>{`£${price} x ${qty}`}</SpanRegular>
-      <SpanPrice>£{total}</SpanPrice>
+      <SpanBold data-testid="OrderSummaryItem-Name">{name}</SpanBold>
+      <SpanRegular data-testid="OrderSummaryItem-Brand">{brand}</SpanRegular>
+      <SpanRegular data-testid="OrderSummaryItem-QtyPrice">{`£${price} x ${qty}`}</SpanRegular>
+      <SpanPrice data-testid="OrderSummaryItem-Total">£{total}</SpanPrice>
     </StyledOrderSummaryItemWrapper>
   );
 };
