@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import {
   StyledCardBackground,
@@ -11,6 +11,7 @@ import Button from "../Button/Button";
 import { Product } from "../../../../domain/models/Product";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faHeartBroken } from "@fortawesome/free-solid-svg-icons";
+import { useAuthState } from "../../../hooks/useAuthState/useAuthState";
 
 type ProductCardProps = {
   productInfo: Product;
@@ -20,15 +21,28 @@ const ProductCard = ({ productInfo }: ProductCardProps) => {
   const { id, name, price, imageUrl, isWishlisted, handleAddToCart, handleWishlist } =
     useProductCard(productInfo);
 
+  const { user } = useAuthState();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleWishlistClick = () => {
+    if (user === null) {
+      navigate("/login", { state: { from: location } });
+    } else {
+      handleWishlist();
+    }
+  };
+
   return (
     <StyledCardBackground>
       <Button
         variant="icon"
-        onClick={handleWishlist}
+        onClick={handleWishlistClick}
         title={isWishlisted ? "Remove from Wishlist" : "Add to Wishlist"}
       >
         <FontAwesomeIcon icon={isWishlisted ? faHeartBroken : faHeart} />
       </Button>
+
       <Link className="imageLink" to={`/product/${id}`}>
         <StyledCardImage src={imageUrl} alt={name} />
       </Link>
