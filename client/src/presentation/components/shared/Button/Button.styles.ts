@@ -86,20 +86,3 @@ export const StyledButton = styled.button<StyledButtonProps>`
     background-color: var(--clr-button-disabled);
   }
 `;
-
-export const ButtonCategory = styled.button`
-  padding: 5px 10px;
-  background-color: transparent;
-  border: none;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-
-  &:hover {
-    text-decoration: underline;
-  }
-
-  &:disabled {
-    cursor: not-allowed;
-  }
-`;
