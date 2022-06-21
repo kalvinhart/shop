@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
+
 import { User } from "../../../domain/models/User";
 import {
   UserCredentials,
@@ -17,13 +18,6 @@ export const registerUser = createAsyncThunk<
   async (userCredentials, { rejectWithValue, extra: { authApi } }) => {
     try {
       const data: User = await authApi.registerUser(userCredentials);
-
-      // const user = {
-      //   id: data.id,
-      //   email: data.email,
-      //   token: data.token || "",
-      //   wishlist: data.wishlist,
-      // };
 
       localStorage.setItem(
         "user",
@@ -46,13 +40,6 @@ export const logInUser = createAsyncThunk<User, UserCredentials, AsyncThunkConfi
     try {
       const data: User = await authApi.signIn(userCredentials);
 
-      // const user = {
-      //   id: data.id,
-      //   email: data.email,
-      //   token: data.token || "",
-      //   wishlist: data.wishlist,
-      // };
-
       localStorage.setItem(
         "user",
         JSON.stringify({
@@ -74,13 +61,6 @@ export const loadUserDetails = createAsyncThunk<User, UserIdToken, AsyncThunkCon
     try {
       const data: User = await authApi.getUserDetails(userDetails);
 
-      // const user = {
-      //   id: data.id,
-      //   email: data.email,
-      //   token: data.token || "",
-      //   wishlist: data.wishlist,
-      // };
-
       return data;
     } catch (err: any) {
       return rejectWithValue(err.message);
@@ -101,7 +81,7 @@ export const saveToWishlist = createAsyncThunk<
   WishlistData,
   AsyncThunkConfig<any>
 >(
-  "products/saveToWishList",
+  "auth/saveToWishList",
   async (data: WishlistData, { rejectWithValue, extra: { authApi } }) => {
     try {
       await authApi.saveToWishlist(data);
@@ -118,7 +98,7 @@ export const removeFromWishlist = createAsyncThunk<
   WishlistData,
   AsyncThunkConfig<any>
 >(
-  "products/removeFromWishList",
+  "auth/removeFromWishList",
   async (data: WishlistData, { rejectWithValue, extra: { authApi } }) => {
     try {
       await authApi.removeFromWishlist(data);
