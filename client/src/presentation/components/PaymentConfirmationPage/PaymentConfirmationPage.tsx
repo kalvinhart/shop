@@ -3,9 +3,12 @@ import { usePaymentConfirmationPage } from "./hooks/usePaymentConfirmationPage";
 import { H2, StyledParagraph } from "../../styles/fontStyles";
 import Button from "../shared/Button/Button";
 import { StyledConfirmationBackground } from "./PaymentConfirmationPage.styles";
+import { usePageTitle } from "../../hooks/usePageTitle/usePageTitle";
 
 const PaymentConfirmationPage = () => {
   const { orderStatus, navigate } = usePaymentConfirmationPage();
+
+  usePageTitle("Payment Confirmation");
 
   return (
     <StyledConfirmationBackground>
