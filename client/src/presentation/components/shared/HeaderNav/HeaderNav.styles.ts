@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
-export const StyledHeaderNav = styled.nav`
-  position: relative;
-`;
+export const StyledHeaderNav = styled.nav``;
 
 export const StyledHeaderNavUL = styled.ul`
   display: flex;
@@ -11,6 +9,13 @@ export const StyledHeaderNavUL = styled.ul`
 `;
 
 export const StyledHeaderNavLI = styled.li`
+  &:hover [data-name="overlay"] {
+    opacity: 1;
+  }
+`;
+
+export const StyledHeaderNavItemsWrapper = styled.div`
+  position: relative;
   &:not(:last-child) {
     margin-right: 10px;
   }
@@ -47,6 +52,18 @@ export const StyledHeaderNavItem = styled.button`
   &:hover::after {
     transform: scaleX(1) translateX(-50%);
   }
+`;
+
+export const StyledHeaderNavOverlay = styled.div`
+  position: absolute;
+  top: var(--header-height);
+  left: 0;
+  width: 100vw;
+  height: calc(100vh - var(--header-height));
+  background-color: rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: opacity 0.1s ease-in-out;
+  pointer-events: none;
 `;
 
 export const StyledHeaderBrowseWrapper = styled.div`

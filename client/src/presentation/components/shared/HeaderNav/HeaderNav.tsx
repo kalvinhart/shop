@@ -12,7 +12,9 @@ import {
   StyledHeaderCategoriesUL,
   StyledHeaderNav,
   StyledHeaderNavItem,
+  StyledHeaderNavItemsWrapper,
   StyledHeaderNavLI,
+  StyledHeaderNavOverlay,
   StyledHeaderNavUL,
   StyledHeaderSubcategoryWrapper,
 } from "./HeaderNav.styles";
@@ -33,37 +35,42 @@ const HeaderNav = () => {
     <StyledHeaderNav>
       <StyledHeaderNavUL>
         <StyledHeaderNavLI>
-          <StyledHeaderNavItem>
-            Browse
-            <FontAwesomeIcon icon={faChevronDown} />
-          </StyledHeaderNavItem>
+          <StyledHeaderNavItemsWrapper>
+            <StyledHeaderNavItem>
+              Browse
+              <FontAwesomeIcon icon={faChevronDown} />
+            </StyledHeaderNavItem>
 
-          <StyledHeaderBrowseWrapper>
-            <StyledHeaderCategoriesUL>
-              {categories.map((category) => (
-                <StyledHeaderCategoriesLI>
-                  <Link to={`/products?category=${category.name}`}>{category.name}</Link>
+            <StyledHeaderBrowseWrapper>
+              <StyledHeaderCategoriesUL>
+                {categories.map((category) => (
+                  <StyledHeaderCategoriesLI>
+                    <Link to={`/products?category=${category.name}`}>
+                      {category.name}
+                    </Link>
 
-                  {category.subcategories.length > 0 && (
-                    <>
-                      <FontAwesomeIcon icon={faChevronRight} />
-                      <StyledHeaderSubcategoryWrapper>
-                        <StyledHeaderCategoriesUL>
-                          {category.subcategories.map((subcategory) => (
-                            <StyledHeaderCategoriesLI>
-                              <Link to={`/products?category=${subcategory}`}>
-                                {subcategory}
-                              </Link>
-                            </StyledHeaderCategoriesLI>
-                          ))}
-                        </StyledHeaderCategoriesUL>
-                      </StyledHeaderSubcategoryWrapper>
-                    </>
-                  )}
-                </StyledHeaderCategoriesLI>
-              ))}
-            </StyledHeaderCategoriesUL>
-          </StyledHeaderBrowseWrapper>
+                    {category.subcategories.length > 0 && (
+                      <>
+                        <FontAwesomeIcon icon={faChevronRight} />
+                        <StyledHeaderSubcategoryWrapper>
+                          <StyledHeaderCategoriesUL>
+                            {category.subcategories.map((subcategory) => (
+                              <StyledHeaderCategoriesLI>
+                                <Link to={`/products?category=${subcategory}`}>
+                                  {subcategory}
+                                </Link>
+                              </StyledHeaderCategoriesLI>
+                            ))}
+                          </StyledHeaderCategoriesUL>
+                        </StyledHeaderSubcategoryWrapper>
+                      </>
+                    )}
+                  </StyledHeaderCategoriesLI>
+                ))}
+              </StyledHeaderCategoriesUL>
+            </StyledHeaderBrowseWrapper>
+          </StyledHeaderNavItemsWrapper>
+          <StyledHeaderNavOverlay data-name="overlay" />
         </StyledHeaderNavLI>
       </StyledHeaderNavUL>
     </StyledHeaderNav>
