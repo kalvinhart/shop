@@ -15,6 +15,7 @@ import {
 } from "./Header.styles";
 import { SpanLogo } from "../../../styles/fontStyles";
 import Button from "../Button/Button";
+import HeaderNav from "../HeaderNav/HeaderNav";
 
 const Header = () => {
   const { navigate, loading, user, cart, handleLogOut } = useHeader();
@@ -25,6 +26,8 @@ const Header = () => {
         <SpanLogo as={Link} to="/">
           My eShop
         </SpanLogo>
+
+        <HeaderNav />
 
         <StyledLowerHeader>
           <SearchBar />
