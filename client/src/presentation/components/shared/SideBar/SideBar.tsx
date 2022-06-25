@@ -1,14 +1,27 @@
-import { useSideBar } from "./hooks/useSideBar";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
+
+import { useCategoryState } from "../../../hooks/useCategoryState/useCategoryState";
 
 import Spinner from "../Spinner/Spinner";
 
-import { StyledSideBarBackground, StyledUL, StyledLI } from "./SideBar.styles";
+import {
+  StyledSideBarBackground,
+  StyledUL,
+  StyledLI,
+  StyledSubcategoryUL,
+  StyledCategoryHeadingLI,
+} from "./SideBar.styles";
 import { H3 } from "../../../styles/fontStyles";
-import { ButtonCategory } from "../../../styles/buttonStyles";
 
 const SideBar = () => {
-  const { categoriesLoading, categories, searchParams, showCategory, showAllCategories } =
-    useSideBar();
+  const { categoriesLoading, categories, loadCategories } = useCategoryState();
+
+  useEffect(() => {
+    if (categories.length > 0) return;
+
+    loadCategories();
+  }, [categories, loadCategories]);
 
   if (categoriesLoading) return <Spinner testId="SideBarTest" />;
 
@@ -19,23 +32,22 @@ const SideBar = () => {
           <H3>Categories:</H3>
 
           <StyledUL>
-            <StyledLI>
-              <ButtonCategory
-                onClick={showAllCategories}
-                disabled={searchParams.get("category") === null}
-              >
-                All
-              </ButtonCategory>
-            </StyledLI>
+            <StyledCategoryHeadingLI>
+              <Link to="/products">All</Link>
+            </StyledCategoryHeadingLI>
+
             {categories.map((item) => (
-              <StyledLI key={item.name}>
-                <ButtonCategory
-                  onClick={() => showCategory(item.name)}
-                  disabled={searchParams.get("category") === item.name}
-                >
-                  {item.name}
-                </ButtonCategory>
-              </StyledLI>
+              <StyledCategoryHeadingLI key={item.name}>
+                <Link to={`/products?category=${item.name}`}>{item.name}</Link>
+
+                <StyledSubcategoryUL>
+                  {item.subcategories.map((sub) => (
+                    <StyledLI key={sub}>
+                      <Link to={`/products?category=${sub}`}>{sub}</Link>
+                    </StyledLI>
+                  ))}
+                </StyledSubcategoryUL>
+              </StyledCategoryHeadingLI>
             ))}
           </StyledUL>
         </StyledSideBarBackground>

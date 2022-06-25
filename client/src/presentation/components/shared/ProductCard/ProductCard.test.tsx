@@ -2,10 +2,8 @@ import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
 import { Product } from "../../../../domain/models/Product";
-import { createTestStore } from "../../../utils/testUtils";
+import { createTestStore, renderWithWrappers } from "../../../utils/testUtils";
 import ProductCard from "./ProductCard";
-
-let store: any;
 
 const mockProduct: Product = {
   _id: "1",
@@ -19,19 +17,32 @@ const mockProduct: Product = {
   description: "A fake product used for testing.",
 };
 
-describe("ProductCard", () => {
-  beforeEach(() => {
-    store = createTestStore();
-  });
+let mockWishlisted = false;
+let mockHandleWishlist = jest.fn();
 
+jest.mock("./hooks/useProductCard.ts", () => ({
+  useProductCard: () => ({
+    id: mockProduct._id,
+    name: mockProduct.name,
+    imageUrl: mockProduct.imageUrl,
+    price: mockProduct.price,
+    isWishlisted: mockWishlisted,
+    handleWishlist: mockHandleWishlist,
+    handleAddToCart: jest.fn(),
+  }),
+}));
+
+let mockUser = { id: "1" };
+
+jest.mock("../../../hooks/useAuthState/useAuthState.ts", () => ({
+  useAuthState: () => ({
+    user: mockUser,
+  }),
+}));
+
+describe("ProductCard", () => {
   test("Renders correct product information.", () => {
-    render(
-      <Provider store={store}>
-        <MemoryRouter>
-          <ProductCard productInfo={mockProduct} />
-        </MemoryRouter>
-      </Provider>
-    );
+    renderWithWrappers(<ProductCard productInfo={mockProduct} />);
 
     const imageElementAlt = screen.getByAltText(mockProduct.name);
     expect(imageElementAlt).toBeInTheDocument();
@@ -41,5 +52,23 @@ describe("ProductCard", () => {
 
     const moreDetailsLink = screen.getByText("More Details");
     expect(moreDetailsLink.getAttribute("href")).toBe("/product/1");
+  });
+
+  test("Displays add to wishlist button if not already wishlisted.", () => {
+    renderWithWrappers(<ProductCard productInfo={mockProduct} />);
+
+    const wishlistButton = screen.getByTitle("Add to Wishlist");
+
+    expect(wishlistButton).toBeInTheDocument();
+  });
+
+  test("Displays remove from wishlist button if already wishlisted.", () => {
+    mockWishlisted = true;
+
+    renderWithWrappers(<ProductCard productInfo={mockProduct} />);
+
+    const wishlistButton = screen.getByTitle("Remove from Wishlist");
+
+    expect(wishlistButton).toBeInTheDocument();
   });
 });

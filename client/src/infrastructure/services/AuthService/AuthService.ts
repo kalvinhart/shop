@@ -1,6 +1,6 @@
 import { User } from "../../../domain/models/User";
 import { IAuthService, UserCredentials, UserIdToken } from "../interfaces/IAuthService";
-import { IHttpService } from "../interfaces/IHttpService";
+import { IHttpService, WishlistData } from "../interfaces/IHttpService";
 
 export default class AuthService implements IAuthService {
   httpService: IHttpService;
@@ -32,9 +32,9 @@ export default class AuthService implements IAuthService {
       data: user,
       options: {
         headers: {
-          "Authorization": user.token
-        }
-      }
+          Authorization: user.token,
+        },
+      },
     });
 
     return response;
@@ -42,5 +42,29 @@ export default class AuthService implements IAuthService {
 
   signOut(): null {
     return null;
+  }
+
+  async saveToWishlist(data: WishlistData): Promise<void> {
+    await this.httpService.post<void>({
+      url: `/api/wishlist`,
+      data,
+      options: {
+        headers: {
+          Authorization: data.token,
+        },
+      },
+    });
+  }
+
+  async removeFromWishlist(data: WishlistData): Promise<void> {
+    await this.httpService.post<void>({
+      url: `/api/wishlist/remove`,
+      data,
+      options: {
+        headers: {
+          Authorization: data.token,
+        },
+      },
+    });
   }
 }

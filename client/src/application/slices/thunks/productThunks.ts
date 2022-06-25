@@ -1,4 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+
 import { ProductData } from "../../../infrastructure/services/interfaces/IHttpService";
 import { AllProductsReturn } from "../../../infrastructure/services/interfaces/IProductService";
 import { AsyncThunkConfig } from "../../store";

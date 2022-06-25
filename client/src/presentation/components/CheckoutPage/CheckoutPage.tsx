@@ -6,11 +6,14 @@ import CheckoutForm from "./CheckoutForm/CheckoutForm";
 import Spinner from "../shared/Spinner/Spinner";
 import { StyledCheckoutWrapper } from "./Checkout.styles";
 import { useCheckoutPage } from "./hooks/useCheckoutPage";
+import { usePageTitle } from "../../hooks/usePageTitle/usePageTitle";
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY!);
 
 const CheckoutPage = () => {
   const { cart, cartTotal, total, clientSecret, appearance } = useCheckoutPage();
+
+  usePageTitle("Checkout");
 
   return (
     <StyledCheckoutWrapper>

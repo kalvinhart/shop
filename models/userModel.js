@@ -12,6 +12,10 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  wishlist: {
+    type: [String],
+    default: [],
+  },
 });
 
 module.exports = model("User", userSchema);

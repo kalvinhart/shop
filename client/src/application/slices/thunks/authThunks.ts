@@ -1,9 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import toast from "react-hot-toast";
+
 import { User } from "../../../domain/models/User";
 import {
   UserCredentials,
   UserIdToken,
 } from "../../../infrastructure/services/interfaces/IAuthService";
+import { WishlistData } from "../../../infrastructure/services/interfaces/IHttpService";
 import { AsyncThunkConfig } from "../../store";
 
 export const registerUser = createAsyncThunk<
@@ -16,20 +19,15 @@ export const registerUser = createAsyncThunk<
     try {
       const data: User = await authApi.registerUser(userCredentials);
 
-      const user = {
-        id: data.id,
-        email: data.email,
-      };
-
       localStorage.setItem(
         "user",
         JSON.stringify({
-          ...user,
+          ...data,
           token: data.token,
         })
       );
 
-      return user;
+      return data;
     } catch (err: any) {
       return rejectWithValue(err.message);
     }
@@ -42,20 +40,15 @@ export const logInUser = createAsyncThunk<User, UserCredentials, AsyncThunkConfi
     try {
       const data: User = await authApi.signIn(userCredentials);
 
-      const user = {
-        id: data.id,
-        email: data.email,
-      };
-
       localStorage.setItem(
         "user",
         JSON.stringify({
-          ...user,
+          ...data,
           token: data.token,
         })
       );
 
-      return user;
+      return data;
     } catch (err: any) {
       return rejectWithValue(err.message);
     }
@@ -68,12 +61,7 @@ export const loadUserDetails = createAsyncThunk<User, UserIdToken, AsyncThunkCon
     try {
       const data: User = await authApi.getUserDetails(userDetails);
 
-      const user = {
-        id: data.id,
-        email: data.email,
-      };
-
-      return user;
+      return data;
     } catch (err: any) {
       return rejectWithValue(err.message);
     }
@@ -85,5 +73,39 @@ export const logOut = createAsyncThunk<null, void, AsyncThunkConfig<any>>(
   async (_, { extra: { authApi } }) => {
     localStorage.removeItem("user");
     return authApi.signOut();
+  }
+);
+
+export const saveToWishlist = createAsyncThunk<
+  string,
+  WishlistData,
+  AsyncThunkConfig<any>
+>(
+  "auth/saveToWishList",
+  async (data: WishlistData, { rejectWithValue, extra: { authApi } }) => {
+    try {
+      await authApi.saveToWishlist(data);
+      toast.success("Product saved to wishlist!");
+      return data.productId;
+    } catch (err: any) {
+      return rejectWithValue(err.message);
+    }
+  }
+);
+
+export const removeFromWishlist = createAsyncThunk<
+  string,
+  WishlistData,
+  AsyncThunkConfig<any>
+>(
+  "auth/removeFromWishList",
+  async (data: WishlistData, { rejectWithValue, extra: { authApi } }) => {
+    try {
+      await authApi.removeFromWishlist(data);
+      toast.success("Product removed from wishlist!");
+      return data.productId;
+    } catch (err: any) {
+      return rejectWithValue(err.message);
+    }
   }
 );

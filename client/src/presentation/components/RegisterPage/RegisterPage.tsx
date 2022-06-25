@@ -1,9 +1,12 @@
 import { useRegisterPage } from "./hooks/useRegisterPage";
 
 import AuthForm from "../shared/AuthForm/AuthForm";
+import { usePageTitle } from "../../hooks/usePageTitle/usePageTitle";
 
 const RegisterPage = () => {
   const { loading, error, inputConfig, formSubmit } = useRegisterPage();
+
+  usePageTitle("Sign Up");
 
   return (
     <AuthForm

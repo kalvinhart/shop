@@ -1,4 +1,5 @@
 import { useCartPage } from "./hooks/useCartPage";
+import { usePageTitle } from "../../hooks/usePageTitle/usePageTitle";
 
 import NoCartItems from "../shared/NoCartItems/NoCartItems";
 import CartItem from "./CartItem/CartItem";
@@ -13,6 +14,8 @@ import Button from "../shared/Button/Button";
 
 const CartPage = () => {
   const { cart, cartTotal, navigate } = useCartPage();
+
+  usePageTitle("Shopping Cart");
 
   return (
     <>

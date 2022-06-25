@@ -29,10 +29,9 @@ export const StyledUL = styled.ul`
   display: flex;
   flex-direction: row;
   list-style: none;
-  overflow-x: auto;
 
   & > *:not(:last-child) {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
   }
 
   @media screen and (min-width: ${mediaSizes.large}) {
@@ -40,4 +39,15 @@ export const StyledUL = styled.ul`
   }
 `;
 
-export const StyledLI = styled.li``;
+export const StyledSubcategoryUL = styled(StyledUL)`
+  margin-top: 10px;
+  padding-inline-start: 20px;
+`;
+
+export const StyledCategoryHeadingLI = styled.li`
+  font-weight: bold;
+`;
+
+export const StyledLI = styled.li`
+  font-weight: normal;
+`;

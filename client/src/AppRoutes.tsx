@@ -23,6 +23,9 @@ const PaymentConfirmationPage = lazy(
   () =>
     import("./presentation/components/PaymentConfirmationPage/PaymentConfirmationPage")
 );
+const WishlistPage = lazy(
+  () => import("./presentation/components/WishlistPage/WishlistPage")
+);
 
 const AppRoutes = () => {
   return (
@@ -90,6 +93,15 @@ const AppRoutes = () => {
           element={
             <Suspense fallback={<Spinner />}>
               <CheckoutPage />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path="/wishlist"
+          element={
+            <Suspense fallback={<Spinner />}>
+              <WishlistPage />
             </Suspense>
           }
         />

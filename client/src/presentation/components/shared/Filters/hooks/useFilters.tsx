@@ -40,7 +40,7 @@ export const useFilters = () => {
           key={optionValue}
           onClick={() => handleRemoveParam(searchParams, optionName)}
         >
-          {`${formattedOptionName}: ${optionValue}`}
+          {`${formattedOptionName}: "${optionValue}"`}
           <FontAwesomeIcon icon={faTimes} />
         </Button>
       );

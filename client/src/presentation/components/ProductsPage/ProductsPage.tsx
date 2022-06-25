@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
+import { usePageTitle } from "../../hooks/usePageTitle/usePageTitle";
 import { useProductState } from "../../hooks/useProductState/useProductState";
 
 import ProductContent from "../shared/ProductContent/ProductContent";
@@ -16,6 +17,10 @@ const ProductsPage = () => {
 
     loadProducts(filterOptions);
   }, [searchParams, loadProducts]);
+
+  const categoryName = searchParams.get("category");
+
+  usePageTitle(categoryName || "All Products");
 
   return <ProductContent products={products} productsLoading={productsLoading} />;
 };
