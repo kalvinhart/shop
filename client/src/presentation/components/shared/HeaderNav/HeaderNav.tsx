@@ -38,7 +38,7 @@ const HeaderNav = () => {
           <StyledHeaderNavItemsWrapper>
             <StyledHeaderNavItem>
               Browse
-              <FontAwesomeIcon icon={faChevronDown} />
+              <FontAwesomeIcon icon={faChevronDown} size="xs" />
             </StyledHeaderNavItem>
 
             <StyledHeaderBrowseWrapper>
@@ -51,7 +51,7 @@ const HeaderNav = () => {
 
                     {category.subcategories.length > 0 && (
                       <>
-                        <FontAwesomeIcon icon={faChevronRight} />
+                        <FontAwesomeIcon icon={faChevronRight} size="xs" />
                         <StyledHeaderSubcategoryWrapper>
                           <StyledHeaderCategoriesUL>
                             {category.subcategories.map((subcategory) => (
