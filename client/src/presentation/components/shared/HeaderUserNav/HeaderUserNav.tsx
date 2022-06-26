@@ -85,8 +85,6 @@ const HeaderUserNav = () => {
             />
           </CartDropDownWrapper>
         </HoverableLI>
-
-        <HeaderNavOverlay data-name="overlay" />
       </UserUL>
     </UserInfoWrapper>
   );

@@ -70,7 +70,6 @@ const HeaderNav = () => {
               </HeaderCategoriesUL>
             </HeaderBrowseWrapper>
           </HeaderNavItemsWrapper>
-          <HeaderNavOverlay data-name="overlay" />
         </HeaderNavLI>
       </HeaderNavUL>
     </HeaderNavNav>

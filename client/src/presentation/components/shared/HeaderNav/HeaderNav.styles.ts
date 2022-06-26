@@ -15,12 +15,7 @@ export const HeaderNavUL = styled.ul`
   padding-inline-start: 0;
 `;
 
-export const HeaderNavLI = styled.li`
-  &:hover [data-name="overlay"] {
-    opacity: 1;
-    transform: scaleY(1);
-  }
-`;
+export const HeaderNavLI = styled.li``;
 
 export const HeaderNavItemsWrapper = styled.div`
   position: relative;
