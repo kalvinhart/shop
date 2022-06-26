@@ -20,7 +20,6 @@ import {
   UserInfoWrapper,
   UserUL,
 } from "./HeaderUserNav.styles";
-import { HeaderNavOverlay } from "../HeaderNav/HeaderNav.styles";
 import HeaderCart from "../HeaderCart/HeaderCart";
 
 const HeaderUserNav = () => {
