@@ -9,6 +9,7 @@ const RegisterPage = lazy(
   () => import("./presentation/components/RegisterPage/RegisterPage")
 );
 const LoginPage = lazy(() => import("./presentation/components/LoginPage/LoginPage"));
+const LogOutPage = lazy(() => import("./presentation/components/LogOutPage/LogOutPage"));
 const ProductsPage = lazy(
   () => import("./presentation/components/ProductsPage/ProductsPage")
 );
@@ -51,6 +52,14 @@ const AppRoutes = () => {
         element={
           <Suspense fallback={<Spinner />}>
             <LoginPage />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/logout"
+        element={
+          <Suspense fallback={<Spinner />}>
+            <LogOutPage />
           </Suspense>
         }
       />

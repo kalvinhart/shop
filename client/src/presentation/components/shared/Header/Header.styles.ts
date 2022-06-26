@@ -34,7 +34,7 @@ export const StyledLowerHeader = styled.div`
   left: 0;
   width: 100%;
   height: 50px;
-  padding: 0 20px;
+  padding: 0 10px;
   display: flex;
   align-items: center;
 
@@ -42,48 +42,6 @@ export const StyledLowerHeader = styled.div`
     position: static;
     width: unset;
     height: unset;
+    padding: 0 20px;
   }
-`;
-
-export const StyledUserInfoWrapper = styled.div`
-  margin: 0 15px 0 auto;
-  display: flex;
-  align-items: center;
-
-  & > *:not(:last-child) {
-    margin-right: 15px;
-
-    @media screen and (min-width: ${mediaSizes.large}) {
-      margin-right: 20px;
-    }
-  }
-
-  @media screen and (min-width: ${mediaSizes.large}) {
-    margin: 0 20px 0 auto;
-  }
-
-  & .mobileHidden {
-    @media screen and (min-width: ${mediaSizes.large}) {
-      display: block;
-    }
-  }
-`;
-
-export const StyledCartIconWrapper = styled.div`
-  position: relative;
-`;
-
-export const StyledCartCount = styled.div`
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  width: 18px;
-  height: 18px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  background-color: red;
-  font-size: 12px;
-  color: white;
 `;
