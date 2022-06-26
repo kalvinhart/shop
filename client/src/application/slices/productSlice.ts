@@ -1,7 +1,8 @@
-import { createSlice, isAnyOf, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Product } from "../../domain/models/Product";
 import { ProductData } from "../../infrastructure/services/interfaces/IHttpService";
-import { loadProducts } from "./thunks/productThunks";
+import { Filters } from "../../infrastructure/services/interfaces/IProductService";
+import { loadFilters, loadProducts } from "./thunks/productThunks";
 
 type ProductState = {
   loading: boolean;
@@ -9,6 +10,11 @@ type ProductState = {
   count: number;
   products: Product[];
   searchOptions?: ProductData;
+  filters: {
+    allBrands: Filters[];
+    allColors: Filters[];
+    allSizes: Filters[];
+  } | null;
 };
 
 export type ProductOptionsPayload = {
@@ -22,6 +28,7 @@ const initialState: ProductState = {
   count: 0,
   products: [],
   searchOptions: {},
+  filters: null,
 };
 
 const productSlice = createSlice({
@@ -53,6 +60,11 @@ const productSlice = createSlice({
         state.error = false;
         state.count = action.payload.count;
         state.products = action.payload.products;
+        state.filters = {
+          allBrands: action.payload.allBrands,
+          allColors: action.payload.allColors,
+          allSizes: action.payload.allSizes,
+        };
       })
       .addCase(loadProducts.pending, (state, action) => {
         state.loading = true;
@@ -60,6 +72,17 @@ const productSlice = createSlice({
       })
       .addCase(loadProducts.rejected, (state, action) => {
         state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(loadFilters.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = false;
+        state.filters = action.payload;
+      })
+      .addCase(loadFilters.pending, (state, action) => {
+        state.error = false;
+      })
+      .addCase(loadFilters.rejected, (state, action) => {
         state.error = action.payload;
       });
   },
