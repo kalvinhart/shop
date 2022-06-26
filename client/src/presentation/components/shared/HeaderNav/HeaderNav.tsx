@@ -14,7 +14,6 @@ import {
   HeaderNavItem,
   HeaderNavItemsWrapper,
   HeaderNavLI,
-  HeaderNavOverlay,
   HeaderNavUL,
   HeaderSubcategoryWrapper,
 } from "./HeaderNav.styles";
