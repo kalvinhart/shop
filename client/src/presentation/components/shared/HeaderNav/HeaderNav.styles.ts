@@ -70,7 +70,7 @@ export const StyledHeaderBrowseWrapper = styled.div`
   isolation: isolate;
   z-index: 1;
   position: absolute;
-  top: 85%;
+  top: 100%;
   left: 0;
   background-color: #fff;
   box-shadow: var(--box-shadow-small);
