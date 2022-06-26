@@ -1,40 +1,34 @@
 import styled from "styled-components";
-import { SpanBold, SpanPrice } from "../../../styles/fontStyles";
 
-export const StyledHeaderCartPreview = styled.div`
+export const HeaderCartPreview = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 20px;
+  min-width: 900px;
 
   & > div:last-of-type {
     align-self: flex-end;
   }
 `;
 
-export const StyledHeaderCartWrapper = styled.div`
+export const HeaderCartWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
 `;
 
-export const StyledHeaderCartItemWrapper = styled.div`
+export const HeaderCartSubtotalGroup = styled.div`
+  align-self: flex-end;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  margin-bottom: 20px;
 
-  & ${SpanBold} {
-    margin-right: 5px;
-  }
-
-  & ${SpanPrice} {
-    margin-left: auto;
+  & > *:not(:last-child) {
+    margin-bottom: 10px;
   }
 `;
 
-export const StyledHeaderCartImage = styled.img`
-  width: 80px;
-  margin-right: 5px;
-`;
-
-export const StyledHeaderCartButtonGroup = styled.div`
+export const HeaderCartButtonGroup = styled.div`
   display: flex;
   justify-content: space-between;
   width: 300px;

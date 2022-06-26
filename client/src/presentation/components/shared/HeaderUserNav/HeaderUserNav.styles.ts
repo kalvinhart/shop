@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import mediaSizes from "../../../styles/media";
 
-export const StyledHeaderUserButton = styled.button`
+export const HeaderUserButton = styled.button`
   background-color: transparent;
   border: none;
   cursor: pointer;
 `;
 
-export const StyledUserInfoWrapper = styled.div`
+export const UserInfoWrapper = styled.div`
   isolation: isolate;
   margin: 0 15px 0 auto;
 
@@ -27,7 +27,7 @@ export const LI = styled.li`
   justify-content: space-between;
 `;
 
-export const StyledUserUL = styled(UL)`
+export const UserUL = styled(UL)`
   align-items: center;
 
   & > *:not(:last-child) {
@@ -39,11 +39,12 @@ export const StyledUserUL = styled(UL)`
   }
 `;
 
-export const StyledHoverableLI = styled(LI)`
+export const HoverableLI = styled(LI)`
   position: relative;
 
   &:hover ~ [data-name="overlay"] {
     opacity: 1;
+    transform: scaleY(1);
   }
 
   &:hover > div {
@@ -51,11 +52,11 @@ export const StyledHoverableLI = styled(LI)`
   }
 `;
 
-export const StyledCartIconWrapper = styled.div`
+export const CartIconWrapper = styled.div`
   position: relative;
 `;
 
-export const StyledCartCount = styled.div`
+export const CartCount = styled.div`
   position: absolute;
   top: -10px;
   right: -10px;
@@ -75,28 +76,32 @@ const DropDown = styled.div`
   z-index: 1;
   top: 110%;
   background-color: #fff;
+  border: var(--borders);
   box-shadow: var(--box-shadow-small);
   transform: scaleY(0);
   transform-origin: top;
   transition: transform 0.1s ease-in-out;
 `;
 
-export const StyledUserDropDownWrapper = styled(DropDown)`
+export const UserDropDownWrapper = styled(DropDown)`
   left: 0;
   width: 200px;
 `;
 
-export const StyledCartDropDownWrapper = styled(DropDown)`
-  right: 0;
-  min-width: 600px;
-  padding: 20px;
+export const CartDropDownWrapper = styled(DropDown)`
+  display: none;
+
+  @media screen and (min-width: ${mediaSizes.large}) {
+    display: block;
+    right: -80px;
+  } ;
 `;
 
-export const StyledDropDownUL = styled(UL)`
+export const DropDownUL = styled(UL)`
   flex-direction: column;
 `;
 
-export const StyledDropDownLI = styled(LI)`
+export const DropDownLI = styled(LI)`
   min-width: 200px;
   padding: 20px;
 

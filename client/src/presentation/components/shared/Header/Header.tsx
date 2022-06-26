@@ -15,9 +15,8 @@ const Header = () => {
           My eShop
         </SpanLogo>
 
-        <HeaderNav />
-
         <StyledLowerHeader>
+          <HeaderNav />
           <SearchBar />
         </StyledLowerHeader>
 

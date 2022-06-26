@@ -1,19 +1,16 @@
 import { useNavigate } from "react-router-dom";
+
 import { CartItem } from "../../../../domain/models/CartItem";
-import {
-  H3,
-  SpanBold,
-  SpanPrice,
-  SpanRegular,
-  StyledParagraph,
-} from "../../../styles/fontStyles";
+
 import Button from "../Button/Button";
+import CartItemPreview from "../CartItem/CartItem";
+
+import { H3, SpanBold, SpanPrice, StyledParagraph } from "../../../styles/fontStyles";
 import {
-  StyledHeaderCartButtonGroup,
-  StyledHeaderCartImage,
-  StyledHeaderCartItemWrapper,
-  StyledHeaderCartPreview,
-  StyledHeaderCartWrapper,
+  HeaderCartButtonGroup,
+  HeaderCartPreview,
+  HeaderCartSubtotalGroup,
+  HeaderCartWrapper,
 } from "./HeaderCart.styles";
 
 type HeaderCartProps = {
@@ -29,28 +26,28 @@ const HeaderCart = ({ cart, cartCount, cartTotal }: HeaderCartProps) => {
     return <StyledParagraph>You have no items in your cart.</StyledParagraph>;
 
   const cartPreview = (
-    <StyledHeaderCartPreview>
+    <HeaderCartPreview>
       <H3>{`${cartCount} ${cartCount > 1 ? "items" : "item"}.`}</H3>
-      <StyledHeaderCartWrapper>
+      <HeaderCartWrapper>
         {cart.map((item) => (
-          <StyledHeaderCartItemWrapper>
-            <StyledHeaderCartImage src={item.imageUrl} alt={item.name} />
-            <SpanBold>{item.name}</SpanBold>
-            <SpanRegular>{`x ${item.qty}`}</SpanRegular>
-            <SpanPrice>{`£${item.total}`}</SpanPrice>
-          </StyledHeaderCartItemWrapper>
+          <CartItemPreview key={item.name} item={item} />
         ))}
-      </StyledHeaderCartWrapper>
+      </HeaderCartWrapper>
 
-      <StyledHeaderCartButtonGroup>
+      <HeaderCartSubtotalGroup>
+        <SpanBold>SubTotal:</SpanBold>
+        <SpanPrice>{`£${cartTotal}`}</SpanPrice>
+      </HeaderCartSubtotalGroup>
+
+      <HeaderCartButtonGroup>
         <Button variant="primary" onClick={() => navigate("/cart")}>
           View Cart
         </Button>
         <Button variant="primary" onClick={() => navigate("/checkout")}>
           Go to Checkout
         </Button>
-      </StyledHeaderCartButtonGroup>
-    </StyledHeaderCartPreview>
+      </HeaderCartButtonGroup>
+    </HeaderCartPreview>
   );
 
   return cartPreview;

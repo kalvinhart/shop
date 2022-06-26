@@ -5,17 +5,24 @@ import { StyledInput } from "../../../styles/formStyles";
 
 export const StyledSearchForm = styled.form`
   position: relative;
-  width: calc(100% - 40px);
-
-  @media screen and (min-width: ${mediaSizes.med}) {
-    width: 400px;
-  }
+  width: 150px;
 
   & ${StyledInput} {
     width: 100%;
-    height: 40px;
+    padding: 8px 10px;
+    font-size: 12px;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
+  }
+
+  @media screen and (min-width: ${mediaSizes.med}) {
+    width: 400px;
+
+    & ${StyledInput} {
+      height: 40px;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
   }
 `;
 
@@ -24,7 +31,7 @@ export const StyledSearchButton = styled.button`
   right: -40px;
   top: 0;
   width: 40px;
-  height: 40px;
+  height: 32px;
   color: white;
   border: 2px solid transparent;
   background-color: var(--clr-primary);
@@ -36,5 +43,9 @@ export const StyledSearchButton = styled.button`
   &:hover,
   &:focus {
     background-color: var(--clr-primary-hover);
+  }
+
+  @media screen and (min-width: ${mediaSizes.med}) {
+    height: 40px;
   }
 `;

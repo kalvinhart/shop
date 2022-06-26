@@ -34,7 +34,7 @@ export const StyledLowerHeader = styled.div`
   left: 0;
   width: 100%;
   height: 50px;
-  padding: 0 20px;
+  padding: 0 10px;
   display: flex;
   align-items: center;
 
@@ -42,5 +42,6 @@ export const StyledLowerHeader = styled.div`
     position: static;
     width: unset;
     height: unset;
+    padding: 0 20px;
   }
 `;

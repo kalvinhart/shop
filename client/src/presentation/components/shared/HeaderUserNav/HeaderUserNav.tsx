@@ -9,18 +9,18 @@ import Spinner from "../Spinner/Spinner";
 
 import {
   LI,
-  StyledCartCount,
-  StyledCartDropDownWrapper,
-  StyledCartIconWrapper,
-  StyledDropDownLI,
-  StyledDropDownUL,
-  StyledHeaderUserButton,
-  StyledHoverableLI,
-  StyledUserDropDownWrapper,
-  StyledUserInfoWrapper,
-  StyledUserUL,
+  CartCount,
+  CartDropDownWrapper,
+  CartIconWrapper,
+  DropDownLI,
+  DropDownUL,
+  HeaderUserButton,
+  HoverableLI,
+  UserDropDownWrapper,
+  UserInfoWrapper,
+  UserUL,
 } from "./HeaderUserNav.styles";
-import { StyledHeaderNavOverlay } from "../HeaderNav/HeaderNav.styles";
+import { HeaderNavOverlay } from "../HeaderNav/HeaderNav.styles";
 import HeaderCart from "../HeaderCart/HeaderCart";
 
 const HeaderUserNav = () => {
@@ -28,41 +28,41 @@ const HeaderUserNav = () => {
   const cart = useCartState();
 
   return (
-    <StyledUserInfoWrapper>
-      <StyledUserUL>
-        <StyledHoverableLI>
-          <StyledHeaderUserButton aria-label="User Account Drop Down Menu">
+    <UserInfoWrapper>
+      <UserUL>
+        <HoverableLI>
+          <HeaderUserButton aria-label="User Account Drop Down Menu">
             <FontAwesomeIcon className="icon" icon={faUserAlt} size="lg" />
-          </StyledHeaderUserButton>
+          </HeaderUserButton>
 
-          <StyledUserDropDownWrapper>
+          <UserDropDownWrapper>
             {loading ? (
               <Spinner />
             ) : (
-              <StyledDropDownUL>
+              <DropDownUL>
                 {user ? (
                   <>
-                    <StyledDropDownLI>
+                    <DropDownLI>
                       <Link to="/profile">My Account</Link>
-                    </StyledDropDownLI>
-                    <StyledDropDownLI>
+                    </DropDownLI>
+                    <DropDownLI>
                       <Link to="/logout">Log Out</Link>
-                    </StyledDropDownLI>
+                    </DropDownLI>
                   </>
                 ) : (
                   <>
-                    <StyledDropDownLI>
+                    <DropDownLI>
                       <Link to="/login">Sign In</Link>
-                    </StyledDropDownLI>
-                    <StyledDropDownLI>
+                    </DropDownLI>
+                    <DropDownLI>
                       <Link to="/register">Register</Link>
-                    </StyledDropDownLI>
+                    </DropDownLI>
                   </>
                 )}
-              </StyledDropDownUL>
+              </DropDownUL>
             )}
-          </StyledUserDropDownWrapper>
-        </StyledHoverableLI>
+          </UserDropDownWrapper>
+        </HoverableLI>
 
         <LI>
           <Link to="/wishlist" aria-label="View Wishlist">
@@ -70,27 +70,25 @@ const HeaderUserNav = () => {
           </Link>
         </LI>
 
-        <StyledHoverableLI>
+        <HoverableLI>
           <Link to="/cart">
-            <StyledCartIconWrapper>
-              {cart && cart.cartCount > 0 && (
-                <StyledCartCount>{cart.cartCount}</StyledCartCount>
-              )}
+            <CartIconWrapper>
+              {cart && cart.cartCount > 0 && <CartCount>{cart.cartCount}</CartCount>}
               <FontAwesomeIcon className="icon" icon={faCartShopping} size="lg" />
-            </StyledCartIconWrapper>
+            </CartIconWrapper>
           </Link>
-          <StyledCartDropDownWrapper>
+          <CartDropDownWrapper>
             <HeaderCart
               cart={cart.cart}
               cartCount={cart.cartCount}
               cartTotal={cart.cartTotal}
             />
-          </StyledCartDropDownWrapper>
-        </StyledHoverableLI>
+          </CartDropDownWrapper>
+        </HoverableLI>
 
-        <StyledHeaderNavOverlay data-name="overlay" />
-      </StyledUserUL>
-    </StyledUserInfoWrapper>
+        <HeaderNavOverlay data-name="overlay" />
+      </UserUL>
+    </UserInfoWrapper>
   );
 };
 

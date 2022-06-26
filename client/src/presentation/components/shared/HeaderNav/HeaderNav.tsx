@@ -7,16 +7,16 @@ import { faChevronDown, faChevronRight } from "@fortawesome/free-solid-svg-icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {
-  StyledHeaderBrowseWrapper,
-  StyledHeaderCategoriesLI,
-  StyledHeaderCategoriesUL,
-  StyledHeaderNav,
-  StyledHeaderNavItem,
-  StyledHeaderNavItemsWrapper,
-  StyledHeaderNavLI,
-  StyledHeaderNavOverlay,
-  StyledHeaderNavUL,
-  StyledHeaderSubcategoryWrapper,
+  HeaderBrowseWrapper,
+  HeaderCategoriesLI,
+  HeaderCategoriesUL,
+  HeaderNavNav,
+  HeaderNavItem,
+  HeaderNavItemsWrapper,
+  HeaderNavLI,
+  HeaderNavOverlay,
+  HeaderNavUL,
+  HeaderSubcategoryWrapper,
 } from "./HeaderNav.styles";
 
 const HeaderNav = () => {
@@ -32,19 +32,19 @@ const HeaderNav = () => {
   if (categoriesLoading || categoriesError) return null;
 
   return (
-    <StyledHeaderNav>
-      <StyledHeaderNavUL>
-        <StyledHeaderNavLI>
-          <StyledHeaderNavItemsWrapper>
-            <StyledHeaderNavItem>
+    <HeaderNavNav>
+      <HeaderNavUL>
+        <HeaderNavLI>
+          <HeaderNavItemsWrapper>
+            <HeaderNavItem>
               Browse
               <FontAwesomeIcon icon={faChevronDown} size="xs" />
-            </StyledHeaderNavItem>
+            </HeaderNavItem>
 
-            <StyledHeaderBrowseWrapper>
-              <StyledHeaderCategoriesUL>
+            <HeaderBrowseWrapper>
+              <HeaderCategoriesUL>
                 {categories.map((category) => (
-                  <StyledHeaderCategoriesLI>
+                  <HeaderCategoriesLI key={category.name}>
                     <Link to={`/products?category=${category.name}`}>
                       {category.name}
                     </Link>
@@ -52,28 +52,28 @@ const HeaderNav = () => {
                     {category.subcategories.length > 0 && (
                       <>
                         <FontAwesomeIcon icon={faChevronRight} size="xs" />
-                        <StyledHeaderSubcategoryWrapper>
-                          <StyledHeaderCategoriesUL>
+                        <HeaderSubcategoryWrapper>
+                          <HeaderCategoriesUL>
                             {category.subcategories.map((subcategory) => (
-                              <StyledHeaderCategoriesLI>
+                              <HeaderCategoriesLI key={subcategory}>
                                 <Link to={`/products?category=${subcategory}`}>
                                   {subcategory}
                                 </Link>
-                              </StyledHeaderCategoriesLI>
+                              </HeaderCategoriesLI>
                             ))}
-                          </StyledHeaderCategoriesUL>
-                        </StyledHeaderSubcategoryWrapper>
+                          </HeaderCategoriesUL>
+                        </HeaderSubcategoryWrapper>
                       </>
                     )}
-                  </StyledHeaderCategoriesLI>
+                  </HeaderCategoriesLI>
                 ))}
-              </StyledHeaderCategoriesUL>
-            </StyledHeaderBrowseWrapper>
-          </StyledHeaderNavItemsWrapper>
-          <StyledHeaderNavOverlay data-name="overlay" />
-        </StyledHeaderNavLI>
-      </StyledHeaderNavUL>
-    </StyledHeaderNav>
+              </HeaderCategoriesUL>
+            </HeaderBrowseWrapper>
+          </HeaderNavItemsWrapper>
+          <HeaderNavOverlay data-name="overlay" />
+        </HeaderNavLI>
+      </HeaderNavUL>
+    </HeaderNavNav>
   );
 };
 
