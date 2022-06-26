@@ -2,12 +2,12 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
-import { useCartItem } from "../hooks/useCartItem";
+import { useCartItem } from "../../CartPage/hooks/useCartItem";
 
 import { CartItem as CartItemModel } from "../../../../domain/models/CartItem";
 
-import QuantityPicker from "../../shared/QuantityPicker/QuantityPicker";
-import Button from "../../shared/Button/Button";
+import QuantityPicker from "../QuantityPicker/QuantityPicker";
+import Button from "../Button/Button";
 
 import {
   StyledCartButtonsWrapper,
