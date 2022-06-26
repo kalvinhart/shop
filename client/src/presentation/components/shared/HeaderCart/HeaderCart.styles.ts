@@ -5,7 +5,7 @@ export const StyledHeaderCartPreview = styled.div`
   display: flex;
   flex-direction: column;
 
-  & button {
+  & > div:last-of-type {
     align-self: flex-end;
   }
 `;
@@ -32,4 +32,10 @@ export const StyledHeaderCartItemWrapper = styled.div`
 export const StyledHeaderCartImage = styled.img`
   width: 80px;
   margin-right: 5px;
+`;
+
+export const StyledHeaderCartButtonGroup = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
 `;

@@ -9,6 +9,7 @@ import {
 } from "../../../styles/fontStyles";
 import Button from "../Button/Button";
 import {
+  StyledHeaderCartButtonGroup,
   StyledHeaderCartImage,
   StyledHeaderCartItemWrapper,
   StyledHeaderCartPreview,
@@ -40,9 +41,15 @@ const HeaderCart = ({ cart, cartCount, cartTotal }: HeaderCartProps) => {
           </StyledHeaderCartItemWrapper>
         ))}
       </StyledHeaderCartWrapper>
-      <Button variant="primary" onClick={() => navigate("/checkout")}>
-        Go to Checkout
-      </Button>
+
+      <StyledHeaderCartButtonGroup>
+        <Button variant="primary" onClick={() => navigate("/cart")}>
+          View Cart
+        </Button>
+        <Button variant="primary" onClick={() => navigate("/checkout")}>
+          Go to Checkout
+        </Button>
+      </StyledHeaderCartButtonGroup>
     </StyledHeaderCartPreview>
   );
 
