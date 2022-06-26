@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledNoItemsWrapper = styled.div`
-  width: 640px;
+  width: 90%;
   height: 200px;
   margin: 0 auto;
   display: flex;
