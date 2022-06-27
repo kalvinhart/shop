@@ -9,6 +9,10 @@ const getAllProducts = catchAsync(async (req, res, next) => {
 
   let query = Product.find();
 
+  if (searchOptions.categories) {
+    query.where("categories", searchOptions.categories);
+  }
+
   if (searchOptions.name) {
     const nameQuery = new RegExp(query.name, "i");
     query.where({ name: nameQuery });
