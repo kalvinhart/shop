@@ -7,9 +7,6 @@ const getAllProducts = catchAsync(async (req, res, next) => {
   const searchOptions = options ?? {};
   const sortSearch = sortBy ? sortBy : "-amountSold";
 
-  console.log(searchOptions);
-  console.log(sortSearch);
-
   if (searchOptions.name) {
     searchOptions.name = new RegExp(searchOptions.name, "i");
   }
@@ -17,9 +14,39 @@ const getAllProducts = catchAsync(async (req, res, next) => {
   const products = await Product.find(searchOptions).sort(sortSearch);
   const count = products.length;
 
+  const allBrands = await Product.aggregate([
+    {
+      $group: {
+        _id: "$brand",
+        count: { $sum: 1 },
+      },
+    },
+  ]);
+
+  const allSizes = await Product.aggregate([
+    {
+      $group: {
+        _id: "$size",
+        count: { $sum: 1 },
+      },
+    },
+  ]);
+
+  const allColors = await Product.aggregate([
+    {
+      $group: {
+        _id: "$color",
+        count: { $sum: 1 },
+      },
+    },
+  ]);
+
   const response = {
     products,
     count,
+    allBrands,
+    allColors,
+    allSizes,
   };
   res.json(response);
 });
@@ -83,6 +110,38 @@ const deleteManyProducts = catchAsync(async (req, res, next) => {
   res.json(result);
 });
 
+const getAllFilters = catchAsync(async (req, res, next) => {
+  console.log("Made it to function.");
+  const allBrands = await Product.aggregate([
+    {
+      $group: {
+        _id: "$brand",
+        count: { $sum: 1 },
+      },
+    },
+  ]);
+
+  const allSizes = await Product.aggregate([
+    {
+      $group: {
+        _id: "$size",
+        count: { $sum: 1 },
+      },
+    },
+  ]);
+
+  const allColors = await Product.aggregate([
+    {
+      $group: {
+        _id: "$color",
+        count: { $sum: 1 },
+      },
+    },
+  ]);
+
+  res.json({ allBrands, allColors, allSizes });
+});
+
 module.exports = {
   getAllProducts,
   getProduct,
@@ -91,4 +150,5 @@ module.exports = {
   updateProduct,
   deleteProduct,
   deleteManyProducts,
+  getAllFilters,
 };

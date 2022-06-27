@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+export const HeaderCartNoItemsWrapper = styled.div`
+  width: 250px;
+  padding: 20px;
+`;
+
 export const HeaderCartPreview = styled.div`
   display: flex;
   flex-direction: column;

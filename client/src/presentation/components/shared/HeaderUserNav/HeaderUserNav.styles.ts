@@ -42,11 +42,6 @@ export const UserUL = styled(UL)`
 export const HoverableLI = styled(LI)`
   position: relative;
 
-  &:hover ~ [data-name="overlay"] {
-    opacity: 1;
-    transform: scaleY(1);
-  }
-
   &:hover > div {
     transform: scaleY(1);
   }

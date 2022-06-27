@@ -9,6 +9,7 @@ const {
   updateProduct,
   deleteProduct,
   deleteManyProducts,
+  getAllFilters,
 } = require("../controllers/productController");
 
 router.post("/", getAllProducts);
@@ -18,5 +19,6 @@ router.post("/new", addNewProduct);
 router.patch("/:id", updateProduct);
 router.delete("/:id", deleteProduct);
 router.patch("/", deleteManyProducts);
+router.get("/filters", getAllFilters);
 
 module.exports = router;

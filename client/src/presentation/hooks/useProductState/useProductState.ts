@@ -7,7 +7,10 @@ import {
   updateSearchOptions,
 } from "../../../application/slices/productSlice";
 import { loadProductDetails } from "../../../application/slices/thunks/productDetailsThunks";
-import { loadProducts } from "../../../application/slices/thunks/productThunks";
+import {
+  loadFilters,
+  loadProducts,
+} from "../../../application/slices/thunks/productThunks";
 import { ProductData } from "../../../infrastructure/services/interfaces/IHttpService";
 
 export const useProductState = () => {
@@ -18,6 +21,7 @@ export const useProductState = () => {
     loading: productsLoading,
     products,
     searchOptions,
+    filters,
   } = useAppSelector((state) => state.products);
 
   const {
@@ -35,6 +39,7 @@ export const useProductState = () => {
     detailsError,
     detailsLoading,
     product,
+    filters,
     loadProducts: useCallback(
       (options: ProductData) => {
         dispatch(loadProducts(options));
@@ -53,5 +58,8 @@ export const useProductState = () => {
       },
       [dispatch]
     ),
+    loadFilters: useCallback(() => {
+      dispatch(loadFilters());
+    }, [dispatch]),
   };
 };

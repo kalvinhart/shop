@@ -8,6 +8,7 @@ import CartItemPreview from "../CartItem/CartItem";
 import { H3, SpanBold, SpanPrice, StyledParagraph } from "../../../styles/fontStyles";
 import {
   HeaderCartButtonGroup,
+  HeaderCartNoItemsWrapper,
   HeaderCartPreview,
   HeaderCartSubtotalGroup,
   HeaderCartWrapper,
@@ -23,7 +24,11 @@ const HeaderCart = ({ cart, cartCount, cartTotal }: HeaderCartProps) => {
   const navigate = useNavigate();
 
   if (!cart || cart.length === 0)
-    return <StyledParagraph>You have no items in your cart.</StyledParagraph>;
+    return (
+      <HeaderCartNoItemsWrapper>
+        <StyledParagraph>You have no items in your cart.</StyledParagraph>
+      </HeaderCartNoItemsWrapper>
+    );
 
   const cartPreview = (
     <HeaderCartPreview>

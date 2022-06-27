@@ -20,7 +20,6 @@ import {
   UserInfoWrapper,
   UserUL,
 } from "./HeaderUserNav.styles";
-import { HeaderNavOverlay } from "../HeaderNav/HeaderNav.styles";
 import HeaderCart from "../HeaderCart/HeaderCart";
 
 const HeaderUserNav = () => {
@@ -85,8 +84,6 @@ const HeaderUserNav = () => {
             />
           </CartDropDownWrapper>
         </HoverableLI>
-
-        <HeaderNavOverlay data-name="overlay" />
       </UserUL>
     </UserInfoWrapper>
   );

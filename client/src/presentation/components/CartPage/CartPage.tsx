@@ -1,7 +1,7 @@
 import { useCartPage } from "./hooks/useCartPage";
 import { usePageTitle } from "../../hooks/usePageTitle/usePageTitle";
 
-import NoCartItems from "../shared/NoCartItems/NoCartItems";
+import NoCartItems from "./NoCartItems/NoCartItems";
 import CartItem from "../shared/CartItem/CartItem";
 
 import { H2, SpanBold, SpanPrice } from "../../styles/fontStyles";

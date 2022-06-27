@@ -6,6 +6,7 @@ type UserData = {
 };
 
 export type ProductData = {
+  brand?: string;
   categories?: string;
   name?: string;
   sortBy?: string;
