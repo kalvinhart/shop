@@ -1,35 +1,18 @@
 const Product = require("../models/productModel");
 const { catchAsync } = require("../middleware/errors");
+const { buildQueryFromSearchOptions } = require("../utils/buildQueryFromSearchOptions");
 
 const getAllProducts = catchAsync(async (req, res, next) => {
   const { options, sortBy } = req.body;
   const searchOptions = options ?? {};
 
+  console.log(searchOptions);
+
   const sortSearch = sortBy ? sortBy : "-amountSold";
 
   let query = Product.find();
 
-  if (searchOptions.categories) {
-    query.where("categories", searchOptions.categories);
-  }
-
-  if (searchOptions.name) {
-    const nameQuery = new RegExp(query.name, "i");
-    query.where({ name: nameQuery });
-  }
-
-  if (searchOptions.brand) {
-    const brands = searchOptions.brand.split(",");
-    query.where({ brand: { $in: brands } });
-  }
-
-  if (searchOptions.color) {
-    query.where({ $in: searchOptions.color.split(",") });
-  }
-
-  if (searchOptions.size) {
-    query.where({ $in: searchOptions.size.split(",") });
-  }
+  query = buildQueryFromSearchOptions(query, searchOptions);
 
   query.sort(sortSearch);
 

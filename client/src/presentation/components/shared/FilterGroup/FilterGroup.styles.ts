@@ -4,6 +4,10 @@ export const FilterGroupWrapper = styled.div`
   display: flex;
   flex-direction: column;
 
+  &:first-of-type {
+    margin-top: 20px;
+  }
+
   &:not(:last-of-type) {
     margin-bottom: 20px;
   }
