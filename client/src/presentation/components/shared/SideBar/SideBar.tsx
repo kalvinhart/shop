@@ -1,7 +1,12 @@
 import { useEffect } from "react";
+
 import { useProductState } from "../../../hooks/useProductState/useProductState";
-import { H3, SpanBold, SpanRegular } from "../../../styles/fontStyles";
-import Checkbox from "../Checkbox/Checkbox";
+
+import { filtersAreEmpty } from "../../../utils/filters";
+
+import FilterGroup from "../FilterGroup/FilterGroup";
+
+import { H3 } from "../../../styles/fontStyles";
 import { StyledSideBarBackground } from "./SideBar.styles";
 
 const SideBar = () => {
@@ -18,36 +23,15 @@ const SideBar = () => {
       <StyledSideBarBackground>
         <H3>Filters:</H3>
         {filters && filters.allBrands.length > 0 && (
-          <>
-            <SpanBold>Brand:</SpanBold>
-            {filters.allBrands.map((brand) => (
-              <Checkbox label={brand._id} onChange={() => {}} />
-            ))}
-          </>
+          <FilterGroup heading="Brand" items={filters.allBrands} onChange={() => {}} />
         )}
 
-        {filters && filters.allColors.length > 0 && (
-          <>
-            <SpanBold>Color:</SpanBold>
-            {filters.allColors.map((color) => {
-              if (color._id !== null) {
-                return <Checkbox label={color._id} onChange={() => {}} />;
-              }
-              return null;
-            })}
-          </>
+        {filters && !filtersAreEmpty(filters.allColors) && (
+          <FilterGroup heading="Color" items={filters.allColors} onChange={() => {}} />
         )}
 
-        {filters && filters.allSizes.length > 0 && (
-          <>
-            <SpanBold>Size:</SpanBold>
-            {filters.allSizes.map((size) => {
-              if (size._id !== null) {
-                return <Checkbox label={size._id} onChange={() => {}} />;
-              }
-              return null;
-            })}
-          </>
+        {filters && !filtersAreEmpty(filters.allSizes) && (
+          <FilterGroup heading="Size" items={filters.allSizes} onChange={() => {}} />
         )}
       </StyledSideBarBackground>
     </>
