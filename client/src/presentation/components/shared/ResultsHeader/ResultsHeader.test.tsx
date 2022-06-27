@@ -1,6 +1,6 @@
 import { fireEvent, screen, renderWithWrappers } from "../../../utils/testUtils";
 
-import Filters from "./Filters";
+import ResultsHeader from "./ResultsHeader";
 import Button from "../Button/Button";
 
 let mockHasOptions: boolean;
@@ -21,8 +21,8 @@ const mockSortOptions = [
   { name: "test2", text: "Tag Test2" },
 ];
 
-jest.mock("./hooks/useFilters.tsx", () => ({
-  useFilters: () => ({
+jest.mock("./hooks/useResultsHeader.tsx", () => ({
+  useResultsHeader: () => ({
     count: 5,
     selectValue: "-amountSold",
     handleSelectChange: (e: React.SyntheticEvent) => {},
@@ -33,9 +33,9 @@ jest.mock("./hooks/useFilters.tsx", () => ({
   }),
 }));
 
-describe("Filters", () => {
+describe("ResultsHeader", () => {
   test("Displays correct results count.", () => {
-    renderWithWrappers(<Filters />);
+    renderWithWrappers(<ResultsHeader />);
 
     const countText = screen.getByText("5 Results");
     expect(countText).toBeInTheDocument();
@@ -44,7 +44,7 @@ describe("Filters", () => {
   test("Does not display filter option when no filters are selected.", () => {
     mockHasOptions = false;
 
-    renderWithWrappers(<Filters />);
+    renderWithWrappers(<ResultsHeader />);
 
     const optionsTagElement = screen.queryByText("Categories: Test");
     expect(optionsTagElement).not.toBeInTheDocument();
@@ -53,21 +53,21 @@ describe("Filters", () => {
   test("Displays correct current filter option.", () => {
     mockHasOptions = true;
 
-    renderWithWrappers(<Filters />);
+    renderWithWrappers(<ResultsHeader />);
 
     const optionsTagElement = screen.getByText("Categories: Test");
     expect(optionsTagElement).toBeInTheDocument();
   });
 
   test("Select element displays correct default selected filter option.", () => {
-    renderWithWrappers(<Filters />);
+    renderWithWrappers(<ResultsHeader />);
 
     const selectText = screen.getByText("Tag Test2");
     expect(selectText).toBeInTheDocument();
   });
 
   test("Select element displays correct current selected filter option.", () => {
-    renderWithWrappers(<Filters />);
+    renderWithWrappers(<ResultsHeader />);
 
     const selectElement: HTMLSelectElement = screen.getByText("Tag Test2");
     expect(selectElement.value).toBe("test2");
