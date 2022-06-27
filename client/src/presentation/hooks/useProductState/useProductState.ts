@@ -2,10 +2,7 @@ import { useCallback } from "react";
 
 import { useAppDispatch } from "../../../application/hooks/useAppDispatch";
 import { useAppSelector } from "../../../application/hooks/useAppSelector";
-import {
-  ProductOptionsPayload,
-  updateSearchOptions,
-} from "../../../application/slices/productSlice";
+import { ProductOptionsPayload } from "../../../application/slices/productSlice";
 import { loadProductDetails } from "../../../application/slices/thunks/productDetailsThunks";
 import {
   loadFilters,
@@ -20,7 +17,6 @@ export const useProductState = () => {
     error: productsError,
     loading: productsLoading,
     products,
-    searchOptions,
     filters,
   } = useAppSelector((state) => state.products);
 
@@ -35,7 +31,6 @@ export const useProductState = () => {
     productsError,
     productsLoading,
     products,
-    searchOptions,
     detailsError,
     detailsLoading,
     product,
@@ -43,12 +38,6 @@ export const useProductState = () => {
     loadProducts: useCallback(
       (options: ProductData) => {
         dispatch(loadProducts(options));
-      },
-      [dispatch]
-    ),
-    updateSearchOptions: useCallback(
-      (options: ProductOptionsPayload) => {
-        dispatch(updateSearchOptions(options));
       },
       [dispatch]
     ),
