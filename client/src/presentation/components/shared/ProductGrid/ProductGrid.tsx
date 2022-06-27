@@ -1,4 +1,4 @@
-import Filters from "../Filters/Filters";
+import ResultsHeader from "../ResultsHeader/ResultsHeader";
 import { StyledGrid, StyledGridWrapper } from "./ProductGrid.styles";
 
 type ProductGridProps = {
@@ -8,7 +8,7 @@ type ProductGridProps = {
 const ProductGrid = ({ children }: ProductGridProps) => {
   return (
     <StyledGridWrapper>
-      <Filters />
+      <ResultsHeader />
       <StyledGrid>{children}</StyledGrid>
     </StyledGridWrapper>
   );

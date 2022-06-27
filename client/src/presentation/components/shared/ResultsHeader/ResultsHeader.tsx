@@ -1,16 +1,16 @@
-import { useFilters } from "./hooks/useFilters";
+import { useResultsHeader } from "./hooks/useResultsHeader";
 
 import {
   StyledFiltersBackground,
   StyledFilterSelectWrapper,
   StyledFiltersWrapper,
-} from "./Filters.styles";
+} from "./ResultsHeader.styles";
 import { H3, SpanBold } from "../../../styles/fontStyles";
 import { StyledSelect } from "../../../styles/formStyles";
 
-const Filters = () => {
+const ResultsHeader = () => {
   const { count, sortOptions, hasOptions, optionsTags, selectValue, handleSelectChange } =
-    useFilters();
+    useResultsHeader();
 
   return (
     <StyledFiltersBackground>
@@ -33,4 +33,4 @@ const Filters = () => {
   );
 };
 
-export default Filters;
+export default ResultsHeader;

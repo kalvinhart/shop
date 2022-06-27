@@ -45,7 +45,7 @@ export const CheckboxLabel = styled.label`
     width: 0;
   }
   & input:checked ~ ${CheckboxUI} {
-    background-color: #2196f3;
+    background-color: var(--clr-primary);
   }
 
   & input:checked ~ ${CheckboxUI}:after {

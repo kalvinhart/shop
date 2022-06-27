@@ -1,9 +1,13 @@
+import { SelectedFilters } from "../../application/slices/productSlice";
 import { ProductData } from "../../infrastructure/services/interfaces/IHttpService";
 
 export const formatSearchParamsForRequest = (searchParams: URLSearchParams) => {
   let params: ProductData = {
     categories: searchParams.get("category") || undefined,
     name: searchParams.get("name") || undefined,
+    brand: searchParams.get("brand") || undefined,
+    color: searchParams.get("color") || undefined,
+    size: searchParams.get("size") || undefined,
   };
 
   let options: ProductData = {};
@@ -40,6 +44,25 @@ export const removeSearchParam = (
   if (searchParams.get(paramToRemove)) {
     delete newParams[paramToRemove];
   }
+
+  return newParams;
+};
+
+export const handleSearchParamsOnFilterChange = (
+  searchParams: URLSearchParams,
+  selectedFilters: SelectedFilters
+) => {
+  const currentParams = formatOldSearchParams(searchParams);
+
+  const newParams = {
+    ...currentParams,
+    ...selectedFilters,
+  };
+
+  ["brand", "color", "size"].forEach((filter) => {
+    if (newParams[filter as keyof SelectedFilters] === "")
+      delete newParams[filter as keyof SelectedFilters];
+  });
 
   return newParams;
 };

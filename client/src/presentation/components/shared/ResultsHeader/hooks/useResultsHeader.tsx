@@ -11,9 +11,9 @@ import {
   removeSearchParam,
 } from "../../../../utils/formatSearchParams";
 
-export const useFilters = () => {
+export const useResultsHeader = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const { count, searchOptions } = useProductState();
+  const { count } = useProductState();
 
   const hasOptions = Array.from(searchParams.keys()).length > 0;
 
@@ -93,7 +93,6 @@ export const useFilters = () => {
     hasOptions,
     optionsTags,
     searchParams,
-    searchOptions,
     sortOptions,
   };
 };

@@ -20,6 +20,10 @@ export const StyledSideBarBackground = styled.div`
   & ${H3} {
     margin-top: 0;
   }
+
+  & button {
+    margin-bottom: 20px;
+  }
 `;
 
 export const StyledUL = styled.ul`

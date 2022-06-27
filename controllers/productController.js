@@ -1,17 +1,22 @@
 const Product = require("../models/productModel");
 const { catchAsync } = require("../middleware/errors");
+const { buildQueryFromSearchOptions } = require("../utils/buildQueryFromSearchOptions");
 
 const getAllProducts = catchAsync(async (req, res, next) => {
   const { options, sortBy } = req.body;
-
   const searchOptions = options ?? {};
+
+  console.log(searchOptions);
+
   const sortSearch = sortBy ? sortBy : "-amountSold";
 
-  if (searchOptions.name) {
-    searchOptions.name = new RegExp(searchOptions.name, "i");
-  }
+  let query = Product.find();
 
-  const products = await Product.find(searchOptions).sort(sortSearch);
+  query = buildQueryFromSearchOptions(query, searchOptions);
+
+  query.sort(sortSearch);
+
+  const products = await await query.exec();
   const count = products.length;
 
   const allBrands = await Product.aggregate([

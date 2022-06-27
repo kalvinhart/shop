@@ -3,8 +3,9 @@ import { useCallback } from "react";
 import { useAppDispatch } from "../../../application/hooks/useAppDispatch";
 import { useAppSelector } from "../../../application/hooks/useAppSelector";
 import {
-  ProductOptionsPayload,
-  updateSearchOptions,
+  addToFilters,
+  clearFilters,
+  removeFromFilters,
 } from "../../../application/slices/productSlice";
 import { loadProductDetails } from "../../../application/slices/thunks/productDetailsThunks";
 import {
@@ -13,6 +14,11 @@ import {
 } from "../../../application/slices/thunks/productThunks";
 import { ProductData } from "../../../infrastructure/services/interfaces/IHttpService";
 
+type FiltersParams = {
+  filterName: string;
+  filterValue: string;
+};
+
 export const useProductState = () => {
   const dispatch = useAppDispatch();
   const {
@@ -20,8 +26,9 @@ export const useProductState = () => {
     error: productsError,
     loading: productsLoading,
     products,
-    searchOptions,
     filters,
+    selectedFilters,
+    isFiltered,
   } = useAppSelector((state) => state.products);
 
   const {
@@ -35,20 +42,15 @@ export const useProductState = () => {
     productsError,
     productsLoading,
     products,
-    searchOptions,
     detailsError,
     detailsLoading,
     product,
     filters,
+    selectedFilters,
+    isFiltered,
     loadProducts: useCallback(
       (options: ProductData) => {
         dispatch(loadProducts(options));
-      },
-      [dispatch]
-    ),
-    updateSearchOptions: useCallback(
-      (options: ProductOptionsPayload) => {
-        dispatch(updateSearchOptions(options));
       },
       [dispatch]
     ),
@@ -60,6 +62,21 @@ export const useProductState = () => {
     ),
     loadFilters: useCallback(() => {
       dispatch(loadFilters());
+    }, [dispatch]),
+    addToFilters: useCallback(
+      (data: FiltersParams) => {
+        dispatch(addToFilters(data));
+      },
+      [dispatch]
+    ),
+    removeFromFilters: useCallback(
+      (data: FiltersParams) => {
+        dispatch(removeFromFilters(data));
+      },
+      [dispatch]
+    ),
+    clearFilters: useCallback(() => {
+      dispatch(clearFilters());
     }, [dispatch]),
   };
 };
