@@ -3,15 +3,33 @@ const { catchAsync } = require("../middleware/errors");
 
 const getAllProducts = catchAsync(async (req, res, next) => {
   const { options, sortBy } = req.body;
-
   const searchOptions = options ?? {};
+
   const sortSearch = sortBy ? sortBy : "-amountSold";
 
+  let query = Product.find();
+
   if (searchOptions.name) {
-    searchOptions.name = new RegExp(searchOptions.name, "i");
+    const nameQuery = new RegExp(query.name, "i");
+    query.where({ name: nameQuery });
   }
 
-  const products = await Product.find(searchOptions).sort(sortSearch);
+  if (searchOptions.brand) {
+    const brands = searchOptions.brand.split(",");
+    query.where({ brand: { $in: brands } });
+  }
+
+  if (searchOptions.color) {
+    query.where({ $in: searchOptions.color.split(",") });
+  }
+
+  if (searchOptions.size) {
+    query.where({ $in: searchOptions.size.split(",") });
+  }
+
+  query.sort(sortSearch);
+
+  const products = await await query.exec();
   const count = products.length;
 
   const allBrands = await Product.aggregate([
