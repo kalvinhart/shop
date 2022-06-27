@@ -13,7 +13,7 @@ export const StyledSideBarBackground = styled.div`
   box-shadow: var(--box-shadow-small);
 
   @media screen and (min-width: ${mediaSizes.large}) {
-    width: 240px;
+    width: 300px;
     margin: 0 20px 0 0;
   }
 
