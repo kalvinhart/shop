@@ -9,6 +9,8 @@ export type ProductData = {
   brand?: string;
   categories?: string;
   name?: string;
+  color?: string;
+  size?: string;
   sortBy?: string;
 };
 
