@@ -39,9 +39,13 @@ const SideBar = () => {
   const removeFilters = () => {
     clearFilters();
 
-    const newParams = handleSearchParamsOnFilterChange(searchParams, selectedFilters);
-    console.log(newParams);
-    setSearchParams(newParams);
+    const params = formatOldSearchParams(searchParams);
+
+    ["brand", "color", "size"].forEach((filter) => {
+      delete params[filter];
+    });
+
+    setSearchParams(params);
   };
 
   return (
