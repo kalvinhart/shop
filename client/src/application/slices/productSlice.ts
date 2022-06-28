@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Product } from "../../domain/models/Product";
 import { Filters } from "../../infrastructure/services/interfaces/IProductService";
+import { removeFilterFromFilterString } from "../../presentation/utils/filters";
 import { loadFilters, loadProducts } from "./thunks/productThunks";
 
 export type SelectedFilters = {
@@ -71,15 +72,12 @@ const productSlice = createSlice({
       if (currentFilterString === undefined || currentFilterString === "") return;
 
       if (state.selectedFilters[filterName as keyof SelectedFilters].includes(",")) {
-        let splitFilterString = currentFilterString.split(",");
+        const newFilterString = removeFilterFromFilterString(
+          currentFilterString,
+          filterValue
+        );
 
-        const filterIndex = splitFilterString.findIndex((item) => item === filterValue);
-
-        if (filterIndex === -1) return;
-
-        splitFilterString.splice(filterIndex, 1);
-
-        const newFilterString = splitFilterString.join(",");
+        if (newFilterString === "") return;
 
         state.selectedFilters[filterName as keyof SelectedFilters] = newFilterString;
       } else {
