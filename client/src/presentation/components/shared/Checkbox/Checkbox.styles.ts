@@ -20,6 +20,7 @@ export const CheckboxLabel = styled.label`
   position: relative;
   padding-left: 35px;
   margin-bottom: 10px;
+  align-self: flex-start;
   cursor: pointer;
   user-select: none;
 
