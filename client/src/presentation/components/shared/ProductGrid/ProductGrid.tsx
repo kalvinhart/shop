@@ -3,12 +3,13 @@ import { StyledGrid, StyledGridWrapper } from "./ProductGrid.styles";
 
 type ProductGridProps = {
   children: React.ReactNode;
+  setShow: (value: boolean | ((prevVar: boolean) => boolean)) => void;
 };
 
-const ProductGrid = ({ children }: ProductGridProps) => {
+const ProductGrid = ({ setShow, children }: ProductGridProps) => {
   return (
     <StyledGridWrapper>
-      <ResultsHeader />
+      <ResultsHeader setShow={setShow} />
       <StyledGrid>{children}</StyledGrid>
     </StyledGridWrapper>
   );

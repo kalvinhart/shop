@@ -35,26 +35,6 @@ export const StyledButton = styled.button<StyledButtonProps>`
           }
         `;
 
-      case "filter":
-        return css`
-          padding: 4px 10px;
-          font-size: 12px;
-          background-color: var(--clr-secondary);
-          border-radius: var(--border-radius);
-
-          &:not(:last-child) {
-            margin-right: 10px;
-          }
-
-          &:hover {
-            background-color: var(--clr-secondary-hover);
-          }
-
-          & svg {
-            margin: 0 0 0 10px;
-          }
-        `;
-
       case "primary":
         return css`
           background-color: var(--clr-primary);

@@ -21,7 +21,7 @@ describe("SideBar", () => {
   test("Displays spinner whilst loading.", () => {
     mockCategoriesLoading = true;
 
-    renderWithWrappers(<SideBar />);
+    renderWithWrappers(<SideBar show={true} setShow={() => {}} />);
 
     const spinnerElement = screen.getByTestId("SideBarTest");
     expect(spinnerElement).toBeInTheDocument();
@@ -30,7 +30,7 @@ describe("SideBar", () => {
   test("Displays correct categories.", () => {
     mockCategoriesLoading = false;
 
-    renderWithWrappers(<SideBar />);
+    renderWithWrappers(<SideBar show={true} setShow={() => {}} />);
 
     const category1Element = screen.getByText("Category1");
     const category2Element = screen.getByText("Category2");
@@ -46,7 +46,7 @@ describe("SideBar", () => {
   test("Having no categories calls the function to load them.", () => {
     mockCategories = [];
 
-    renderWithWrappers(<SideBar />);
+    renderWithWrappers(<SideBar show={true} setShow={() => {}} />);
 
     expect(mockLoadCategories).toHaveBeenCalledTimes(1);
   });
