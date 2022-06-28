@@ -1,22 +1,19 @@
 import { useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 
 import { useProductState } from "../../../hooks/useProductState/useProductState";
 
 import { filtersAreEmpty } from "../../../utils/filters";
-
-import FilterGroup from "../FilterGroup/FilterGroup";
-
-import { useSearchParams } from "react-router-dom";
-
-import Button from "../Button/Button";
-
-import { StyledSideBarBackground } from "./SideBar.styles";
-import { H3 } from "../../../styles/fontStyles";
 import {
   formatOldSearchParams,
   handleSearchParamsOnFilterChange,
 } from "../../../utils/formatSearchParams";
-import { SelectedFilters } from "../../../../application/slices/productSlice";
+
+import FilterGroup from "../FilterGroup/FilterGroup";
+import Button from "../Button/Button";
+
+import { StyledSideBarBackground } from "./SideBar.styles";
+import { H3 } from "../../../styles/fontStyles";
 
 const SideBar = () => {
   const { filters, selectedFilters, isFiltered, loadFilters, clearFilters } =
