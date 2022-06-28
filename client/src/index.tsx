@@ -3,10 +3,10 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 
-import App from "./App";
+import App from "./presentation/app/App";
 import "normalize.css";
 
-import store from "./application/store";
+import store from "./presentation/app/store";
 
 ReactDOM.render(
   <React.StrictMode>
