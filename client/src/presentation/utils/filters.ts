@@ -11,3 +11,20 @@ export const filtersAreEmpty = (filters: Filters[]): boolean => {
 export const filterIsEmpty = (filter: Filters): boolean => {
   return filter._id === "" || filter._id === null;
 };
+
+export const removeFilterFromFilterString = (
+  string: string,
+  filterToRemove: string
+): string => {
+  let splitFilterString = string.split(",");
+
+  const filterIndex = splitFilterString.findIndex((item) => item === filterToRemove);
+
+  if (filterIndex === -1) return "";
+
+  splitFilterString.splice(filterIndex, 1);
+
+  const newFilterString = splitFilterString.join(",");
+
+  return newFilterString;
+};

@@ -35,7 +35,7 @@ jest.mock("./hooks/useResultsHeader.tsx", () => ({
 
 describe("ResultsHeader", () => {
   test("Displays correct results count.", () => {
-    renderWithWrappers(<ResultsHeader />);
+    renderWithWrappers(<ResultsHeader setShow={() => {}} />);
 
     const countText = screen.getByText("5 Results");
     expect(countText).toBeInTheDocument();
@@ -44,7 +44,7 @@ describe("ResultsHeader", () => {
   test("Does not display filter option when no filters are selected.", () => {
     mockHasOptions = false;
 
-    renderWithWrappers(<ResultsHeader />);
+    renderWithWrappers(<ResultsHeader setShow={() => {}} />);
 
     const optionsTagElement = screen.queryByText("Categories: Test");
     expect(optionsTagElement).not.toBeInTheDocument();
@@ -53,21 +53,21 @@ describe("ResultsHeader", () => {
   test("Displays correct current filter option.", () => {
     mockHasOptions = true;
 
-    renderWithWrappers(<ResultsHeader />);
+    renderWithWrappers(<ResultsHeader setShow={() => {}} />);
 
     const optionsTagElement = screen.getByText("Categories: Test");
     expect(optionsTagElement).toBeInTheDocument();
   });
 
   test("Select element displays correct default selected filter option.", () => {
-    renderWithWrappers(<ResultsHeader />);
+    renderWithWrappers(<ResultsHeader setShow={() => {}} />);
 
     const selectText = screen.getByText("Tag Test2");
     expect(selectText).toBeInTheDocument();
   });
 
   test("Select element displays correct current selected filter option.", () => {
-    renderWithWrappers(<ResultsHeader />);
+    renderWithWrappers(<ResultsHeader setShow={() => {}} />);
 
     const selectElement: HTMLSelectElement = screen.getByText("Tag Test2");
     expect(selectElement.value).toBe("test2");

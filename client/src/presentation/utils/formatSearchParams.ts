@@ -32,22 +32,6 @@ export const formatOldSearchParams = (oldSearchParams: URLSearchParams) => {
   return Object.fromEntries([...oldSearchParams]);
 };
 
-export const removeSearchParam = (
-  searchParams: URLSearchParams,
-  paramToRemove: string
-) => {
-  const oldParams = formatOldSearchParams(searchParams);
-  const newParams = {
-    ...oldParams,
-  };
-
-  if (searchParams.get(paramToRemove)) {
-    delete newParams[paramToRemove];
-  }
-
-  return newParams;
-};
-
 export const handleSearchParamsOnFilterChange = (
   searchParams: URLSearchParams,
   selectedFilters: SelectedFilters

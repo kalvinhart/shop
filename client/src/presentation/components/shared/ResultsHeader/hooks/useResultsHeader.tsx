@@ -2,27 +2,21 @@ import { useSearchParams } from "react-router-dom";
 
 import { useProductState } from "../../../../hooks/useProductState/useProductState";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import Button from "../../Button/Button";
+import { formatOldSearchParams } from "../../../../utils/formatSearchParams";
+import { formatStringToUpper } from "../../../../utils/formatStringToUpper";
 
-import {
-  formatOldSearchParams,
-  removeSearchParam,
-} from "../../../../utils/formatSearchParams";
+import { FilterTags } from "../ResultsHeader.styles";
 
 export const useResultsHeader = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { count } = useProductState();
 
-  const hasOptions = Array.from(searchParams.keys()).length > 0;
-
   let optionsTags: JSX.Element[] = [];
 
-  const handleRemoveParam = (searchParams: URLSearchParams, param: string): void => {
-    const newParams = removeSearchParam(searchParams, param);
-    setSearchParams(newParams);
-  };
+  const optionIsSort =
+    Array.from(searchParams.keys()).length === 1 && searchParams.get("sort") !== "";
+
+  const hasOptions = Array.from(searchParams.keys()).length > 0 && !optionIsSort;
 
   if (hasOptions) {
     Array.from(searchParams.entries()).forEach((item) => {
@@ -30,19 +24,13 @@ export const useResultsHeader = () => {
 
       if (optionName === "sort") return;
 
-      const formattedOptionName = `${optionName
-        .slice(0, 1)
-        .toUpperCase()}${optionName.slice(1)}`;
+      const formattedOptionName = formatStringToUpper(optionName);
+      const formattedOptionValue = formatStringToUpper(optionValue);
 
       optionsTags.push(
-        <Button
-          variant="filter"
-          key={optionValue}
-          onClick={() => handleRemoveParam(searchParams, optionName)}
-        >
-          {`${formattedOptionName}: "${optionValue}"`}
-          <FontAwesomeIcon icon={faTimes} />
-        </Button>
+        <FilterTags key={optionValue}>
+          {`${formattedOptionName}: "${formattedOptionValue}"`}
+        </FilterTags>
       );
     });
   }
