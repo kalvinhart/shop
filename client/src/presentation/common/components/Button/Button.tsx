@@ -6,6 +6,7 @@ type ButtonProps = StyledButtonProps & {
   onClick?: (e: React.SyntheticEvent) => void | (() => void);
   children: React.ReactNode;
   title?: string;
+  dataName?: string;
 };
 
 const Button = ({
@@ -16,6 +17,7 @@ const Button = ({
   onClick,
   children,
   title,
+  dataName,
 }: ButtonProps) => {
   return (
     <StyledButton
@@ -25,6 +27,7 @@ const Button = ({
       disabled={disabled}
       onClick={onClick}
       title={title}
+      data-name={dataName}
     >
       {children}
     </StyledButton>

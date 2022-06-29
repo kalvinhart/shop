@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 export type StyledButtonProps = {
-  variant: "filter" | "primary" | "secondary" | "icon";
+  variant: "filter" | "primary" | "secondary" | "icon" | "trash";
   size?: "regular" | "small" | "large";
 };
 
@@ -52,6 +52,24 @@ export const StyledButton = styled.button<StyledButtonProps>`
 
           &:hover {
             background-color: var(--clr-secondary-hover);
+          }
+        `;
+
+      // used in the view cart page for removing
+      // an item from cart. (trash can icon)
+      case "trash":
+        return css`
+          padding: 10px;
+          background-color: transparent;
+          box-shadow: none;
+          color: #dc143c;
+
+          &:hover {
+            color: #880808;
+          }
+
+          & svg {
+            margin-right: 0;
           }
         `;
     }
