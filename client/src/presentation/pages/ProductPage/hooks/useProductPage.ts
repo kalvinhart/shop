@@ -29,7 +29,6 @@ export const useProductPage = () => {
 
   return {
     detailsLoading,
-    detailsError,
     product,
     handleAddToCart: (item: CartItem) => handleAddToCart(item),
   };
