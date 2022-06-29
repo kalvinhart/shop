@@ -20,6 +20,7 @@ type FilterState = {
   } | null;
   selectedFilters: SelectedFilters;
   isFiltered: boolean;
+  isFilterApplied: boolean;
 };
 
 type FilterOptionsPayload = {
@@ -35,6 +36,7 @@ const initialState: FilterState = {
     size: "",
   },
   isFiltered: false,
+  isFilterApplied: false,
 };
 
 const filterSlice = createSlice({
@@ -74,6 +76,9 @@ const filterSlice = createSlice({
         state.isFiltered = false;
       }
     },
+    setFiltersApplied(state, action) {
+      state.isFilterApplied = action.payload;
+    },
     clearFilters(state) {
       ["brand", "color", "size"].forEach(
         (filter) => (state.selectedFilters[filter as keyof SelectedFilters] = "")
@@ -92,6 +97,7 @@ const filterSlice = createSlice({
   },
 });
 
-export const { addToFilters, removeFromFilters, clearFilters } = filterSlice.actions;
+export const { addToFilters, removeFromFilters, clearFilters, setFiltersApplied } =
+  filterSlice.actions;
 
 export default filterSlice.reducer;

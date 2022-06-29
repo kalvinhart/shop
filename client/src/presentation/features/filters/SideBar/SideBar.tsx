@@ -27,7 +27,14 @@ type SideBarProps = {
 };
 
 const SideBar = ({ show, setShow }: SideBarProps) => {
-  const { filters, selectedFilters, isFiltered, clearFilters } = useFilterState();
+  const {
+    filters,
+    selectedFilters,
+    isFiltered,
+    isFilterApplied,
+    setFiltersApplied,
+    clearFilters,
+  } = useFilterState();
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -35,6 +42,7 @@ const SideBar = ({ show, setShow }: SideBarProps) => {
     const newParams = handleSearchParamsOnFilterChange(searchParams, selectedFilters);
 
     setSearchParams(newParams);
+    setFiltersApplied(true);
     setShow(false);
   };
 
@@ -48,6 +56,7 @@ const SideBar = ({ show, setShow }: SideBarProps) => {
     });
 
     setSearchParams(params);
+    setFiltersApplied(false);
     setShow(false);
   };
 
@@ -63,7 +72,11 @@ const SideBar = ({ show, setShow }: SideBarProps) => {
         <Button variant="primary" disabled={!isFiltered} onClick={applyFilters}>
           Apply Filters
         </Button>
-        <Button variant="secondary" disabled={!isFiltered} onClick={removeFilters}>
+        <Button
+          variant="secondary"
+          disabled={!isFiltered && !isFilterApplied}
+          onClick={removeFilters}
+        >
           Reset Filters
         </Button>
 

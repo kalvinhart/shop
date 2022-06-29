@@ -7,6 +7,7 @@ import {
   addToFilters,
   clearFilters,
   removeFromFilters,
+  setFiltersApplied,
 } from "../../../features/filters/slice/filtersSlice";
 
 type FiltersParams = {
@@ -17,17 +18,24 @@ type FiltersParams = {
 export const useFilterState = () => {
   const dispatch = useAppDispatch();
 
-  const { filters, isFiltered, selectedFilters } = useAppSelector(
+  const { filters, isFiltered, isFilterApplied, selectedFilters } = useAppSelector(
     (state) => state.filters
   );
 
   return {
     filters,
     isFiltered,
+    isFilterApplied,
     selectedFilters,
     addToFilters: useCallback(
       (data: FiltersParams) => {
         dispatch(addToFilters(data));
+      },
+      [dispatch]
+    ),
+    setFiltersApplied: useCallback(
+      (value: boolean) => {
+        dispatch(setFiltersApplied(value));
       },
       [dispatch]
     ),
