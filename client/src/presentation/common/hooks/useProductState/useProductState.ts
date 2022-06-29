@@ -3,20 +3,10 @@ import { useCallback } from "react";
 import { useAppDispatch } from "../../../app/hooks/useAppDispatch";
 import { useAppSelector } from "../../../app/hooks/useAppSelector";
 
-import {
-  addToFilters,
-  clearFilters,
-  removeFromFilters,
-} from "../../../app/slices/productSlice";
 import { loadProductDetails } from "../../../app/slices/thunks/productDetailsThunks";
-import { loadFilters, loadProducts } from "../../../app/slices/thunks/productThunks";
+import { loadProducts } from "../../../app/slices/thunks/productThunks";
 
 import { ProductData } from "../../../../infrastructure/services/interfaces/IHttpService";
-
-type FiltersParams = {
-  filterName: string;
-  filterValue: string;
-};
 
 export const useProductState = () => {
   const dispatch = useAppDispatch();
@@ -25,9 +15,6 @@ export const useProductState = () => {
     error: productsError,
     loading: productsLoading,
     products,
-    filters,
-    selectedFilters,
-    isFiltered,
   } = useAppSelector((state) => state.products);
 
   const {
@@ -44,9 +31,6 @@ export const useProductState = () => {
     detailsError,
     detailsLoading,
     product,
-    filters,
-    selectedFilters,
-    isFiltered,
     loadProducts: useCallback(
       (options: ProductData) => {
         dispatch(loadProducts(options));
@@ -59,23 +43,5 @@ export const useProductState = () => {
       },
       [dispatch]
     ),
-    loadFilters: useCallback(() => {
-      dispatch(loadFilters());
-    }, [dispatch]),
-    addToFilters: useCallback(
-      (data: FiltersParams) => {
-        dispatch(addToFilters(data));
-      },
-      [dispatch]
-    ),
-    removeFromFilters: useCallback(
-      (data: FiltersParams) => {
-        dispatch(removeFromFilters(data));
-      },
-      [dispatch]
-    ),
-    clearFilters: useCallback(() => {
-      dispatch(clearFilters());
-    }, [dispatch]),
   };
 };

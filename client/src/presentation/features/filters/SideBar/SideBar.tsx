@@ -1,7 +1,6 @@
-import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
-import { useProductState } from "../../../common/hooks/useProductState";
+import { useFilterState } from "../../../common/hooks/useFilterState/useFilterState";
 
 import {
   formatOldSearchParams,
@@ -28,16 +27,9 @@ type SideBarProps = {
 };
 
 const SideBar = ({ show, setShow }: SideBarProps) => {
-  const { filters, selectedFilters, isFiltered, loadFilters, clearFilters } =
-    useProductState();
+  const { filters, selectedFilters, isFiltered, clearFilters } = useFilterState();
 
   const [searchParams, setSearchParams] = useSearchParams();
-
-  useEffect(() => {
-    if (filters === null) {
-      loadFilters();
-    }
-  }, [filters, loadFilters]);
 
   const applyFilters = () => {
     const newParams = handleSearchParamsOnFilterChange(searchParams, selectedFilters);
@@ -66,6 +58,7 @@ const SideBar = ({ show, setShow }: SideBarProps) => {
           Close Filters
           <FontAwesomeIcon icon={faTimes} />
         </CloseFiltersButton>
+
         <H3>Filters:</H3>
         <Button variant="primary" disabled={!isFiltered} onClick={applyFilters}>
           Apply Filters
@@ -73,6 +66,7 @@ const SideBar = ({ show, setShow }: SideBarProps) => {
         <Button variant="secondary" disabled={!isFiltered} onClick={removeFilters}>
           Reset Filters
         </Button>
+
         {filters && filters.allBrands.length > 0 && (
           <FilterGroup heading="Brand" items={filters.allBrands} />
         )}
