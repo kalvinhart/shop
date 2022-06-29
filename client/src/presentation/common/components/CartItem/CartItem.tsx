@@ -10,20 +10,21 @@ import QuantityPicker from "../QuantityPicker/QuantityPicker";
 import Button from "../Button/Button";
 
 import {
-  StyledCartButtonsWrapper,
-  StyledCartItemContentWrapper,
-  StyledCartItemImage,
-  StyledCartItemInfoGroup,
-  StyledCartItemInfoWrapper,
-  StyledCartItemWrapper,
+  CartButtonsWrapper,
+  CartItemContentWrapper,
+  CartItemImage,
+  CartItemInfoGroup,
+  CartItemInfoWrapper,
+  CartItemWrapper,
 } from "./CartItem.styles";
-import { H3, SpanGrey, SpanPrice, SpanRegular } from "../../styles";
+import { SpanBold, SpanGrey, SpanPrice, SpanRegular } from "../../styles";
 
 type CartItemProps = {
   item: CartItemModel;
+  small?: boolean;
 };
 
-const CartItem = ({ item }: CartItemProps) => {
+const CartItem = ({ item, small = false }: CartItemProps) => {
   const {
     id,
     name,
@@ -38,50 +39,54 @@ const CartItem = ({ item }: CartItemProps) => {
   } = useCartItem(item);
 
   return (
-    <StyledCartItemWrapper data-testid="CartItemElement">
+    <CartItemWrapper small={small} data-testid="CartItemElement" tabIndex={1}>
       <Link to={`/product/${id}`}>
-        <StyledCartItemImage src={imageUrl} alt={name} />
+        <CartItemImage src={imageUrl} alt={name} small={small} />
       </Link>
 
-      <StyledCartItemContentWrapper>
-        <StyledCartItemInfoWrapper>
+      <CartItemContentWrapper>
+        <CartItemInfoWrapper>
           <Link to={`/product/${id}`}>
-            <H3>{name}</H3>
+            <SpanBold>{name}</SpanBold>
           </Link>
 
           {brand && (
-            <StyledCartItemInfoGroup>
+            <CartItemInfoGroup small={small}>
               <SpanGrey>Brand: </SpanGrey>
               <SpanRegular>{brand}</SpanRegular>
-            </StyledCartItemInfoGroup>
+            </CartItemInfoGroup>
           )}
 
           {size && (
-            <StyledCartItemInfoGroup>
+            <CartItemInfoGroup small={small}>
               <SpanGrey>Size: </SpanGrey>
               <SpanRegular>{size}</SpanRegular>
-            </StyledCartItemInfoGroup>
+            </CartItemInfoGroup>
           )}
 
           {color && (
-            <StyledCartItemInfoGroup>
+            <CartItemInfoGroup small={small}>
               <SpanGrey>Colour: </SpanGrey>
               <SpanRegular>{color}</SpanRegular>
-            </StyledCartItemInfoGroup>
+            </CartItemInfoGroup>
           )}
-        </StyledCartItemInfoWrapper>
+        </CartItemInfoWrapper>
 
-        <StyledCartButtonsWrapper>
+        <CartButtonsWrapper>
           <QuantityPicker quantity={qty} handleQuantityChange={handleQuantityChange} />
 
           <SpanPrice data-testid="CartItemPrice">£{total}</SpanPrice>
-          <Button variant="secondary" onClick={handleRemove}>
+          <Button
+            variant="trash"
+            onClick={handleRemove}
+            aria-label="Remove from Cart"
+            dataName="removeButton"
+          >
             <FontAwesomeIcon icon={faTrashAlt} />
-            Remove
           </Button>
-        </StyledCartButtonsWrapper>
-      </StyledCartItemContentWrapper>
-    </StyledCartItemWrapper>
+        </CartButtonsWrapper>
+      </CartItemContentWrapper>
+    </CartItemWrapper>
   );
 };
 
