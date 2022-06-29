@@ -3,14 +3,14 @@ import { mediaSizes } from "../../styles";
 
 import { SpanGrey, SpanPrice } from "../../styles";
 
-export const StyledCartItemWrapper = styled.div`
+export const CartItemWrapper = styled.div`
   width: 100%;
   margin-bottom: 20px;
   display: flex;
   align-items: center;
 `;
 
-export const StyledCartItemImage = styled.img`
+export const CartItemImage = styled.img`
   width: 120px;
   border-radius: var(--border-radius);
   margin-right: 15px;
@@ -20,7 +20,7 @@ export const StyledCartItemImage = styled.img`
   }
 `;
 
-export const StyledCartItemContentWrapper = styled.div`
+export const CartItemContentWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -30,12 +30,16 @@ export const StyledCartItemContentWrapper = styled.div`
   }
 `;
 
-export const StyledCartItemInfoWrapper = styled.div`
+export const CartItemInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
+
+  & a {
+    margin-bottom: 10px;
+  }
 `;
 
-export const StyledCartItemInfoGroup = styled.div`
+export const CartItemInfoGroup = styled.div`
   display: flex;
 
   & ${SpanGrey} {
@@ -47,7 +51,7 @@ export const StyledCartItemInfoGroup = styled.div`
   }
 `;
 
-export const StyledCartButtonsWrapper = styled.div`
+export const CartButtonsWrapper = styled.div`
   margin-top: 20px;
   display: flex;
   flex-direction: column;

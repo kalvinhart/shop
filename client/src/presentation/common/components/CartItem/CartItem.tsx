@@ -10,20 +10,21 @@ import QuantityPicker from "../QuantityPicker/QuantityPicker";
 import Button from "../Button/Button";
 
 import {
-  StyledCartButtonsWrapper,
-  StyledCartItemContentWrapper,
-  StyledCartItemImage,
-  StyledCartItemInfoGroup,
-  StyledCartItemInfoWrapper,
-  StyledCartItemWrapper,
+  CartButtonsWrapper,
+  CartItemContentWrapper,
+  CartItemImage,
+  CartItemInfoGroup,
+  CartItemInfoWrapper,
+  CartItemWrapper,
 } from "./CartItem.styles";
-import { H3, SpanGrey, SpanPrice, SpanRegular } from "../../styles";
+import { SpanBold, SpanGrey, SpanPrice, SpanRegular } from "../../styles";
 
 type CartItemProps = {
   item: CartItemModel;
+  small?: boolean;
 };
 
-const CartItem = ({ item }: CartItemProps) => {
+const CartItem = ({ item, small }: CartItemProps) => {
   const {
     id,
     name,
@@ -38,40 +39,40 @@ const CartItem = ({ item }: CartItemProps) => {
   } = useCartItem(item);
 
   return (
-    <StyledCartItemWrapper data-testid="CartItemElement">
+    <CartItemWrapper data-testid="CartItemElement">
       <Link to={`/product/${id}`}>
-        <StyledCartItemImage src={imageUrl} alt={name} />
+        <CartItemImage src={imageUrl} alt={name} />
       </Link>
 
-      <StyledCartItemContentWrapper>
-        <StyledCartItemInfoWrapper>
+      <CartItemContentWrapper>
+        <CartItemInfoWrapper>
           <Link to={`/product/${id}`}>
-            <H3>{name}</H3>
+            <SpanBold>{name}</SpanBold>
           </Link>
 
           {brand && (
-            <StyledCartItemInfoGroup>
+            <CartItemInfoGroup>
               <SpanGrey>Brand: </SpanGrey>
               <SpanRegular>{brand}</SpanRegular>
-            </StyledCartItemInfoGroup>
+            </CartItemInfoGroup>
           )}
 
           {size && (
-            <StyledCartItemInfoGroup>
+            <CartItemInfoGroup>
               <SpanGrey>Size: </SpanGrey>
               <SpanRegular>{size}</SpanRegular>
-            </StyledCartItemInfoGroup>
+            </CartItemInfoGroup>
           )}
 
           {color && (
-            <StyledCartItemInfoGroup>
+            <CartItemInfoGroup>
               <SpanGrey>Colour: </SpanGrey>
               <SpanRegular>{color}</SpanRegular>
-            </StyledCartItemInfoGroup>
+            </CartItemInfoGroup>
           )}
-        </StyledCartItemInfoWrapper>
+        </CartItemInfoWrapper>
 
-        <StyledCartButtonsWrapper>
+        <CartButtonsWrapper>
           <QuantityPicker quantity={qty} handleQuantityChange={handleQuantityChange} />
 
           <SpanPrice data-testid="CartItemPrice">£{total}</SpanPrice>
@@ -79,9 +80,9 @@ const CartItem = ({ item }: CartItemProps) => {
             <FontAwesomeIcon icon={faTrashAlt} />
             Remove
           </Button>
-        </StyledCartButtonsWrapper>
-      </StyledCartItemContentWrapper>
-    </StyledCartItemWrapper>
+        </CartButtonsWrapper>
+      </CartItemContentWrapper>
+    </CartItemWrapper>
   );
 };
 
