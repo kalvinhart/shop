@@ -9,9 +9,11 @@ export const HeaderCartPreview = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px;
-  min-width: 900px;
+  min-width: 800px;
+  max-height: 600px;
+  overflow-y: auto;
 
-  & > div:last-of-type {
+  & > button:last-of-type {
     align-self: flex-end;
   }
 `;
@@ -33,8 +35,10 @@ export const HeaderCartSubtotalGroup = styled.div`
   }
 `;
 
-export const HeaderCartButtonGroup = styled.div`
+export const HeaderCartHeaderGroup = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 300px;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 10px;
 `;

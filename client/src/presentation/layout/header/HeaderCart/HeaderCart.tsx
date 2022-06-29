@@ -7,7 +7,7 @@ import CartItemPreview from "../../../common/components/CartItem/CartItem";
 
 import { H3, SpanBold, SpanPrice, StyledParagraph } from "../../../common/styles";
 import {
-  HeaderCartButtonGroup,
+  HeaderCartHeaderGroup,
   HeaderCartNoItemsWrapper,
   HeaderCartPreview,
   HeaderCartSubtotalGroup,
@@ -32,10 +32,15 @@ const HeaderCart = ({ cart, cartCount, cartTotal }: HeaderCartProps) => {
 
   const cartPreview = (
     <HeaderCartPreview>
-      <H3>{`${cartCount} ${cartCount > 1 ? "items" : "item"}.`}</H3>
+      <HeaderCartHeaderGroup>
+        <H3>{`${cartCount} ${cartCount > 1 ? "items" : "item"}.`}</H3>
+        <Button variant="primary" onClick={() => navigate("/cart")}>
+          View Cart
+        </Button>
+      </HeaderCartHeaderGroup>
       <HeaderCartWrapper>
         {cart.map((item) => (
-          <CartItemPreview key={item.name} item={item} />
+          <CartItemPreview key={item.name} item={item} small={true} />
         ))}
       </HeaderCartWrapper>
 
@@ -44,14 +49,9 @@ const HeaderCart = ({ cart, cartCount, cartTotal }: HeaderCartProps) => {
         <SpanPrice>{`£${cartTotal}`}</SpanPrice>
       </HeaderCartSubtotalGroup>
 
-      <HeaderCartButtonGroup>
-        <Button variant="primary" onClick={() => navigate("/cart")}>
-          View Cart
-        </Button>
-        <Button variant="primary" onClick={() => navigate("/checkout")}>
-          Go to Checkout
-        </Button>
-      </HeaderCartButtonGroup>
+      <Button variant="primary" onClick={() => navigate("/checkout")}>
+        Go to Checkout
+      </Button>
     </HeaderCartPreview>
   );
 

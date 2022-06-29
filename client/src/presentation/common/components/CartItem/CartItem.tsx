@@ -24,7 +24,7 @@ type CartItemProps = {
   small?: boolean;
 };
 
-const CartItem = ({ item, small }: CartItemProps) => {
+const CartItem = ({ item, small = false }: CartItemProps) => {
   const {
     id,
     name,
@@ -39,9 +39,9 @@ const CartItem = ({ item, small }: CartItemProps) => {
   } = useCartItem(item);
 
   return (
-    <CartItemWrapper data-testid="CartItemElement">
+    <CartItemWrapper small={small} data-testid="CartItemElement" tabIndex={1}>
       <Link to={`/product/${id}`}>
-        <CartItemImage src={imageUrl} alt={name} />
+        <CartItemImage src={imageUrl} alt={name} small={small} />
       </Link>
 
       <CartItemContentWrapper>
@@ -51,21 +51,21 @@ const CartItem = ({ item, small }: CartItemProps) => {
           </Link>
 
           {brand && (
-            <CartItemInfoGroup>
+            <CartItemInfoGroup small={small}>
               <SpanGrey>Brand: </SpanGrey>
               <SpanRegular>{brand}</SpanRegular>
             </CartItemInfoGroup>
           )}
 
           {size && (
-            <CartItemInfoGroup>
+            <CartItemInfoGroup small={small}>
               <SpanGrey>Size: </SpanGrey>
               <SpanRegular>{size}</SpanRegular>
             </CartItemInfoGroup>
           )}
 
           {color && (
-            <CartItemInfoGroup>
+            <CartItemInfoGroup small={small}>
               <SpanGrey>Colour: </SpanGrey>
               <SpanRegular>{color}</SpanRegular>
             </CartItemInfoGroup>
@@ -76,9 +76,13 @@ const CartItem = ({ item, small }: CartItemProps) => {
           <QuantityPicker quantity={qty} handleQuantityChange={handleQuantityChange} />
 
           <SpanPrice data-testid="CartItemPrice">£{total}</SpanPrice>
-          <Button variant="secondary" onClick={handleRemove}>
+          <Button
+            variant="trash"
+            onClick={handleRemove}
+            aria-label="Remove from Cart"
+            dataName="removeButton"
+          >
             <FontAwesomeIcon icon={faTrashAlt} />
-            Remove
           </Button>
         </CartButtonsWrapper>
       </CartItemContentWrapper>
