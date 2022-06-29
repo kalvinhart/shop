@@ -1,11 +1,11 @@
 import { useProductPage } from "./hooks/useProductPage";
 import { usePageTitle } from "../../common/hooks/usePageTitle";
 
-import { ProductDetails } from "./ProductDetails";
+import { ProductDetails } from "../../features/display-product/ProductDetails";
 import { Spinner } from "../../common/components/Spinner";
 
 const ProductPage = () => {
-  const { detailsError, product, detailsLoading } = useProductPage();
+  const { product, detailsLoading } = useProductPage();
 
   usePageTitle(product.name || "Loading...");
 

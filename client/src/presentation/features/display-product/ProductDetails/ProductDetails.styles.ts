@@ -3,7 +3,7 @@ import { mediaSizes } from "../../../common/styles";
 
 import { SpanPrice } from "../../../common/styles";
 
-export const StyledProductBackground = styled.div`
+export const ProductBackground = styled.div`
   width: 100%;
   padding: 20px;
   background-color: white;
@@ -11,7 +11,7 @@ export const StyledProductBackground = styled.div`
   box-shadow: var(--box-shadow-small);
 `;
 
-export const StyledProductMainInfoWrapper = styled.div`
+export const ProductMainInfoWrapper = styled.div`
   width: 100%;
   margin-bottom: 20px;
   display: flex;
@@ -22,31 +22,7 @@ export const StyledProductMainInfoWrapper = styled.div`
   }
 `;
 
-export const StyledProductMainInfo = styled.div`
-  width: 100%;
-  max-width: 380px;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-
-  @media screen and (min-width: ${mediaSizes.large}) {
-    padding-left: 20px;
-  }
-`;
-
-export const StyledProductTitle = styled.div`
-  width: 100%;
-  margin-bottom: 20px;
-`;
-
-export const StyledProductMainInfoText = styled.div`
-  width: 100%;
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: space-between;
-`;
-
-export const StyledProductInfoGroup = styled.div`
+export const ProductInfoGroup = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -56,7 +32,7 @@ export const StyledProductInfoGroup = styled.div`
   }
 `;
 
-export const StyledProductImageWrapper = styled.div`
+export const ProductImageWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
@@ -67,7 +43,7 @@ export const StyledProductImageWrapper = styled.div`
   }
 `;
 
-export const StyledProductImage = styled.img`
+export const ProductImage = styled.img`
   width: 100%;
 
   @media screen and (min-width: ${mediaSizes.med}) {
@@ -76,6 +52,6 @@ export const StyledProductImage = styled.img`
   }
 `;
 
-export const StyledProductMoreInfo = styled.div`
+export const ProductDescriptionInfo = styled.div`
   display: flex;
 `;
