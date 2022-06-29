@@ -7,6 +7,7 @@ export const CheckboxUI = styled.span`
   height: 20px;
   width: 20px;
   background-color: #eee;
+  border-radius: 5px;
 
   &::after {
     content: "";
@@ -29,9 +30,9 @@ export const CheckboxLabel = styled.label`
   }
 
   & ${CheckboxUI}:after {
-    left: 8px;
-    top: 5px;
-    width: 5px;
+    left: 7px;
+    top: 4px;
+    width: 6px;
     height: 10px;
     border: solid white;
     border-width: 0 3px 3px 0;
