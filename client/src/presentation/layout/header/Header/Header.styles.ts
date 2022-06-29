@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { mediaSizes } from "../../../common/styles";
 
-export const StyledHeaderWrapper = styled.div`
+export const HeaderWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -40,8 +40,9 @@ export const StyledLowerHeader = styled.div`
 
   @media screen and (min-width: ${mediaSizes.large}) {
     position: static;
-    width: unset;
+    width: 600px;
     height: unset;
     padding: 0 20px;
+    justify-content: space-between;
   }
 `;
