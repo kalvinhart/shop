@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import { useProductState } from "../../../common/hooks/useProductState";
@@ -11,12 +12,22 @@ export const useResultsHeader = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { count } = useProductState();
 
+  let optionIsSort = useRef<boolean>(false);
+  let hasOptions = useRef<boolean>(false);
+
+  useEffect(() => {
+    if (Array.from(searchParams.entries()).length === 0) {
+      optionIsSort.current = false;
+      hasOptions.current = false;
+    }
+
+    optionIsSort.current =
+      Array.from(searchParams.keys()).length === 1 && searchParams.get("sort") !== "";
+
+    hasOptions.current = Array.from(searchParams.keys()).length > 0 && !optionIsSort;
+  }, [searchParams]);
+
   let optionsTags: JSX.Element[] = [];
-
-  const optionIsSort =
-    Array.from(searchParams.keys()).length === 1 && searchParams.get("sort") !== "";
-
-  const hasOptions = Array.from(searchParams.keys()).length > 0 && !optionIsSort;
 
   if (hasOptions) {
     Array.from(searchParams.entries()).forEach((item) => {

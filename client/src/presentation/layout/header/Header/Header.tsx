@@ -2,16 +2,16 @@ import { Link } from "react-router-dom";
 
 import SearchBar from "../../../features/search-bar/SearchBar/SearchBar";
 
-import HeaderNav from "../HeaderNav/HeaderNav";
+import { HeaderNav } from "../../../features/header-navigation";
 import HeaderUserNav from "../HeaderUserNav/HeaderUserNav";
 
-import { StyledHeader, StyledHeaderWrapper, StyledLowerHeader } from "./Header.styles";
+import { StyledHeader, HeaderWrapper, StyledLowerHeader } from "./Header.styles";
 import { SpanLogo } from "../../../common/styles";
 
 const Header = () => {
   return (
     <StyledHeader>
-      <StyledHeaderWrapper>
+      <HeaderWrapper>
         <SpanLogo as={Link} to="/">
           My eShop
         </SpanLogo>
@@ -22,7 +22,7 @@ const Header = () => {
         </StyledLowerHeader>
 
         <HeaderUserNav />
-      </StyledHeaderWrapper>
+      </HeaderWrapper>
     </StyledHeader>
   );
 };

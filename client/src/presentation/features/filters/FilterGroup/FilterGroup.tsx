@@ -1,4 +1,4 @@
-import { useProductState } from "../../../common/hooks/useProductState";
+import { useFilterState } from "../../../common/hooks/useFilterState/useFilterState";
 
 import { Filters } from "../../../../infrastructure/services/interfaces/IProductService";
 import { SelectedFilters } from "../../../app/slices/productSlice";
@@ -16,7 +16,7 @@ type FilterGroupProps = {
 };
 
 const FilterGroup = ({ heading, items }: FilterGroupProps) => {
-  const { selectedFilters, addToFilters, removeFromFilters } = useProductState();
+  const { selectedFilters, addToFilters, removeFromFilters } = useFilterState();
 
   const handleChange = (e: React.SyntheticEvent, filterName: string) => {
     const filterIndex = heading.toLowerCase();

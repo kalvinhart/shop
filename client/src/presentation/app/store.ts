@@ -12,6 +12,8 @@ import productDetailsReducer from "./slices/productDetailsSlice";
 import categoriesReducer from "./slices/categoriesSlice";
 import authReducer from "./slices/authSlice";
 import cartReducer from "../features/cart/slice/cartSlice";
+import filtersReducer from "../features/filters/slice/filtersSlice";
+
 import { IAuthService } from "../../infrastructure/services/interfaces/IAuthService";
 import AuthService from "../../infrastructure/services/AuthService/AuthService";
 
@@ -27,6 +29,7 @@ const store = configureStore({
     categories: categoriesReducer,
     auth: authReducer,
     cart: cartReducer,
+    filters: filtersReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
