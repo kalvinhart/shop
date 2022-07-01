@@ -1,5 +1,5 @@
 import ResultsHeader from "../ResultsHeader/ResultsHeader";
-import { StyledGrid, StyledGridWrapper } from "./ProductGrid.styles";
+import { Grid, GridWrapper } from "./ProductGrid.styles";
 
 type ProductGridProps = {
   children: React.ReactNode;
@@ -8,10 +8,10 @@ type ProductGridProps = {
 
 const ProductGrid = ({ setShow, children }: ProductGridProps) => {
   return (
-    <StyledGridWrapper>
+    <GridWrapper>
       <ResultsHeader setShow={setShow} />
-      <StyledGrid>{children}</StyledGrid>
-    </StyledGridWrapper>
+      <Grid>{children}</Grid>
+    </GridWrapper>
   );
 };
 
