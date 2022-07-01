@@ -11,7 +11,7 @@ import { formatOldSearchParams } from "../../../common/utils/formatSearchParams"
 import { useCallback } from "react";
 
 const Pagination = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
   const { pagination } = useProductState();
