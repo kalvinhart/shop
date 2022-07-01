@@ -12,7 +12,7 @@ const {
   getAllFilters,
 } = require("../controllers/productController");
 
-router.post("/", getAllProducts);
+router.get("/", getAllProducts);
 router.get("/:id", getProduct);
 router.get("/category/:categoryName", getProductsByCategory);
 router.post("/new", addNewProduct);

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { mediaSizes } from "../../../common/styles";
 
-export const StyledProductContentWrapper = styled.main`
+export const ProductContentWrapper = styled.main`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -10,4 +10,10 @@ export const StyledProductContentWrapper = styled.main`
   @media screen and (min-width: ${mediaSizes.large}) {
     flex-direction: row;
   }
+`;
+
+export const ProductResultsWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 `;

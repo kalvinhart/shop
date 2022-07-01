@@ -8,7 +8,8 @@ import NoResults from "../NoResults/NoResults";
 import { SideBar } from "../../filters";
 import { Spinner } from "../../../common/components/Spinner";
 
-import { StyledProductContentWrapper } from "./ProductContent.styles";
+import { ProductContentWrapper, ProductResultsWrapper } from "./ProductContent.styles";
+import Pagination from "../Pagination/Pagination";
 
 type ProductContentProps = {
   products: Product[];
@@ -19,20 +20,24 @@ const ProductContent = ({ products, productsLoading }: ProductContentProps) => {
   const [show, setShow] = useState(false);
 
   return (
-    <StyledProductContentWrapper>
+    <ProductContentWrapper>
       <SideBar show={show} setShow={setShow} />
       {productsLoading ? (
         <Spinner testId="products-spinner" />
       ) : products.length > 0 ? (
-        <ProductGrid setShow={setShow}>
-          {products.map((product) => (
-            <ProductCard key={product.name} productInfo={product} />
-          ))}
-        </ProductGrid>
+        <ProductResultsWrapper>
+          <ProductGrid setShow={setShow}>
+            {products.map((product) => (
+              <ProductCard key={product.name} productInfo={product} />
+            ))}
+          </ProductGrid>
+
+          <Pagination />
+        </ProductResultsWrapper>
       ) : (
         <NoResults />
       )}
-    </StyledProductContentWrapper>
+    </ProductContentWrapper>
   );
 };
 

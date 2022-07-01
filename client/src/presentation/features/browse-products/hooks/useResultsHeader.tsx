@@ -33,13 +33,14 @@ export const useResultsHeader = () => {
     Array.from(searchParams.entries()).forEach((item) => {
       const [optionName, optionValue] = item;
 
-      if (optionName === "sort") return;
+      if (optionName === "sort" || optionName === "page" || optionName === "pagesize")
+        return;
 
       const formattedOptionName = formatStringToUpper(optionName);
       const formattedOptionValue = formatStringToUpper(optionValue);
 
       optionsTags.push(
-        <FilterTags key={optionValue}>
+        <FilterTags key={optionName}>
           {`${formattedOptionName}: "${formattedOptionValue}"`}
         </FilterTags>
       );

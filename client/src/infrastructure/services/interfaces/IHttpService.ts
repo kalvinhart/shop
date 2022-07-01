@@ -5,15 +5,6 @@ type UserData = {
   password: string;
 };
 
-export type ProductData = {
-  brand?: string;
-  categories?: string;
-  name?: string;
-  color?: string;
-  size?: string;
-  sortBy?: string;
-};
-
 type AuthData = {
   id: string;
   token: string;
@@ -25,7 +16,7 @@ export type WishlistData = {
   token: string;
 };
 
-export type Data = UserData | ProductData | AuthData | WishlistData;
+export type Data = UserData | AuthData | WishlistData;
 
 export type GetOptions = {
   url: string;

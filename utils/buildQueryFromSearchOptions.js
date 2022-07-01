@@ -1,8 +1,8 @@
 const { convertToRegex } = require("./convertToRegex");
 
 const buildQueryFromSearchOptions = (query, options) => {
-  if (options.categories) {
-    query.where("categories", options.categories);
+  if (options.category) {
+    query.where("categories", options.category);
   }
 
   if (options.name) {

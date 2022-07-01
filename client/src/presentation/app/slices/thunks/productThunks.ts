@@ -1,6 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import { ProductData } from "../../../../infrastructure/services/interfaces/IHttpService";
 import {
   AllProductsReturn,
   FiltersReturn,
@@ -9,7 +8,7 @@ import { AsyncThunkConfig } from "../../store";
 
 export const loadProducts = createAsyncThunk<
   AllProductsReturn,
-  ProductData,
+  URLSearchParams,
   AsyncThunkConfig<any>
 >(
   "products/loadProducts",

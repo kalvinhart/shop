@@ -1,7 +1,7 @@
 import { useFilterState } from "../../../common/hooks/useFilterState/useFilterState";
 
 import { Filters } from "../../../../infrastructure/services/interfaces/IProductService";
-import { SelectedFilters } from "../../../app/slices/productSlice";
+import { SelectedFilters } from "../slice/filtersSlice";
 
 import Checkbox from "../../../common/components/Checkbox/Checkbox";
 

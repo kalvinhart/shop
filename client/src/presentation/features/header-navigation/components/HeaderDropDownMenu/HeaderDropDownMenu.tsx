@@ -36,19 +36,17 @@ const HeaderDropDownMenu = ({ menuTitle, categories }: HeaderDropDownMenuProps) 
         <DropDownMenuWrapper>
           <DropDownItemsUL>
             {categories.map((item) => (
-              <>
-                <DropDownItemsLI key={item.name}>
-                  <Link to={item.url}>{item.name}</Link>
+              <DropDownItemsLI key={item.name}>
+                <Link to={item.url}>{item.name}</Link>
 
-                  {item.subcategories && item.subcategories.length > 0 && (
-                    <>
-                      <FontAwesomeIcon icon={faChevronRight} size="xs" />
+                {item.subcategories && item.subcategories.length > 0 && (
+                  <>
+                    <FontAwesomeIcon icon={faChevronRight} size="xs" />
 
-                      <HeaderDropDownSubcategories subcategories={item.subcategories} />
-                    </>
-                  )}
-                </DropDownItemsLI>
-              </>
+                    <HeaderDropDownSubcategories subcategories={item.subcategories} />
+                  </>
+                )}
+              </DropDownItemsLI>
             ))}
           </DropDownItemsUL>
         </DropDownMenuWrapper>

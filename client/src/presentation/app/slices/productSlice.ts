@@ -4,17 +4,18 @@ import { loadProducts } from "./thunks/productThunks";
 
 import { Product } from "../../../domain/models/Product";
 
-export type SelectedFilters = {
-  brand: string;
-  color: string;
-  size: string;
+export type Pagination = {
+  currentPage: number;
+  totalPages: number;
+  pageSize: number;
+  resultsCount: number;
 };
 
 type ProductState = {
   loading: boolean;
   error: boolean;
-  count: number;
   products: Product[];
+  pagination: Pagination;
 };
 
 export type ProductOptionsPayload = {
@@ -25,20 +26,29 @@ export type ProductOptionsPayload = {
 const initialState: ProductState = {
   loading: true,
   error: false,
-  count: 0,
   products: [],
+  pagination: {
+    currentPage: 1,
+    totalPages: 1,
+    pageSize: 15,
+    resultsCount: 0,
+  },
 };
 
 const productSlice = createSlice({
   name: "products",
   initialState,
-  reducers: {},
+  reducers: {
+    updatePaginationLimit(state, action) {
+      state.pagination.pageSize = action.payload;
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(loadProducts.fulfilled, (state, action) => {
         state.loading = false;
         state.error = false;
-        state.count = action.payload.count;
+        state.pagination = action.payload.pagination;
         state.products = action.payload.products;
       })
       .addCase(loadProducts.pending, (state, action) => {
@@ -51,5 +61,7 @@ const productSlice = createSlice({
       });
   },
 });
+
+export const { updatePaginationLimit } = productSlice.actions;
 
 export default productSlice.reducer;

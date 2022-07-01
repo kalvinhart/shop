@@ -1,5 +1,5 @@
 import { Product } from "../../../domain/models/Product";
-import { IHttpService, ProductData } from "../interfaces/IHttpService";
+import { IHttpService } from "../interfaces/IHttpService";
 import {
   AllProductsReturn,
   FiltersReturn,
@@ -12,10 +12,13 @@ export default class ProductService implements IProductService {
     this.httpService = httpService;
   }
 
-  async getAllProducts(data: ProductData): Promise<AllProductsReturn> {
-    const response = await this.httpService.post<AllProductsReturn>({
-      url: "/api/products",
-      data,
+  async getAllProducts(params: URLSearchParams): Promise<AllProductsReturn> {
+    const searchParams = params.toString();
+    const url =
+      searchParams.length > 0 ? `/api/products?${searchParams}` : "/api/products";
+
+    const response = await this.httpService.get<AllProductsReturn>({
+      url,
     });
     return response;
   }

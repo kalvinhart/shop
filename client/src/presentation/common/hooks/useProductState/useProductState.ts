@@ -6,12 +6,10 @@ import { useAppSelector } from "../../../app/hooks/useAppSelector";
 import { loadProductDetails } from "../../../app/slices/thunks/productDetailsThunks";
 import { loadProducts } from "../../../app/slices/thunks/productThunks";
 
-import { ProductData } from "../../../../infrastructure/services/interfaces/IHttpService";
-
 export const useProductState = () => {
   const dispatch = useAppDispatch();
   const {
-    count,
+    pagination,
     error: productsError,
     loading: productsLoading,
     products,
@@ -24,15 +22,16 @@ export const useProductState = () => {
   } = useAppSelector((state) => state.productDetails);
 
   return {
-    count,
+    count: pagination.resultsCount,
     productsError,
     productsLoading,
     products,
     detailsError,
     detailsLoading,
     product,
+    pagination,
     loadProducts: useCallback(
-      (options: ProductData) => {
+      (options: URLSearchParams) => {
         dispatch(loadProducts(options));
       },
       [dispatch]
