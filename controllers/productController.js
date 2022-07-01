@@ -3,21 +3,41 @@ const { catchAsync } = require("../middleware/errors");
 const { buildQueryFromSearchOptions } = require("../utils/buildQueryFromSearchOptions");
 
 const getAllProducts = catchAsync(async (req, res, next) => {
-  const { options, sortBy } = req.body;
-  const searchOptions = options ?? {};
+  let {
+    name,
+    category,
+    brand,
+    color,
+    size,
+    sort = "-amountSold",
+    page = 1,
+    pagesize: pageSize = 10,
+  } = req.query;
 
-  console.log(searchOptions);
+  page = Number(page);
+  pageSize = Number(pageSize);
 
-  const sortSearch = sortBy ? sortBy : "-amountSold";
+  const searchOptions = {
+    name,
+    category,
+    brand,
+    color,
+    size,
+  };
 
   let query = Product.find();
 
   query = buildQueryFromSearchOptions(query, searchOptions);
 
-  query.sort(sortSearch);
+  query.sort(sort);
 
-  const products = await await query.exec();
-  const count = products.length;
+  const queryCount = await query.clone().count();
+
+  query.skip((page - 1) * pageSize).limit(pageSize);
+
+  const queryResponse = await query.exec();
+
+  const totalPages = Math.ceil(queryCount / pageSize);
 
   const allBrands = await Product.aggregate([
     {
@@ -47,8 +67,13 @@ const getAllProducts = catchAsync(async (req, res, next) => {
   ]);
 
   const response = {
-    products,
-    count,
+    products: queryResponse,
+    pagination: {
+      currentPage: page,
+      pageSize,
+      resultsCount: queryCount,
+      totalPages,
+    },
     allBrands,
     allColors,
     allSizes,
