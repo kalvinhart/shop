@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import mediaSizes from "./media";
 
 export const H1 = styled.h1`
@@ -25,11 +25,30 @@ export const H3 = styled.h3`
   }
 `;
 
-export const SpanLogo = styled.span`
+type LogoProps = {
+  section: "header" | "footer";
+};
+export const SpanLogo = styled.span<LogoProps>`
   font-size: 22px;
   font-weight: bold;
-  color: var(--clr-font);
   margin-right: 20px;
+
+  ${({ section }) => {
+    switch (section) {
+      case "header":
+        return css`
+          color: var(--clr-font);
+        `;
+
+      case "footer":
+        return css`
+          color: white;
+        `;
+
+      default:
+        return null;
+    }
+  }}
 
   @media screen and (min-width: ${mediaSizes.tablet}) {
     font-size: 26px;
@@ -73,7 +92,7 @@ export const SpanDescription = styled.span`
 
 type SpanStockProps = {
   inStock: boolean;
-}
+};
 
 export const SpanStock = styled.span<SpanStockProps>`
   padding: 2px 5px;
@@ -86,7 +105,7 @@ export const SpanStock = styled.span<SpanStockProps>`
 
 type SpanErrorProps = {
   staticPosition?: boolean;
-}
+};
 
 export const SpanError = styled.span<SpanErrorProps>`
   display: flex;

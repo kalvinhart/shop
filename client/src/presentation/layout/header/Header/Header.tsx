@@ -12,7 +12,7 @@ const Header = () => {
   return (
     <StyledHeader>
       <HeaderWrapper>
-        <SpanLogo as={Link} to="/">
+        <SpanLogo as={Link} to="/" section="header">
           My eShop
         </SpanLogo>
 

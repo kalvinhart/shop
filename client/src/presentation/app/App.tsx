@@ -6,6 +6,7 @@ import { Header } from "../layout/header";
 import { PageWrapper } from "../layout/layouts/PageWrapper";
 import { Container } from "../layout/layouts/Container";
 import AppRoutes from "../routing/AppRoutes";
+import { Footer } from "../layout/footer/Footer";
 
 const App = () => {
   useApp();
@@ -20,6 +21,7 @@ const App = () => {
           <AppRoutes />
         </Container>
       </PageWrapper>
+      <Footer />
     </>
   );
 };
