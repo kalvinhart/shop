@@ -1,9 +1,13 @@
-import { ProductData } from "./IHttpService";
 import { Product } from "../../../domain/models/Product";
 
 export interface AllProductsReturn extends FiltersReturn {
-  count: number;
   products: Product[];
+  pagination: {
+    currentPage: number;
+    pageSize: number;
+    resultsCount: number;
+    totalPages: number;
+  };
 }
 
 export type Filters = {
@@ -17,7 +21,7 @@ export type FiltersReturn = {
   allSizes: Filters[];
 };
 export interface IProductService {
-  getAllProducts: (options: ProductData) => Promise<AllProductsReturn>;
+  getAllProducts: (options: URLSearchParams) => Promise<AllProductsReturn>;
   getProduct: (id: string) => Promise<Product>;
   getAllFilters: () => Promise<FiltersReturn>;
 }
