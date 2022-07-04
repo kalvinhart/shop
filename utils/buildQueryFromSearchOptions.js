@@ -6,7 +6,7 @@ const buildQueryFromSearchOptions = (query, options) => {
   }
 
   if (options.name) {
-    const nameQuery = new RegExp(query.name, "i");
+    const nameQuery = new RegExp(options.name, "i");
     query.where({ name: nameQuery });
   }
 
