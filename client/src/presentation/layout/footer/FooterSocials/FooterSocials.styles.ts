@@ -6,7 +6,7 @@ export const FooterSocialsWrapper = styled.div`
   align-items: center;
 
   & a,
-  &:visited {
+  & a:visited {
     color: #f7fafc;
 
     &:hover {

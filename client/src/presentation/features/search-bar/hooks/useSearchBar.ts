@@ -1,8 +1,9 @@
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { formatOldSearchParams } from "../../../common/utils/formatSearchParams";
 
 export const useSearchBar = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
   const handleSearchSubmit = (e: any) => {
     e.preventDefault();
@@ -16,7 +17,9 @@ export const useSearchBar = () => {
         name: searchTerm,
       };
 
-      setSearchParams(newParams);
+      const paramsString = new URLSearchParams(newParams).toString();
+
+      navigate(`/products?${paramsString}`);
 
       e.target[0].value = "";
     }
