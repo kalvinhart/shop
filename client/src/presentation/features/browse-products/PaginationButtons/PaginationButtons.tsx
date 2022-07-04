@@ -26,6 +26,9 @@ const PaginationButtons = ({ pages, onChange }: PaginationProps) => {
     buttonArray,
   } = usePagination(pages);
 
+  console.log(buttonArray);
+  console.log(buttonArray.length > 0);
+
   const { currentPage, totalPages } = pages;
 
   let buttonsRendered = 0;
@@ -70,12 +73,14 @@ const PaginationButtons = ({ pages, onChange }: PaginationProps) => {
 
       {!isCloseToLastPage && !isLessThanMaxButtons && <SpanRegular>...</SpanRegular>}
 
-      <PaginationButton
-        onClick={() => onChange(totalPages)}
-        selected={currentPage === totalPages}
-      >
-        {totalPages}
-      </PaginationButton>
+      {totalPages > 1 && (
+        <PaginationButton
+          onClick={() => onChange(totalPages)}
+          selected={currentPage === totalPages}
+        >
+          {totalPages}
+        </PaginationButton>
+      )}
 
       <PaginationButton onClick={() => onChange(nextPage)}>
         <FontAwesomeIcon icon={faChevronRight} />
