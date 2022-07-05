@@ -16,7 +16,7 @@ const mockItem = {
 const mockQtyChange = jest.fn();
 const mockHandleRemove = jest.fn();
 
-jest.mock("../hooks/useCartItem.ts", () => ({
+jest.mock("../../../features/cart/hooks/useCartItem.ts", () => ({
   useCartItem: () => ({
     ...mockItem,
     handleQuantityChange: mockQtyChange,
@@ -49,7 +49,11 @@ describe("CartItem", () => {
   test("Calls function to remove if button clicked.", () => {
     renderWithWrappers(<CartItem item={mockItem} />);
 
-    const removeButtonElement = screen.getByText("Remove");
+    const cartItemWrapperElement = screen.getByTestId("CartItemElement");
+
+    fireEvent.focus(cartItemWrapperElement);
+
+    const removeButtonElement = screen.getByTestId("CartItemRemoveButton");
 
     fireEvent.click(removeButtonElement);
 

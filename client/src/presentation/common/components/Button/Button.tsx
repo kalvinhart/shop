@@ -7,6 +7,7 @@ type ButtonProps = StyledButtonProps & {
   children: React.ReactNode;
   title?: string;
   dataName?: string;
+  testId?: string;
 };
 
 const Button = ({
@@ -18,6 +19,7 @@ const Button = ({
   children,
   title,
   dataName,
+  testId,
 }: ButtonProps) => {
   return (
     <StyledButton
@@ -28,6 +30,7 @@ const Button = ({
       onClick={onClick}
       title={title}
       data-name={dataName}
+      data-testid={testId}
     >
       {children}
     </StyledButton>
