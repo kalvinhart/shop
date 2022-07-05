@@ -43,10 +43,10 @@ const Pagination = () => {
       <PaginationResultsWrapper>
         <SpanRegular>
           Displaying results{" "}
-          <SpanBold>
+          <SpanBold data-testid="ResultsRange">
             {currentResultsMin} - {currentResultsMax}
           </SpanBold>{" "}
-          of <SpanBold>{resultsCount}</SpanBold>
+          of <SpanBold data-testid="ResultsCount">{resultsCount}</SpanBold>
         </SpanRegular>
       </PaginationResultsWrapper>
 

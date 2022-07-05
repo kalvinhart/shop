@@ -40,7 +40,9 @@ const PaginationButtons = ({ pages, onChange }: PaginationProps) => {
         1
       </PaginationButton>
 
-      {!isCloseToFirstPage && !isLessThanMaxButtons && <SpanRegular>...</SpanRegular>}
+      {!isCloseToFirstPage && !isLessThanMaxButtons && (
+        <SpanRegular data-testid="LeadingDots">...</SpanRegular>
+      )}
 
       {buttonArray.map((item, i) => {
         if (i === 0 || i === totalPages - 1) return null;
@@ -59,6 +61,7 @@ const PaginationButtons = ({ pages, onChange }: PaginationProps) => {
               onClick={() => onChange(item.text)}
               key={item.id}
               selected={currentPage === item.text}
+              data-testid={`PaginationButton`}
             >
               {item.text}
             </PaginationButton>
@@ -68,7 +71,9 @@ const PaginationButtons = ({ pages, onChange }: PaginationProps) => {
         return null;
       })}
 
-      {!isCloseToLastPage && !isLessThanMaxButtons && <SpanRegular>...</SpanRegular>}
+      {!isCloseToLastPage && !isLessThanMaxButtons && (
+        <SpanRegular data-testid="TrailingDots">...</SpanRegular>
+      )}
 
       {totalPages > 1 && (
         <PaginationButton
