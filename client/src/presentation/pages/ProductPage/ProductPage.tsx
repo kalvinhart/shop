@@ -12,7 +12,7 @@ const ProductPage = () => {
   return (
     <>
       {detailsLoading ? (
-        <Spinner testId="ProductPageTest" />
+        <Spinner testId="ProductPageSpinner" />
       ) : (
         <ProductDetails product={product} />
       )}

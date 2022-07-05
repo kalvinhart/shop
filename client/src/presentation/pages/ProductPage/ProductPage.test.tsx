@@ -1,9 +1,5 @@
-import { Provider } from "react-redux";
-import { render, screen } from "@testing-library/react";
-import { createTestStore } from "../../common/utils/testUtils";
+import { renderWithWrappers, screen } from "../../common/utils/testUtils";
 import ProductPage from "./ProductPage";
-
-let store: any;
 
 let mockLoading: boolean;
 
@@ -16,21 +12,23 @@ jest.mock("./hooks/useProductPage.ts", () => ({
 }));
 
 describe("ProductPage", () => {
-  beforeEach(() => {
-    store = createTestStore();
-  });
-
   test("Spinner is shown when loading.", () => {
     mockLoading = true;
 
-    render(
-      <Provider store={store}>
-        <ProductPage />
-      </Provider>
-    );
+    renderWithWrappers(<ProductPage />);
 
-    const spinnerElement = screen.getByTestId("ProductPageTest");
+    const spinnerElement = screen.getByTestId("ProductPageSpinner");
 
     expect(spinnerElement).toBeInTheDocument();
+  });
+
+  test("Spinner is not shown when not loading.", () => {
+    mockLoading = false;
+
+    renderWithWrappers(<ProductPage />);
+
+    const spinnerElement = screen.queryByTestId("ProductPageSpinner");
+
+    expect(spinnerElement).not.toBeInTheDocument();
   });
 });
