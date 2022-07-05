@@ -16,6 +16,7 @@ export const CartItemWrapper = styled.div<SmallProps>`
   ${(small) => small && "margin-bottom: 15px;"}
 
   &:hover [data-name="removeButton"],
+  &:focus [data-name="removeButton"],
   &:focus-within [data-name="removeButton"] {
     visibility: visible;
   }

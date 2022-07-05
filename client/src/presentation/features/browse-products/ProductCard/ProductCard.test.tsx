@@ -19,7 +19,7 @@ const mockProduct: Product = {
 let mockWishlisted = false;
 let mockHandleWishlist = jest.fn();
 
-jest.mock("./hooks/useProductCard.ts", () => ({
+jest.mock("../hooks/useProductCard.ts", () => ({
   useProductCard: () => ({
     id: mockProduct._id,
     name: mockProduct.name,
@@ -33,7 +33,7 @@ jest.mock("./hooks/useProductCard.ts", () => ({
 
 let mockUser = { id: "1" };
 
-jest.mock("../../../hooks/useAuthState/useAuthState.ts", () => ({
+jest.mock("../../../common/hooks/useAuthState/useAuthState.ts", () => ({
   useAuthState: () => ({
     user: mockUser,
   }),

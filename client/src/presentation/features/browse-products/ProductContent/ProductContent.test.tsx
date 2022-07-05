@@ -15,6 +15,15 @@ const testProducts: Product[] = [
   },
 ];
 
+jest.mock("../../../common/hooks/useFilterState/useFilterState.ts", () => ({
+  useFilterState: () => ({
+    filters: null,
+    selectedFilters: { brand: "", color: "", size: "" },
+    isFiltered: false,
+    isFilterApplied: false,
+  }),
+}));
+
 describe("ProductContent", () => {
   test("Renders a spinner whilst loading.", () => {
     renderWithWrappers(<ProductContent products={[]} productsLoading={true} />);
