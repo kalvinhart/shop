@@ -56,13 +56,10 @@ let mockCart: CartItem[] = [
 
 let mockCartTotal: number = mockCart.reduce((total, curr) => total + curr.total, 0);
 
-const mockNavigate = jest.fn();
-
-jest.mock("./hooks/useCartPage.ts", () => ({
-  useCartPage: () => ({
+jest.mock("../../common/hooks/useCartState/useCartState.ts", () => ({
+  useCartState: () => ({
     cart: mockCart,
     cartTotal: mockCartTotal,
-    navigate: mockNavigate,
   }),
 }));
 

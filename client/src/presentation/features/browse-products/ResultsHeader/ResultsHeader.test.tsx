@@ -21,7 +21,7 @@ const mockSortOptions = [
   { name: "test2", text: "Tag Test2" },
 ];
 
-jest.mock("./hooks/useResultsHeader.tsx", () => ({
+jest.mock("../hooks/useResultsHeader.tsx", () => ({
   useResultsHeader: () => ({
     count: 5,
     selectValue: "-amountSold",
