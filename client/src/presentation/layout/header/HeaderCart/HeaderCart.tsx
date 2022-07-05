@@ -33,7 +33,9 @@ const HeaderCart = ({ cart, cartCount, cartTotal }: HeaderCartProps) => {
   const cartPreview = (
     <HeaderCartPreview>
       <HeaderCartHeaderGroup>
-        <H3>{`${cartCount} ${cartCount > 1 ? "items" : "item"}.`}</H3>
+        <H3 data-testid="CartCountHeading">{`${cartCount} ${
+          cartCount > 1 ? "items" : "item"
+        }.`}</H3>
         <Button variant="primary" onClick={() => navigate("/cart")}>
           View Cart
         </Button>
@@ -46,7 +48,7 @@ const HeaderCart = ({ cart, cartCount, cartTotal }: HeaderCartProps) => {
 
       <HeaderCartSubtotalGroup>
         <SpanBold>SubTotal:</SpanBold>
-        <SpanPrice>{`£${cartTotal}`}</SpanPrice>
+        <SpanPrice data-testid="HeaderCartSubtotal">{`£${cartTotal}`}</SpanPrice>
       </HeaderCartSubtotalGroup>
 
       <Button variant="primary" onClick={() => navigate("/checkout")}>
