@@ -26,9 +26,6 @@ const PaginationButtons = ({ pages, onChange }: PaginationProps) => {
     buttonArray,
   } = usePagination(pages);
 
-  console.log(buttonArray);
-  console.log(buttonArray.length > 0);
-
   const { currentPage, totalPages } = pages;
 
   let buttonsRendered = 0;
