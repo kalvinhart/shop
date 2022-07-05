@@ -81,6 +81,7 @@ const CartItem = ({ item, small = false }: CartItemProps) => {
             onClick={handleRemove}
             aria-label="Remove from Cart"
             dataName="removeButton"
+            testId="CartItemRemoveButton"
           >
             <FontAwesomeIcon icon={faTrashAlt} />
           </Button>
