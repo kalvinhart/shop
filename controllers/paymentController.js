@@ -54,7 +54,6 @@ const handleWebhook = async (req, res, next) => {
   }
 
   if (event.type === "payment_intent.succeeded") {
-    res.status(200).end();
     const paymentIntent = event.data.object;
     const {
       id,
@@ -96,6 +95,7 @@ const handleWebhook = async (req, res, next) => {
       next(err);
     }
   }
+  res.status(200).end();
 };
 
 module.exports = {
