@@ -1,4 +1,4 @@
-import styled, { css, Keyframes, keyframes } from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { mediaSizes } from "../../../../common/styles";
 import { makeAnimationCSS } from "../../utils/makeAnimationCSS";
 
@@ -43,6 +43,10 @@ export const DropDownWrapper = styled.div`
 
   & svg {
     margin-left: 10px;
+  }
+
+  & svg:only-child {
+    margin: 0;
   }
 `;
 

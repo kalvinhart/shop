@@ -12,7 +12,7 @@ import {
 import { HeaderDropDownMenuSection } from "../HeaderDropDownMenuSection";
 
 type HeaderDropDownMenuProps = {
-  menuTitle: string;
+  menuTitle: string | JSX.Element;
   categories: DropDownCategory[];
 };
 
@@ -30,7 +30,7 @@ const HeaderDropDownMenu = ({ menuTitle, categories }: HeaderDropDownMenuProps) 
       {showMenu && <DropDownOverlay id="MenuOverlay" />}
 
       <DropDownWrapper id="MenuRoot" ref={menuRef}>
-        <HeaderNavMenuButton text={menuTitle} onClick={toggleShowMenu} />
+        <HeaderNavMenuButton content={menuTitle} onClick={toggleShowMenu} />
 
         {showMenu && (
           <HeaderDropDownMenuSection
