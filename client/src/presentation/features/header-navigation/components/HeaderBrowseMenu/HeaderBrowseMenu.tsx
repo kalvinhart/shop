@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 
 import { useCategoryState } from "../../../../common/hooks/useCategoryState";
+import { DropDownCategory } from "../../types/DropDownCategory";
 
-import { HeaderDropDownMenu, DropDownCategory } from "../HeaderDropDownMenu";
+import { HeaderDropDownMenu } from "../HeaderDropDownMenu";
 
 const HeaderBrowseMenu = () => {
   const { categories, categoriesLoading, categoriesError, loadCategories } =

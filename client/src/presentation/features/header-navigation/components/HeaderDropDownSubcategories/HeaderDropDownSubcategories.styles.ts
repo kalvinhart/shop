@@ -8,7 +8,5 @@ export const DropDownSubcategoryWrapper = styled.div`
   background-color: #fff;
   border: var(--borders);
   box-shadow: var(--box-shadow-small);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: all 0.1s ease-in-out;
+  display: none;
 `;

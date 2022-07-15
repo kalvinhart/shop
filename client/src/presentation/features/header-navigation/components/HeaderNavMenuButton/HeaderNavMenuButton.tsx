@@ -5,11 +5,12 @@ import { HeaderNavButton } from "./HeaderNavMenuButton.styles";
 
 type HeaderNavButtonProps = {
   text: string;
+  onClick: () => void;
 };
 
-const HeaderNavMenuButton = ({ text }: HeaderNavButtonProps) => {
+const HeaderNavMenuButton = ({ text, onClick }: HeaderNavButtonProps) => {
   return (
-    <HeaderNavButton>
+    <HeaderNavButton onClick={onClick}>
       {text}
       <FontAwesomeIcon icon={faChevronDown} size="xs" />
     </HeaderNavButton>

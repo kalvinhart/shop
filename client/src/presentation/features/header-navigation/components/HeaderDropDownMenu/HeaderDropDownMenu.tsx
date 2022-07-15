@@ -1,26 +1,15 @@
-import { Link } from "react-router-dom";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useRef, useState } from "react";
 
 import { HeaderNavMenuButton } from "../HeaderNavMenuButton";
-import { HeaderDropDownSubcategories } from "../HeaderDropDownSubcategories";
+
+import { DropDownCategory } from "../../types/DropDownCategory";
 
 import {
-  DropDownItemsLI,
-  DropDownItemsUL,
   DropDownLI,
-  DropDownMenuWrapper,
+  DropDownOverlay,
   DropDownWrapper,
 } from "./HeaderDropDownMenu.styles";
-
-export type DropDownCategory = {
-  name: string;
-  url: string;
-  subcategories?: {
-    name: string;
-    url: string;
-  }[];
-};
+import { HeaderDropDownMenuSection } from "../HeaderDropDownMenuSection";
 
 type HeaderDropDownMenuProps = {
   menuTitle: string;
@@ -28,28 +17,29 @@ type HeaderDropDownMenuProps = {
 };
 
 const HeaderDropDownMenu = ({ menuTitle, categories }: HeaderDropDownMenuProps) => {
+  const [showMenu, setShowMenu] = useState(false);
+
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  const toggleShowMenu = () => {
+    setShowMenu((prev) => !prev);
+  };
+
   return (
     <DropDownLI>
-      <DropDownWrapper>
-        <HeaderNavMenuButton text={menuTitle} />
+      {showMenu && <DropDownOverlay id="MenuOverlay" />}
 
-        <DropDownMenuWrapper>
-          <DropDownItemsUL>
-            {categories.map((item) => (
-              <DropDownItemsLI key={item.name}>
-                <Link to={item.url}>{item.name}</Link>
+      <DropDownWrapper id="MenuRoot" ref={menuRef}>
+        <HeaderNavMenuButton text={menuTitle} onClick={toggleShowMenu} />
 
-                {item.subcategories && item.subcategories.length > 0 && (
-                  <>
-                    <FontAwesomeIcon icon={faChevronRight} size="xs" />
-
-                    <HeaderDropDownSubcategories subcategories={item.subcategories} />
-                  </>
-                )}
-              </DropDownItemsLI>
-            ))}
-          </DropDownItemsUL>
-        </DropDownMenuWrapper>
+        {showMenu && (
+          <HeaderDropDownMenuSection
+            categories={categories}
+            showMenu={showMenu}
+            setShowMenu={setShowMenu}
+            menuRef={menuRef}
+          />
+        )}
       </DropDownWrapper>
     </DropDownLI>
   );
