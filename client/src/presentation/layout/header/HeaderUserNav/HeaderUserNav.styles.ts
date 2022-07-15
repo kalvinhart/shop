@@ -23,6 +23,7 @@ const UL = styled.ul`
 `;
 
 export const LI = styled.li`
+  padding: 5px 5px;
   display: flex;
   justify-content: space-between;
 `;
@@ -31,7 +32,7 @@ export const UserUL = styled(UL)`
   align-items: center;
 
   & > *:not(:last-child) {
-    margin-right: 15px;
+    margin-right: 10px;
 
     @media screen and (min-width: ${mediaSizes.large}) {
       margin-right: 20px;
