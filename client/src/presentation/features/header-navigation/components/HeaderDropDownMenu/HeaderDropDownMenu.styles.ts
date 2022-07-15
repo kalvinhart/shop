@@ -1,7 +1,39 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { mediaSizes } from "../../../../common/styles";
+import { makeAnimationCSS } from "../../utils/makeAnimationCSS";
+
+const FadeInAnimation = keyframes`
+  0% {
+    opacity: 0;
+  } 
+
+  100% {
+    opacity: 1;
+  }
+`;
+
+const SlideInFromAboveAnimation = keyframes`
+0% {
+    transform: scaleY(0);
+  } 
+
+  100% {
+    transform: scaleY(1);
+  }
+`;
 
 export const DropDownLI = styled.li``;
+
+export const DropDownOverlay = styled.div`
+  position: absolute;
+  top: var(--header-height);
+  left: 0;
+  width: 100vw;
+  height: calc(100vh - var(--header-height));
+  background-color: rgba(0, 0, 0, 0.2);
+
+  ${makeAnimationCSS(FadeInAnimation)}
+`;
 
 export const DropDownWrapper = styled.div`
   position: relative;
@@ -13,8 +45,8 @@ export const DropDownWrapper = styled.div`
     margin-left: 10px;
   }
 
-  &:hover > div {
-    transform: scaleY(1);
+  & svg:only-child {
+    margin: 0;
   }
 `;
 
@@ -27,9 +59,9 @@ export const DropDownMenuWrapper = styled.div`
   background-color: #fff;
   border: var(--borders);
   box-shadow: var(--box-shadow-small);
-  transform: scaleY(0);
   transform-origin: top;
-  transition: all 0.1s ease-in-out;
+
+  ${makeAnimationCSS(SlideInFromAboveAnimation)}
 `;
 
 export const DropDownItemsUL = styled.ul`
@@ -50,8 +82,14 @@ export const DropDownItemsLI = styled.li`
     border-bottom: 1px solid #ddd;
   }
 
-  &:hover > div {
-    transform: scaleX(1);
+  &:hover,
+  &:focus-within {
+    background-color: #efefef;
+  }
+
+  &:hover > div,
+  &:focus-within > div {
+    display: block;
   }
 
   @media screen and (min-width: ${mediaSizes.med}) {

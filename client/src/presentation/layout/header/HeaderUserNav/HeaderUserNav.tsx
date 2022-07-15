@@ -22,15 +22,34 @@ import {
   UserUL,
 } from "./HeaderUserNav.styles";
 import HeaderCart from "../HeaderCart/HeaderCart";
+import { DropDownCategory } from "../../../features/header-navigation/types/DropDownCategory";
+import { HeaderDropDownMenu } from "../../../features/header-navigation/components/HeaderDropDownMenu";
 
 const HeaderUserNav = () => {
   const { loading, user } = useAuthState();
   const cart = useCartState();
 
+  const userCategories: DropDownCategory[] = [
+    {
+      name: "My Account",
+      url: "/account",
+    },
+    {
+      name: user ? "Log Out" : "Sign In",
+      url: user ? "/logout" : "/login",
+    },
+  ];
+
   return (
     <UserInfoWrapper>
       <UserUL>
-        <HoverableLI>
+        {loading ? null : (
+          <HeaderDropDownMenu
+            categories={userCategories}
+            menuTitle={<FontAwesomeIcon className="icon" icon={faUserAlt} size="lg" />}
+          />
+        )}
+        {/* <HoverableLI>
           <HeaderUserButton aria-label="User Account Drop Down Menu">
             <FontAwesomeIcon className="icon" icon={faUserAlt} size="lg" />
           </HeaderUserButton>
@@ -62,7 +81,7 @@ const HeaderUserNav = () => {
               </DropDownUL>
             )}
           </UserDropDownWrapper>
-        </HoverableLI>
+        </HoverableLI> */}
 
         <LI>
           <Link to="/wishlist" aria-label="View Wishlist">

@@ -1,4 +1,15 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+import { makeAnimationCSS } from "../../utils/makeAnimationCSS";
+
+const SlideInFromLeftAnimation = keyframes`
+0% {
+    transform: scaleX(0);
+  } 
+
+  100% {
+    transform: scaleX(1);
+  }
+`;
 
 export const DropDownSubcategoryWrapper = styled.div`
   z-index: 2;
@@ -8,7 +19,8 @@ export const DropDownSubcategoryWrapper = styled.div`
   background-color: #fff;
   border: var(--borders);
   box-shadow: var(--box-shadow-small);
-  transform: scaleX(0);
+  display: none;
   transform-origin: left;
-  transition: all 0.1s ease-in-out;
+
+  ${makeAnimationCSS(SlideInFromLeftAnimation)}
 `;

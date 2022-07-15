@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 export const HeaderNavButton = styled.button`
   padding: 5px 10px;
+  display: flex;
+  align-items: center;
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -9,7 +11,7 @@ export const HeaderNavButton = styled.button`
   &::after {
     content: "";
     position: absolute;
-    top: 80%;
+    top: 100%;
     left: 50%;
     width: 100%;
     height: 2px;

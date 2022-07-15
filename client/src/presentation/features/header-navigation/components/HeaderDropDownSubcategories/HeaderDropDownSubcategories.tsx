@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import { DropDownCategory } from "../HeaderDropDownMenu";
+import { DropDownCategory } from "../../types/DropDownCategory";
 
 import {
   DropDownItemsLI,

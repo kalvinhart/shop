@@ -1,19 +1,12 @@
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import { HeaderNavButton } from "./HeaderNavMenuButton.styles";
 
 type HeaderNavButtonProps = {
-  text: string;
+  content: string | JSX.Element;
+  onClick: () => void;
 };
 
-const HeaderNavMenuButton = ({ text }: HeaderNavButtonProps) => {
-  return (
-    <HeaderNavButton>
-      {text}
-      <FontAwesomeIcon icon={faChevronDown} size="xs" />
-    </HeaderNavButton>
-  );
+const HeaderNavMenuButton = ({ content, onClick }: HeaderNavButtonProps) => {
+  return <HeaderNavButton onClick={onClick}>{content}</HeaderNavButton>;
 };
 
 export default HeaderNavMenuButton;
