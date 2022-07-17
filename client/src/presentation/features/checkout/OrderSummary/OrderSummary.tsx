@@ -22,7 +22,7 @@ const OrderSummary = ({ cart, cartTotal }: OrderSummaryProps) => {
       ))}
       <StyledOrderSummaryTotalWrapper>
         <SpanBold>Total:</SpanBold>
-        <SpanPrice data-testid="OrderSummaryTotal">£{cartTotal}</SpanPrice>
+        <SpanPrice data-testid="OrderSummaryTotal">£{cartTotal.toFixed(2)}</SpanPrice>
       </StyledOrderSummaryTotalWrapper>
     </StyledOrderSummaryWrapper>
   );

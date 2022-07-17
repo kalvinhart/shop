@@ -18,8 +18,10 @@ const OrderSummaryItem = ({
     <StyledOrderSummaryItemWrapper>
       <SpanBold data-testid="OrderSummaryItem-Name">{name}</SpanBold>
       <SpanRegular data-testid="OrderSummaryItem-Brand">{brand}</SpanRegular>
-      <SpanRegular data-testid="OrderSummaryItem-QtyPrice">{`£${price} x ${qty}`}</SpanRegular>
-      <SpanPrice data-testid="OrderSummaryItem-Total">£{total}</SpanPrice>
+      <SpanRegular data-testid="OrderSummaryItem-QtyPrice">{`£${price.toFixed(
+        2
+      )} x ${qty}`}</SpanRegular>
+      <SpanPrice data-testid="OrderSummaryItem-Total">£{total.toFixed(2)}</SpanPrice>
     </StyledOrderSummaryItemWrapper>
   );
 };

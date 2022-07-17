@@ -75,7 +75,7 @@ const CartItem = ({ item, small = false }: CartItemProps) => {
         <CartButtonsWrapper>
           <QuantityPicker quantity={qty} handleQuantityChange={handleQuantityChange} />
 
-          <SpanPrice data-testid="CartItemPrice">£{total}</SpanPrice>
+          <SpanPrice data-testid="CartItemPrice">£{total.toFixed(2)}</SpanPrice>
           <Button
             variant="trash"
             onClick={handleRemove}
