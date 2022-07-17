@@ -109,6 +109,7 @@ const addNewProduct = catchAsync(async (req, res, next) => {
 const updateProduct = catchAsync(async (req, res, next) => {
   const { id } = req.params;
   const updatedProduct = req.body;
+  updatedProduct.price = updatedProduct.price.toFixed(2);
   const updated = await Product.findByIdAndUpdate(id, updatedProduct, {
     runValidators: true,
     new: true,
