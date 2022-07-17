@@ -20,7 +20,7 @@ const ProductMainInfo = ({ product }: ProductMainInfoProps) => {
       <ProductHeading>
         <ProductInfoGroup>
           <H2>{name}</H2>
-          <SpanPrice>£{`${price}`}</SpanPrice>
+          <SpanPrice>£{`${price.toFixed(2)}`}</SpanPrice>
           <SpanStock inStock={stockQty > 0}>
             {" "}
             {stockQty > 0 ? "In Stock" : "Out of Stock"}

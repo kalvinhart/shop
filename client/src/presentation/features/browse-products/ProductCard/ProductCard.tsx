@@ -51,7 +51,7 @@ const ProductCard = ({ productInfo }: ProductCardProps) => {
         <StyledCardImage src={imageUrl} alt={name} />
       </Link>
       <H3>{name}</H3>
-      <SpanPrice>{`£${price}`}</SpanPrice>
+      <SpanPrice>{`£${price.toFixed(2)}`}</SpanPrice>
       <StyledCardButtonWrapper>
         <Button variant="primary" onClick={handleAddToCart}>
           Add to Cart
