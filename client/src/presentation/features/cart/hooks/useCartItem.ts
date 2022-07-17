@@ -22,7 +22,7 @@ export const useCartItem = (item: CartItem) => {
     size,
     color,
     qty,
-    total,
+    total: parseFloat(total.toFixed(2)),
     handleQuantityChange: (val: number) => handleQuantityChange(val),
     handleRemove: () => handleRemove(),
   };
