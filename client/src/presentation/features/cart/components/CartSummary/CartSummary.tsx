@@ -13,7 +13,7 @@ const CartSummary = ({ cartTotal }: CartSummaryProps) => {
   return (
     <StyledCartSummary>
       <SpanBold>Subtotal:</SpanBold>
-      <SpanPrice data-testid="CartPagePrice">{`£${cartTotal}`}</SpanPrice>
+      <SpanPrice data-testid="CartPagePrice">{`£${cartTotal.toFixed(2)}`}</SpanPrice>
       <Button variant="primary" onClick={() => navigate("/checkout")}>
         Continue to Checkout
       </Button>

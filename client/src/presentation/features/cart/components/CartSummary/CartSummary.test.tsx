@@ -9,6 +9,6 @@ describe("CartSummary", () => {
 
     const subtotalElement = screen.getByTestId("CartPagePrice");
 
-    expect(subtotalElement.textContent).toBe("£20");
+    expect(subtotalElement.textContent).toBe("£20.00");
   });
 });
