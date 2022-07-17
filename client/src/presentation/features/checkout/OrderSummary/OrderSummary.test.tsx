@@ -29,6 +29,6 @@ describe("OrderSummary", () => {
 
     const cartTotalElement = screen.getByTestId("OrderSummaryTotal");
 
-    expect(cartTotalElement.textContent).toBe("£10");
+    expect(cartTotalElement.textContent).toBe("£10.00");
   });
 });

@@ -7,7 +7,17 @@ jest.mock("./hooks/useProductPage.ts", () => ({
   useProductPage: () => ({
     detailsLoading: mockLoading,
     detailsError: false,
-    product: {},
+    product: {
+      _id: "TestId",
+      name: "TestName",
+      brand: "TestBrand",
+      price: 9.99,
+      description: "Test product",
+      imageUrl: "/images/no-image.jpg",
+      categories: ["Test1", "Test2"],
+      stockQty: 24,
+      amountSold: 75,
+    },
   }),
 }));
 

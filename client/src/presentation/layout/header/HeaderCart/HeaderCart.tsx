@@ -48,7 +48,9 @@ const HeaderCart = ({ cart, cartCount, cartTotal }: HeaderCartProps) => {
 
       <HeaderCartSubtotalGroup>
         <SpanBold>SubTotal:</SpanBold>
-        <SpanPrice data-testid="HeaderCartSubtotal">{`£${cartTotal}`}</SpanPrice>
+        <SpanPrice data-testid="HeaderCartSubtotal">{`£${cartTotal.toFixed(
+          2
+        )}`}</SpanPrice>
       </HeaderCartSubtotalGroup>
 
       <Button variant="primary" onClick={() => navigate("/checkout")}>
