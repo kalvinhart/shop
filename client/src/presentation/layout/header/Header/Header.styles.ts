@@ -22,7 +22,7 @@ export const StyledHeader = styled.header`
   z-index: 9999999;
 
   @media screen and (min-width: ${mediaSizes.large}) {
-    padding: 10px 60px;
+    padding: 10px 40px;
     height: var(--header-height);
     align-items: center;
   }
@@ -40,7 +40,7 @@ export const StyledLowerHeader = styled.div`
 
   @media screen and (min-width: ${mediaSizes.large}) {
     position: static;
-    width: 600px;
+    width: 550px;
     height: unset;
     padding: 0 20px;
     justify-content: space-between;
