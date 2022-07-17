@@ -98,7 +98,7 @@ const CheckoutForm = ({ total }: CheckoutFormProps) => {
                   <FontAwesomeIcon icon={faSpinner} size="lg" spin /> Processing...
                 </>
               ) : (
-                `Pay £${total / 100}`
+                `Pay £${(total / 100).toFixed(2)}`
               )}
             </Button>
           </>
