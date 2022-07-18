@@ -84,6 +84,7 @@ const filterSlice = createSlice({
         (filter) => (state.selectedFilters[filter as keyof SelectedFilters] = "")
       );
       state.isFiltered = false;
+      state.isFilterApplied = false;
     },
   },
   extraReducers(builder) {
