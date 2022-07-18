@@ -15,10 +15,8 @@ export const CartItemWrapper = styled.div<SmallProps>`
 
   ${(small) => small && "margin-bottom: 15px;"}
 
-  &:hover [data-name="removeButton"],
-  &:focus [data-name="removeButton"],
-  &:focus-within [data-name="removeButton"] {
-    visibility: visible;
+  & > a {
+    align-self: flex-start;
   }
 `;
 
@@ -77,9 +75,8 @@ export const CartButtonsWrapper = styled.div`
   }
 
   @media screen and (min-width: ${mediaSizes.large}) {
-    margin-top: 0;
-    margin-left: auto;
-    width: 300px;
+    margin: 0 10px 0 auto;
+    width: 350px;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -107,7 +104,23 @@ export const CartButtonsWrapper = styled.div`
     }
 
     &[data-name="removeButton"] {
-      visibility: hidden;
+      position: absolute;
+
+      & span {
+        display: none;
+      }
+
+      @media screen and (min-width: ${mediaSizes.large}) {
+        position: static;
+
+        & span {
+          display: inline;
+        }
+
+        & svg {
+          margin-right: 5px;
+        }
+      }
     }
   }
 `;
