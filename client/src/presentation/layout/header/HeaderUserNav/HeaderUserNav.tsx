@@ -49,39 +49,6 @@ const HeaderUserNav = () => {
             menuTitle={<FontAwesomeIcon className="icon" icon={faUserAlt} size="lg" />}
           />
         )}
-        {/* <HoverableLI>
-          <HeaderUserButton aria-label="User Account Drop Down Menu">
-            <FontAwesomeIcon className="icon" icon={faUserAlt} size="lg" />
-          </HeaderUserButton>
-
-          <UserDropDownWrapper>
-            {loading ? (
-              <Spinner />
-            ) : (
-              <DropDownUL>
-                {user ? (
-                  <>
-                    <DropDownLI>
-                      <Link to="/profile">My Account</Link>
-                    </DropDownLI>
-                    <DropDownLI>
-                      <Link to="/logout">Log Out</Link>
-                    </DropDownLI>
-                  </>
-                ) : (
-                  <>
-                    <DropDownLI>
-                      <Link to="/login">Sign In</Link>
-                    </DropDownLI>
-                    <DropDownLI>
-                      <Link to="/register">Register</Link>
-                    </DropDownLI>
-                  </>
-                )}
-              </DropDownUL>
-            )}
-          </UserDropDownWrapper>
-        </HoverableLI> */}
 
         <LI>
           <Link to="/wishlist" aria-label="View Wishlist">
