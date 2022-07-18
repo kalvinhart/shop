@@ -5,6 +5,8 @@ import productDetailsReducer from "../../app/slices/productDetailsSlice";
 import categoriesReducer from "../../app/slices/categoriesSlice";
 import authReducer from "../../app/slices/authSlice";
 import cartReducer from "../../features/cart/slice/cartSlice";
+import filtersReducer from "../../features/filters/slice/filtersSlice";
+import recentlyViewedReducer from "../../features/recently-viewed/slice/recentlyViewedSlice";
 
 import HttpService from "../../../infrastructure/services/HttpService/HttpService";
 import ProductService from "../../../infrastructure/services/ProductService/ProductService";
@@ -27,6 +29,8 @@ export const createTestStore = () => {
       categories: categoriesReducer,
       auth: authReducer,
       cart: cartReducer,
+      filters: filtersReducer,
+      recentlyViewed: recentlyViewedReducer,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({

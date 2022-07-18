@@ -13,6 +13,7 @@ import categoriesReducer from "./slices/categoriesSlice";
 import authReducer from "./slices/authSlice";
 import cartReducer from "../features/cart/slice/cartSlice";
 import filtersReducer from "../features/filters/slice/filtersSlice";
+import recentlyViewedReducer from "../features/recently-viewed/slice/recentlyViewedSlice";
 
 import { IAuthService } from "../../infrastructure/services/interfaces/IAuthService";
 import AuthService from "../../infrastructure/services/AuthService/AuthService";
@@ -30,6 +31,7 @@ const store = configureStore({
     auth: authReducer,
     cart: cartReducer,
     filters: filtersReducer,
+    recentlyViewed: recentlyViewedReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
