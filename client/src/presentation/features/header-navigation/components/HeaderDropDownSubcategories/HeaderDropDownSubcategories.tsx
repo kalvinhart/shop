@@ -8,15 +8,19 @@ import {
 } from "../HeaderDropDownMenu/HeaderDropDownMenu.styles";
 import { DropDownSubcategoryWrapper } from "./HeaderDropDownSubcategories.styles";
 
-type Props = Pick<DropDownCategory, "subcategories">;
+type Props = Pick<DropDownCategory, "subcategories"> & {
+  setShowMenu: (val: boolean) => void;
+};
 
-const HeaderDropDownSubcategories = ({ subcategories }: Props) => {
+const HeaderDropDownSubcategories = ({ subcategories, setShowMenu }: Props) => {
   return (
     <DropDownSubcategoryWrapper>
       <DropDownItemsUL>
         {subcategories!.map((s) => (
           <DropDownItemsLI key={s.name}>
-            <Link to={s.url}>{s.name}</Link>
+            <Link to={s.url} onClick={() => setShowMenu(false)}>
+              {s.name}
+            </Link>
           </DropDownItemsLI>
         ))}
       </DropDownItemsUL>
