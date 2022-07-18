@@ -46,6 +46,9 @@ const getAllProducts = catchAsync(async (req, res, next) => {
         count: { $sum: 1 },
       },
     },
+    {
+      $sort: { _id: 1 },
+    },
   ]);
 
   const allSizes = await Product.aggregate([
@@ -55,6 +58,9 @@ const getAllProducts = catchAsync(async (req, res, next) => {
         count: { $sum: 1 },
       },
     },
+    {
+      $sort: { _id: 1 },
+    },
   ]);
 
   const allColors = await Product.aggregate([
@@ -63,6 +69,9 @@ const getAllProducts = catchAsync(async (req, res, next) => {
         _id: "$color",
         count: { $sum: 1 },
       },
+    },
+    {
+      $sort: { _id: 1 },
     },
   ]);
 
