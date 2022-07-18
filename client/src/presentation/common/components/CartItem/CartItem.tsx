@@ -84,6 +84,7 @@ const CartItem = ({ item, small = false }: CartItemProps) => {
             testId="CartItemRemoveButton"
           >
             <FontAwesomeIcon icon={faTrashAlt} />
+            <SpanRegular>Remove</SpanRegular>
           </Button>
         </CartButtonsWrapper>
       </CartItemContentWrapper>

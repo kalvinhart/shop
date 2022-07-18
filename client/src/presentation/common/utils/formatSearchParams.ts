@@ -1,5 +1,13 @@
 import { SelectedFilters } from "../../features/filters/slice/filtersSlice";
 
+type Params = {
+  page?: string;
+  brand?: string;
+  color?: string;
+  size?: string;
+  pageSize?: string;
+};
+
 export const formatOldSearchParams = (oldSearchParams: URLSearchParams) => {
   return Object.fromEntries([...oldSearchParams]);
 };
@@ -8,7 +16,7 @@ export const handleSearchParamsOnFilterChange = (
   searchParams: URLSearchParams,
   selectedFilters: SelectedFilters
 ) => {
-  const currentParams = formatOldSearchParams(searchParams);
+  const currentParams: Params = formatOldSearchParams(searchParams);
 
   const newParams = {
     ...currentParams,
@@ -19,6 +27,8 @@ export const handleSearchParamsOnFilterChange = (
     if (newParams[filter as keyof SelectedFilters] === "")
       delete newParams[filter as keyof SelectedFilters];
   });
+
+  if (newParams.page) delete newParams.page;
 
   return newParams;
 };

@@ -37,7 +37,20 @@ export const useResultsHeader = () => {
         return;
 
       const formattedOptionName = formatStringToUpper(optionName);
-      const formattedOptionValue = formatStringToUpper(optionValue);
+
+      let formattedOptionValue;
+
+      if (optionValue.includes(",")) {
+        let splitOptions = optionValue.split(",");
+
+        splitOptions = splitOptions.map((option) => {
+          return formatStringToUpper(option);
+        });
+
+        formattedOptionValue = splitOptions.join(", ");
+      } else {
+        formattedOptionValue = formatStringToUpper(optionValue);
+      }
 
       optionsTags.push(
         <FilterTags key={optionName}>
@@ -53,7 +66,7 @@ export const useResultsHeader = () => {
       text: "Most Popular",
     },
     {
-      name: "createdAt",
+      name: "-createdAt",
       text: "Most Recent",
     },
     {

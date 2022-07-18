@@ -52,13 +52,18 @@ const HeaderDropDownMenuSection = ({
       <DropDownItemsUL>
         {categories.map((item) => (
           <DropDownItemsLI key={item.name}>
-            <Link to={item.url}>{item.name}</Link>
+            <Link to={item.url} onClick={() => setShowMenu(false)}>
+              {item.name}
+            </Link>
 
             {item.subcategories && item.subcategories.length > 0 && (
               <>
                 <FontAwesomeIcon icon={faChevronRight} size="xs" />
 
-                <HeaderDropDownSubcategories subcategories={item.subcategories} />
+                <HeaderDropDownSubcategories
+                  subcategories={item.subcategories}
+                  setShowMenu={setShowMenu}
+                />
               </>
             )}
           </DropDownItemsLI>
