@@ -6,18 +6,12 @@ import { useCartState } from "../../../common/hooks/useCartState";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserAlt, faCartShopping, faHeart } from "@fortawesome/free-solid-svg-icons";
 
-import Spinner from "../../../common/components/Spinner/Spinner";
-
 import {
   LI,
   CartCount,
   CartDropDownWrapper,
   CartIconWrapper,
-  DropDownLI,
-  DropDownUL,
-  HeaderUserButton,
   HoverableLI,
-  UserDropDownWrapper,
   UserInfoWrapper,
   UserUL,
 } from "./HeaderUserNav.styles";
