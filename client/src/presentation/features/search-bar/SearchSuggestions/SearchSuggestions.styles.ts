@@ -7,8 +7,8 @@ export const SuggestionsWrapper = styled.div`
   left: -90px;
   width: 300px;
   background-color: white;
-  border-bottom-left-radius: var(--border-radius);
-  border-bottom-right-radius: var(--border-radius);
+  border: var(--borders);
+  border-top: none;
   box-shadow: var(--box-shadow);
 
   @media screen and (min-width: ${mediaSizes.med}) {
