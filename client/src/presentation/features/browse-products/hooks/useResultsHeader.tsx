@@ -53,7 +53,7 @@ export const useResultsHeader = () => {
       text: "Most Popular",
     },
     {
-      name: "createdAt",
+      name: "-createdAt",
       text: "Most Recent",
     },
     {
