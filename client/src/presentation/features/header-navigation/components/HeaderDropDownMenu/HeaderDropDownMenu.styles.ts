@@ -54,8 +54,8 @@ export const DropDownMenuWrapper = styled.div`
   isolation: isolate;
   z-index: 1;
   position: absolute;
-  top: 100%;
-  left: 0;
+  top: 110%;
+  left: -5px;
   background-color: #fff;
   border: var(--borders);
   box-shadow: var(--box-shadow-small);
