@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { mediaSizes } from "../../styles";
+import { mediaSizes } from "../../../../common/styles";
 
-import { SpanGrey, SpanPrice } from "../../styles";
+import { SpanGrey, SpanPrice } from "../../../../common/styles";
 
 type SmallProps = {
   small?: boolean | undefined;
@@ -20,18 +20,6 @@ export const CartItemWrapper = styled.div<SmallProps>`
   }
 `;
 
-export const CartItemImage = styled.img<SmallProps>`
-  width: 120px;
-  border-radius: var(--border-radius);
-  margin-right: 15px;
-
-  ${(small) => small && "width: 80px;"}
-
-  @media screen and (min-width: ${mediaSizes.large}) {
-    margin-right: 30px;
-  }
-`;
-
 export const CartItemContentWrapper = styled.div`
   width: 100%;
   display: flex;
@@ -39,29 +27,6 @@ export const CartItemContentWrapper = styled.div`
 
   @media screen and (min-width: ${mediaSizes.large}) {
     flex-direction: row;
-  }
-`;
-
-export const CartItemInfoWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  & a {
-    margin-bottom: 10px;
-  }
-`;
-
-export const CartItemInfoGroup = styled.div<SmallProps>`
-  display: flex;
-
-  ${(small) => small && "& span { font-size: 14px; }"}
-
-  & ${SpanGrey} {
-    margin-right: 10px;
-  }
-
-  &:not(:last-child) {
-    margin-bottom: 10px;
   }
 `;
 

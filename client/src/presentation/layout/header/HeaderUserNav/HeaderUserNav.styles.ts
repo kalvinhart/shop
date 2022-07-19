@@ -43,7 +43,8 @@ export const UserUL = styled(UL)`
 export const HoverableLI = styled(LI)`
   position: relative;
 
-  &:hover > div {
+  &:hover > div,
+  &:focus-within > div {
     transform: scaleY(1);
   }
 `;

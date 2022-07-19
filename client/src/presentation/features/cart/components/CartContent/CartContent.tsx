@@ -1,5 +1,5 @@
 import { CartItem as CartItemType } from "../../../../../domain/models/CartItem";
-import { CartItem } from "../../../../common/components/CartItem";
+import { CartItem } from "../CartItem";
 import { CartSummary } from "../CartSummary";
 import NoCartItems from "../NoCartItems/NoCartItems";
 import { CartContentWrapper } from "./CartContent.styles";
