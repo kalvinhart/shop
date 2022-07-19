@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { SpanPrice } from "../../../common/styles";
+import { mediaSizes, SpanPrice } from "../../../common/styles";
 
 export const StyledCardBackground = styled.div`
   position: relative;
@@ -22,8 +22,12 @@ export const StyledCardBackground = styled.div`
 `;
 
 export const StyledCardImage = styled.img`
-  /* width: 260px; */
-  height: 220px;
+  height: 250px;
+
+  @media screen and (min-width: ${mediaSizes.med}) {
+    max-width: 300px;
+    height: 300px;
+  }
 `;
 
 export const StyledCardButtonWrapper = styled.div`
