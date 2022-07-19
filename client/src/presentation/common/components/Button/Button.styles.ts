@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 export type StyledButtonProps = {
-  variant: "filter" | "primary" | "secondary" | "icon" | "trash";
+  variant: "filter" | "primary" | "secondary" | "icon" | "trash" | "transparent";
   size?: "regular" | "small" | "large";
 };
 
@@ -70,6 +70,25 @@ export const StyledButton = styled.button<StyledButtonProps>`
 
           & svg {
             margin-right: 0;
+          }
+        `;
+
+      case "transparent":
+        return css`
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: transparent;
+          color: black;
+          font-weight: bold;
+          box-shadow: none;
+
+          &:hover {
+            text-decoration: underline;
+          }
+
+          & svg {
+            margin: 0 0 0 5px;
           }
         `;
     }

@@ -9,7 +9,6 @@ import { SideBar } from "../../filters";
 import { Spinner } from "../../../common/components/Spinner";
 
 import { ProductContentWrapper, ProductResultsWrapper } from "./ProductContent.styles";
-import Pagination from "../Pagination/Pagination";
 
 type ProductContentProps = {
   products: Product[];
@@ -31,8 +30,6 @@ const ProductContent = ({ products, productsLoading }: ProductContentProps) => {
               <ProductCard key={product.name} productInfo={product} />
             ))}
           </ProductGrid>
-
-          <Pagination />
         </ProductResultsWrapper>
       ) : (
         <NoResults />
