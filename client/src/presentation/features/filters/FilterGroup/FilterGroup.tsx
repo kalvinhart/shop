@@ -25,7 +25,6 @@ const FilterGroup = ({ heading, items }: FilterGroupProps) => {
 
   const filtersRenderLimit = 8;
   const doesExceedRenderLimit = items.length > filtersRenderLimit;
-  console.log(`${heading} exceeds limit?: `, doesExceedRenderLimit);
 
   let filtersToShow: Filters[];
 
