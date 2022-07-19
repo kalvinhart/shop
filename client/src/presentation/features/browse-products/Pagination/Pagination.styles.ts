@@ -3,6 +3,7 @@ import { mediaSizes } from "../../../common/styles";
 
 export const PaginationWrapper = styled.div`
   width: 100%;
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
