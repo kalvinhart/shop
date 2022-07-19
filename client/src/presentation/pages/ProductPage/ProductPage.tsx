@@ -2,8 +2,8 @@ import { useProductPage } from "./hooks/useProductPage";
 import { usePageTitle } from "../../common/hooks/usePageTitle";
 
 import { ProductDetails } from "../../features/display-product/ProductDetails";
-import { Spinner } from "../../common/components/Spinner";
 import { RecentlyViewed } from "../../features/recently-viewed/components/RecentlyViewed";
+import ProductDetailsSkeleton from "../../features/display-product/ProductDetailsSkeleton/ProductDetailsSkeleton";
 
 const ProductPage = () => {
   const { product, detailsLoading } = useProductPage();
@@ -13,7 +13,7 @@ const ProductPage = () => {
   return (
     <>
       {detailsLoading ? (
-        <Spinner testId="ProductPageSpinner" />
+        <ProductDetailsSkeleton />
       ) : (
         <>
           <ProductDetails product={product} />

@@ -53,5 +53,6 @@ export const ProductImage = styled.img`
 `;
 
 export const ProductDescriptionInfo = styled.div`
+  width: 100%;
   display: flex;
 `;

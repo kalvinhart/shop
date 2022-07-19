@@ -8,11 +8,14 @@ import { Container } from "../layout/layouts/Container";
 import AppRoutes from "../routing/AppRoutes";
 import { Footer } from "../layout/footer/Footer";
 
+import { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+
 const App = () => {
   useApp();
 
   return (
-    <>
+    <SkeletonTheme baseColor="#ddd" highlightColor="#efefef">
       <GlobalStyle />
       <Toaster position="top-right" containerStyle={{ top: 120 }} />
       <Header />
@@ -22,7 +25,7 @@ const App = () => {
         </Container>
       </PageWrapper>
       <Footer />
-    </>
+    </SkeletonTheme>
   );
 };
 

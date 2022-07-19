@@ -6,9 +6,9 @@ import ProductGrid from "../ProductGrid/ProductGrid";
 import ProductCard from "../ProductCard/ProductCard";
 import NoResults from "../NoResults/NoResults";
 import { SideBar } from "../../filters";
-import { Spinner } from "../../../common/components/Spinner";
 
 import { ProductContentWrapper, ProductResultsWrapper } from "./ProductContent.styles";
+import ProductContentSkeleton from "./ProductContentSkeleton";
 
 type ProductContentProps = {
   products: Product[];
@@ -16,24 +16,24 @@ type ProductContentProps = {
 };
 
 const ProductContent = ({ products, productsLoading }: ProductContentProps) => {
-  const [show, setShow] = useState(false);
+  const [showSideBar, setShowSideBar] = useState(false);
 
   return (
     <ProductContentWrapper>
-      <SideBar show={show} setShow={setShow} />
-      {productsLoading ? (
-        <Spinner testId="products-spinner" />
-      ) : products.length > 0 ? (
-        <ProductResultsWrapper>
-          <ProductGrid setShow={setShow}>
-            {products.map((product) => (
+      <SideBar show={showSideBar} setShow={setShowSideBar} />
+      <ProductResultsWrapper>
+        <ProductGrid setShow={setShowSideBar}>
+          {productsLoading ? (
+            <ProductContentSkeleton numCards={12} />
+          ) : products.length > 0 ? (
+            products.map((product) => (
               <ProductCard key={product.name} productInfo={product} />
-            ))}
-          </ProductGrid>
-        </ProductResultsWrapper>
-      ) : (
-        <NoResults />
-      )}
+            ))
+          ) : (
+            <NoResults />
+          )}
+        </ProductGrid>
+      </ProductResultsWrapper>
     </ProductContentWrapper>
   );
 };

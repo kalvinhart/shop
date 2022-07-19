@@ -10,11 +10,7 @@ import { faHeart, faHeartBroken } from "@fortawesome/free-solid-svg-icons";
 
 import Button from "../../../common/components/Button/Button";
 
-import {
-  StyledCardBackground,
-  StyledCardImage,
-  StyledCardButtonWrapper,
-} from "./ProductCard.styles";
+import { CardBackground, CardImage, CardButtonWrapper } from "./ProductCard.styles";
 import { H3, SpanPrice } from "../../../common/styles";
 
 type ProductCardProps = {
@@ -38,7 +34,7 @@ const ProductCard = ({ productInfo }: ProductCardProps) => {
   };
 
   return (
-    <StyledCardBackground>
+    <CardBackground>
       <Button
         variant="icon"
         onClick={handleWishlistClick}
@@ -48,17 +44,17 @@ const ProductCard = ({ productInfo }: ProductCardProps) => {
       </Button>
 
       <Link className="imageLink" to={`/product/${id}`}>
-        <StyledCardImage src={imageUrl} alt={name} />
+        <CardImage src={imageUrl} alt={name} />
       </Link>
       <H3>{name}</H3>
       <SpanPrice>{`£${price.toFixed(2)}`}</SpanPrice>
-      <StyledCardButtonWrapper>
+      <CardButtonWrapper>
         <Button variant="primary" onClick={handleAddToCart}>
           Add to Cart
         </Button>
         <Link to={`/product/${id}`}>More Details</Link>
-      </StyledCardButtonWrapper>
-    </StyledCardBackground>
+      </CardButtonWrapper>
+    </CardBackground>
   );
 };
 
