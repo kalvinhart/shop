@@ -23,11 +23,7 @@ export const StyledCardBackground = styled.div`
 
 export const StyledCardImage = styled.img`
   height: 250px;
-
-  @media screen and (min-width: ${mediaSizes.med}) {
-    max-width: 300px;
-    height: 300px;
-  }
+  max-width: 280px;
 `;
 
 export const StyledCardButtonWrapper = styled.div`
