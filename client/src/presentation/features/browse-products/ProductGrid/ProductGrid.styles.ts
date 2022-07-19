@@ -10,6 +10,7 @@ export const GridWrapper = styled.div`
 
 export const Grid = styled.div`
   width: 100%;
+  margin-bottom: 20px;
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 20px;
