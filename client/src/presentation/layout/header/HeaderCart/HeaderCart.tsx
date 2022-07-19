@@ -3,11 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { CartItem } from "../../../../domain/models/CartItem";
 
 import Button from "../../../common/components/Button/Button";
-import CartItemPreview from "../../../common/components/CartItem/CartItem";
+import { CartItemInfo } from "../../../common/components/CartItemInfo";
 
 import { H3, SpanBold, SpanPrice, StyledParagraph } from "../../../common/styles";
 import {
-  HeaderCartHeaderGroup,
+  HeaderCartButtonGroup,
+  HeaderCartItemsInfoWrapper,
   HeaderCartNoItemsWrapper,
   HeaderCartPreview,
   HeaderCartSubtotalGroup,
@@ -30,19 +31,18 @@ const HeaderCart = ({ cart, cartCount, cartTotal }: HeaderCartProps) => {
       </HeaderCartNoItemsWrapper>
     );
 
-  const cartPreview = (
+  return (
     <HeaderCartPreview>
-      <HeaderCartHeaderGroup>
-        <H3 data-testid="CartCountHeading">{`${cartCount} ${
-          cartCount > 1 ? "items" : "item"
-        }.`}</H3>
-        <Button variant="primary" onClick={() => navigate("/cart")}>
-          View Cart
-        </Button>
-      </HeaderCartHeaderGroup>
+      <H3 data-testid="CartCountHeading">{`${cartCount} ${
+        cartCount > 1 ? "items" : "item"
+      }.`}</H3>
+
       <HeaderCartWrapper>
         {cart.map((item) => (
-          <CartItemPreview key={item.name} item={item} small={true} />
+          <HeaderCartItemsInfoWrapper>
+            <CartItemInfo key={item.name} item={item} small={true} />
+            <SpanPrice>£{item.total.toFixed(2)}</SpanPrice>
+          </HeaderCartItemsInfoWrapper>
         ))}
       </HeaderCartWrapper>
 
@@ -53,13 +53,16 @@ const HeaderCart = ({ cart, cartCount, cartTotal }: HeaderCartProps) => {
         )}`}</SpanPrice>
       </HeaderCartSubtotalGroup>
 
-      <Button variant="primary" onClick={() => navigate("/checkout")}>
-        Go to Checkout
-      </Button>
+      <HeaderCartButtonGroup>
+        <Button variant="primary" onClick={() => navigate("/cart")}>
+          View Cart
+        </Button>
+        <Button variant="primary" onClick={() => navigate("/checkout")}>
+          Go to Checkout
+        </Button>
+      </HeaderCartButtonGroup>
     </HeaderCartPreview>
   );
-
-  return cartPreview;
 };
 
 export default HeaderCart;

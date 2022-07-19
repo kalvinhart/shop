@@ -1,4 +1,8 @@
-import { fireEvent, renderWithWrappers, screen } from "../../utils/testUtils";
+import {
+  fireEvent,
+  renderWithWrappers,
+  screen,
+} from "../../../../common/utils/testUtils";
 import CartItem from "./CartItem";
 
 const mockItem = {
@@ -16,7 +20,7 @@ const mockItem = {
 const mockQtyChange = jest.fn();
 const mockHandleRemove = jest.fn();
 
-jest.mock("../../../features/cart/hooks/useCartItem.ts", () => ({
+jest.mock("../../hooks/useCartItem.ts", () => ({
   useCartItem: () => ({
     ...mockItem,
     handleQuantityChange: mockQtyChange,

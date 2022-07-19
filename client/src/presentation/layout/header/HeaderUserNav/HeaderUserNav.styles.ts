@@ -43,7 +43,8 @@ export const UserUL = styled(UL)`
 export const HoverableLI = styled(LI)`
   position: relative;
 
-  &:hover > div {
+  &:hover > div,
+  &:focus-within > div {
     transform: scaleY(1);
   }
 `;
@@ -87,7 +88,7 @@ export const UserDropDownWrapper = styled(DropDown)`
 export const CartDropDownWrapper = styled(DropDown)`
   display: none;
 
-  @media screen and (min-width: ${mediaSizes.large}) {
+  @media screen and (min-width: ${mediaSizes.xl}) {
     display: block;
     right: -60px;
   } ;
