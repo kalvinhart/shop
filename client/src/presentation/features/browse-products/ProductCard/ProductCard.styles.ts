@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { mediaSizes, SpanPrice } from "../../../common/styles";
+import { SpanPrice } from "../../../common/styles";
 
-export const StyledCardBackground = styled.div`
+export const CardBackground = styled.div`
   position: relative;
   width: 100%;
   min-width: 280px;
@@ -21,12 +21,12 @@ export const StyledCardBackground = styled.div`
   }
 `;
 
-export const StyledCardImage = styled.img`
+export const CardImage = styled.img`
   height: 250px;
   max-width: 280px;
 `;
 
-export const StyledCardButtonWrapper = styled.div`
+export const CardButtonWrapper = styled.div`
   width: 100%;
   margin-top: auto;
   display: flex;
