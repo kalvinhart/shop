@@ -39,8 +39,8 @@ const HeaderCart = ({ cart, cartCount, cartTotal }: HeaderCartProps) => {
 
       <HeaderCartWrapper>
         {cart.map((item) => (
-          <HeaderCartItemsInfoWrapper>
-            <CartItemInfo key={item.name} item={item} small={true} />
+          <HeaderCartItemsInfoWrapper key={item.name}>
+            <CartItemInfo item={item} small={true} />
             <SpanPrice>£{item.total.toFixed(2)}</SpanPrice>
           </HeaderCartItemsInfoWrapper>
         ))}
