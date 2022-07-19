@@ -88,7 +88,7 @@ export const UserDropDownWrapper = styled(DropDown)`
 export const CartDropDownWrapper = styled(DropDown)`
   display: none;
 
-  @media screen and (min-width: ${mediaSizes.large}) {
+  @media screen and (min-width: ${mediaSizes.xl}) {
     display: block;
     right: -60px;
   } ;
