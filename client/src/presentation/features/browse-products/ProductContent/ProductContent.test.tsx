@@ -27,14 +27,14 @@ jest.mock("../../../common/hooks/useFilterState/useFilterState.ts", () => ({
 describe("ProductContent", () => {
   test("Renders a spinner whilst loading.", () => {
     renderWithWrappers(<ProductContent products={[]} productsLoading={true} />);
-    const loadingElement = screen.getByTestId("products-spinner");
+    const loadingElement = screen.getByTestId("products-loading1");
     expect(loadingElement).toBeInTheDocument();
   });
 
   test("Does not render a spinner when loading is finished.", () => {
     renderWithWrappers(<ProductContent products={[]} productsLoading={false} />);
 
-    const loadingElement = screen.queryByTestId("products-spinner");
+    const loadingElement = screen.queryByTestId("products-loading1");
     expect(loadingElement).not.toBeInTheDocument();
   });
 

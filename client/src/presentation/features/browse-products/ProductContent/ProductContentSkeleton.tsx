@@ -12,7 +12,7 @@ const ProductContentSkeleton = ({ numCards }: ProductContentSkeletonProps) => {
   return (
     <>
       {productCardSkeleton.map((_, i) => (
-        <CardBackground key={i}>
+        <CardBackground key={i} data-testid={`products-loading${i + 1}`}>
           <Skeleton height={250} />
 
           <H3>

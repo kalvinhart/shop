@@ -27,7 +27,7 @@ describe("ProductPage", () => {
 
     renderWithWrappers(<ProductPage />);
 
-    const spinnerElement = screen.getByTestId("ProductPageSpinner");
+    const spinnerElement = screen.getByTestId("product-page-loading");
 
     expect(spinnerElement).toBeInTheDocument();
   });
@@ -37,7 +37,7 @@ describe("ProductPage", () => {
 
     renderWithWrappers(<ProductPage />);
 
-    const spinnerElement = screen.queryByTestId("ProductPageSpinner");
+    const spinnerElement = screen.queryByTestId("product-page-loading");
 
     expect(spinnerElement).not.toBeInTheDocument();
   });
