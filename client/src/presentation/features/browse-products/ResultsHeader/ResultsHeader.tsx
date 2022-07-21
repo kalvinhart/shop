@@ -8,8 +8,8 @@ import {
   FilterTagsWrapper,
   HeadingWrapper,
   ShowFiltersButton,
-  StyledFiltersBackground,
-  StyledFilterSelectWrapper,
+  FiltersBackground,
+  FilterSelectWrapper,
 } from "./ResultsHeader.styles";
 import { H3, SpanBold } from "../../../common/styles";
 import { StyledSelect } from "../../../common/styles";
@@ -24,7 +24,7 @@ const ResultsHeader = ({ setShow }: ResultsHeaderProps) => {
 
   return (
     <>
-      <StyledFiltersBackground>
+      <FiltersBackground>
         <HeadingWrapper>
           <H3>
             {count} {count === 1 ? "Result" : "Results"}
@@ -36,7 +36,7 @@ const ResultsHeader = ({ setShow }: ResultsHeaderProps) => {
           </ShowFiltersButton>
         </HeadingWrapper>
 
-        <StyledFilterSelectWrapper>
+        <FilterSelectWrapper>
           <SpanBold>Sort By:</SpanBold>
           <StyledSelect onChange={handleSelectChange} value={selectValue!}>
             {sortOptions.map((option) => (
@@ -45,8 +45,8 @@ const ResultsHeader = ({ setShow }: ResultsHeaderProps) => {
               </option>
             ))}
           </StyledSelect>
-        </StyledFilterSelectWrapper>
-      </StyledFiltersBackground>
+        </FilterSelectWrapper>
+      </FiltersBackground>
 
       {hasOptions && (
         <CurrentFiltersWrapper>

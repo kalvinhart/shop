@@ -17,7 +17,7 @@ export const FiltersOverlay = styled.div`
   }
 `;
 
-export const StyledSideBarBackground = styled.div`
+export const SideBarBackground = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -76,7 +76,7 @@ export const StyledSideBarBackground = styled.div`
   }
 `;
 
-export const StyledUL = styled.ul`
+export const UL = styled.ul`
   margin-block-start: 0;
   margin-block-end: 0;
   padding-inline-start: 10px;
@@ -93,16 +93,16 @@ export const StyledUL = styled.ul`
   }
 `;
 
-export const StyledSubcategoryUL = styled(StyledUL)`
+export const SubcategoryUL = styled(UL)`
   margin-top: 10px;
   padding-inline-start: 20px;
 `;
 
-export const StyledCategoryHeadingLI = styled.li`
+export const CategoryHeadingLI = styled.li`
   font-weight: bold;
 `;
 
-export const StyledLI = styled.li`
+export const LI = styled.li`
   font-weight: normal;
 `;
 

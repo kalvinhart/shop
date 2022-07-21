@@ -3,7 +3,7 @@ import { mediaSizes } from "../../../common/styles";
 
 import { SpanBold } from "../../../common/styles";
 
-export const StyledFiltersBackground = styled.div`
+export const FiltersBackground = styled.div`
   position: relative;
   width: 100%;
   display: flex;
@@ -18,6 +18,16 @@ export const StyledFiltersBackground = styled.div`
     height: 80px;
     flex-direction: row;
     justify-content: space-between;
+  }
+`;
+
+export const SkeletonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (min-width: ${mediaSizes.med}) {
+    justify-content: flex-start;
   }
 `;
 
@@ -43,7 +53,7 @@ export const FilterTagsWrapper = styled.div`
   }
 `;
 
-export const StyledFilterSelectWrapper = styled.div`
+export const FilterSelectWrapper = styled.div`
   & ${SpanBold} {
     margin-right: 10px;
     font-size: 14px;
