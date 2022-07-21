@@ -14,11 +14,7 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import FilterGroup from "../FilterGroup/FilterGroup";
 import Button from "../../../common/components/Button/Button";
 
-import {
-  CloseFiltersButton,
-  FiltersOverlay,
-  StyledSideBarBackground,
-} from "./SideBar.styles";
+import { CloseFiltersButton, FiltersOverlay, SideBarBackground } from "./SideBar.styles";
 import { H3 } from "../../../common/styles";
 
 type SideBarProps = {
@@ -62,7 +58,7 @@ const SideBar = ({ show, setShow }: SideBarProps) => {
 
   return (
     <>
-      <StyledSideBarBackground className={show ? "show" : ""}>
+      <SideBarBackground className={show ? "show" : ""}>
         <CloseFiltersButton onClick={() => setShow(false)}>
           Close Filters
           <FontAwesomeIcon icon={faTimes} />
@@ -91,7 +87,7 @@ const SideBar = ({ show, setShow }: SideBarProps) => {
         {filters && !filtersAreEmpty(filters.allSizes) && (
           <FilterGroup heading="Size" items={filters.allSizes} />
         )}
-      </StyledSideBarBackground>
+      </SideBarBackground>
       <FiltersOverlay data-name="filterOverlay" />
     </>
   );

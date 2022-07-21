@@ -9,12 +9,13 @@ import { SpanBold, SpanRegular } from "../../../common/styles";
 import { PaginationResultsWrapper, PaginationWrapper } from "./Pagination.styles";
 import { formatOldSearchParams } from "../../../common/utils/formatSearchParams";
 import { useCallback } from "react";
+import Skeleton from "react-loading-skeleton";
 
 const Pagination = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
-  const { pagination } = useProductState();
+  const { pagination, productsLoading } = useProductState();
   const { currentPage, pageSize, resultsCount, totalPages } = pagination;
 
   let currentResultsMin = (currentPage - 1) * pageSize;
@@ -42,18 +43,32 @@ const Pagination = () => {
     <PaginationWrapper>
       <PaginationResultsWrapper>
         <SpanRegular>
-          Displaying results{" "}
-          <SpanBold data-testid="ResultsRange">
-            {currentResultsMin} - {currentResultsMax}
-          </SpanBold>{" "}
-          of <SpanBold data-testid="ResultsCount">{resultsCount}</SpanBold>
+          {productsLoading ? (
+            <SpanBold>
+              <Skeleton />
+            </SpanBold>
+          ) : (
+            <>
+              Displaying results{" "}
+              <SpanBold data-testid="ResultsRange">
+                {currentResultsMin} - {currentResultsMax}
+              </SpanBold>{" "}
+              of <SpanBold data-testid="ResultsCount">{resultsCount}</SpanBold>
+            </>
+          )}
         </SpanRegular>
       </PaginationResultsWrapper>
 
-      <PaginationButtons
-        pages={{ currentPage, totalPages }}
-        onChange={handlePageChange}
-      />
+      {productsLoading ? (
+        <SpanBold>
+          <Skeleton />
+        </SpanBold>
+      ) : (
+        <PaginationButtons
+          pages={{ currentPage, totalPages }}
+          onChange={handlePageChange}
+        />
+      )}
     </PaginationWrapper>
   );
 };

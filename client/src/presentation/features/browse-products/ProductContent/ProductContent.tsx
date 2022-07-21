@@ -9,6 +9,7 @@ import { SideBar } from "../../filters";
 
 import { ProductContentWrapper, ProductResultsWrapper } from "./ProductContent.styles";
 import ProductContentSkeleton from "./ProductContentSkeleton";
+import SideBarSkeleton from "../../filters/SideBar/SideBarSkeleton";
 
 type ProductContentProps = {
   products: Product[];
@@ -20,9 +21,14 @@ const ProductContent = ({ products, productsLoading }: ProductContentProps) => {
 
   return (
     <ProductContentWrapper>
-      <SideBar show={showSideBar} setShow={setShowSideBar} />
+      {productsLoading ? (
+        <SideBarSkeleton />
+      ) : (
+        <SideBar show={showSideBar} setShow={setShowSideBar} />
+      )}
+
       <ProductResultsWrapper>
-        <ProductGrid setShow={setShowSideBar}>
+        <ProductGrid setShow={setShowSideBar} loading={productsLoading}>
           {productsLoading ? (
             <ProductContentSkeleton numCards={12} />
           ) : products.length > 0 ? (
