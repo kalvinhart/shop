@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const ROLES = require("../config/userRoles");
 
 const { model, Schema } = mongoose;
 
@@ -12,6 +13,11 @@ const userSchema = new Schema(
     password: {
       type: String,
       required: true,
+    },
+    roles: {
+      type: String,
+      enum: [ROLES.User, ROLES.Admin],
+      immutable: true,
     },
     wishlist: {
       type: [String],
