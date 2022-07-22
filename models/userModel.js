@@ -14,7 +14,7 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    roles: {
+    role: {
       type: String,
       enum: [ROLES.User, ROLES.Admin],
       immutable: true,
