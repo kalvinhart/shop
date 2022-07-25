@@ -15,9 +15,10 @@ const userSchema = new Schema(
       required: true,
     },
     role: {
-      type: String,
+      type: Number,
       enum: [ROLES.User, ROLES.Admin],
       immutable: true,
+      default: ROLES.User,
     },
     wishlist: {
       type: [String],
