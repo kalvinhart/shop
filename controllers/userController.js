@@ -44,12 +44,12 @@ const logInUser = catchAsync(async (req, res, next) => {
 
   const user = await User.findOne({ email });
   if (!user) {
-    return next({ status: 400, message: "Incorrect username/password." });
+    return next({ status: 401, message: "Incorrect username/password." });
   }
 
   const passwordMatch = await compareSync(password, user.password);
   if (!passwordMatch) {
-    return next({ status: 400, message: "Incorrect username/password." });
+    return next({ status: 401, message: "Incorrect username/password." });
   }
 
   const userCredentials = {
