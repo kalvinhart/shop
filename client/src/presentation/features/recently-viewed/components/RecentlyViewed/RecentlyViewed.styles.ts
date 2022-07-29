@@ -5,7 +5,7 @@ export const RecentlyViewedWrapper = styled.div`
   padding: 20px;
   margin-top: 40px;
   background-color: white;
-  border-radius: var(--borders);
+  border: var(--borders);
   box-shadow: var(--box-shadow-small);
 
   & h3 {

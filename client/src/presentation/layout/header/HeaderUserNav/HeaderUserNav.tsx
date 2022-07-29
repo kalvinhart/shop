@@ -51,7 +51,7 @@ const HeaderUserNav = () => {
         </LI>
 
         <HoverableLI>
-          <Link to="/cart">
+          <Link to="/cart" aria-label="Go to cart">
             <CartIconWrapper>
               {cart && cart.cartCount > 0 && <CartCount>{cart.cartCount}</CartCount>}
               <FontAwesomeIcon className="icon" icon={faCartShopping} size="lg" />

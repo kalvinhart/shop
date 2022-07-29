@@ -18,7 +18,7 @@ export const StyledHeader = styled.header`
   display: flex;
   align-items: flex-start;
   background-color: white;
-  box-shadow: var(--box-shadow);
+  border: var(--borders);
   z-index: 9999999;
 
   @media screen and (min-width: ${mediaSizes.large}) {
