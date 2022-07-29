@@ -6,6 +6,7 @@ import { useAppSelector } from "../../../app/hooks/useAppSelector";
 import {
   addToFilters,
   clearFilters,
+  loadFilters,
   removeFromFilters,
   setFiltersApplied,
 } from "../../../features/filters/slice/filtersSlice";
@@ -18,15 +19,18 @@ type FiltersParams = {
 export const useFilterState = () => {
   const dispatch = useAppDispatch();
 
-  const { filters, isFiltered, isFilterApplied, selectedFilters } = useAppSelector(
-    (state) => state.filters
-  );
+  const { loading, filters, isFiltered, isFilterApplied, selectedFilters } =
+    useAppSelector((state) => state.filters);
 
   return {
+    loading,
     filters,
     isFiltered,
     isFilterApplied,
     selectedFilters,
+    loadFilters: useCallback(() => {
+      dispatch(loadFilters());
+    }, [dispatch]),
     addToFilters: useCallback(
       (data: FiltersParams) => {
         dispatch(addToFilters(data));
