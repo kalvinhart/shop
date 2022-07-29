@@ -14,14 +14,19 @@ import SideBarSkeleton from "../../filters/SideBar/SideBarSkeleton";
 type ProductContentProps = {
   products: Product[];
   productsLoading: boolean;
+  filtersLoading: boolean;
 };
 
-const ProductContent = ({ products, productsLoading }: ProductContentProps) => {
+const ProductContent = ({
+  products,
+  productsLoading,
+  filtersLoading,
+}: ProductContentProps) => {
   const [showSideBar, setShowSideBar] = useState(false);
 
   return (
     <ProductContentWrapper>
-      {productsLoading ? (
+      {filtersLoading ? (
         <SideBarSkeleton />
       ) : (
         <SideBar show={showSideBar} setShow={setShowSideBar} />

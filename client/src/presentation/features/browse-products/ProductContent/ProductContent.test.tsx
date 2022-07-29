@@ -21,25 +21,32 @@ jest.mock("../../../common/hooks/useFilterState/useFilterState.ts", () => ({
     selectedFilters: { brand: "", color: "", size: "" },
     isFiltered: false,
     isFilterApplied: false,
+    loadFilters: () => {},
   }),
 }));
 
 describe("ProductContent", () => {
   test("Renders a spinner whilst loading.", () => {
-    renderWithWrappers(<ProductContent products={[]} productsLoading={true} />);
+    renderWithWrappers(
+      <ProductContent products={[]} productsLoading={true} filtersLoading={false} />
+    );
     const loadingElement = screen.getByTestId("products-loading1");
     expect(loadingElement).toBeInTheDocument();
   });
 
   test("Does not render a spinner when loading is finished.", () => {
-    renderWithWrappers(<ProductContent products={[]} productsLoading={false} />);
+    renderWithWrappers(
+      <ProductContent products={[]} productsLoading={false} filtersLoading={false} />
+    );
 
     const loadingElement = screen.queryByTestId("products-loading1");
     expect(loadingElement).not.toBeInTheDocument();
   });
 
   test("Renders no results if no products exist.", () => {
-    renderWithWrappers(<ProductContent products={[]} productsLoading={false} />);
+    renderWithWrappers(
+      <ProductContent products={[]} productsLoading={false} filtersLoading={false} />
+    );
 
     const noResultsElement = screen.getByText(
       "Unfortunately we could not find any results matching your search."
@@ -49,7 +56,11 @@ describe("ProductContent", () => {
 
   test("Renders products correctly.", () => {
     renderWithWrappers(
-      <ProductContent products={testProducts} productsLoading={false} />
+      <ProductContent
+        products={testProducts}
+        productsLoading={false}
+        filtersLoading={false}
+      />
     );
 
     const noResultsElement = screen.queryByText(

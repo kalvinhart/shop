@@ -1,10 +1,13 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { loadProducts } from "../../../app/slices/thunks/productThunks";
-
-import { Filters } from "../../../../infrastructure/services/interfaces/IProductService";
+import {
+  Filters,
+  FiltersReturn,
+} from "../../../../infrastructure/services/interfaces/IProductService";
 
 import { removeFilterFromFilterString } from "../utils/filters";
+import { AsyncThunkConfig } from "../../../app/store";
+import { booleanObjectType } from "aws-sdk/clients/iam";
 
 export type SelectedFilters = {
   brand: string;
@@ -13,6 +16,7 @@ export type SelectedFilters = {
 };
 
 type FilterState = {
+  loading: boolean;
   filters: {
     allBrands: Filters[];
     allColors: Filters[];
@@ -29,6 +33,7 @@ type FilterOptionsPayload = {
 };
 
 const initialState: FilterState = {
+  loading: false,
   filters: null,
   selectedFilters: {
     brand: "",
@@ -38,6 +43,18 @@ const initialState: FilterState = {
   isFiltered: false,
   isFilterApplied: false,
 };
+
+export const loadFilters = createAsyncThunk<FiltersReturn, void, AsyncThunkConfig<any>>(
+  "products/loadFilters",
+  async (_, { rejectWithValue, extra: { productApi } }) => {
+    try {
+      const data = await productApi.getAllFilters();
+      return data;
+    } catch (err: any) {
+      return rejectWithValue(err.message);
+    }
+  }
+);
 
 const filterSlice = createSlice({
   name: "filters",
@@ -88,13 +105,21 @@ const filterSlice = createSlice({
     },
   },
   extraReducers(builder) {
-    builder.addCase(loadProducts.fulfilled, (state, action) => {
-      state.filters = {
-        allBrands: action.payload.allBrands,
-        allColors: action.payload.allColors,
-        allSizes: action.payload.allSizes,
-      };
-    });
+    builder
+      .addCase(loadFilters.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(loadFilters.fulfilled, (state, action) => {
+        state.loading = false;
+        state.filters = {
+          allBrands: action.payload.allBrands,
+          allColors: action.payload.allColors,
+          allSizes: action.payload.allSizes,
+        };
+      })
+      .addCase(loadFilters.rejected, (state, action) => {
+        state.loading = false;
+      });
   },
 });
 

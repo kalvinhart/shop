@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useAppDispatch } from "../../app/hooks/useAppDispatch";
+import { useFilterState } from "../../common/hooks/useFilterState/useFilterState";
 
 import { usePageTitle } from "../../common/hooks/usePageTitle";
 import { useProductState } from "../../common/hooks/useProductState";
@@ -12,6 +13,7 @@ const ProductsPage = () => {
   const dispatch = useAppDispatch();
   const [searchParams] = useSearchParams();
   const { loadProducts, productsLoading, products } = useProductState();
+  const { loading: filtersLoading } = useFilterState();
 
   useEffect(() => {
     loadProducts(searchParams);
@@ -25,7 +27,13 @@ const ProductsPage = () => {
 
   usePageTitle(categoryName || "All Products");
 
-  return <ProductContent products={products} productsLoading={productsLoading} />;
+  return (
+    <ProductContent
+      products={products}
+      productsLoading={productsLoading}
+      filtersLoading={filtersLoading}
+    />
+  );
 };
 
 export default ProductsPage;

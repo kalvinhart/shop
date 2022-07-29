@@ -16,6 +16,7 @@ import Button from "../../../common/components/Button/Button";
 
 import { CloseFiltersButton, FiltersOverlay, SideBarBackground } from "./SideBar.styles";
 import { H3 } from "../../../common/styles";
+import { useEffect } from "react";
 
 type SideBarProps = {
   show: boolean;
@@ -24,6 +25,8 @@ type SideBarProps = {
 
 const SideBar = ({ show, setShow }: SideBarProps) => {
   const {
+    loading,
+    loadFilters,
     filters,
     selectedFilters,
     isFiltered,
@@ -31,6 +34,12 @@ const SideBar = ({ show, setShow }: SideBarProps) => {
     setFiltersApplied,
     clearFilters,
   } = useFilterState();
+
+  useEffect(() => {
+    if (!loading && !filters) {
+      loadFilters();
+    }
+  }, [loading, filters, loadFilters]);
 
   const [searchParams, setSearchParams] = useSearchParams();
 

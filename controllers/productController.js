@@ -39,42 +39,6 @@ const getAllProducts = catchAsync(async (req, res, next) => {
 
   const totalPages = Math.ceil(queryCount / pageSize);
 
-  const allBrands = await Product.aggregate([
-    {
-      $group: {
-        _id: "$brand",
-        count: { $sum: 1 },
-      },
-    },
-    {
-      $sort: { _id: 1 },
-    },
-  ]);
-
-  const allSizes = await Product.aggregate([
-    {
-      $group: {
-        _id: "$size",
-        count: { $sum: 1 },
-      },
-    },
-    {
-      $sort: { _id: 1 },
-    },
-  ]);
-
-  const allColors = await Product.aggregate([
-    {
-      $group: {
-        _id: "$color",
-        count: { $sum: 1 },
-      },
-    },
-    {
-      $sort: { _id: 1 },
-    },
-  ]);
-
   const response = {
     products: queryResponse,
     pagination: {
@@ -83,9 +47,6 @@ const getAllProducts = catchAsync(async (req, res, next) => {
       resultsCount: queryCount,
       totalPages,
     },
-    allBrands,
-    allColors,
-    allSizes,
   };
   res.json(response);
 });
@@ -158,6 +119,9 @@ const getAllFilters = catchAsync(async (req, res, next) => {
         count: { $sum: 1 },
       },
     },
+    {
+      $sort: { _id: 1 },
+    },
   ]);
 
   const allSizes = await Product.aggregate([
@@ -167,6 +131,9 @@ const getAllFilters = catchAsync(async (req, res, next) => {
         count: { $sum: 1 },
       },
     },
+    {
+      $sort: { _id: 1 },
+    },
   ]);
 
   const allColors = await Product.aggregate([
@@ -175,6 +142,9 @@ const getAllFilters = catchAsync(async (req, res, next) => {
         _id: "$color",
         count: { $sum: 1 },
       },
+    },
+    {
+      $sort: { _id: 1 },
     },
   ]);
 
