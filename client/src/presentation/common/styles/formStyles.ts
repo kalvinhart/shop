@@ -8,7 +8,6 @@ export const StyledFormBackground = styled.div`
   padding: 20px;
   background-color: white;
   border: var(--borders);
-  box-shadow: var(--box-shadow-small);
 `;
 
 export const StyledFormWrapper = styled.div`
@@ -68,7 +67,6 @@ export const StyledInput = styled.input`
   font-family: inherit;
   border: var(--borders);
   border-radius: var(--border-radius);
-  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.03), 0px 3px 6px rgba(0, 0, 0, 0.02);
 `;
 
 export const StyledSelect = styled.select`

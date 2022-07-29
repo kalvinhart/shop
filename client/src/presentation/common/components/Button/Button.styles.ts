@@ -9,7 +9,6 @@ export const StyledButton = styled.button<StyledButtonProps>`
   padding: 8px 16px;
   border: none;
   border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
 
@@ -25,7 +24,6 @@ export const StyledButton = styled.button<StyledButtonProps>`
           right: 0;
           padding: 5px;
           background-color: transparent;
-          box-shadow: none;
           font-size: 26px;
           color: var(--clr-secondary);
           transition: color 0.2s ease-in-out;
@@ -61,7 +59,6 @@ export const StyledButton = styled.button<StyledButtonProps>`
         return css`
           padding: 10px;
           background-color: transparent;
-          box-shadow: none;
           color: #dc143c;
 
           &:hover {
@@ -81,7 +78,6 @@ export const StyledButton = styled.button<StyledButtonProps>`
           background-color: transparent;
           color: black;
           font-weight: bold;
-          box-shadow: none;
 
           &:hover {
             text-decoration: underline;

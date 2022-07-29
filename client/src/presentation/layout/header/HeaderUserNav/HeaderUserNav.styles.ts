@@ -91,6 +91,7 @@ export const CartDropDownWrapper = styled(DropDown)`
   @media screen and (min-width: ${mediaSizes.xl}) {
     display: block;
     right: -60px;
+    box-shadow: var(--box-shadow);
   } ;
 `;
 
