@@ -10,7 +10,7 @@ const {
   deleteProduct,
   deleteManyProducts,
   getAllFilters,
-} = require("../controllers/productController");
+} = require("../features/products/productController");
 
 router.get("/", getAllProducts);
 router.get("/filters", getAllFilters);

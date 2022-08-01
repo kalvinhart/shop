@@ -1,6 +1,6 @@
-const Product = require("../models/productModel");
-const { catchAsync } = require("../middleware/errors");
-const { buildQueryFromSearchOptions } = require("../utils/buildQueryFromSearchOptions");
+const Product = require("./productModel");
+const { catchAsync } = require("../../middleware/errors");
+const { buildQueryFromSearchOptions } = require("./utils/buildQueryFromSearchOptions");
 
 const getAllProducts = catchAsync(async (req, res, next) => {
   let {

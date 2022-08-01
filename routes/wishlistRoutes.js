@@ -4,7 +4,7 @@ const passport = require("passport");
 const {
   addToWishlist,
   removeFromWishlist,
-} = require("../controllers/wishlistController");
+} = require("../features/wishlist/wishlistController");
 
 router.post("/", passport.authenticate("jwt", { session: false }), addToWishlist);
 router.post(

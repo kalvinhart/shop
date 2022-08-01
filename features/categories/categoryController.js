@@ -1,5 +1,5 @@
-const Category = require("../models/categoryModel");
-const { catchAsync } = require("../middleware/errors");
+const Category = require("./categoryModel");
+const { catchAsync } = require("../../middleware/errors");
 
 const getAllCategories = catchAsync(async (req, res, next) => {
   const categories = await Category.find({});

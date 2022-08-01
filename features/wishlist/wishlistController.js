@@ -1,7 +1,7 @@
-const User = require("../models/userModel");
-const Product = require("../models/productModel");
+const User = require("../users/userModel");
+const Product = require("../products/productModel");
 
-const { catchAsync } = require("../middleware/errors");
+const { catchAsync } = require("../../middleware/errors");
 
 const addToWishlist = catchAsync(async (req, res, next) => {
   const { productId, userId } = req.body;

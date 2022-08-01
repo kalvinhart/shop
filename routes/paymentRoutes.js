@@ -1,6 +1,6 @@
 const express = require("express");
 
-const { createIntent, handleWebhook } = require("../controllers/paymentController");
+const { createIntent, handleWebhook } = require("../features/payments/paymentController");
 
 const router = require("express").Router();
 

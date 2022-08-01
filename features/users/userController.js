@@ -1,10 +1,10 @@
 const jwt = require("jsonwebtoken");
 const { hashSync, compareSync } = require("bcrypt");
 
-const User = require("../models/userModel");
-const ROLES = require("../config/userRoles");
+const User = require("./userModel");
+const ROLES = require("../../config/userRoles");
 
-const { catchAsync } = require("../middleware/errors");
+const { catchAsync } = require("../../middleware/errors");
 
 const registerUser = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
