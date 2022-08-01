@@ -4,17 +4,10 @@ const { hashSync, compareSync } = require("bcrypt");
 const User = require("./userModel");
 const ROLES = require("../../config/userRoles");
 
-const { catchAsync } = require("../../middleware/errors");
-
-const registerUser = catchAsync(async (req, res, next) => {
-  const { email, password } = req.body;
-
+const registerUser = async (email, password) => {
   const userExists = await User.findOne({ email });
   if (userExists) {
-    return next({
-      status: 400,
-      message: "An account already exists with this email address.",
-    });
+    throw new Error("An account already exists with this email address.");
   }
 
   const hashPassword = await hashSync(password, 12);
@@ -36,20 +29,18 @@ const registerUser = catchAsync(async (req, res, next) => {
     wishlist: user.wishlist,
   };
 
-  res.status(201).json(payload);
-});
+  return payload;
+};
 
-const logInUser = catchAsync(async (req, res, next) => {
-  const { email, password } = req.body;
-
+const logInUser = async (email, password) => {
   const user = await User.findOne({ email });
   if (!user) {
-    return next({ status: 401, message: "Incorrect username/password." });
+    throw new Error("Incorrect username/password.");
   }
 
   const passwordMatch = await compareSync(password, user.password);
   if (!passwordMatch) {
-    return next({ status: 401, message: "Incorrect username/password." });
+    throw new Error("Incorrect username/password.");
   }
 
   const userCredentials = {
@@ -66,13 +57,10 @@ const logInUser = catchAsync(async (req, res, next) => {
     wishlist: user.wishlist,
   };
 
-  res.status(200).json(payload);
-});
+  return payload;
+};
 
-const getUserInfo = catchAsync(async (req, res, next) => {
-  const { id } = req.params;
-  const token = req.header("Authorization");
-
+const getUserInfo = async (id, token) => {
   const user = await User.findOne({ _id: id });
   if (!user) throw new Error("User does not exist.");
 
@@ -84,8 +72,8 @@ const getUserInfo = catchAsync(async (req, res, next) => {
     wishlist: user.wishlist,
   };
 
-  res.status(200).json(payload);
-});
+  return payload;
+};
 
 module.exports = {
   registerUser,
