@@ -14,6 +14,7 @@ const {
   getAllFilters,
 } = require("../features/products/productController");
 
+// Get All Products - GET - api/products/
 router.get(
   "/",
   catchAsync(async (req, res, next) => {
@@ -25,6 +26,7 @@ router.get(
   })
 );
 
+// Get All Filters - GET - api/products/filters
 router.get(
   "/filters",
   catchAsync(async (req, res, next) => {
@@ -33,6 +35,7 @@ router.get(
   })
 );
 
+// Get Product - GET - api/products/:id
 router.get(
   "/:id",
   catchAsync(async (req, res, next) => {
@@ -42,6 +45,7 @@ router.get(
   })
 );
 
+// Get All Products By Category - GET - api/products/:categoryName
 router.get(
   "/category/:categoryName",
   catchAsync(async (req, res, next) => {
@@ -56,6 +60,7 @@ router.get(
   })
 );
 
+// Create New Product - POST - api/products/new
 router.post(
   "/new",
   catchAsync(async (req, res, next) => {
@@ -65,6 +70,7 @@ router.post(
   })
 );
 
+// Update Product - PATCH - api/products/:id
 router.patch(
   "/:id",
   catchAsync(async (req, res, next) => {
@@ -75,6 +81,7 @@ router.patch(
   })
 );
 
+// Delete Product - DELETE - api/products/:id
 router.delete(
   "/:id",
   catchAsync(async (req, res, next) => {
@@ -84,6 +91,7 @@ router.delete(
   })
 );
 
+// Delete Many Product - PATCH - api/products/
 router.patch(
   "/",
   catchAsync(async (req, res, next) => {

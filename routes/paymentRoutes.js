@@ -5,6 +5,7 @@ const { catchAsync } = require("../middleware/errors");
 
 const router = require("express").Router();
 
+// Create Payment Intent - POST - api/payment/create-intent
 router.post(
   "/create-intent",
   express.json(),
@@ -15,6 +16,7 @@ router.post(
   })
 );
 
+// Handle Webhook - POST - api/payment/webhook
 router.post(
   "/webhook",
   express.raw({ type: "*/*" }),
