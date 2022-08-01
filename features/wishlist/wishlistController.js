@@ -3,14 +3,12 @@ const Product = require("../products/productModel");
 
 const { catchAsync } = require("../../middleware/errors");
 
-const addToWishlist = catchAsync(async (req, res, next) => {
-  const { productId, userId } = req.body;
-
+const addToWishlist = async (userId, productId) => {
   const product = await Product.findById(productId);
-  if (!product) return next({ status: 404, message: "Product not found." });
+  if (!product) throw new Error("Product not found.");
 
   const user = User.findById(userId);
-  if (!user) return next({ status: 404, message: "User not found." });
+  if (!user) throw new Error("User not found.");
 
   await User.findByIdAndUpdate(
     userId,
@@ -21,15 +19,11 @@ const addToWishlist = catchAsync(async (req, res, next) => {
     },
     { runValidators: true }
   );
+};
 
-  return res.status(201).json({ message: "Wishlist updated." });
-});
-
-const removeFromWishlist = catchAsync(async (req, res, next) => {
-  const { productId, userId } = req.body;
-
+const removeFromWishlist = async (userId, productId) => {
   const user = User.findById(userId);
-  if (!user) return next({ status: 404, message: "User not found." });
+  if (!user) throw new Error("User not found.");
 
   await User.findByIdAndUpdate(
     userId,
@@ -40,8 +34,6 @@ const removeFromWishlist = catchAsync(async (req, res, next) => {
     },
     { runValidators: true }
   );
-
-  return res.status(201).json({ id: productId });
-});
+};
 
 module.exports = { addToWishlist, removeFromWishlist };
