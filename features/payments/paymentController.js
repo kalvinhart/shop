@@ -1,4 +1,3 @@
-const { catchAsync } = require("../../middleware/errors");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 const Order = require("../orders/orderModel");
@@ -8,9 +7,7 @@ const calculateOrderAmount = require("./utils/calculateOrderAmount");
 const endpointSecret =
   "whsec_be9c315a348e616c83d051c5c5987587210c7390b04fb9ca27bfda9c663519a7";
 
-const createIntent = catchAsync(async (req, res, next) => {
-  const { items, user } = req.body;
-
+const createIntent = async (items, user) => {
   const total = await calculateOrderAmount(items);
   const stringyfiedItems = JSON.stringify(items);
 
@@ -20,23 +17,17 @@ const createIntent = catchAsync(async (req, res, next) => {
     total,
   });
 
-  res.status(200).json({ clientSecret: paymentIntent.client_secret, total });
-});
+  return { clientSecret: paymentIntent.client_secret, total };
+};
 
-const handleWebhook = async (req, res, next) => {
-  let event = req.body;
-
+const handleWebhook = async (event, signature) => {
+  console.log("Reached Webhook...");
   if (endpointSecret) {
-    const signature = req.headers["stripe-signature"];
-    try {
-      event = stripe.webhooks.constructEvent(req.body, signature, endpointSecret);
-    } catch (err) {
-      next(err);
-    }
+    constructedEvent = stripe.webhooks.constructEvent(event, signature, endpointSecret);
   }
 
-  if (event.type === "payment_intent.succeeded") {
-    const paymentIntent = event.data.object;
+  if (constructedEvent.type === "payment_intent.succeeded") {
+    const paymentIntent = constructedEvent.data.object;
     const {
       id,
       amount,
@@ -68,16 +59,11 @@ const handleWebhook = async (req, res, next) => {
       },
     };
 
-    console.log(order);
-
-    try {
-      const newOrder = new Order(order);
-      const savedOrder = await newOrder.save();
-    } catch (err) {
-      next(err);
-    }
+    console.log("order: ", order);
+    const newOrder = new Order(order);
+    await newOrder.save();
+    console.log("Order saved!");
   }
-  res.status(200).end();
 };
 
 module.exports = {
