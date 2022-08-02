@@ -15,9 +15,6 @@ build
 #seeds
 seeds.js
 
-#uploads
-uploads/
-
 # misc
 .DS_Store
 .env
