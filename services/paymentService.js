@@ -1,7 +1,6 @@
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-const endpointSecret =
-  "whsec_be9c315a348e616c83d051c5c5987587210c7390b04fb9ca27bfda9c663519a7";
+const endpointSecret = "whsec_5QIywcRJ5Ae280j5hWeK933LjmB32MGF";
 
 const Order = require("../features/orders/orderModel");
 
