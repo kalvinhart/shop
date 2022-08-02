@@ -8,7 +8,7 @@ const router = require("express").Router();
 // Create Payment Intent - POST - api/payment/create-intent
 router.post(
   "/create-intent",
-  express.json(),
+  express.raw({ type: "application/json" }),
   catchAsync(async (req, res, next) => {
     const { items, user } = req.body;
     const { clientSecret, total } = await createIntent(items, user);
