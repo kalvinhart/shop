@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const ROLES = require("../config/userRoles");
+const ROLES = require("../../config/userRoles");
 
 const { model, Schema } = mongoose;
 
