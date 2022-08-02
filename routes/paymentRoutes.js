@@ -8,7 +8,7 @@ const router = require("express").Router();
 // Create Payment Intent - POST - api/payment/create-intent
 router.post(
   "/create-intent",
-  express.raw({ type: "application/json" }),
+  express.json(),
   catchAsync(async (req, res, next) => {
     const { items, user } = req.body;
     const { clientSecret, total } = await createIntent(items, user);
@@ -19,7 +19,7 @@ router.post(
 // Handle Webhook - POST - api/payment/webhook
 router.post(
   "/webhook",
-  express.json({ type: "application/json" }),
+  express.raw({ type: "application/json" }),
   catchAsync(async (req, res, next) => {
     const event = req.body;
     const signature = req.headers["stripe-signature"];
