@@ -19,7 +19,7 @@ router.post(
 // Handle Webhook - POST - api/payment/webhook
 router.post(
   "/webhook",
-  express.raw({ type: "*/*" }),
+  express.json({ type: "application/json" }),
   catchAsync(async (req, res, next) => {
     const event = req.body;
     const signature = req.headers["stripe-signature"];
