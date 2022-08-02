@@ -1,39 +1,11 @@
-const User = require("../users/userModel");
-const Product = require("../products/productModel");
-
-const { catchAsync } = require("../../middleware/errors");
+const wishlistService = require("../../services/wishlistService");
 
 const addToWishlist = async (userId, productId) => {
-  const product = await Product.findById(productId);
-  if (!product) throw new Error("Product not found.");
-
-  const user = User.findById(userId);
-  if (!user) throw new Error("User not found.");
-
-  await User.findByIdAndUpdate(
-    userId,
-    {
-      $push: {
-        wishlist: productId,
-      },
-    },
-    { runValidators: true }
-  );
+  return await wishlistService.add(userId, productId);
 };
 
 const removeFromWishlist = async (userId, productId) => {
-  const user = User.findById(userId);
-  if (!user) throw new Error("User not found.");
-
-  await User.findByIdAndUpdate(
-    userId,
-    {
-      $pull: {
-        wishlist: productId,
-      },
-    },
-    { runValidators: true }
-  );
+  return await wishlistService.remove(userId, productId);
 };
 
 module.exports = { addToWishlist, removeFromWishlist };
