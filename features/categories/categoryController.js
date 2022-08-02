@@ -1,25 +1,20 @@
-const Category = require("./categoryModel");
-const { catchAsync } = require("../../middleware/errors");
+const categoryService = require("../../services/categoryService");
 
 const getAllCategories = async () => {
-  return await Category.find({});
+  return await categoryService.getAll();
 };
 
 const createNewCategory = async (name) => {
-  const newCategory = new Category({ name });
-  return await newCategory.save();
+  return await categoryService.createNew(name);
 };
 
 const updateCategory = async (id, name) => {
-  return await Category.findByIdAndUpdate(id, name, {
-    runValidators: true,
-    new: true,
-  });
+  return await categoryService.update(id, name);
 };
 
-const deleteCategory = catchAsync(async (req, res, next) => {
-  return await Category.deleteOne({ _id: id });
-});
+const deleteCategory = async (id) => {
+  return await categoryService.delete(id);
+};
 
 module.exports = {
   getAllCategories,
