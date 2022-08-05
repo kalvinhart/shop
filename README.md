@@ -1,4 +1,4 @@
-# My eShop
+# My eCommerce Store
 
 This project is a work-in-progress eCommerce store built in React and Typescript, currently with a Node & Express backend. It integrates with Stripe for customer payments.
 
