@@ -21,7 +21,8 @@ const Pagination = () => {
   let currentResultsMin = (currentPage - 1) * pageSize;
   if (currentResultsMin === 0) currentResultsMin = 1;
 
-  let currentResultsMax = resultsCount < pageSize ? resultsCount : currentPage * pageSize;
+  let currentResultsMax =
+    resultsCount < pageSize * currentPage ? resultsCount : currentPage * pageSize;
 
   const handlePageChange = useCallback(
     (page: number) => {
