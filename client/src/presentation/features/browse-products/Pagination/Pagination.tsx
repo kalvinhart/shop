@@ -39,6 +39,8 @@ const Pagination = () => {
     [navigate, searchParams]
   );
 
+  if (resultsCount === 0) return null;
+
   return (
     <PaginationWrapper>
       <PaginationResultsWrapper>
