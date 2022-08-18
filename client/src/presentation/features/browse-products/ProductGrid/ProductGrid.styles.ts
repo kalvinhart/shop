@@ -8,7 +8,11 @@ export const GridWrapper = styled.div`
   flex-direction: column;
 `;
 
-export const Grid = styled.div`
+type GridProps = {
+  singleColumn: boolean;
+};
+
+export const Grid = styled.div<GridProps>`
   width: 100%;
   margin-bottom: 20px;
   display: grid;
@@ -16,10 +20,10 @@ export const Grid = styled.div`
   grid-gap: 20px;
 
   @media screen and (min-width: ${mediaSizes.med}) {
-    grid-template-columns: repeat(2, 1fr);
+    ${({ singleColumn }) => !singleColumn && "grid-template-columns: repeat(2, 1fr);"}
   }
 
   @media screen and (min-width: ${mediaSizes.xl}) {
-    grid-template-columns: repeat(3, 1fr);
+    ${({ singleColumn }) => !singleColumn && "grid-template-columns: repeat(3, 1fr);"}
   }
 `;
