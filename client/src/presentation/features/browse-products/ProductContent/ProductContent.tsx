@@ -33,7 +33,11 @@ const ProductContent = ({
       )}
 
       <ProductResultsWrapper>
-        <ProductGrid setShow={setShowSideBar} loading={productsLoading}>
+        <ProductGrid
+          setShow={setShowSideBar}
+          loading={productsLoading}
+          products={products}
+        >
           {productsLoading ? (
             <ProductContentSkeleton numCards={12} />
           ) : products.length > 0 ? (
