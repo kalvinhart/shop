@@ -1,12 +1,4 @@
-import { useSearchParams } from "react-router-dom";
-
-import { useFilterState } from "../../../common/hooks/useFilterState/useFilterState";
-
-import {
-  formatOldSearchParams,
-  handleSearchParamsOnFilterChange,
-} from "../../../common/utils/formatSearchParams";
-import { filtersAreEmpty } from "../utils/filters";
+import { useSideBar } from "../hooks/useSideBar";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
@@ -16,7 +8,6 @@ import Button from "../../../common/components/Button/Button";
 
 import { CloseFiltersButton, FiltersOverlay, SideBarBackground } from "./SideBar.styles";
 import { H3 } from "../../../common/styles";
-import { useEffect } from "react";
 
 type SideBarProps = {
   show: boolean;
@@ -25,45 +16,13 @@ type SideBarProps = {
 
 const SideBar = ({ show, setShow }: SideBarProps) => {
   const {
-    loading,
-    loadFilters,
     filters,
-    selectedFilters,
     isFiltered,
     isFilterApplied,
-    setFiltersApplied,
-    clearFilters,
-  } = useFilterState();
-
-  useEffect(() => {
-    if (!loading && !filters) {
-      loadFilters();
-    }
-  }, [loading, filters, loadFilters]);
-
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  const applyFilters = () => {
-    const newParams = handleSearchParamsOnFilterChange(searchParams, selectedFilters);
-
-    setSearchParams(newParams);
-    setFiltersApplied(true);
-    setShow(false);
-  };
-
-  const removeFilters = () => {
-    clearFilters();
-
-    const params = formatOldSearchParams(searchParams);
-
-    ["brand", "color", "size"].forEach((filter) => {
-      delete params[filter];
-    });
-
-    setSearchParams(params);
-    setFiltersApplied(false);
-    setShow(false);
-  };
+    applyFilters,
+    removeFilters,
+    filtersAreEmpty,
+  } = useSideBar(setShow);
 
   return (
     <>

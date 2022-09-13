@@ -1,12 +1,9 @@
-import { useState } from "react";
-import { useFilterState } from "../../../common/hooks/useFilterState/useFilterState";
+import { useFilterGroup } from "../hooks/useFilterGroup";
 
 import { Filters } from "../../../../infrastructure/services/interfaces/IProductService";
 import { SelectedFilters } from "../slice/filtersSlice";
 
 import Checkbox from "../../../common/components/Checkbox/Checkbox";
-
-import { filterIsEmpty } from "../utils/filters";
 
 import { FilterGroupWrapper, FiltersWrapper } from "./FilterGroup.styles";
 import { SpanBold } from "../../../common/styles";
@@ -20,35 +17,15 @@ type FilterGroupProps = {
 };
 
 const FilterGroup = ({ heading, items }: FilterGroupProps) => {
-  const { selectedFilters, addToFilters, removeFromFilters } = useFilterState();
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  const filtersRenderLimit = 8;
-  const doesExceedRenderLimit = items.length > filtersRenderLimit;
-
-  let filtersToShow: Filters[];
-
-  if (doesExceedRenderLimit && !isExpanded) {
-    filtersToShow = items.slice(0, filtersRenderLimit);
-  } else {
-    filtersToShow = items;
-  }
-
-  const handleChange = (e: React.SyntheticEvent, filterName: string) => {
-    const filterIndex = heading.toLowerCase();
-    const filterValue = filterName.toLowerCase();
-
-    const payload = {
-      filterName: filterIndex,
-      filterValue,
-    };
-
-    if ((e.target as HTMLInputElement).checked) {
-      addToFilters(payload);
-    } else {
-      removeFromFilters(payload);
-    }
-  };
+  const {
+    selectedFilters,
+    filtersToShow,
+    isExpanded,
+    setIsExpanded,
+    doesExceedRenderLimit,
+    handleChange,
+    filterIsEmpty,
+  } = useFilterGroup(heading, items);
 
   return (
     <FilterGroupWrapper>
