@@ -4,11 +4,10 @@ import { Elements } from "@stripe/react-stripe-js";
 import { usePageTitle } from "../../common/hooks/usePageTitle";
 import { useCheckoutPage } from "./hooks/useCheckoutPage";
 
-import OrderSummary from "../../features/checkout/OrderSummary/OrderSummary";
-import CheckoutForm from "../../features/checkout/CheckoutForm/CheckoutForm";
 import { Spinner } from "../../common/components/Spinner";
 
-import { StyledCheckoutWrapper } from "./Checkout.styles";
+import { CheckoutWrapper } from "./CheckoutPage.styles";
+import { Checkout } from "../../features/checkout/Checkout";
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY!);
 
@@ -18,7 +17,7 @@ const CheckoutPage = () => {
   usePageTitle("Checkout");
 
   return (
-    <StyledCheckoutWrapper>
+    <CheckoutWrapper>
       {!clientSecret ? (
         <Spinner />
       ) : (
@@ -35,12 +34,11 @@ const CheckoutPage = () => {
               ],
             }}
           >
-            <CheckoutForm total={total} />
+            <Checkout cart={cart || []} cartTotal={cartTotal} total={total} />
           </Elements>
-          <OrderSummary cart={cart || []} cartTotal={cartTotal} />
         </>
       )}
-    </StyledCheckoutWrapper>
+    </CheckoutWrapper>
   );
 };
 
