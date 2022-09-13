@@ -5,12 +5,12 @@ import { faSpinner, faExclamationCircle } from "@fortawesome/free-solid-svg-icon
 import Button from "../Button/Button";
 
 import {
-  StyledForm,
-  StyledInput,
-  StyledInputGroup,
-  StyledLabel,
-  StyledFormBackground,
-  StyledFormWrapper,
+  Form,
+  Input,
+  InputGroup,
+  Label,
+  FormBackground,
+  FormWrapper,
 } from "../../styles";
 import { H2, SpanError, StyledParagraph } from "../../styles";
 
@@ -35,13 +35,13 @@ const AuthForm = ({
   );
 
   return (
-    <StyledFormBackground>
-      <StyledFormWrapper>
+    <FormBackground>
+      <FormWrapper>
         <H2>{type === "REGISTER" ? "Register" : "Sign In"}</H2>
-        <StyledForm onSubmit={handleSubmit}>
-          <StyledInputGroup>
-            <StyledLabel htmlFor="email">Email:</StyledLabel>
-            <StyledInput
+        <Form onSubmit={handleSubmit}>
+          <InputGroup>
+            <Label htmlFor="email">Email:</Label>
+            <Input
               type="text"
               name="email"
               id="email"
@@ -55,11 +55,11 @@ const AuthForm = ({
                 {error.email}
               </SpanError>
             )}
-          </StyledInputGroup>
+          </InputGroup>
 
-          <StyledInputGroup>
-            <StyledLabel htmlFor="password">Password:</StyledLabel>
-            <StyledInput
+          <InputGroup>
+            <Label htmlFor="password">Password:</Label>
+            <Input
               type="password"
               name="password"
               id="password"
@@ -73,12 +73,12 @@ const AuthForm = ({
                 {error.password}
               </SpanError>
             )}
-          </StyledInputGroup>
+          </InputGroup>
 
           {type === "REGISTER" && (
-            <StyledInputGroup>
-              <StyledLabel htmlFor="confirmPassword">Confirm Password:</StyledLabel>
-              <StyledInput
+            <InputGroup>
+              <Label htmlFor="confirmPassword">Confirm Password:</Label>
+              <Input
                 type="password"
                 name="confirmPassword"
                 id="confirmPassword"
@@ -92,7 +92,7 @@ const AuthForm = ({
                   {error.confirmPassword}
                 </SpanError>
               )}
-            </StyledInputGroup>
+            </InputGroup>
           )}
 
           <Button
@@ -112,7 +112,7 @@ const AuthForm = ({
               "Sign In"
             )}
           </Button>
-        </StyledForm>
+        </Form>
 
         {type === "REGISTER" ? (
           <>
@@ -129,8 +129,8 @@ const AuthForm = ({
             </StyledParagraph>
           </>
         )}
-      </StyledFormWrapper>
-    </StyledFormBackground>
+      </FormWrapper>
+    </FormBackground>
   );
 };
 

@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import { mediaSizes } from "../../../common/styles";
 
-import { StyledInput } from "../../../common/styles";
+import { Input } from "../../../common/styles";
 
 export const StyledSearchForm = styled.form`
   position: relative;
   width: 150px;
 
-  & ${StyledInput} {
+  & ${Input} {
     width: 100%;
     padding: 8px 10px;
     font-size: 12px;
@@ -18,7 +18,7 @@ export const StyledSearchForm = styled.form`
   @media screen and (min-width: ${mediaSizes.med}) {
     width: 400px;
 
-    & ${StyledInput} {
+    & ${Input} {
       height: 40px;
       padding: 10px 20px;
       font-size: 16px;
