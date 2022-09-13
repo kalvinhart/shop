@@ -71,7 +71,6 @@ const CheckoutAddressForm = ({
         <InputGroup>
           <Label htmlFor="address2">Address Line 2</Label>
           <Input type="text" id="address2" {...register("address2")} />
-          {errors.address2 && <SpanError>This field is required.</SpanError>}
         </InputGroup>
 
         <InputGroup>
