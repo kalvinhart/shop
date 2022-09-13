@@ -1,7 +1,7 @@
-import { useCallback, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useHeaderDropDownSection } from "../../hooks/useHeaderDropDownSection";
 
 import { HeaderDropDownSubcategories } from "../HeaderDropDownSubcategories";
 
@@ -28,24 +28,7 @@ const HeaderDropDownMenuSection = ({
 }: HeaderDropDownMenuSectionProps) => {
   useClickOutside(menuRef, () => setShowMenu(false));
 
-  const handleEscKeypress = useCallback(
-    (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        if (showMenu) {
-          setShowMenu(false);
-        }
-      }
-    },
-    [showMenu, setShowMenu]
-  );
-
-  useEffect(() => {
-    window.addEventListener("keydown", handleEscKeypress);
-
-    return () => {
-      window.removeEventListener("keydown", handleEscKeypress);
-    };
-  }, [handleEscKeypress]);
+  useHeaderDropDownSection(showMenu, setShowMenu);
 
   return (
     <DropDownMenuWrapper>

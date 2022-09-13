@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useHeaderDropDown } from "../../hooks/useHeaderDropDown";
 
 import { HeaderNavMenuButton } from "../HeaderNavMenuButton";
 
@@ -17,13 +17,7 @@ type HeaderDropDownMenuProps = {
 };
 
 const HeaderDropDownMenu = ({ menuTitle, categories }: HeaderDropDownMenuProps) => {
-  const [showMenu, setShowMenu] = useState(false);
-
-  const menuRef = useRef<HTMLDivElement>(null);
-
-  const toggleShowMenu = () => {
-    setShowMenu((prev) => !prev);
-  };
+  const { showMenu, menuRef, toggleShowMenu, setShowMenu } = useHeaderDropDown();
 
   return (
     <DropDownLI>
