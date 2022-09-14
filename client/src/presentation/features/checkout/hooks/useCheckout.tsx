@@ -23,6 +23,7 @@ export const useCheckout = ({ cart, cartTotal, total }: Props) => {
 
   const handleChangeStep = (val: number) => {
     setProgressStep(val);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const renderStep = (step: number): JSX.Element | null => {
