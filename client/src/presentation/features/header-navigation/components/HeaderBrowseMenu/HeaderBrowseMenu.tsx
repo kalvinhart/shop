@@ -32,6 +32,7 @@ const HeaderBrowseMenu = () => {
 
   return (
     <HeaderDropDownMenu
+      facing="right"
       menuTitle={
         <>
           <SpanRegular>Browse</SpanRegular>

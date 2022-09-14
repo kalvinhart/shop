@@ -12,11 +12,18 @@ import {
 import { HeaderDropDownMenuSection } from "../HeaderDropDownMenuSection";
 
 type HeaderDropDownMenuProps = {
+  facing: "left" | "right";
   menuTitle: string | JSX.Element;
-  categories: DropDownCategory[];
+  categories?: DropDownCategory[];
+  content?: JSX.Element;
 };
 
-const HeaderDropDownMenu = ({ menuTitle, categories }: HeaderDropDownMenuProps) => {
+const HeaderDropDownMenu = ({
+  facing,
+  menuTitle,
+  categories,
+  content,
+}: HeaderDropDownMenuProps) => {
   const { showMenu, menuRef, toggleShowMenu, setShowMenu } = useHeaderDropDown();
 
   return (
@@ -28,7 +35,9 @@ const HeaderDropDownMenu = ({ menuTitle, categories }: HeaderDropDownMenuProps) 
 
         {showMenu && (
           <HeaderDropDownMenuSection
+            facing={facing}
             categories={categories}
+            content={content}
             showMenu={showMenu}
             setShowMenu={setShowMenu}
             menuRef={menuRef}

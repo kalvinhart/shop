@@ -9,10 +9,8 @@ import { faUserAlt, faCartShopping, faHeart } from "@fortawesome/free-solid-svg-
 import {
   LI,
   CartCount,
-  CartDropDownWrapper,
   CartIconWrapper,
-  HoverableLI,
-  UserInfoWrapper,
+  HeaderUserNavWrapper,
   UserUL,
 } from "./HeaderUserNav.styles";
 import HeaderCart from "../HeaderCart/HeaderCart";
@@ -35,13 +33,16 @@ const HeaderUserNav = () => {
   ];
 
   return (
-    <UserInfoWrapper>
+    <HeaderUserNavWrapper>
       <UserUL>
         {loading ? null : (
-          <HeaderDropDownMenu
-            categories={userCategories}
-            menuTitle={<FontAwesomeIcon className="icon" icon={faUserAlt} size="lg" />}
-          />
+          <LI>
+            <HeaderDropDownMenu
+              facing="right"
+              categories={userCategories}
+              menuTitle={<FontAwesomeIcon className="icon" icon={faUserAlt} size="lg" />}
+            />
+          </LI>
         )}
 
         <LI>
@@ -50,23 +51,26 @@ const HeaderUserNav = () => {
           </Link>
         </LI>
 
-        <HoverableLI>
-          <Link to="/cart" aria-label="Go to cart">
-            <CartIconWrapper>
-              {cart && cart.cartCount > 0 && <CartCount>{cart.cartCount}</CartCount>}
-              <FontAwesomeIcon className="icon" icon={faCartShopping} size="lg" />
-            </CartIconWrapper>
-          </Link>
-          <CartDropDownWrapper>
-            <HeaderCart
-              cart={cart.cart}
-              cartCount={cart.cartCount}
-              cartTotal={cart.cartTotal}
-            />
-          </CartDropDownWrapper>
-        </HoverableLI>
+        <LI>
+          <HeaderDropDownMenu
+            facing="left"
+            menuTitle={
+              <CartIconWrapper>
+                {cart && cart.cartCount > 0 && <CartCount>{cart.cartCount}</CartCount>}
+                <FontAwesomeIcon className="icon" icon={faCartShopping} size="lg" />
+              </CartIconWrapper>
+            }
+            content={
+              <HeaderCart
+                cart={cart.cart}
+                cartCount={cart.cartCount}
+                cartTotal={cart.cartTotal}
+              />
+            }
+          />
+        </LI>
       </UserUL>
-    </UserInfoWrapper>
+    </HeaderUserNavWrapper>
   );
 };
 
