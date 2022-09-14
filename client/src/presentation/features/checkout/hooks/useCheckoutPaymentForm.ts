@@ -23,8 +23,14 @@ export const useCheckoutPaymentForm = () => {
     const result = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: "https://mernestore.herokuapp.com/confirmation?paymentStatus=success",
-        // return_url: "http://localhost:3000/confirmation?paymentStatus=success",
+        payment_method_data: {
+          billing_details: {
+            address: {
+              postal_code: postalCode,
+            },
+          },
+        },
+        return_url: process.env.REACT_APP_CONFIRM_PAYMENT!,
         shipping: {
           name: `${firstName} ${lastName}`,
           address: {

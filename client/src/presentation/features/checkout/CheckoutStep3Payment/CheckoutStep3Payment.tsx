@@ -21,7 +21,14 @@ const CheckoutStep3Payment = ({ total, addressData, changeStep }: Props) => {
 
   return (
     <Step3Wrapper>
-      <PaymentElement />
+      <PaymentElement
+        options={{
+          fields: {
+            billingDetails: { address: { postalCode: "never", country: "never" } },
+          },
+        }}
+      />
+
       {stripe && elements && (
         <Step3ButtonGroup>
           <Button variant="secondary" onClick={() => changeStep(2)}>
