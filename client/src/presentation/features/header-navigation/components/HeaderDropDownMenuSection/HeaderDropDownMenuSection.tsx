@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useHeaderDropDownSection } from "../../hooks/useHeaderDropDownSection";
@@ -12,6 +11,7 @@ import {
 import { DropDownCategory } from "../../types/DropDownCategory";
 import { useClickOutside } from "../../../../common/hooks/useClickOutside/useClickOutside";
 import { DropDownMenuWrapper } from "./HeaderDropDownMenuSection.styles";
+import { SpanRegular } from "../../../../common/styles";
 
 type HeaderDropDownMenuSectionProps = {
   facing: "left" | "right";
@@ -32,25 +32,28 @@ const HeaderDropDownMenuSection = ({
 }: HeaderDropDownMenuSectionProps) => {
   useClickOutside(menuRef, () => setShowMenu(false));
 
-  useHeaderDropDownSection(showMenu, setShowMenu);
+  const { navigateTo } = useHeaderDropDownSection(showMenu, setShowMenu);
 
   return (
     <DropDownMenuWrapper facing={facing}>
       {categories && categories.length > 0 && (
         <DropDownItemsUL>
           {categories.map((item) => (
-            <DropDownItemsLI key={item.name}>
-              <Link to={item.url} onClick={() => setShowMenu(false)}>
-                {item.name}
-              </Link>
+            <DropDownItemsLI
+              key={item.name}
+              tabIndex={0}
+              onClick={() => navigateTo(item.url)}
+              data-url={item.url}
+            >
+              <SpanRegular>{item.name}</SpanRegular>
 
               {item.subcategories && item.subcategories.length > 0 && (
                 <>
                   <FontAwesomeIcon icon={faChevronRight} size="xs" />
 
                   <HeaderDropDownSubcategories
+                    navigate={navigateTo}
                     subcategories={item.subcategories}
-                    setShowMenu={setShowMenu}
                   />
                 </>
               )}

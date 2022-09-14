@@ -53,13 +53,31 @@ export const DropDownItemsLI = styled.li`
   padding: 20px;
   display: flex;
   justify-content: space-between;
+  border: 2px solid transparent;
+  cursor: pointer;
 
-  &:not(:last-child) {
-    border-bottom: 1px solid #ddd;
+  &:not(:last-child)::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #ddd;
+  }
+
+  &:focus {
+    outline: none;
+    border: 2px solid black;
+
+    &::after {
+      display: none;
+    }
   }
 
   &:hover,
-  &:focus-within {
+  &:focus {
     background-color: #efefef;
   }
 

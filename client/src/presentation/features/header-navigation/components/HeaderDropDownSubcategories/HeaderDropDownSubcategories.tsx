@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { SpanRegular } from "../../../../common/styles";
 
 import { DropDownCategory } from "../../types/DropDownCategory";
 
@@ -9,18 +9,21 @@ import {
 import { DropDownSubcategoryWrapper } from "./HeaderDropDownSubcategories.styles";
 
 type Props = Pick<DropDownCategory, "subcategories"> & {
-  setShowMenu: (val: boolean) => void;
+  navigate: (url: string) => void;
 };
 
-const HeaderDropDownSubcategories = ({ subcategories, setShowMenu }: Props) => {
+const HeaderDropDownSubcategories = ({ subcategories, navigate }: Props) => {
   return (
     <DropDownSubcategoryWrapper>
       <DropDownItemsUL>
         {subcategories!.map((s) => (
-          <DropDownItemsLI key={s.name}>
-            <Link to={s.url} onClick={() => setShowMenu(false)}>
-              {s.name}
-            </Link>
+          <DropDownItemsLI
+            key={s.name}
+            onClick={() => navigate(s.url)}
+            tabIndex={0}
+            data-url={s.url}
+          >
+            <SpanRegular>{s.name}</SpanRegular>
           </DropDownItemsLI>
         ))}
       </DropDownItemsUL>
