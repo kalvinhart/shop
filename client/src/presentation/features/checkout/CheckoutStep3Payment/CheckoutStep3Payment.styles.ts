@@ -1,12 +1,23 @@
 import styled from "styled-components";
-import { H3 } from "../../../common/styles";
+import { H2, mediaSizes } from "../../../common/styles";
 
 export const Step3Wrapper = styled.div`
-  width: 400px;
+  width: 100%;
   margin-top: 40px;
+  display: flex;
+  flex-direction: column;
 
-  & ${H3} {
+  & ${H2} {
     margin-bottom: 40px;
+  }
+`;
+
+export const PaymentWrapper = styled.div`
+  width: 100%;
+  align-self: center;
+
+  @media screen and (min-width: ${mediaSizes.med}) {
+    width: 400px;
   }
 `;
 
@@ -30,6 +41,10 @@ export const Step3ButtonGroup = styled.div`
   margin-bottom: 20px;
   margin-top: 60px;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+
+  & button:first-child {
+    margin-bottom: 20px;
+  }
 `;

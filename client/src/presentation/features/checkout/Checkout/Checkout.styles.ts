@@ -17,6 +17,6 @@ export const CheckoutContentWrapper = styled.div`
   border: var(--borders);
 
   @media screen and (min-width: ${mediaSizes.large}) {
-    width: 900px;
+    width: 700px;
   }
 `;
