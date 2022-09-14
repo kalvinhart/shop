@@ -1,4 +1,5 @@
 import styled, { css, keyframes } from "styled-components";
+import { mediaSizes } from "../../../../common/styles";
 import { makeAnimationCSS } from "../../utils/makeAnimationCSS";
 
 const SlideInFromAboveAnimation = keyframes`
@@ -24,7 +25,10 @@ export const DropDownMenuWrapper = styled.div<DropDownWrapperProps>`
     switch (props.facing) {
       case "left":
         return css`
-          right: -5px;
+          right: -20px;
+          @media screen and (min-width: ${mediaSizes.med}) {
+            right: -5px;
+          }
         `;
       case "right":
         return css`

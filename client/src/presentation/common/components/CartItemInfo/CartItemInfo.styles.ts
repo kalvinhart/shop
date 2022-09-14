@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { mediaSizes, SpanGrey } from "../../styles";
+import { mediaSizes } from "../../styles";
 
 type SmallProps = {
   small?: boolean | undefined;
@@ -34,10 +34,8 @@ export const CartItemInfoWrapper = styled.div`
 export const CartItemInfoGroup = styled.div<SmallProps>`
   display: flex;
 
-  ${(small) => small && "& span { font-size: 14px; }"}
-
-  & ${SpanGrey} {
-    margin-right: 10px;
+  & span {
+    ${({ small }) => small && "font-size: 12px;"}
   }
 
   &:not(:last-child) {
