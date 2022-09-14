@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { H2, mediaSizes } from "../../../common/styles";
+import { H2, mediaSizes, SpanError } from "../../../common/styles";
 
 export const Step3Wrapper = styled.div`
   width: 100%;
@@ -16,6 +16,14 @@ export const PaymentWrapper = styled.div`
   width: 100%;
   align-self: center;
 
+  & ${SpanError} {
+    padding: 20px;
+    margin-bottom: 40px;
+    border: 1px solid #df1b4a;
+    border-left: 4px solid #df1b4a;
+    background-color: #f4f4f4;
+  }
+
   @media screen and (min-width: ${mediaSizes.med}) {
     width: 400px;
   }
@@ -23,7 +31,7 @@ export const PaymentWrapper = styled.div`
 
 export const PaymentOverviewWrapper = styled.div`
   padding: 20px;
-  margin-top: 40px;
+  margin: 40px 0;
   background-color: #f6f6f6;
 `;
 
@@ -39,7 +47,6 @@ export const PaymentOverviewGroup = styled.div`
 
 export const Step3ButtonGroup = styled.div`
   margin-bottom: 20px;
-  margin-top: 60px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

@@ -54,6 +54,8 @@ const CheckoutStep3Payment = ({ total, addressData, changeStep }: Props) => {
           </PaymentOverviewGroup>
         </PaymentOverviewWrapper>
 
+        {error && <SpanError staticPosition>{error}</SpanError>}
+
         {stripe && elements && (
           <Step3ButtonGroup>
             <Button
@@ -78,7 +80,6 @@ const CheckoutStep3Payment = ({ total, addressData, changeStep }: Props) => {
             </Button>
           </Step3ButtonGroup>
         )}
-        {error && <SpanError staticPosition>{error}</SpanError>}
       </PaymentWrapper>
     </Step3Wrapper>
   );
