@@ -33,6 +33,10 @@ export const UserUL = styled(UL)`
 
 export const CartIconWrapper = styled.div`
   position: relative;
+
+  & svg {
+    margin-left: 0;
+  }
 `;
 
 export const CartCount = styled.div`
