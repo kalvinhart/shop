@@ -11,7 +11,6 @@ export const useHeaderDropDownSection = (
     (url: string) => {
       setShowMenu(false);
       navigate(url);
-      window.scrollTo({ top: 0, behavior: "smooth" });
     },
     [navigate, setShowMenu]
   );

@@ -1,5 +1,5 @@
-import { lazy, Suspense } from "react";
-import { Routes, Route } from "react-router-dom";
+import { lazy, Suspense, useEffect } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 import { ProtectedRoute } from "./ProtectedRoute";
 import { Spinner } from "../common/components/Spinner";
@@ -19,6 +19,11 @@ const WishlistPage = lazy(() => import("../pages/WishlistPage/WishlistPage"));
 const AccountPage = lazy(() => import("../pages/AccountPage/AccountPage"));
 
 const AppRoutes = () => {
+  const location = useLocation();
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [location.pathname]);
+
   return (
     <Routes>
       <Route
