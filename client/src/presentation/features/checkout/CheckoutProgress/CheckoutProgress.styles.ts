@@ -1,9 +1,9 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { mediaSizes } from "../../../common/styles";
 
 export const CheckoutProgressWrapper = styled.div`
   padding: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 `;
 
 export const ProgressNumberWrapper = styled.div`
@@ -25,6 +25,34 @@ export const ProgressSpan = styled.span<ProgressSpanProps>`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  &::before {
+    ${(props) => {
+      switch (props.step) {
+        case 1:
+          return css`
+            content: "Review";
+          `;
+        case 2:
+          return css`
+            content: "Delivery";
+          `;
+        case 3:
+          return css`
+            content: "Payment";
+          `;
+        default:
+          return "";
+      }
+    }};
+    display: block;
+    position: absolute;
+    top: 115%;
+    left: 50%;
+    color: ${(props) =>
+      props.currentStep >= props.step ? "var(--clr-primary)" : "#ddd"};
+    transform: translateX(-50%);
+  }
 
   &:not(:last-child) {
     margin-right: 80px;
