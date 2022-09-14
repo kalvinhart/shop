@@ -6,9 +6,14 @@ import { useCheckoutPaymentForm } from "../hooks/useCheckoutPaymentForm";
 
 import { CheckoutAddressFormData } from "../hooks/useCheckoutAddressForm";
 
-import { Step3ButtonGroup, Step3Wrapper } from "./CheckoutStep3Payment.styles";
+import {
+  PaymentOverviewGroup,
+  PaymentOverviewWrapper,
+  Step3ButtonGroup,
+  Step3Wrapper,
+} from "./CheckoutStep3Payment.styles";
 import { Button } from "../../../common/components/Button";
-import { SpanError } from "../../../common/styles";
+import { H3, SpanBold, SpanError, SpanPrice, SpanRegular } from "../../../common/styles";
 
 type Props = {
   total: number;
@@ -21,6 +26,7 @@ const CheckoutStep3Payment = ({ total, addressData, changeStep }: Props) => {
 
   return (
     <Step3Wrapper>
+      <H3>Confirm Payment</H3>
       <PaymentElement
         options={{
           fields: {
@@ -28,6 +34,23 @@ const CheckoutStep3Payment = ({ total, addressData, changeStep }: Props) => {
           },
         }}
       />
+
+      <PaymentOverviewWrapper>
+        <PaymentOverviewGroup>
+          <SpanBold>Subtotal:</SpanBold>
+          <SpanRegular>£{`${(total / 100).toFixed(2)}`}</SpanRegular>
+        </PaymentOverviewGroup>
+
+        <PaymentOverviewGroup>
+          <SpanBold>Shipping:</SpanBold>
+          <SpanRegular>£0.00</SpanRegular>
+        </PaymentOverviewGroup>
+
+        <PaymentOverviewGroup>
+          <SpanBold>Total to pay:</SpanBold>
+          <SpanPrice>£{`${(total / 100).toFixed(2)}`}</SpanPrice>
+        </PaymentOverviewGroup>
+      </PaymentOverviewWrapper>
 
       {stripe && elements && (
         <Step3ButtonGroup>
@@ -47,7 +70,7 @@ const CheckoutStep3Payment = ({ total, addressData, changeStep }: Props) => {
                 <FontAwesomeIcon icon={faSpinner} size="lg" spin /> Processing...
               </>
             ) : (
-              `Pay £${(total / 100).toFixed(2)}`
+              "Confirm Payment"
             )}
           </Button>
         </Step3ButtonGroup>
