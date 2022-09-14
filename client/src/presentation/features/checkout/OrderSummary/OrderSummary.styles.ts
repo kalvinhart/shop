@@ -13,7 +13,7 @@ export const StyledOrderSummaryWrapper = styled.div`
 
   @media screen and (min-width: ${mediaSizes.large}) {
     width: 80%;
-    max-width: 600px;
+    max-width: 450px;
   }
 `;
 

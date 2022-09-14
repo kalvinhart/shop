@@ -10,6 +10,9 @@ export const CheckoutWrapper = styled.div`
 export const CheckoutContentWrapper = styled.div`
   width: 100%;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: white;
   border: var(--borders);
 
