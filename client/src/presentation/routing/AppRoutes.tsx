@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect } from "react";
-import { Routes, Route, useLocation, useParams, useSearchParams } from "react-router-dom";
+import { Routes, Route, useLocation, useSearchParams } from "react-router-dom";
 
 import { ProtectedRoute } from "./ProtectedRoute";
 import { Spinner } from "../common/components/Spinner";
