@@ -101,6 +101,13 @@ export const useSearchBar = () => {
     [setShowSuggestions, clearSuggestions]
   );
 
+  // Will hide suggestions and clear search term
+  const handleClickOutside = () => {
+    clearSuggestions();
+    setSearchTerm("");
+    setShowSuggestions(false);
+  };
+
   // Show suggestions if search term is 3 characters or more.
   useEffect(() => {
     if (searchTerm.length > 2 && !showSuggestions) {
@@ -147,5 +154,6 @@ export const useSearchBar = () => {
     handleInputChange,
     handleLinkClick,
     handleSearchBarFocus,
+    handleClickOutside,
   };
 };

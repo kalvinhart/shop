@@ -21,9 +21,10 @@ const SearchBar = () => {
     handleSearchSubmit,
     handleLinkClick,
     handleSearchBarFocus,
+    handleClickOutside,
   } = useSearchBar();
 
-  useClickOutside(searchBarRef, () => setShowSuggestions(false));
+  useClickOutside(searchBarRef, handleClickOutside);
 
   return (
     <StyledSearchForm onSubmit={handleSearchSubmit} ref={searchBarRef} autoComplete="off">
