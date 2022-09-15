@@ -20,5 +20,6 @@ export const FiltersWrapper = styled.div`
 
   & button {
     align-self: flex-start;
+    font-size: 14px;
   }
 `;
