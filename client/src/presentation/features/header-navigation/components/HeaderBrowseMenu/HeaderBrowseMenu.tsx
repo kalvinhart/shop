@@ -1,23 +1,15 @@
-import { useEffect } from "react";
+import { useHeaderBrowseMenu } from "../../hooks/useHeaderBrowseMenu";
 
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { useCategoryState } from "../../../../common/hooks/useCategoryState";
 import { DropDownCategory } from "../../types/DropDownCategory";
 
 import { HeaderDropDownMenu } from "../HeaderDropDownMenu";
 import { SpanRegular } from "../../../../common/styles";
 
 const HeaderBrowseMenu = () => {
-  const { categories, categoriesLoading, categoriesError, loadCategories } =
-    useCategoryState();
-
-  useEffect(() => {
-    if (categories.length > 0) return;
-
-    loadCategories();
-  }, [categories, loadCategories]);
+  const { categories, categoriesLoading, categoriesError } = useHeaderBrowseMenu();
 
   if (categoriesLoading || categoriesError) return null;
 
