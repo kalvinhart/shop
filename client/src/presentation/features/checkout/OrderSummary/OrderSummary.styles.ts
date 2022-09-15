@@ -7,13 +7,13 @@ export const StyledOrderSummaryWrapper = styled.div`
   padding: 20px;
   display: flex;
   flex-direction: column;
+  align-self: center;
   background-color: white;
   border: var(--borders);
-  box-shadow: var(--box-shadow-small);
 
   @media screen and (min-width: ${mediaSizes.large}) {
-    width: calc(30% - 10px);
-    margin-bottom: 0;
+    width: 80%;
+    max-width: 450px;
   }
 `;
 

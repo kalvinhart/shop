@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../../../common/components/Button";
 import { SpanBold, SpanPrice } from "../../../../common/styles";
-import { StyledCartSummary } from "./CartSummary.styles";
+import { StyledCartSummary, SummarySpanGroup } from "./CartSummary.styles";
 
 type CartSummaryProps = {
   cartTotal: number;
@@ -12,8 +12,16 @@ const CartSummary = ({ cartTotal }: CartSummaryProps) => {
 
   return (
     <StyledCartSummary>
-      <SpanBold>Subtotal:</SpanBold>
-      <SpanPrice data-testid="CartPagePrice">{`£${cartTotal.toFixed(2)}`}</SpanPrice>
+      <SummarySpanGroup>
+        <SpanBold>Delivery:</SpanBold>
+        <SpanPrice>£0.00</SpanPrice>
+      </SummarySpanGroup>
+
+      <SummarySpanGroup>
+        <SpanBold>Subtotal:</SpanBold>
+        <SpanPrice data-testid="CartPagePrice">{`£${cartTotal.toFixed(2)}`}</SpanPrice>
+      </SummarySpanGroup>
+
       <Button variant="primary" onClick={() => navigate("/checkout")}>
         Continue to Checkout
       </Button>

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useHeaderDropDown } from "../../hooks/useHeaderDropDown";
 
 import { HeaderNavMenuButton } from "../HeaderNavMenuButton";
 
@@ -12,18 +12,19 @@ import {
 import { HeaderDropDownMenuSection } from "../HeaderDropDownMenuSection";
 
 type HeaderDropDownMenuProps = {
+  facing: "left" | "right";
   menuTitle: string | JSX.Element;
-  categories: DropDownCategory[];
+  categories?: DropDownCategory[];
+  content?: JSX.Element;
 };
 
-const HeaderDropDownMenu = ({ menuTitle, categories }: HeaderDropDownMenuProps) => {
-  const [showMenu, setShowMenu] = useState(false);
-
-  const menuRef = useRef<HTMLDivElement>(null);
-
-  const toggleShowMenu = () => {
-    setShowMenu((prev) => !prev);
-  };
+const HeaderDropDownMenu = ({
+  facing,
+  menuTitle,
+  categories,
+  content,
+}: HeaderDropDownMenuProps) => {
+  const { showMenu, menuRef, toggleShowMenu, setShowMenu } = useHeaderDropDown();
 
   return (
     <DropDownLI>
@@ -34,7 +35,9 @@ const HeaderDropDownMenu = ({ menuTitle, categories }: HeaderDropDownMenuProps) 
 
         {showMenu && (
           <HeaderDropDownMenuSection
+            facing={facing}
             categories={categories}
+            content={content}
             showMenu={showMenu}
             setShowMenu={setShowMenu}
             menuRef={menuRef}

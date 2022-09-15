@@ -12,7 +12,7 @@ import {
   FilterSelectWrapper,
 } from "./ResultsHeader.styles";
 import { H3, SpanBold } from "../../../common/styles";
-import { StyledSelect } from "../../../common/styles";
+import { Select } from "../../../common/styles";
 
 type ResultsHeaderProps = {
   setShow: (value: boolean | ((prevVar: boolean) => boolean)) => void;
@@ -38,13 +38,13 @@ const ResultsHeader = ({ setShow }: ResultsHeaderProps) => {
 
         <FilterSelectWrapper>
           <SpanBold>Sort By:</SpanBold>
-          <StyledSelect onChange={handleSelectChange} value={selectValue!}>
+          <Select onChange={handleSelectChange} value={selectValue!}>
             {sortOptions.map((option) => (
               <option key={option.text} value={option.name}>
                 {option.text}
               </option>
             ))}
-          </StyledSelect>
+          </Select>
         </FilterSelectWrapper>
       </FiltersBackground>
 

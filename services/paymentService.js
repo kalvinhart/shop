@@ -12,7 +12,7 @@ const paymentService = {
       currency: "gbp",
       payment_method_types: ["card"],
       receipt_email: user.email,
-      metadata: { userId: user.id, items },
+      metadata: { userId: user.id, userEmail: user.email, items },
     });
 
     return paymentIntent;
@@ -48,6 +48,7 @@ const paymentService = {
       const order = {
         piKey: id,
         userId: metadata.userId,
+        userEmail: metadata.userEmail,
         amount,
         items: orderItems,
         shipping: {

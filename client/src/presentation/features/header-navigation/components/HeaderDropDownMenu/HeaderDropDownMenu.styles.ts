@@ -12,16 +12,6 @@ const FadeInAnimation = keyframes`
   }
 `;
 
-const SlideInFromAboveAnimation = keyframes`
-0% {
-    transform: scaleY(0);
-  } 
-
-  100% {
-    transform: scaleY(1);
-  }
-`;
-
 export const DropDownLI = styled.li``;
 
 export const DropDownOverlay = styled.div`
@@ -50,20 +40,6 @@ export const DropDownWrapper = styled.div`
   }
 `;
 
-export const DropDownMenuWrapper = styled.div`
-  isolation: isolate;
-  z-index: 1;
-  position: absolute;
-  top: 110%;
-  left: -5px;
-  background-color: #fff;
-  border: var(--borders);
-  box-shadow: var(--box-shadow-small);
-  transform-origin: top;
-
-  ${makeAnimationCSS(SlideInFromAboveAnimation)}
-`;
-
 export const DropDownItemsUL = styled.ul`
   display: flex;
   flex-direction: column;
@@ -77,13 +53,31 @@ export const DropDownItemsLI = styled.li`
   padding: 20px;
   display: flex;
   justify-content: space-between;
+  border: 2px solid transparent;
+  cursor: pointer;
 
-  &:not(:last-child) {
-    border-bottom: 1px solid #ddd;
+  &:not(:last-child)::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #ddd;
+  }
+
+  &:focus {
+    outline: none;
+    border: 2px solid black;
+
+    &::after {
+      display: none;
+    }
   }
 
   &:hover,
-  &:focus-within {
+  &:focus {
     background-color: #efefef;
   }
 

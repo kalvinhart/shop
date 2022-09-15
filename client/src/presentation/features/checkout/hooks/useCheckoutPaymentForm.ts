@@ -1,31 +1,17 @@
 import { useElements, useStripe } from "@stripe/react-stripe-js";
 import { useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { CheckoutAddressFormData } from "./useCheckoutAddressForm";
 
-type CheckoutFormData = {
-  firstName: string;
-  lastName: string;
-  address1: string;
-  address2: string;
-  city: string;
-  state: string;
-  postalCode: string;
-};
-
-export const useCheckoutForm = () => {
+export const useCheckoutPaymentForm = () => {
   const stripe = useStripe();
   const elements = useElements();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<CheckoutFormData>();
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const doSubmit: SubmitHandler<CheckoutFormData> = async (formData) => {
-    const { firstName, lastName, address1, address2, city, state, postalCode } = formData;
+  const handleMakePayment = async (addressData: CheckoutAddressFormData) => {
+    const { firstName, lastName, address1, address2, city, state, postalCode } =
+      addressData;
 
     if (!stripe || !elements) {
       return;
@@ -37,8 +23,15 @@ export const useCheckoutForm = () => {
     const result = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: "https://mernestore.herokuapp.com/confirmation?paymentStatus=success",
-        // return_url: "http://localhost:3000/confirmation?paymentStatus=success",
+        payment_method_data: {
+          billing_details: {
+            address: {
+              postal_code: postalCode,
+              country: "GB",
+            },
+          },
+        },
+        return_url: process.env.REACT_APP_CONFIRM_PAYMENT!,
         shipping: {
           name: `${firstName} ${lastName}`,
           address: {
@@ -61,14 +54,10 @@ export const useCheckoutForm = () => {
     }
   };
 
-  const submitForm = handleSubmit(doSubmit);
-
   return {
     stripe,
     elements,
-    register,
-    errors,
-    submitForm,
+    handleMakePayment,
     loading,
     error,
   };

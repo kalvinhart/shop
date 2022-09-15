@@ -3,14 +3,14 @@ import mediaSizes from "./media";
 
 import { H2 } from "./fontStyles";
 
-export const StyledFormBackground = styled.div`
+export const FormBackground = styled.div`
   width: 100%;
   padding: 20px;
   background-color: white;
   border: var(--borders);
 `;
 
-export const StyledFormWrapper = styled.div`
+export const FormWrapper = styled.div`
   width: 100%;
   padding: 20px;
   margin: 0 auto;
@@ -27,14 +27,14 @@ export const StyledFormWrapper = styled.div`
   }
 `;
 
-export const StyledForm = styled.form`
+export const Form = styled.form`
   width: 100%;
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
 `;
 
-export const StyledInputGroup = styled.div`
+export const InputGroup = styled.div`
   position: relative;
   width: 100%;
   display: flex;
@@ -44,7 +44,7 @@ export const StyledInputGroup = styled.div`
   justify-content: space-between;
 `;
 
-export const StyledInputsFlexWrapper = styled.div`
+export const InputsFlexWrapper = styled.div`
   display: flex;
   flex-direction: column;
 
@@ -57,19 +57,19 @@ export const StyledInputsFlexWrapper = styled.div`
   }
 `;
 
-export const StyledLabel = styled.label`
+export const Label = styled.label`
   margin-bottom: 10px;
   font-weight: bold;
 `;
 
-export const StyledInput = styled.input`
+export const Input = styled.input`
   padding: 10px 20px;
   font-family: inherit;
   border: var(--borders);
   border-radius: var(--border-radius);
 `;
 
-export const StyledSelect = styled.select`
+export const Select = styled.select`
   padding: 5px 10px;
   font-family: inherit;
   border: var(--borders);

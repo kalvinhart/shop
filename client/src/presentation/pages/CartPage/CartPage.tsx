@@ -1,9 +1,9 @@
 import { useCartState } from "../../common/hooks/useCartState";
 import { usePageTitle } from "../../common/hooks/usePageTitle";
 
-import { StyledCartWrapper } from "./CartPage.styles";
-import { CartHeader } from "../../features/cart/components/CartHeader";
+import { CartWrapper } from "./CartPage.styles";
 import { CartContent } from "../../features/cart/components/CartContent";
+import { CartSummary } from "../../features/cart/components/CartSummary";
 
 const CartPage = () => {
   const { cart, cartTotal } = useCartState();
@@ -11,10 +11,10 @@ const CartPage = () => {
   usePageTitle("Shopping Cart");
 
   return (
-    <StyledCartWrapper>
-      <CartHeader cart={cart} />
+    <CartWrapper>
       <CartContent cart={cart} cartTotal={cartTotal} />
-    </StyledCartWrapper>
+      <CartSummary cartTotal={cartTotal} />
+    </CartWrapper>
   );
 };
 

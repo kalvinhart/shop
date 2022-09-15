@@ -29,7 +29,6 @@ const CartItemInfo = ({ small = false, item }: CartItemInfoProps) => {
 
         {brand && (
           <CartItemInfoGroup small={small}>
-            <SpanGrey>Brand: </SpanGrey>
             <SpanRegular>{brand}</SpanRegular>
           </CartItemInfoGroup>
         )}

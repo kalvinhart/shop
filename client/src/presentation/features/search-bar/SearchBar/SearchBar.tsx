@@ -7,7 +7,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { SearchSuggestions } from "../SearchSuggestions";
 
 import { StyledSearchButton, StyledSearchForm } from "./SearchBar.styles";
-import { StyledInput } from "../../../common/styles";
+import { Input } from "../../../common/styles";
 
 const SearchBar = () => {
   const {
@@ -26,7 +26,7 @@ const SearchBar = () => {
 
   return (
     <StyledSearchForm onSubmit={handleSearchSubmit} ref={searchBarRef} autoComplete="off">
-      <StyledInput
+      <Input
         type="text"
         name="search"
         id="search"
