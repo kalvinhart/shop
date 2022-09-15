@@ -29,6 +29,15 @@ export const useHeaderDropDownSection = (
 
       if (e.key === "Enter") {
         if (showMenu) {
+          if (
+            (e.target as HTMLElement).nodeName === "BUTTON" ||
+            (e.target as HTMLElement).nodeName === "A"
+          ) {
+            (e.target as HTMLElement).click();
+            setShowMenu(false);
+            return;
+          }
+
           navigateTo((e.target as HTMLElement).getAttribute("data-url")!);
         }
       }
