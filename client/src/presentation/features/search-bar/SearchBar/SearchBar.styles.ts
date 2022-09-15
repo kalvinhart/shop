@@ -19,8 +19,7 @@ export const StyledSearchForm = styled.form`
     width: 400px;
 
     & ${Input} {
-      height: 40px;
-      padding: 10px 20px;
+      height: 35px;
       font-size: 16px;
     }
   }
@@ -46,6 +45,6 @@ export const StyledSearchButton = styled.button`
   }
 
   @media screen and (min-width: ${mediaSizes.med}) {
-    height: 40px;
+    height: 35px;
   }
 `;
