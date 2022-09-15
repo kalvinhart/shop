@@ -42,7 +42,7 @@ const HeaderDropDownMenuSection = ({
             <DropDownItemsLI
               key={item.name}
               tabIndex={0}
-              onClick={() => navigateTo(item.url)}
+              onClick={(e: React.MouseEvent) => navigateTo(item.url, e)}
               data-url={item.url}
             >
               <SpanRegular>{item.name}</SpanRegular>

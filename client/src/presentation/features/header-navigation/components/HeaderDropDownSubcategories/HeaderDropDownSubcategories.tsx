@@ -9,7 +9,7 @@ import {
 import { DropDownSubcategoryWrapper } from "./HeaderDropDownSubcategories.styles";
 
 type Props = Pick<DropDownCategory, "subcategories"> & {
-  navigate: (url: string) => void;
+  navigate: (url: string, e?: React.MouseEvent) => void;
 };
 
 const HeaderDropDownSubcategories = ({ subcategories, navigate }: Props) => {
@@ -19,7 +19,7 @@ const HeaderDropDownSubcategories = ({ subcategories, navigate }: Props) => {
         {subcategories!.map((s) => (
           <DropDownItemsLI
             key={s.name}
-            onClick={() => navigate(s.url)}
+            onClick={(e: React.MouseEvent) => navigate(s.url, e)}
             tabIndex={0}
             data-url={s.url}
           >

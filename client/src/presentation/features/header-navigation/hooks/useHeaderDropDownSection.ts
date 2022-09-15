@@ -8,7 +8,11 @@ export const useHeaderDropDownSection = (
   const navigate = useNavigate();
 
   const navigateTo = useCallback(
-    (url: string) => {
+    (url: string, e?: React.MouseEvent) => {
+      if (e) {
+        e.stopPropagation();
+      }
+
       setShowMenu(false);
       navigate(url);
     },
