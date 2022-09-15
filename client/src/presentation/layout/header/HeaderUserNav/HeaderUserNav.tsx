@@ -36,13 +36,11 @@ const HeaderUserNav = () => {
     <HeaderUserNavWrapper>
       <UserUL>
         {loading ? null : (
-          <LI>
-            <HeaderDropDownMenu
-              facing="right"
-              categories={userCategories}
-              menuTitle={<FontAwesomeIcon className="icon" icon={faUserAlt} size="lg" />}
-            />
-          </LI>
+          <HeaderDropDownMenu
+            facing="right"
+            categories={userCategories}
+            menuTitle={<FontAwesomeIcon className="icon" icon={faUserAlt} size="lg" />}
+          />
         )}
 
         <LI>
@@ -51,24 +49,22 @@ const HeaderUserNav = () => {
           </Link>
         </LI>
 
-        <LI>
-          <HeaderDropDownMenu
-            facing="left"
-            menuTitle={
-              <CartIconWrapper>
-                {cart && cart.cartCount > 0 && <CartCount>{cart.cartCount}</CartCount>}
-                <FontAwesomeIcon className="icon" icon={faCartShopping} size="lg" />
-              </CartIconWrapper>
-            }
-            content={
-              <HeaderCart
-                cart={cart.cart}
-                cartCount={cart.cartCount}
-                cartTotal={cart.cartTotal}
-              />
-            }
-          />
-        </LI>
+        <HeaderDropDownMenu
+          facing="left"
+          menuTitle={
+            <CartIconWrapper>
+              {cart && cart.cartCount > 0 && <CartCount>{cart.cartCount}</CartCount>}
+              <FontAwesomeIcon className="icon" icon={faCartShopping} size="lg" />
+            </CartIconWrapper>
+          }
+          content={
+            <HeaderCart
+              cart={cart.cart}
+              cartCount={cart.cartCount}
+              cartTotal={cart.cartTotal}
+            />
+          }
+        />
       </UserUL>
     </HeaderUserNavWrapper>
   );
