@@ -16,7 +16,6 @@ const SearchBar = () => {
     suggestions,
     showSuggestions,
     searchBarRef,
-    setShowSuggestions,
     handleInputChange,
     handleSearchSubmit,
     handleLinkClick,
