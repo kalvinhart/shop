@@ -10,7 +10,7 @@ import { formatOldSearchParams } from "../../../common/utils/formatSearchParams"
 
 export const useSearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [suggestions, setSuggestions] = useState<Product[]>([]);
+  const [suggestions, setSuggestions] = useState<Product[] | null>(null);
   const [loading, setLoading] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
@@ -36,20 +36,30 @@ export const useSearchBar = () => {
     setLoading(false);
   }, []);
 
-  const clearSuggestions = useCallback(() => setSuggestions([]), []);
+  const clearSuggestions = useCallback(() => setSuggestions(null), []);
 
+  // Clears search term if a suggestion is clicked
   const handleLinkClick = () => {
     setSearchTerm("");
   };
 
+  // Displays suggestions once length of input >= 3
   const handleInputChange = useCallback(
     (e: FormEvent<HTMLInputElement>) => {
-      if (!showSuggestions) setShowSuggestions(true);
       setSearchTerm((e.target as HTMLInputElement).value);
+
+      if (searchTerm.length < 3) return;
+
+      if (!showSuggestions) {
+        setShowSuggestions(true);
+        return;
+      }
     },
-    [showSuggestions]
+    [showSuggestions, searchTerm]
   );
 
+  // Updates search params with new search term
+  // then navigates to that new URL
   const handleSearchSubmit = useCallback(
     (e: any) => {
       e.preventDefault();
@@ -71,21 +81,51 @@ export const useSearchBar = () => {
     [searchParams, navigate, searchTerm]
   );
 
+  // Will only show suggestions once search term is >= 3 characters
+  const handleSearchBarFocus = () => {
+    if (searchTerm.length < 3) return;
+
+    setShowSuggestions(true);
+  };
+
+  // Will close suggestion box when Escape key is pressed
+  // and clear the suggestions
   const handleEscKeyDown = useCallback(
     (e: KeyboardEvent) => {
       if (e.key === "Escape") {
+        clearSuggestions();
+        setSearchTerm("");
         setShowSuggestions(false);
       }
     },
-    [setShowSuggestions]
+    [setShowSuggestions, clearSuggestions]
   );
 
+  // Will hide suggestions and clear search term
+  const handleClickOutside = () => {
+    clearSuggestions();
+    setSearchTerm("");
+    setShowSuggestions(false);
+  };
+
+  // Show suggestions if search term is 3 characters or more.
+  useEffect(() => {
+    if (searchTerm.length > 2 && !showSuggestions) {
+      setShowSuggestions(true);
+    }
+  }, [searchTerm, showSuggestions]);
+
+  // Clears and hides suggestions if search term is deleted.
+  // If search term is more than 3 characters it initiates debounce
+  // to retreive suggestions after 600ms
   useEffect(() => {
     if (searchTerm === "") {
       clearSuggestions();
       setShowSuggestions(false);
       return;
     }
+
+    if (searchTerm.length < 3) return;
 
     const timeOut = setTimeout(() => {
       getSuggestions(searchTerm);
@@ -113,5 +153,7 @@ export const useSearchBar = () => {
     handleSearchSubmit,
     handleInputChange,
     handleLinkClick,
+    handleSearchBarFocus,
+    handleClickOutside,
   };
 };

@@ -67,6 +67,10 @@ export const Input = styled.input`
   font-family: inherit;
   border: var(--borders);
   border-radius: var(--border-radius);
+
+  &::placeholder {
+    font-size: 14px;
+  }
 `;
 
 export const Select = styled.select`

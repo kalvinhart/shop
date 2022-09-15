@@ -24,6 +24,7 @@ export const CheckboxLabel = styled.label`
   align-self: flex-start;
   cursor: pointer;
   user-select: none;
+  font-size: 14px;
 
   &:hover input ~ ${CheckboxUI} {
     background-color: #ccc;

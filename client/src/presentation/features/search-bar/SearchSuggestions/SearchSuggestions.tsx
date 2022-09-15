@@ -1,18 +1,17 @@
 import { Link } from "react-router-dom";
 
-import { useSearchBar } from "../hooks/useSearchBar";
-
 import { Product } from "../../../../domain/models/Product";
 
-import { SpanBold } from "../../../common/styles";
+import { SpanBold, SpanRegular } from "../../../common/styles";
 import {
+  ListItem,
   SuggestionsItem,
   SuggestionsList,
   SuggestionsWrapper,
 } from "./SearchSuggestions.styles";
 
 type SearchSuggestionsProps = {
-  suggestions: Product[];
+  suggestions: Product[] | null;
   loading: boolean;
   handleLinkClick: () => void;
 };
@@ -26,10 +25,10 @@ const SearchSuggestions = ({
     <SuggestionsWrapper>
       <SuggestionsList>
         {loading ? (
-          <SuggestionsItem>
+          <ListItem>
             <SpanBold>Loading...</SpanBold>
-          </SuggestionsItem>
-        ) : suggestions.length > 0 ? (
+          </ListItem>
+        ) : suggestions && suggestions.length > 0 ? (
           suggestions.map((suggestion) => (
             <SuggestionsItem key={suggestion._id}>
               <Link to={`/product/${suggestion._id}`} onClick={handleLinkClick}>
@@ -37,10 +36,14 @@ const SearchSuggestions = ({
               </Link>
             </SuggestionsItem>
           ))
-        ) : (
+        ) : suggestions ? (
           <SuggestionsItem>
             <SpanBold>No items found</SpanBold>
           </SuggestionsItem>
+        ) : (
+          <ListItem>
+            <SpanRegular>Start typing to search for an item.</SpanRegular>
+          </ListItem>
         )}
       </SuggestionsList>
     </SuggestionsWrapper>
