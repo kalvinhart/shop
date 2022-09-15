@@ -27,6 +27,7 @@ export const useCheckoutPaymentForm = () => {
           billing_details: {
             address: {
               postal_code: postalCode,
+              country: "GB",
             },
           },
         },
