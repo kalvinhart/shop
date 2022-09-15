@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from "react";
 import { Link } from "react-router-dom";
 import { CartItem } from "../../../../domain/models/CartItem";
 import { SpanBold, SpanGrey, SpanRegular } from "../../styles";
@@ -11,20 +12,32 @@ import {
 type CartItemInfoProps = {
   small?: boolean;
   item: CartItem;
+  setShowMenu?: Dispatch<SetStateAction<boolean>>;
 };
 
-const CartItemInfo = ({ small = false, item }: CartItemInfoProps) => {
+const CartItemInfo = ({ small = false, item, setShowMenu }: CartItemInfoProps) => {
   const { id, brand, name, imageUrl, size, color } = item;
+
+  let handleClick: Dispatch<SetStateAction<boolean>>;
+
+  if (setShowMenu) {
+    handleClick = () => setShowMenu(false);
+  }
 
   return (
     <CartItemInfoMainWrapper>
       <Link to={`/product/${id}`}>
-        <CartItemImage src={imageUrl} alt={name} small={small} />
+        <CartItemImage
+          src={imageUrl}
+          alt={name}
+          small={small}
+          onClick={() => handleClick(false)}
+        />
       </Link>
 
       <CartItemInfoWrapper>
         <Link to={`/product/${id}`}>
-          <SpanBold>{name}</SpanBold>
+          <SpanBold onClick={() => handleClick(false)}>{name}</SpanBold>
         </Link>
 
         {brand && (

@@ -1,4 +1,4 @@
-import { useDropDownContext } from "../../../features/header-navigation/hooks/useDropDownContext";
+import { useDropDownContext } from "../../header-navigation/hooks/useDropDownContext";
 
 import { CartItem } from "../../../../domain/models/CartItem";
 
@@ -22,7 +22,7 @@ type HeaderCartProps = {
 };
 
 const HeaderCart = ({ cart, cartCount, cartTotal }: HeaderCartProps) => {
-  const { navigateTo } = useDropDownContext();
+  const { navigateTo, setShowMenu } = useDropDownContext();
 
   if (!cart || cart.length === 0)
     return (
@@ -40,7 +40,7 @@ const HeaderCart = ({ cart, cartCount, cartTotal }: HeaderCartProps) => {
       <HeaderCartWrapper>
         {cart.map((item) => (
           <HeaderCartItemsInfoWrapper key={item.name}>
-            <CartItemInfo item={item} small={true} />
+            <CartItemInfo item={item} small={true} setShowMenu={setShowMenu} />
             <SpanPrice>£{item.total.toFixed(2)}</SpanPrice>
           </HeaderCartItemsInfoWrapper>
         ))}
