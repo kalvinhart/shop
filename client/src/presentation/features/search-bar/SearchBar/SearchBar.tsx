@@ -20,6 +20,7 @@ const SearchBar = () => {
     handleInputChange,
     handleSearchSubmit,
     handleLinkClick,
+    handleSearchBarFocus,
   } = useSearchBar();
 
   useClickOutside(searchBarRef, () => setShowSuggestions(false));
@@ -32,7 +33,7 @@ const SearchBar = () => {
         id="search"
         value={searchTerm}
         onChange={handleInputChange}
-        onFocus={() => setShowSuggestions(true)}
+        onFocus={handleSearchBarFocus}
         placeholder="Search"
         autoComplete="off"
       />

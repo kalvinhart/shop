@@ -24,17 +24,19 @@ export const SuggestionsList = styled.ul`
   padding-inline-start: 0;
 `;
 
-export const SuggestionsItem = styled.li`
+export const ListItem = styled.li`
   width: 100%;
   padding: 10px;
   font-size: 14px;
 
+  & span {
+    font-size: 12px;
+  }
+`;
+
+export const SuggestionsItem = styled(ListItem)`
   &:hover,
   &:focus-within {
     background-color: #efefef;
-  }
-
-  & span {
-    font-size: 12px;
   }
 `;
