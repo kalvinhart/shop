@@ -10,6 +10,8 @@ import {
   DropDownWrapper,
 } from "./HeaderDropDownMenu.styles";
 import { HeaderDropDownMenuSection } from "../HeaderDropDownMenuSection";
+import { useDropDownContext } from "../../hooks/useDropDownContext";
+import DropDownProvider from "../../context/DropDownContext";
 
 type HeaderDropDownMenuProps = {
   facing: "left" | "right";
@@ -24,7 +26,8 @@ const HeaderDropDownMenu = ({
   categories,
   content,
 }: HeaderDropDownMenuProps) => {
-  const { showMenu, menuRef, toggleShowMenu, setShowMenu } = useHeaderDropDown();
+  const { menuRef } = useHeaderDropDown();
+  const { showMenu, toggleShowMenu, setShowMenu } = useDropDownContext();
 
   return (
     <DropDownLI>
@@ -48,4 +51,22 @@ const HeaderDropDownMenu = ({
   );
 };
 
-export default HeaderDropDownMenu;
+const HeaderDropDownMenuWithContext = ({
+  facing,
+  menuTitle,
+  categories,
+  content,
+}: HeaderDropDownMenuProps) => {
+  return (
+    <DropDownProvider>
+      <HeaderDropDownMenu
+        facing={facing}
+        menuTitle={menuTitle}
+        categories={categories}
+        content={content}
+      />
+    </DropDownProvider>
+  );
+};
+
+export default HeaderDropDownMenuWithContext;
