@@ -28,7 +28,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     body {
-        font-family: Poppins, sans-serif;
+        font-family: Inter, sans-serif;
         color: var(--clr-font);
         background-color: #f7fafc;
     }
