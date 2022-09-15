@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useDropDownContext } from "../../header-navigation/hooks/useDropDownContext";
 
 import { CartItem } from "../../../../domain/models/CartItem";
 
@@ -22,7 +22,7 @@ type HeaderCartProps = {
 };
 
 const HeaderCart = ({ cart, cartCount, cartTotal }: HeaderCartProps) => {
-  const navigate = useNavigate();
+  const { navigateTo, setShowMenu } = useDropDownContext();
 
   if (!cart || cart.length === 0)
     return (
@@ -40,7 +40,7 @@ const HeaderCart = ({ cart, cartCount, cartTotal }: HeaderCartProps) => {
       <HeaderCartWrapper>
         {cart.map((item) => (
           <HeaderCartItemsInfoWrapper key={item.name}>
-            <CartItemInfo item={item} small={true} />
+            <CartItemInfo item={item} small={true} setShowMenu={setShowMenu} />
             <SpanPrice>£{item.total.toFixed(2)}</SpanPrice>
           </HeaderCartItemsInfoWrapper>
         ))}
@@ -54,10 +54,10 @@ const HeaderCart = ({ cart, cartCount, cartTotal }: HeaderCartProps) => {
       </HeaderCartSubtotalGroup>
 
       <HeaderCartButtonGroup>
-        <Button variant="primary" onClick={() => navigate("/cart")}>
+        <Button variant="primary" onClick={() => navigateTo("/cart")}>
           View Cart
         </Button>
-        <Button variant="primary" onClick={() => navigate("/checkout")}>
+        <Button variant="primary" onClick={() => navigateTo("/checkout")}>
           Go to Checkout
         </Button>
       </HeaderCartButtonGroup>

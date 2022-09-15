@@ -1,24 +1,10 @@
 import { useCallback, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
 export const useHeaderDropDownSection = (
   showMenu: boolean,
-  setShowMenu: (val: boolean) => void
+  setShowMenu: (val: boolean) => void,
+  navigateTo: (url: string, e?: React.MouseEvent) => void
 ) => {
-  const navigate = useNavigate();
-
-  const navigateTo = useCallback(
-    (url: string, e?: React.MouseEvent) => {
-      if (e) {
-        e.stopPropagation();
-      }
-
-      setShowMenu(false);
-      navigate(url);
-    },
-    [navigate, setShowMenu]
-  );
-
   const handleKeypress = useCallback(
     (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -52,8 +38,4 @@ export const useHeaderDropDownSection = (
       window.removeEventListener("keydown", handleKeypress);
     };
   }, [handleKeypress]);
-
-  return {
-    navigateTo,
-  };
 };

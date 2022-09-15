@@ -13,7 +13,7 @@ import {
   HeaderUserNavWrapper,
   UserUL,
 } from "./HeaderUserNav.styles";
-import HeaderCart from "../HeaderCart/HeaderCart";
+import HeaderCart from "../../../features/header-cart/HeaderCart/HeaderCart";
 import { DropDownCategory } from "../../../features/header-navigation/types/DropDownCategory";
 import { HeaderDropDownMenu } from "../../../features/header-navigation/components/HeaderDropDownMenu";
 

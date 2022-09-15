@@ -12,6 +12,7 @@ import { DropDownCategory } from "../../types/DropDownCategory";
 import { useClickOutside } from "../../../../common/hooks/useClickOutside/useClickOutside";
 import { DropDownMenuWrapper } from "./HeaderDropDownMenuSection.styles";
 import { SpanRegular } from "../../../../common/styles";
+import { useDropDownContext } from "../../hooks/useDropDownContext";
 
 type HeaderDropDownMenuSectionProps = {
   facing: "left" | "right";
@@ -31,8 +32,8 @@ const HeaderDropDownMenuSection = ({
   menuRef,
 }: HeaderDropDownMenuSectionProps) => {
   useClickOutside(menuRef, () => setShowMenu(false));
-
-  const { navigateTo } = useHeaderDropDownSection(showMenu, setShowMenu);
+  const { navigateTo } = useDropDownContext();
+  useHeaderDropDownSection(showMenu, setShowMenu, navigateTo);
 
   return (
     <DropDownMenuWrapper facing={facing}>
