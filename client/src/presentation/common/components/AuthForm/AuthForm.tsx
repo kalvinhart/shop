@@ -11,6 +11,7 @@ import {
   Label,
   FormBackground,
   FormWrapper,
+  SpanErrorBox,
 } from "../../styles";
 import { H2, SpanError, StyledParagraph } from "../../styles";
 
@@ -38,6 +39,7 @@ const AuthForm = ({
     <FormBackground>
       <FormWrapper>
         <H2>{type === "REGISTER" ? "Register" : "Sign In"}</H2>
+        {formError && <SpanErrorBox>{formError}</SpanErrorBox>}
         <Form onSubmit={handleSubmit}>
           <InputGroup>
             <Label htmlFor="email">Email:</Label>

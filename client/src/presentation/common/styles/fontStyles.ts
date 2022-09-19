@@ -128,4 +128,16 @@ export const SpanError = styled.span<SpanErrorProps>`
   `}
 `;
 
+export const SpanErrorBox = styled.span`
+  width: 100%;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #dc143c;
+  border-radius: var(--border-radius);
+  color: #dc143c;
+`;
+
 export const StyledParagraph = styled.p``;
