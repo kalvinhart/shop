@@ -29,7 +29,7 @@ export const registerUser = createAsyncThunk<
 
       return data;
     } catch (err: any) {
-      return rejectWithValue(err.message);
+      return rejectWithValue(err.response.data.message);
     }
   }
 );
@@ -50,7 +50,7 @@ export const logInUser = createAsyncThunk<User, UserCredentials, AsyncThunkConfi
 
       return data;
     } catch (err: any) {
-      return rejectWithValue(err.message);
+      return rejectWithValue(err.response.data.message);
     }
   }
 );
@@ -63,7 +63,7 @@ export const loadUserDetails = createAsyncThunk<User, UserIdToken, AsyncThunkCon
 
       return data;
     } catch (err: any) {
-      return rejectWithValue(err.message);
+      return rejectWithValue(err.response.data.message);
     }
   }
 );
@@ -88,7 +88,7 @@ export const saveToWishlist = createAsyncThunk<
       toast.success("Product saved to wishlist!");
       return data.productId;
     } catch (err: any) {
-      return rejectWithValue(err.message);
+      return rejectWithValue(err.response.data.message);
     }
   }
 );
@@ -105,7 +105,7 @@ export const removeFromWishlist = createAsyncThunk<
       toast.success("Product removed from wishlist!");
       return data.productId;
     } catch (err: any) {
-      return rejectWithValue(err.message);
+      return rejectWithValue(err.response.data.message);
     }
   }
 );

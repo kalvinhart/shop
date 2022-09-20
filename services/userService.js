@@ -4,12 +4,13 @@ const jwt = require("jsonwebtoken");
 const { hashSync, compareSync } = require("bcrypt");
 
 const ROLES = require("../config/userRoles");
+const { AuthenticationError } = require("../customErrors");
 
 const userService = {
   async register(email, password) {
     const userExists = await User.findOne({ email });
     if (userExists) {
-      throw new Error("An account already exists with this email address.");
+      throw new AuthenticationError("An account already exists with this email address.");
     }
 
     const hashPassword = await hashSync(password, 12);
@@ -36,12 +37,12 @@ const userService = {
   async signIn(email, password) {
     const user = await User.findOne({ email });
     if (!user) {
-      throw new Error("Incorrect username/password.");
+      throw new AuthenticationError("Incorrect username/password.");
     }
 
     const passwordMatch = await compareSync(password, user.password);
     if (!passwordMatch) {
-      throw new Error("Incorrect username/password.");
+      throw new AuthenticationError("Incorrect username/password.");
     }
 
     const userCredentials = {

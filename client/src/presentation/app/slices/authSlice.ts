@@ -13,7 +13,7 @@ type AuthState = {
   loading: boolean;
   isAuthenticated: boolean;
   user: User | null;
-  error: boolean;
+  error: boolean | string;
   wishlist: string[];
 };
 
@@ -28,7 +28,11 @@ const initialState: AuthState = {
 const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    clearError(state) {
+      state.error = "";
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(logOut.fulfilled, (state, action) => {
@@ -85,5 +89,7 @@ const authSlice = createSlice({
       );
   },
 });
+
+export const { clearError } = authSlice.actions;
 
 export default authSlice.reducer;

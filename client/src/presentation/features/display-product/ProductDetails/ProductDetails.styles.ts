@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import { mediaSizes } from "../../../common/styles";
 
-import { SpanPrice } from "../../../common/styles";
-
 export const ProductBackground = styled.div`
   width: 100%;
   padding: 20px;
@@ -23,12 +21,13 @@ export const ProductMainInfoWrapper = styled.div`
 `;
 
 export const ProductInfoGroup = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 
-  & ${SpanPrice} {
-    margin-bottom: 20px;
+  @media screen and (min-width: ${mediaSizes.large}) {
+    width: 50%;
   }
 `;
 
@@ -55,4 +54,9 @@ export const ProductImage = styled.img`
 export const ProductDescriptionInfo = styled.div`
   width: 100%;
   display: flex;
+  flex-direction: column;
+
+  @media screen and (min-width: ${mediaSizes.large}) {
+    flex-direction: row;
+  }
 `;
