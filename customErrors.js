@@ -18,8 +18,15 @@ class NoResultsError extends CustomError {
   }
 }
 
+class AuthenticationError extends CustomError {
+  constructor(error) {
+    super(error, 401);
+  }
+}
+
 module.exports = {
   CustomError,
   RouteNotFoundError,
   NoResultsError,
+  AuthenticationError,
 };

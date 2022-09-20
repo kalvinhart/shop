@@ -18,6 +18,7 @@ import {
 } from "../../../../infrastructure/services/interfaces/IAuthService";
 
 import { getUserTokenFromStorage } from "../../utils/token";
+import { clearError } from "../../../app/slices/authSlice";
 
 export const useAuthState = () => {
   const dispatch = useAppDispatch();
@@ -42,6 +43,10 @@ export const useAuthState = () => {
     },
     [dispatch]
   );
+
+  const clearErrors = useCallback(() => {
+    dispatch(clearError());
+  }, [dispatch]);
 
   return {
     loading,
@@ -72,5 +77,6 @@ export const useAuthState = () => {
     }, [dispatch]),
     addToWishlist,
     deleteFromWishlist,
+    clearErrors,
   };
 };

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useAuthState } from "../../../hooks/useAuthState";
 import { validateForm } from "../../../utils/validateForm";
 
 export type FormErrors = {
@@ -31,6 +32,7 @@ export const useAuthForm = (
   inputConfig: InputConfig,
   formSubmit: (formValues: InputConfig) => void
 ) => {
+  const { error: responseError, clearErrors } = useAuthState();
   const [formValues, setFormValues] = useState(inputConfig);
 
   const initialErrorState: FormErrors = {
@@ -43,6 +45,7 @@ export const useAuthForm = (
 
   const handleChange = (e: React.SyntheticEvent) => {
     if (error) setError({});
+    if (responseError) clearErrors();
 
     setFormValues({
       ...formValues,

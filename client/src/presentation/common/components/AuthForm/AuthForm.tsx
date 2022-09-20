@@ -20,7 +20,7 @@ type AuthFormProps = {
   loading: boolean;
   inputConfig: InputConfig;
   formSubmit: (formValues: InputConfig) => void;
-  formError: boolean;
+  formError: boolean | string;
 };
 
 const AuthForm = ({
@@ -39,7 +39,7 @@ const AuthForm = ({
     <FormBackground>
       <FormWrapper>
         <H2>{type === "REGISTER" ? "Register" : "Sign In"}</H2>
-        {formError && <SpanErrorBox>{formError}</SpanErrorBox>}
+
         <Form onSubmit={handleSubmit}>
           <InputGroup>
             <Label htmlFor="email">Email:</Label>
@@ -96,6 +96,8 @@ const AuthForm = ({
               )}
             </InputGroup>
           )}
+
+          {formError && <SpanErrorBox>{formError}</SpanErrorBox>}
 
           <Button
             variant="primary"
