@@ -56,13 +56,7 @@ export const SpanLogo = styled.span<LogoProps>`
   }
 `;
 
-export const SpanRegular = styled.span`
-  font-size: 14px;
-
-  @media screen and (min-width: ${mediaSizes.tablet}) {
-    font-size: 16px;
-  }
-`;
+export const SpanRegular = styled.span``;
 
 export const SpanBold = styled.span`
   font-weight: bold;
@@ -70,11 +64,6 @@ export const SpanBold = styled.span`
 
 export const SpanGrey = styled.span`
   color: #666;
-  font-size: 14px;
-
-  @media screen and (min-width: ${mediaSizes.tablet}) {
-    font-size: 16px;
-  }
 `;
 
 export const SpanPrice = styled.span`
@@ -86,7 +75,6 @@ export const SpanPrice = styled.span`
 `;
 
 export const SpanDescription = styled.span`
-  font-size: 16px;
   white-space: pre-line;
 `;
 
