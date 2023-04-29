@@ -21,14 +21,17 @@ export const useSideBar = (setShow: (val: boolean) => void) => {
 
   useEffect(() => {
     if (!loading && !filters) {
-      loadFilters();
+      // loadFilters();
     }
   }, [loading, filters, loadFilters]);
 
   const [searchParams, setSearchParams] = useSearchParams();
 
   const applyFilters = () => {
-    const newParams = handleSearchParamsOnFilterChange(searchParams, selectedFilters);
+    const newParams = handleSearchParamsOnFilterChange(
+      searchParams,
+      selectedFilters
+    );
 
     setSearchParams(newParams);
     setFiltersApplied(true);
