@@ -1,5 +1,9 @@
 import { User } from "../../../domain/models/User";
-import { IAuthService, UserCredentials, UserIdToken } from "../interfaces/IAuthService";
+import {
+  IAuthService,
+  UserCredentials,
+  UserIdToken,
+} from "../interfaces/IAuthService";
 import { IHttpService, WishlistData } from "../interfaces/IHttpService";
 
 export default class AuthService implements IAuthService {
@@ -11,7 +15,7 @@ export default class AuthService implements IAuthService {
 
   async registerUser(userCredentials: UserCredentials): Promise<User> {
     const response: User = await this.httpService.post({
-      url: "/api/users/register",
+      url: "/api/auth/register",
       data: userCredentials,
     });
 
@@ -20,7 +24,7 @@ export default class AuthService implements IAuthService {
 
   async signIn(userCredentials: UserCredentials): Promise<User> {
     const response: User = await this.httpService.post({
-      url: "/api/users/login",
+      url: "/api/auth/login",
       data: userCredentials,
     });
     return response;

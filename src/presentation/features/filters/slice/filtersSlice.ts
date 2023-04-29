@@ -7,7 +7,6 @@ import {
 
 import { removeFilterFromFilterString } from "../utils/filters";
 import { AsyncThunkConfig } from "../../../app/store";
-import { booleanObjectType } from "aws-sdk/clients/iam";
 
 export type SelectedFilters = {
   brand: string;
@@ -44,7 +43,11 @@ const initialState: FilterState = {
   isFilterApplied: false,
 };
 
-export const loadFilters = createAsyncThunk<FiltersReturn, void, AsyncThunkConfig<any>>(
+export const loadFilters = createAsyncThunk<
+  FiltersReturn,
+  void,
+  AsyncThunkConfig<any>
+>(
   "products/loadFilters",
   async (_, { rejectWithValue, extra: { productApi } }) => {
     try {
@@ -64,9 +67,12 @@ const filterSlice = createSlice({
       const { filterName, filterValue } = action.payload;
 
       if (state.selectedFilters[filterName as keyof SelectedFilters] === "") {
-        state.selectedFilters[filterName as keyof SelectedFilters] = filterValue;
+        state.selectedFilters[filterName as keyof SelectedFilters] =
+          filterValue;
       } else {
-        state.selectedFilters[filterName as keyof SelectedFilters] += `,${filterValue}`;
+        state.selectedFilters[
+          filterName as keyof SelectedFilters
+        ] += `,${filterValue}`;
       }
 
       state.isFiltered = true;
@@ -77,9 +83,12 @@ const filterSlice = createSlice({
       const currentFilterString =
         state.selectedFilters[filterName as keyof SelectedFilters];
 
-      if (currentFilterString === undefined || currentFilterString === "") return;
+      if (currentFilterString === undefined || currentFilterString === "")
+        return;
 
-      if (state.selectedFilters[filterName as keyof SelectedFilters].includes(",")) {
+      if (
+        state.selectedFilters[filterName as keyof SelectedFilters].includes(",")
+      ) {
         const newFilterString = removeFilterFromFilterString(
           currentFilterString,
           filterValue
@@ -87,7 +96,8 @@ const filterSlice = createSlice({
 
         if (newFilterString === "") return;
 
-        state.selectedFilters[filterName as keyof SelectedFilters] = newFilterString;
+        state.selectedFilters[filterName as keyof SelectedFilters] =
+          newFilterString;
       } else {
         state.selectedFilters[filterName as keyof SelectedFilters] = "";
         state.isFiltered = false;
@@ -98,7 +108,8 @@ const filterSlice = createSlice({
     },
     clearFilters(state) {
       ["brand", "color", "size"].forEach(
-        (filter) => (state.selectedFilters[filter as keyof SelectedFilters] = "")
+        (filter) =>
+          (state.selectedFilters[filter as keyof SelectedFilters] = "")
       );
       state.isFiltered = false;
       state.isFilterApplied = false;
@@ -123,7 +134,11 @@ const filterSlice = createSlice({
   },
 });
 
-export const { addToFilters, removeFromFilters, clearFilters, setFiltersApplied } =
-  filterSlice.actions;
+export const {
+  addToFilters,
+  removeFromFilters,
+  clearFilters,
+  setFiltersApplied,
+} = filterSlice.actions;
 
 export default filterSlice.reducer;
