@@ -9,14 +9,15 @@ import { HeaderDropDownMenu } from "../HeaderDropDownMenu";
 import { SpanRegular } from "../../../../common/styles";
 
 const HeaderBrowseMenu = () => {
-  const { categories, categoriesLoading, categoriesError } = useHeaderBrowseMenu();
+  const { categories, categoriesLoading, categoriesError } =
+    useHeaderBrowseMenu();
 
   if (categoriesLoading || categoriesError) return null;
 
   const menuCategories: DropDownCategory[] = categories.map((c) => ({
     name: c.name,
     url: `/products?category=${c.name}`,
-    subcategories: c.subcategories.map((s) => ({
+    subcategories: c.subcategories?.map((s) => ({
       name: s,
       url: `/products?category=${s}`,
     })),
