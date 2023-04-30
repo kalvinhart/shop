@@ -31,13 +31,10 @@ export default class AuthService implements IAuthService {
   }
 
   async getUserDetails(user: UserIdToken): Promise<User> {
-    const response: User = await this.httpService.post({
+    const response: User = await this.httpService.get({
       url: `/api/users/${user.id}`,
-      data: user,
-      options: {
-        headers: {
-          Authorization: user.token,
-        },
+      headers: {
+        Authorization: user.token,
       },
     });
 

@@ -20,6 +20,7 @@ export type Data = UserData | AuthData | WishlistData;
 
 export type GetOptions = {
   url: string;
+  headers?: AxiosRequestHeaders;
 };
 
 export type PostOptions = {

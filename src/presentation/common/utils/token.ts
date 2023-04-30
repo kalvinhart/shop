@@ -1,5 +1,4 @@
-import { User } from "../../../domain/models/User";
-
-export const getUserTokenFromStorage = (): User => {
-  return JSON.parse(localStorage.getItem("user")!);
+export const getUserTokenFromStorage = (): any => {
+  const storage = JSON.parse(localStorage.getItem("user")!);
+  return { id: storage.user._id, token: storage.token };
 };
